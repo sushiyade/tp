@@ -40,16 +40,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
 ### Ito Tetsushi
 
 <img src="images/sushiyade.png" width="200px">
@@ -59,3 +49,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Deadlines + Issue handling
+
+### Nicholas Cher
+
+<img src="images/nicholascher.png" width="200px">
+
+[[github](http://github.com/nicholascher)]
+[[portfolio](team/nicholascher.md)]
+
+* Role: Developer
+* Responsibilities : Deliverables and deadlines
