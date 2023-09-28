@@ -11,50 +11,50 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chew Jun Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chew01.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/chew01)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Daniel Low
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dloh2236.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/dloh2236)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Debbie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/flexibo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/flexibo)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Nicholas Cher
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nicholascher.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/nicholascher)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Ito Tetsushi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sushiyade.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/sushiyade)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
