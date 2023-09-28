@@ -27,7 +27,7 @@ information whenever needed.
 - **Project Tracking**: Keep track of project completion 
 statuses, ensuring you're always aware of your ongoing work.
 
-Visit our website for details! </br>
+Visit our website for more details! </br>
 (https://ay2324s1-cs2103t-w09-2.github.io/tp/)
 
 This project is based on the AddressBook-Level3 project 
