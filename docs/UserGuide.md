@@ -289,6 +289,96 @@ Format: `clear` -->
 
 ### Events Management
 
+To view events tab, either click on the “events” button, or use the command tab `events` to switch tabs.
+
+#### Listing all events: Events Tab → `list`
+
+Shows a list of all events in the **Events** tab.
+
+Format: `list`
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>           |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
+|         `list`         |         `lsit`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
+
+#### Adding an event: Events Tab → add `add`
+
+Adds a new event into the **Events** tab.
+
+Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]`
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            Creates a new event with the specified <code>NAME</code>, <code>TIMESTART</code> and <code>TIMEEND</code>. 
+            The <code>NAME</code> refers to the title of the event. 
+            The <code>TIMESTART</code> and <code>TIMEEND</code> refer to starting and ending times of the event respectively. 
+        </li>
+        <li>
+            <code>TIMESTART</code> and <code>TIMEEND</code> must be given in the format of <code>dd-mm-yyyy HH:mm</code> 
+            (e.g 23-09-2023 16:40), **preceding zeros must be included for date**.
+        </li>
+        <li>
+            Note that each contact can have:
+            <ul>
+              <li>Multiple <code>[c/CLIENT]</code> (e.g c/David c/Richard c/Anna)</li>
+              <li>At most one <code>[l/LOCATION]</code></li>
+              <li>At most one <code>[d/DESCRIPTION]</code></li>
+             </ul>
+        </li>
+    </ul>
+</box>
+
+|      Parameter       | Format                                      | Examples (#g#Valid##/#r#Invalid##)                                                          |
+|:--------------------:|---------------------------------------------|---------------------------------------------------------------------------------------------|
+|        `NAME`        | Text up to 256 characters<br>Must be unique | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                               |
+|     `TIMESTART`      | DateTime Format <br>(dd-mm-yyyy HH:mm)      | #g#31-12-2024 21:30##<br>#g#01-09-2023 11:30##<br>#r#1-9-2023 11:30##<br>#r#01092023 1130## |
+|      `TIMEEND`       | ^                                           | ^                                                                                           |
+|      `[CLIENT]`      | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                                    |
+|     `[LOCATION]`     | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##                    |
+|   `[DESCRIPTION]`    | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                             |
+
+|                                   #g#Positive Examples##                                    |                                  #r#Negative Examples##                                  | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                           |
+|:-------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add event Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | `add event  ‎ ‎s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name is missing                                           |
+|   `add event Meetup s/21-02-2023 11:30 e/21-02-2023 14:30 c/Johnny Roger c/David Powell `   | `add event Meetup s/21-02-2023 1130pm e/21-02-2023 230pm c/Johnny Roger c/David Powell`  | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> DateTime Format is incorrect <br> Follow: (dd-mm-yyyy HH:mm) |
+|                    `add event Gym s/21-02-2023 13:30 e/21-02-2023 14:30`                    |                  `add event Gym s/21-02-2023 13:30 e/21-02-2023 12:30`                   | <span style ='color: darkred; text-decoration: underline'>Illegal Time Sequence</span><br> The TIMEEND must be after the TIMESTART               |
+
+> **RESULT:** `{NAME}` Event added successfully!
+
+#### Deleting an event: Events Tab → delete `delete`
+
+Deletes an existing event from the **Events** tab.
+
+Format: `delete INDEX`
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            Deletes the event at the specified <code>INDEX</code>.
+        </li>
+        <li>
+            The <code>INDEX</code> must refer to a event found on the Events tab
+        </li>
+        <li>
+            The <code>INDEX</code> must be a positive integer
+        </li>
+    </ul>
+</box>
+
+|    Parameter    | Format                                                  | Examples (#g#Valid##/#r#Invalid##)                                                          |
+|:---------------:|---------------------------------------------------------|---------------------------------------------------------------------------------------------|
+|     `INDEX`     | Positive integer within range of indices in Events list | Assuming there are 10 entries:<br>#g#2##<br>#g#10##<br>#r#14##<br>#r#-1##<br>#r#2.4##       |
+
+
+|                #g#Positive Examples##                |                          #r#Negative Examples##                           | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
+|:----------------------------------------------------:|:-------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                      `delete 2`                      |                                `delete -1`                                | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> -1 is not a valid parameter, as INDEX only takes positive numeric values    |
+|                      `delete 4`                      |                               `delete one`                                | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
+|                                                      | `delete 150` <br>while there are less than 150 entries in the events list | <span style ='color: darkred; text-decoration: underline'>Unknown entry</span><br> The given entry must be in the event list                                  |
+
+> **RESULT:** Event `{NAME}` deleted successfully!
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Exiting the program : `exit`
