@@ -174,7 +174,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 |:-----------------:|----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
 |      `NAME`       | Text up to 256 characters<br>Must be unique                                                                    | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
 |  `PHONE_NUMBER`   | Numeric values<br>(optional "+" prefix)                                                                        | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
-|      `EMAIL`      | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins@gmail.com##<br>#r#@gmail.com (no email ID)##                                        |
+|      `EMAIL`      | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
 |    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
 |    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
 | `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram don't accept'.' in their username format)##       |
@@ -284,6 +284,73 @@ Format: `clear` -->
 --------------------------------------------------------------------------------------------------------------------
 
 ### Finance Management
+
+#### Receiving Commission: Finance Tab → `add commission`
+
+Adds a **commission** to the **Finance** tab. The commissions will be sorted in chronological order, 
+with the most recent **commission** appearing at the top.
+
+Format: `add commission a/AMOUNT n/CLIENT [d/DESCRIPTION]`
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            The <code>a/AMOUNT</code> for a commission is to be strictly positive and is a numeric value of up to two decimal places
+        </li>
+        <li>
+            The <code>[d/DESCRIPTION]</code> is optional and can be used to provide details about the commission
+        </li>
+    </ul>
+</box>
+
+
+|        Parameter        | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                 |
+|:-----------------------:|:-------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        `AMOUNT`         | Positive numbers up to two decimal points  | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)##  |
+|        `CLIENT`         | Text up to 256 characters                  | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                          |
+|     `[DESCRIPTION]`     | Text up to 256 characters                  | #g#This is an example description##</br>                                                                                                                           |
+
+|                     #g#Positive Examples##                     |                                #r#Negative Examples##                                | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
+|:--------------------------------------------------------------:|:------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add commission n/Betsy Crower a/800 d/UI design for NinjaVan` |           `add commission n/Betsy Crower a/$800 d/UI design for NinjaVan`            | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>$800 is not a valid parameter, as AMOUNT only takes positive numeric values  |
+|              `add commission n/Steph Evans a/300`              |                            `add commision n/Betsy Crower`                            | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted               |
+|                                                                | `add commision a/100 n/Betsy Crower`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given client must be in the contact list                               |
+
+> **RESULT:** Commission from `{Client}` of `{Amount}` added successfully!
+
+
+#### Deleting a Finance Entry: Finance Tab → `delete`
+
+Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab.
+
+Format: `delete INDEX`
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            Deletes the finance entry at the specified <code>INDEX</code>
+        </li>
+        <li>
+            The <code>INDEX</code> must refer to an entry found on the Finance tab
+        </li>
+        <li>
+            The <code>INDEX</code> must be a positive integer
+        </li>
+    </ul>
+</box>
+
+| Parameter |                           Format                           |                                                                       Examples (#g#Valid##/#r#Invalid##)                                                                       |
+|:---------:|:----------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|  `INDEX`  |  Positive integer within range of indices in finance list  |  Assuming that there are 10 entries</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)##  |
+
+| #g#Positive Examples## |                         #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
+|:----------------------:|:-----------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       `delete 2`       |                               `delete -1`                               | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>-1 is not a valid parameter, as INDEX only takes positive numeric values     |
+|      `delete 200`      |                              `delete one`                               | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
+|                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
+
+> **RESULT:** Finance entry at `INDEX` deleted successfully!
+
 
 --------------------------------------------------------------------------------------------------------------------
 
