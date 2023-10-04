@@ -79,7 +79,7 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Switching tabs : `tab`
+### Switching tabs → `tab`
 
 Switch views to the specific tab
 
