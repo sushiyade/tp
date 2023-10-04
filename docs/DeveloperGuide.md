@@ -314,7 +314,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The list is empty
 
-    Use case resumes at step 3.
+    Use case resumes at step 2.
+
 * 2a. The user inputs an invalid syntax
     * 2a1. FreelanceBuddy shows an error message
 
@@ -358,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The list is empty
 
-  Use case ends.
+    Use case resumes at step 2.
 
 * 2a. The user inputs an invalid index
     * 2a1. FreelanceBuddy shows an error message
@@ -380,8 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The list is empty
-
-  Use case ends.
+    Use case ends.
 
 * 2a. The user inputs an invalid index
     * 2a1. FreelanceBuddy shows an error message
