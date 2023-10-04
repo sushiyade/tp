@@ -124,7 +124,7 @@ Shows a list of contacts that contains specific string
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-<box type="info" seamless>
+<box type="warning" seamless>
     <ul>
       <li>Using partial keywords will be matched. e.g. 'ha' will match 'hans'
       <li>The search is case-insensitive. e.g `hAnS` will match `Hans`</li>
@@ -177,7 +177,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 |      `EMAIL`      | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
 |    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
 |    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
-| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram don't accept'.' in their username format)##       |
+| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
 
 |                                  #g#Positive Examples##                                  |                                        #r#Negative Examples##                                        | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                  |
 |:----------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
@@ -193,11 +193,16 @@ Deletes the specified contact from the **Contacts** tab using index. Will ask th
 
 Format: `delete INDEX [MORE_INDEX]`
 
+<box type="warning" seamless>
+
 * Deletes a **contact entry** at specified `INDEX`
+
 * Able to delete multiple contacts at once
   * Separate each `INDEX` by only a space “ “
+
 * The index refers to the index number shown in the contact `list`
   * `INDEX` will not be accepted if not found within the contact `list`
+</box>
 
 | Parameter | Format            | Examples (#g#Valid##/#r#Invalid##)                      |
 |:---------:|-------------------|---------------------------------------------------------|
@@ -223,30 +228,37 @@ Deletes the specified contact from the **Contacts** tab using the keyword. Will 
 
 Format: `delete KEYWORD [MORE_KEYWORDS]`
 
+<box type="warning" seamless>
+
 * Delete contact(s) that contains `KEYWORD`
+
 * Able to delete multiple contacts at once containing `KEYWORD`(s)
+
 * Using partial keywords will be matched. e.g. ha will match hans
 > `ha` → 3. Hans Gruber
+
 * The search is case-insensitive. e.g. `hAnS` will match `Hans`
 > `hAnS` → 4. Hans Gruber
+
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 > `Hans Bo` → 3. Hans Gruber
 >             4. Bo Yang 
+
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-> `Bo Hans` → 3. Hans Gruber
-> 
->             4. Bo Yang
+> `Bo Hans` → 3. Hans Gruber `/` 4. Bo Yang
+
 * Only the `NAME` of the contact is searched
+</box>
 
 
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Hans##<br>#g#3##                |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                |
-|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------------------------------|
-|     `delete hans`      |     `delete Alex`      | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with "Alex"                    |
-|    `delete hAns Bo`    |        `delete`        | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to searcg and delete with |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                             |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------|
+|     `delete hans`      |     `delete Alex`      | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with "Alex"                                 |
+|    `delete hAns Bo`    |        `delete`        | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a <code>KEYWORD</code> to search and delete with |
 
 > **RESULT:**
 > Are you sure you want to delete contact `{NAME}` ?
