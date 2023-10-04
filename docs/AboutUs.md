@@ -48,3 +48,13 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities : Deliverables and deadlines
+
+### Debbie Hii
+
+<img src="images/flexibo.png" width="200px">
+
+[[github](http://github.com/flexibo)]
+[[portfolio](team/flexibo.md)]
+
+* Role: Developer
+* Responsibilities : Code writing and Design
