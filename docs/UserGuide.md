@@ -329,14 +329,13 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION
     </ul>
 </box>
 
-|      Parameter       | Format                                      | Examples (#g#Valid##/#r#Invalid##)                                                          |
-|:--------------------:|---------------------------------------------|---------------------------------------------------------------------------------------------|
-|        `NAME`        | Text up to 256 characters<br>Must be unique | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                               |
-|     `TIMESTART`      | DateTime Format <br>(dd-mm-yyyy HH:mm)      | #g#31-12-2024 21:30##<br>#g#01-09-2023 11:30##<br>#r#1-9-2023 11:30##<br>#r#01092023 1130## |
-|      `TIMEEND`       | ^                                           | ^                                                                                           |
-|      `[CLIENT]`      | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                                    |
-|     `[LOCATION]`     | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##                    |
-|   `[DESCRIPTION]`    | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                             |
+|    Parameter    | Format                                      | Examples (#g#Valid##/#r#Invalid##)                                                          |
+|:---------------:|---------------------------------------------|---------------------------------------------------------------------------------------------|
+|     `NAME`      | Text up to 256 characters<br>Must be unique | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                               |
+| `TIMESTART` / `TIMEEND`   | DateTime Format <br>(dd-mm-yyyy HH:mm)      | #g#31-12-2024 21:30##<br>#g#01-09-2023 11:30##<br>#r#1-9-2023 11:30##<br>#r#01092023 1130## |
+|   `[CLIENT]`    | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                                    |
+|  `[LOCATION]`   | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##                    |
+| `[DESCRIPTION]` | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                             |
 
 |                                   #g#Positive Examples##                                    |                                  #r#Negative Examples##                                  | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                           |
 |:-------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------|
