@@ -316,7 +316,7 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION
         </li>
         <li>
             <code>TIMESTART</code> and <code>TIMEEND</code> must be given in the format of <code>dd-mm-yyyy HH:mm</code> 
-            (e.g 23-09-2023 16:40), **preceding zeros must be included for date**.
+            (e.g 23-09-2023 16:40), <b>preceding zeros must be included for date</b>.
         </li>
         <li>
             Note that each contact can have:
