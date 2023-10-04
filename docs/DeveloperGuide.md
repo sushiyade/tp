@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# FreelanceBuddy Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -295,32 +295,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FreelanceBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: UC9 - Add a commission**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User navigates to the **Finance** tab
+2. FreelanceBuddy shows a list of commissions and expenses
+3. User requests to add a new commission
+4. FreelanceBuddy adds the new commission to the top of the list
+
+    Use case ends.
+
+**Extensions** 
+
+* 2a. The list is empty
+
+    Use case resumes at step 3.
+* 3a. The user inputs an invalid syntax
+    * 3a1. FreelanceBuddy shows an error message
+
+        Use case resumes at step 2.
+
+**Use Case: UC10 - Delete a Finance entry**
+
+**MSS**
+
+1. User navigates to the **Finance** tab
+2. FreelanceBuddy shows a list of commissions and expenses
+3. User requests to delete a specific entry in the list
+4. FreelanceBuddy deletes the entry
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The user inputs an invalid index
+  * 3a1. FreelanceBuddy shows an error message
+    
+    Use case resumes at step 2. 
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
