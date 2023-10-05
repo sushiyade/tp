@@ -18,22 +18,35 @@ It's your one-stop solution for managing multiple clients, tracking project stat
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `freelancebuddy.jar` from [here](https://github.com/AY2324S1-CS2103T-W09-2/tp/releases/).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your app.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar freelancebuddy.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+5. There are 4 tabs, here is what each tab should show:
+   * Dashboard
+     * Recently added contacts
+     * Finance overview
+     * Upcoming events
+   * Contacts
+     * List of contacts
+   * Events
+     * List of events
+   * Finance
+     * List of finances (both commission and expenses)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the general help window.<br>
    Some example commands you can try:
 
-   * `tab contacts` : switches tab to the 'contacts' tab.
+   * `tab contacts` : switches tab to the Contacts tab.
+
+   * `help` : shows help view for the Contacts tab. 
    
    * `list` : Lists the relevant information in the respective tabs.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contact list shown in the Contacts Tab.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -41,7 +54,7 @@ It's your one-stop solution for managing multiple clients, tracking project stat
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,11 +82,11 @@ It's your one-stop solution for managing multiple clients, tracking project stat
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page. This command is available for all tabs, each tab (except the dashboard) will show the help message specifically for the tab itself.
 
-![help message](images/helpMessage.png)
+![dashboard help message](images/helpMessage.png)
 
 Format: `help`
 
@@ -87,13 +100,13 @@ Format: `tab TAB_NAME`
 
 Acceptable values for `TAB_NAME`:
 
+* `dashboard`
+
 * `contacts`
 
 * `events`
 
 * `finances`
-
-* `dashboard`
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                 |
 |:----------------------:|:----------------------:|--------------------------------------------------------------------------------------------------------|
@@ -118,52 +131,15 @@ Format: `list`
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
 |         `list`         |         `lsit`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
 
-#### Finding contact: Contacts Tab → `find`
-
-Shows a list of contacts that contains specific string
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-<box type="warning" seamless>
-
-* Using partial keywords will be matched. e.g. ha will match hans
-> `ha` → 3. Hans Gruber
-
-* The search is case-insensitive. e.g. `hAnS` will match `Hans`
-> `hAnS` → 4. Hans Gruber
-
-* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-> `Hans Bo` → 3. Hans Gruber `/` 4. Bo Yang
-
-* The order of the keywords also does not matter. e.g. Hans Bo will match Bo Hans and return the same result as above
-
-* Only the `NAME` of the contact is searched
-  </box>
-
-| Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
-|:---------:|---------------------------|------------------------------------|
-| `KEYWORD` | Text up to 256 characters | #g#Hans##<br>#g#3##                |
-
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|      `find hans`       |      `find Alex`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with 'Alex'         |
-|     `find hAns Bo`     |         `find`         | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
-
-> **RESULT:** Shows names containing given KEYWORD(s) in Contacts tab
-
-![result for 'find alex david'](images/findAlexDavidResult.png)
-
 #### Adding a contact: Contacts Tab → add `add`
 
 Adds a new contact into the **Contacts** tab.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]`
 
-<box type="warning" seamless>
+* <code>[a/ADDRESS]</code> should preferably be the company’s address
+  <box type="warning" seamless>
     <ul>
-        <li>
-            <code>[a/ADDRESS]</code> should preferably be the company’s address
-        </li>
         <li>
             Note that each contact can have:
             <ul>
@@ -192,11 +168,44 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 
 > **RESULT:** Contact `{NAME}` added successfully!
 
+#### Finding contact: Contacts Tab → `find`
+
+Shows a list of contacts that contains specific string
+
+Format: `find KEYWORD [MORE_KEYWORDS]...`
+
+<box type="warning" seamless>
+* Using partial keywords will be matched. e.g. ha will match hans
+> `ha` → 3. Hans Gruber
+* The search is case-insensitive. e.g. `hAnS` will match `Hans`
+> `hAnS` → 4. Hans Gruber
+* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+> `Hans Bo` → 3. Hans Gruber
+>             4. Bo Yang
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+> `Bo Hans` → 3. Hans Gruber
+>             4. Bo Yang
+* Only the `NAME` of the contact is searched
+</box>
+
+| Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
+|:---------:|---------------------------|------------------------------------|
+| `KEYWORD` | Text up to 256 characters | #g#Hans##<br>#g#3##                |
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
+|      `find hans`       |      `find Alex`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with 'Alex'         |
+|     `find hAns Bo`     |         `find`         | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+
+> **RESULT:** Shows names containing given KEYWORD(s) in Contacts tab
+
+![result for 'find alex david'](images/findAlexDavidResult.png)
+
 #### Deleting a contact with index: Contact Tab → `delete`
 
 Deletes the specified contact from the **Contacts** tab using index. Will ask the user to confirm deletion.
 
-Format: `delete INDEX [MORE_INDEX]`
+Format: `delete INDEX [MORE_INDEX]...`
 
 <box type="warning" seamless>
 
@@ -231,7 +240,7 @@ Format: `delete INDEX [MORE_INDEX]`
 
 Deletes the specified contact from the **Contacts** tab using the keyword. Will ask the user to confirm deletion. Uses the same formatting as !!**find**!!.
 
-Format: `delete KEYWORD [MORE_KEYWORDS]`
+Format: `delete KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
@@ -246,6 +255,7 @@ Format: `delete KEYWORD [MORE_KEYWORDS]`
 > `hAnS` → 4. Hans Gruber
 
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+
 > `Hans Bo` → 3. Hans Gruber `/` 4. Bo Yang 
 
 * The order of the keywords also does not matter. e.g. Hans Bo will match Bo Hans and return the same result as above
@@ -295,77 +305,6 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear` -->
-
---------------------------------------------------------------------------------------------------------------------
-
-### Finance Management
-
-#### Receiving Commission: Finance Tab → `add commission`
-
-Adds a **commission** to the **Finance** tab. The commissions will be sorted in chronological order, 
-with the most recent **commission** appearing at the top.
-
-Format: `add commission a/AMOUNT n/CLIENT [d/DESCRIPTION]`
-
-<box type="warning" seamless>
-    <ul>
-        <li>
-            The <code>a/AMOUNT</code> for a commission is to be strictly positive and is a numeric value of up to two decimal places
-        </li>
-        <li>
-            The <code>[d/DESCRIPTION]</code> is optional and can be used to provide details about the commission
-        </li>
-    </ul>
-</box>
-
-
-|        Parameter        | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                 |
-|:-----------------------:|:-------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|        `AMOUNT`         | Positive numbers up to two decimal points  | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)##  |
-|        `CLIENT`         | Text up to 256 characters                  | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                          |
-|     `[DESCRIPTION]`     | Text up to 256 characters                  | #g#This is an example description##</br>                                                                                                                           |
-
-|                     #g#Positive Examples##                     |                                #r#Negative Examples##                                | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
-|:--------------------------------------------------------------:|:------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `add commission n/Betsy Crower a/800 d/UI design for NinjaVan` |           `add commission n/Betsy Crower a/$800 d/UI design for NinjaVan`            | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>$800 is not a valid parameter, as AMOUNT only takes positive numeric values  |
-|              `add commission n/Steph Evans a/300`              |                            `add commision n/Betsy Crower`                            | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted               |
-|                                                                | `add commision a/100 n/Betsy Crower`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given client must be in the contact list                               |
-
-> **RESULT:** Commission from `{Client}` of `{Amount}` added successfully!
-
-
-#### Deleting a Finance Entry: Finance Tab → `delete`
-
-Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab.
-
-Format: `delete INDEX`
-
-<box type="warning" seamless>
-    <ul>
-        <li>
-            Deletes the finance entry at the specified <code>INDEX</code>
-        </li>
-        <li>
-            The <code>INDEX</code> must refer to an entry found on the Finance tab
-        </li>
-        <li>
-            The <code>INDEX</code> must be a positive integer
-        </li>
-    </ul>
-</box>
-
-| Parameter |                           Format                           |                                                                       Examples (#g#Valid##/#r#Invalid##)                                                                       |
-|:---------:|:----------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  `INDEX`  |  Positive integer within range of indices in finance list  |  Assuming that there are 10 entries</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)##  |
-
-| #g#Positive Examples## |                         #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
-|:----------------------:|:-----------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|       `delete 2`       |                               `delete -1`                               | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>-1 is not a valid parameter, as INDEX only takes positive numeric values     |
-|      `delete 200`      |                              `delete one`                               | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
-|                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
-
-> **RESULT:** Finance entry at `INDEX` deleted successfully!
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -462,6 +401,76 @@ Format: `delete INDEX`
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Finance Management
+
+#### Receiving Commission: Finance Tab → `add commission`
+
+Adds a **commission** to the **Finance** tab. The commissions will be sorted in chronological order, 
+with the most recent **commission** appearing at the top.
+
+Format: `add commission a/AMOUNT n/CLIENT [d/DESCRIPTION]`
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            The <code>a/AMOUNT</code> for a commission is to be strictly positive and is a numeric value of up to two decimal places
+        </li>
+        <li>
+            The <code>[d/DESCRIPTION]</code> is optional and can be used to provide details about the commission
+        </li>
+    </ul>
+</box>
+
+
+|        Parameter        | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                 |
+|:-----------------------:|:-------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        `AMOUNT`         | Positive numbers up to two decimal points  | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)##  |
+|        `CLIENT`         | Text up to 256 characters                  | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                          |
+|     `[DESCRIPTION]`     | Text up to 256 characters                  | #g#This is an example description##</br>                                                                                                                           |
+
+|                     #g#Positive Examples##                     |                                #r#Negative Examples##                                | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
+|:--------------------------------------------------------------:|:------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add commission n/Betsy Crower a/800 d/UI design for NinjaVan` |           `add commission n/Betsy Crower a/$800 d/UI design for NinjaVan`            | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>$800 is not a valid parameter, as AMOUNT only takes positive numeric values  |
+|              `add commission n/Steph Evans a/300`              |                            `add commision n/Betsy Crower`                            | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted               |
+|                                                                | `add commision a/100 n/Betsy Crower`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given client must be in the contact list                               |
+
+> **RESULT:** Commission from `{Client}` of `{Amount}` added successfully!
+
+
+#### Deleting a Finance Entry: Finance Tab → `delete`
+
+Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab.
+
+Format: `delete INDEX`
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            Deletes the finance entry at the specified <code>INDEX</code>
+        </li>
+        <li>
+            The <code>INDEX</code> must refer to an entry found on the Finance tab
+        </li>
+        <li>
+            The <code>INDEX</code> must be a positive integer
+        </li>
+    </ul>
+</box>
+
+| Parameter |                           Format                           |                                                                       Examples (#g#Valid##/#r#Invalid##)                                                                       |
+|:---------:|:----------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|  `INDEX`  |  Positive integer within range of indices in finance list  |  Assuming that there are 10 entries</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)##  |
+
+| #g#Positive Examples## |                         #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
+|:----------------------:|:-----------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       `delete 2`       |                               `delete -1`                               | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>-1 is not a valid parameter, as INDEX only takes positive numeric values     |
+|      `delete 200`      |                              `delete one`                               | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
+|                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
+
+> **RESULT:** Finance entry at `INDEX` deleted successfully!
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -503,12 +512,34 @@ _Details coming soon ..._-->
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+### General 
+Commands that applies to ALL tabs
+
+| Action   | Format, Examples                         |
+|----------|------------------------------------------|
+| **Tab**  | `tab TAB_NAME` <br> e.g., `tab contacts` |
+| **List** | `list`                                   |
+| **Help** | `help`                                   |
+
+### Contacts Tab
+
+| Action                      | Format, Examples                                                                                                                                    |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com` |
+| **Find**                    | `find KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find Annie Bob`                                                                                        |
+| **Delete using index(es)**  | `delete INDEX [MORE_INDEX]…​` <br> e.g., `delete 1 2 3`                                                                                             |
+| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                       |
+
+### Events Tab
+
+| Action     | Format, Examples                                                                                                                                                                  |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add event Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                               |
+
+### Finance Tab
+
+| Action     | Format, Examples                                                                                                               |
+|------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add commission a/AMOUNT n/CLIENT [d/DESCRIPTION]` <br> e.g., `add commission n/Betsy Crower a/800 d/UI design for NinjaVan`   |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
