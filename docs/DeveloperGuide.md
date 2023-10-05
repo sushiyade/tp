@@ -269,27 +269,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+| Characteristics                | What **FreelanceBuddy** offers                                                                                              |
+|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Organised Work Style           | One stop app for managing your contacts, finances and day-to-day events in a easy and structured way                        |
+| Preference For Efficiency      | CLI interface enables quick input and retrieval of your contacts, finances and events without the need of moving your mouse |
+| Want to Achieve More With Less | Users can get summary statistics, organise their data and much more all with just one command                               |
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage all your freelancing needs in an app faster then typical GUI driven apps.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+#### For Client Contact Management
+
+|  Priority  |      As a …​       | I want to …​                            | So that I can…​                                                     |
+|:----------:|:------------------:|-----------------------------------------|---------------------------------------------------------------------|
+|  `* * *`   |      new user      | see usage instructions                  | refer to instructions when I forget how to use the App              |
+|  `* * *`   |        user        | add a new client contact                |                                                                     |
+|  `* * *`   |        user        | delete a client contact                 | remove entries that I no longer need                                |
+|  `* * *`   |        user        | view all my saved clients contact       | have an overview of all my clients contacts                         |
+|  `* * *`   |        user        | find a client contact by name           | locate clients by name without having to go through the entire list |
+|   `* *`    |        user        | edit a saved client contact             | change any details that are wrong or that have changed              |
+|   `* *`    |  experienced user  | see statistics of a client              | see how much money and time is spent on respective client projects  |
+|    `*`     |   long-term user   | see if clients have been worth the time | better choose my clients for the future                             |
+|    `*`     |        user        | create invoices with client details     | save time with manual inputting of client details                   |
 
 *{More to be added}*
 
