@@ -125,15 +125,20 @@ Shows a list of contacts that contains specific string
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 <box type="warning" seamless>
-    <ul>
-      <li>Using partial keywords will be matched. e.g. 'ha' will match 'hans'
-      <li>The search is case-insensitive. e.g `hAnS` will match `Hans`</li>
-      <li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li>
-      <li>Only the name is searched.</li>
-      <li>Persons matching at least one keyword will be returned (i.e. `OR` search).
-        e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`</li>
-    </ul>
-</box>
+
+* Using partial keywords will be matched. e.g. ha will match hans
+> `ha` → 3. Hans Gruber
+
+* The search is case-insensitive. e.g. `hAnS` will match `Hans`
+> `hAnS` → 4. Hans Gruber
+
+* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+> `Hans Bo` → 3. Hans Gruber `/` 4. Bo Yang
+
+* The order of the keywords also does not matter. e.g. Hans Bo will match Bo Hans and return the same result as above
+
+* Only the `NAME` of the contact is searched
+  </box>
 
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
