@@ -269,33 +269,116 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+| Characteristics                | What **FreelanceBuddy** offers                                                                                              |
+|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Organised Work Style           | One stop app for managing your contacts, finances and day-to-day events in a easy and structured way                        |
+| Preference For Efficiency      | CLI interface enables quick input and retrieval of your contacts, finances and events without the need of moving your mouse |
+| Want to Achieve More With Less | Users can get summary statistics, organise their data and much more all with just one command                               |
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage all your freelancing needs in an app that is faster than your typical GUI driven apps.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+#### General
+
+| Priority |  As a …​  | I want to …​                          | So that I can…​                                                                                   |
+|:--------:|:---------:|---------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *`  | new user  | see usage instructions                | refer to instructions when I forget how to use the App                                            |
+| `* * *`  |   user    | switch between the different tabs     | view Contacts, Events and Finances in their respective tabs                                       |
+|  `* *`   |   user    | see an overview of all my tabs        | quickly get a look at the important details without needing to navigating into tabs unnecessarily |
+|   `* `   | lazy user | FreelanceBuddy to predict my commands | quickly input commands without typing the entire command                                          |
+
+#### For Client Contact Management
+
+| Priority |     As a …​      | I want to …​                            | So that I can…​                                                     |
+|:--------:|:----------------:|-----------------------------------------|---------------------------------------------------------------------|
+| `* * *`  |       user       | add a new client contact                |                                                                     |
+| `* * *`  |       user       | delete a client contact                 | remove entries that I no longer need                                |
+| `* * *`  |       user       | view all my saved clients contact       | have an overview of all my clients contacts                         |
+| `* * *`  |       user       | find a client contact by name           | locate clients by name without having to go through the entire list |
+|  `* *`   |       user       | edit a saved client contact             | change any details that are wrong or have changed                   |
+|  `* *`   | experienced user | see statistics of a client              | see how much money and time is spent on respective client projects  |
+|  `* *`   |       user       | add favourite clients                   | see all important clients in the same place                         |
+|   `*`    |  long-term user  | see if clients have been worth the time | better choose my clients for the future                             |
+|   `*`    |  long-term user  | be able to manage client notes          | keep important notes about clients for future references            |
+|   `*`    |       user       | create invoices with client details     | save time with manual inputting of client details                   |
+
+
+#### For Events Management
+
+| Priority |     As a …​      | I want to …​                       | So that I can…​                                          |
+|:--------:|:----------------:|------------------------------------|----------------------------------------------------------|
+| `* * *`  |       user       | add a new event                    |                                                          |
+| `* * *`  |       user       | delete an old event                | remove entries that I no longer need                     |
+| `* * *`  |       user       | view all my saved events           | have an overview of all my events sorted by date         |
+| `* * *`  |       user       | see most urgent events             | know what is coming up soon or needs to be done urgently |
+|  `* *`   |       user       | edit a saved event                 | change any details that are wrong or have changed        |
+|  `* *`   | experienced user | tag clients to events              | see which client is involved in a particular event       |
+|   `*`    |  forgetful user  | set recurring reminders for events | be alerted to task that I might forget                   |
+|   `*`    |       user       | add location of events             | know where this event is taking place                    |
+
+#### For Finance Management
+
+> This covers for both commission and expense. We will refer to both as C/E.
+
+| Priority |     As a …​      | I want to …​                                           | So that I can…​                                   |
+|:--------:|:----------------:|--------------------------------------------------------|---------------------------------------------------|
+| `* * *`  |       user       | add a new C/E                                          |                                                   |
+| `* * *`  |       user       | delete an old C/E                                      | remove entries that I no longer need              |
+| `* * *`  |       user       | view all my saved C/E                                  | have an overview of all my C/E                    |
+|  `* *`   |       user       | see a summary of past months C/E                       | know what I get a summary of my finances          |
+|  `* *`   |       user       | edit a saved C/E                                       | change any details that are wrong or have changed |
+|  `* *`   | experienced user | tag clients to C/E                                     | see which client is involved in a particular C/E  |
+|  `* *`   |       user       | see expected months income                             | plan my finances for the month                    |
+|   `*`    |  organised user  | generate an financial report (for a given time period) | keep track of my monetary flow                    |
+
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `FreelanceBuddy` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use Case: UC1 - Get help**
+
+**Precondition**: -
+
+**MSS**
+
+1. User needs help on using the application
+2. User requests for help
+3. FreelanceBuddy shows a pop-up with a link to the user guide
+4. User copies the URL and references the user guide
+
+   Use case ends.
+
+**Use Case: UC2 - Navigating between tabs**
+
+**Precondition**: User can be on **any** tab
+
+
+**MSS**
+
+1. FreelanceBuddy shows the current tab user is on
+2. User requests to switch to another tab (that is not the current one)
+3. FreelanceBuddy switches to the specified tab by the user
+4. FreelanceBuddy shows the desired tab
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user inputs an invalid syntax
+    * 2a1. FreelanceBuddy shows an error message
+
+      Use case resumes at step 1.
+  
+* 2b. User decides to stay on the current tab
+    
+    User case resumes at step 4.
 
 **Use Case: UC9 - Add a commission**
 
@@ -390,16 +473,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+|      Aspect       | Description                                                                                                                                                                                                                                                                                                                                  |
+|:-----------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Compatibility** | Should work on any _mainstream OS_ as long as it has Java `11` or above installed.                                                                                                                                                                                                                                                           |
+|  **Performance**  | 1. Should be able to to hold up to 1000 persons without much performance degredation.<br/><br/>2. Should responds to commands within 1s on average even when handling heavier task                                                                                                                                                           |
+|   **Usability**   | 1. User with above average typing speed should be able to accomplish most tasks faster than using mouse and GUIs.<br><br>2. CLI commands should be intuitive and easy for the user<br></br>3. Error messages should be informative so users can troubleshoot effectively<br><br>4. Clear and concise documentation available to assist users |
+|  **Reliability**  | 1. App should be robust and resilient to minimize any crashes or errors.<br><br> 2. App should have have regular automated backup procedures to ensure data is saved in the case of accidental shut down or crashes to the app                                                                                                               |
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
