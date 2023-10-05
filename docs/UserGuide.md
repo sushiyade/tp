@@ -241,11 +241,9 @@ Format: `delete KEYWORD [MORE_KEYWORDS]`
 > `hAnS` → 4. Hans Gruber
 
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-> `Hans Bo` → 3. Hans Gruber
->             4. Bo Yang 
+> `Hans Bo` → 3. Hans Gruber `/` 4. Bo Yang 
 
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-> `Bo Hans` → 3. Hans Gruber `/` 4. Bo Yang
+* The order of the keywords also does not matter. e.g. Hans Bo will match Bo Hans and return the same result as above
 
 * Only the `NAME` of the contact is searched
 </box>
