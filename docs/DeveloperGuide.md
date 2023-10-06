@@ -340,8 +340,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `FreelanceBuddy` and the **Actor** is the `user`, unless specified otherwise)
-
 #### Use Case: UC1 - Get help
 
 **Precondition**: -
@@ -421,6 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. FreelanceBuddy shows a list of Events
 2. User requests to add a new event
 3. FreelanceBuddy creates the Event entry and shows it within the list.
+
    Use case ends.
 
 **Extensions**
@@ -458,24 +457,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use Case: UC9 - View all events
 
-**Precondition**: -
+**Precondition**: User is on **Events** tab
 
 **MSS**
 
-1. 
+1. User requests to view all events
+2. FreelanceBuddy shows a list of all events
+
+Use case ends.
 
 #### Use Case: UC10 - View most urgent events
 
-**Precondition**: -
+**Precondition**: User is on **Events** tab
 
 **MSS**
 
-1.
+1. User requests to view most urgent events
+2. FreelanceBuddy shows a list of most urgent events
+
+Use case ends.
 
 #### Use Case: UC11 - Add a commission
 
 **Precondition**: User is on **Finance** tab
-
 
 **MSS**
 
@@ -521,11 +525,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use Case: UC13 - View all finance entries
 
-**Precondition**: -
+**Precondition**: User is on **Finance** tab
 
 **MSS**
 
-1.
+1. User requests to view all finance entries
+2. FreelanceBuddy shows a list of all finance entries
+
+Use case ends.
 
 ### Non-Functional Requirements
 
