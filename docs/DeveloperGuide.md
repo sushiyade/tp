@@ -390,6 +390,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case resumes at step 2.
+  
+* 2a. The user inputs invalid syntax
+    * 2a1. FreelanceBuddy shows an error message
+
+  Use case resumes at step 1. 
+  
+
 #### Use Case: UC4 - Delete a client contact
 
 **Precondition**: - User is on Contacts tab
@@ -402,6 +414,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 2a. The user inputs with invalid syntax
+    * 2a1. FreelanceBuddy shows error message
+
+  Use case resumes at step 1. 
+
 #### Use Case: UC5 - View all client contacts
 
 **Precondition**: - User is on Contacts tab 
@@ -412,6 +435,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FreelanceBuddy shows a list of all Contacts
 
    Use case ends.
+
+**Extensions** 
+
+* 1a. No contacts found that contains given keywords.
+  * 1a1. FreelanceBuddy shows error message
+
+  Use case ends.
 
 #### Use Case: UC6 - Find a specific client contact
 
