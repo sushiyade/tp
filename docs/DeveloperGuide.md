@@ -380,35 +380,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use Case: UC3 - Add a client contact
 
-**Precondition**: -
+**Precondition**: - User is on Contacts tab
 
 **MSS**
 
-1.
+1. FreelanceBuddy shows the list of Contacts
+2. User requests to add a new contact
+3. FreelanceBuddy creates a new contact and shows it within the list
+
+   Use case ends.
 
 #### Use Case: UC4 - Delete a client contact
 
-**Precondition**: -
+**Precondition**: - User is on Contacts tab
 
 **MSS**
 
-1.
+1. FrelanceBuddy shows the list of Contacts
+2. User requests to delete specific entry in the list
+3. FreelanceBuddy deletes the entry
+
+   Use case ends.
 
 #### Use Case: UC5 - View all client contacts
 
-**Precondition**: -
+**Precondition**: - User is on Contacts tab 
 
 **MSS**
 
-1.
+1. User requests to view all Contacts
+2. FreelanceBuddy shows a list of all Contacts
+
+   Use case ends.
 
 #### Use Case: UC6 - Find a specific client contact
 
-**Precondition**: -
+**Precondition**: - User is on Contacts tab 
 
 **MSS**
 
-1.
+1. User requests to find contacts using keywords
+2. FreelanceBuddy shows a list of Contacts that contains given keywords
+
+   Use case ends.
 
 #### Use Case: UC7 - Add an event
 
