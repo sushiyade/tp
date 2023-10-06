@@ -267,13 +267,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Freelancers
 
-| Characteristics                | What **FreelanceBuddy** offers                                                                                              |
-|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Organised Work Style           | One stop app for managing your contacts, finances and day-to-day events in a easy and structured way                        |
-| Preference For Efficiency      | CLI interface enables quick input and retrieval of your contacts, finances and events without the need of moving your mouse |
-| Want to Achieve More With Less | Users can get summary statistics, organise their data and much more all with just one command                               |
+| Characteristics                                   | What **FreelanceBuddy** offers                                                                                              |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| May have multiple concurrent clients and projects | One stop app for managing your contacts, finances and day-to-day events in a easy and structured way                        |
+| Good at touch-typing, efficient with keyboard     | CLI interface enables quick input and retrieval of your contacts, finances and events without the need of moving your mouse |
+| Potentially busy and want quick updates           | Users can get summary statistics, organise their data and much more all with just one command                               |
 
 **Value proposition**: Manage all your freelancing needs in an app that is faster than your typical GUI driven apps.
 
@@ -340,9 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `FreelanceBuddy` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use Case: UC1 - Get help**
+#### Use Case: UC1 - Get help
 
 **Precondition**: -
 
@@ -355,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use Case: UC2 - Navigating between tabs**
+#### Use Case: UC2 - Navigating between tabs
 
 **Precondition**: User can be on **any** tab
 
@@ -380,10 +378,108 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     User case resumes at step 4.
 
-**Use Case: UC9 - Add a commission**
+#### Use Case: UC3 - Add a client contact
+
+**Precondition**: -
+
+**MSS**
+
+1.
+
+#### Use Case: UC4 - Delete a client contact
+
+**Precondition**: -
+
+**MSS**
+
+1.
+
+#### Use Case: UC5 - View all client contacts
+
+**Precondition**: -
+
+**MSS**
+
+1.
+
+#### Use Case: UC6 - Find a specific client contact
+
+**Precondition**: -
+
+**MSS**
+
+1.
+
+#### Use Case: UC7 - Add an event
+
+**Precondition**: User is on **Events** tab
+
+**MSS**
+
+1. FreelanceBuddy shows a list of Events
+2. User requests to add a new event
+3. FreelanceBuddy creates the Event entry and shows it within the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case resumes at step 2.
+
+* 2a. The user inputs an invalid index
+    * 2a1. FreelanceBuddy shows an error message
+
+      Use case resumes at step 1.
+
+#### Use Case: UC8 - Delete an event
+
+**Precondition**: User is on **Events** tab
+
+**MSS**
+
+1. FreelanceBuddy shows a list of events
+2. User requests to delete a specific entry in the list
+3. FreelanceBuddy deletes the entry
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+  Use case ends.
+
+* 2a. The user inputs an invalid index
+    * 2a1. FreelanceBuddy shows an error message
+
+      Use case resumes at step 1.
+
+#### Use Case: UC9 - View all events
+
+**Precondition**: User is on **Events** tab
+
+**MSS**
+
+1. User requests to view all events
+2. FreelanceBuddy shows a list of all events
+
+Use case ends.
+
+#### Use Case: UC10 - View most urgent events
+
+**Precondition**: User is on **Events** tab
+
+**MSS**
+
+1. User requests to view most urgent events
+2. FreelanceBuddy shows a list of most urgent events
+
+Use case ends.
+
+#### Use Case: UC11 - Add a commission
 
 **Precondition**: User is on **Finance** tab
-
 
 **MSS**
 
@@ -404,7 +500,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 1.
 
-**Use Case: UC10 - Delete a Finance entry**
+#### Use Case: UC12 - Delete a finance entry
 
 **Precondition**: User is on **Finance** tab
 
@@ -427,64 +523,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 1.
 
-**Use Case: UC11 - Add an Event Entry**
+#### Use Case: UC13 - View all finance entries
 
-**Precondition**: User is on **Events** tab
-
-**MSS**
-
-1. FreelanceBuddy shows a list of Events
-2. User requests to add a new event
-3. FreelanceBuddy creates the Event entry and shows it within the list.
-   Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty
-
-    Use case resumes at step 2.
-
-* 2a. The user inputs an invalid index
-    * 2a1. FreelanceBuddy shows an error message
-
-      Use case resumes at step 1.
-
-**Use Case: UC12 - Delete an Event entry**
-
-**Precondition**: User is on **Events** tab
+**Precondition**: User is on **Finance** tab
 
 **MSS**
 
-1. FreelanceBuddy shows a list of events
-2. User requests to delete a specific entry in the list
-3. FreelanceBuddy deletes the entry
+1. User requests to view all finance entries
+2. FreelanceBuddy shows a list of all finance entries
 
-   Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty
-    Use case ends.
-
-* 2a. The user inputs an invalid index
-    * 2a1. FreelanceBuddy shows an error message
-
-      Use case resumes at step 1.
+Use case ends.
 
 ### Non-Functional Requirements
 
-|      Aspect       | Description                                                                                                                                                                                                                                                                                                                                  |
-|:-----------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Compatibility** | Should work on any _mainstream OS_ as long as it has Java `11` or above installed.                                                                                                                                                                                                                                                           |
-|  **Performance**  | 1. Should be able to to hold up to 1000 persons without much performance degredation.<br/><br/>2. Should responds to commands within 1s on average even when handling heavier task                                                                                                                                                           |
-|   **Usability**   | 1. User with above average typing speed should be able to accomplish most tasks faster than using mouse and GUIs.<br><br>2. CLI commands should be intuitive and easy for the user<br></br>3. Error messages should be informative so users can troubleshoot effectively<br><br>4. Clear and concise documentation available to assist users |
-|  **Reliability**  | 1. App should be robust and resilient to minimize any crashes or errors.<br><br> 2. App should have have regular automated backup procedures to ensure data is saved in the case of accidental shut down or crashes to the app                                                                                                               |
+|      Aspect       | Description                                                                                                                                                                                                                                                                                                                                     |
+|:-----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Compatibility** | Should work on any _mainstream OS_ as long as it has Java `11` or above installed.                                                                                                                                                                                                                                                              |
+|  **Performance**  | 1. Should be able to to hold up to 1000 contacts without much _performance degradation_.<br/><br/>2. Should respond to commands within 1s on average for any type of task.                                                                                                                                                                      |
+|   **Usability**   | 1. User with above average typing speed should be able to accomplish most tasks faster than using mouse and GUIs.<br><br>2. CLI commands should be intuitive and easy for the user.<br></br>3. Error messages should be informative so users can troubleshoot effectively.<br><br>4. Clear and concise documentation available to assist users. |
+|  **Reliability**  | 1. App should be robust and resilient to minimize any crashes or errors.<br><br> 2. App should have have regular automated backup procedures to ensure data is saved in the case of accidental shut down or crashes to the app.                                                                                                                 |
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Performance degradation**: Slowdown in performance, particularly in task execution times or data save/load times
 
 --------------------------------------------------------------------------------------------------------------------
 
