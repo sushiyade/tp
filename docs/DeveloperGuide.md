@@ -346,17 +346,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User needs help on using the application
-2. User requests for help
-3. FreelanceBuddy shows a pop-up with a link to the user guide
-4. User copies the URL and references the user guide
+1. User requests for help
+2. FreelanceBuddy shows a pop-up with a link to the user guide
+3. User copies the URL and references the user guide
 
    Use case ends.
 
 #### Use Case: UC2 - Navigating between tabs
 
 **Precondition**: User can be on **any** tab
-
 
 **MSS**
 
@@ -375,59 +373,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
   
 * 2b. User decides to stay on the current tab
-    
+
     User case resumes at step 4.
 
 #### Use Case: UC3 - Add a client contact
 
-**Precondition**: - User is on Contacts tab
+**Precondition**: User is on **Contacts** tab
 
 **MSS**
 
-1. FreelanceBuddy shows the list of Contacts
-2. User requests to add a new contact
-3. FreelanceBuddy creates a new contact and shows it within the list
+1. User requests to add a new contact with details
+2. FreelanceBuddy creates a new contact and shows it within the list
 
    Use case ends.
 
 **Extensions**
-
-* 1a. The list is empty
-
-  Use case resumes at step 2.
   
-* 2a. The user inputs invalid syntax
-    * 2a1. FreelanceBuddy shows an error message
+* 1a. The user inputs invalid syntax
+    * 1a1. FreelanceBuddy shows an error message
 
-  Use case resumes at step 1. 
+      Use case resumes at step 1. 
   
 
 #### Use Case: UC4 - Delete a client contact
 
-**Precondition**: - User is on Contacts tab
+**Precondition**: User is on **Contacts** tab, **Contacts** list must have at least one entry
 
 **MSS**
 
-1. FrelanceBuddy shows the list of Contacts
-2. User requests to delete specific entry in the list
-3. FreelanceBuddy deletes the entry
+1. User requests to delete specific entry in the list
+2. FreelanceBuddy deletes the entry
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty
+* 1a. The user inputs with invalid syntax
+    * 1a1. FreelanceBuddy shows error message
 
-  Use case ends.
-
-* 2a. The user inputs with invalid syntax
-    * 2a1. FreelanceBuddy shows error message
-
-  Use case resumes at step 1. 
+      Use case resumes at step 1. 
 
 #### Use Case: UC5 - View all client contacts
 
-**Precondition**: - User is on Contacts tab 
+**Precondition**: User is on **Contacts** tab, **Contacts** list must have at least one entry
 
 **MSS**
 
@@ -436,23 +424,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions** 
-
-* 1a. No contacts found that contains given keywords.
-  * 1a1. FreelanceBuddy shows error message
-
-  Use case ends.
-
 #### Use Case: UC6 - Find a specific client contact
 
-**Precondition**: - User is on Contacts tab 
+**Precondition**: User is on **Contacts** tab, **Contacts** list must have at least one entry
 
 **MSS**
 
 1. User requests to find contacts using keywords
 2. FreelanceBuddy shows a list of Contacts that contains given keywords
 
-   Use case ends.
+   Use case ends resumes at step 1.
+
+**Extensions** 
+
+* 1a. No contacts found that contains given keywords.
+  * 1a1. FreelanceBuddy shows error message
+
+    Use case ends.
 
 #### Use Case: UC7 - Add an event
 
@@ -460,48 +448,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. FreelanceBuddy shows a list of Events
-2. User requests to add a new event
-3. FreelanceBuddy creates the Event entry and shows it within the list.
+1. User requests to add a new event
+2. FreelanceBuddy creates the Event entry and shows it within the list.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty
-
-  Use case resumes at step 2.
-
-* 2a. The user inputs an invalid index
-    * 2a1. FreelanceBuddy shows an error message
+* 1a. The user inputs an invalid index
+    * 1a1. FreelanceBuddy shows an error message
 
       Use case resumes at step 1.
 
 #### Use Case: UC8 - Delete an event
 
-**Precondition**: User is on **Events** tab
+**Precondition**: User is on **Events** tab, **Events** list must have at least one entry
 
 **MSS**
 
-1. FreelanceBuddy shows a list of events
-2. User requests to delete a specific entry in the list
-3. FreelanceBuddy deletes the entry
+1. User requests to delete a specific entry in the list
+2. FreelanceBuddy deletes the entry
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty
-  Use case ends.
-
-* 2a. The user inputs an invalid index
-    * 2a1. FreelanceBuddy shows an error message
+* 1a. The user inputs an invalid index
+    * 1a1. FreelanceBuddy shows an error message
 
       Use case resumes at step 1.
 
 #### Use Case: UC9 - View all events
 
-**Precondition**: User is on **Events** tab
+**Precondition**: User is on **Events** tab, **Events** list must have at least one entry
 
 **MSS**
 
@@ -512,7 +491,7 @@ Use case ends.
 
 #### Use Case: UC10 - View most urgent events
 
-**Precondition**: User is on **Events** tab
+**Precondition**: User is on **Events** tab, **Events** list must have at least one entry
 
 **MSS**
 
@@ -527,49 +506,39 @@ Use case ends.
 
 **MSS**
 
-1. FreelanceBuddy shows a list of commissions and expenses
-2. User requests to add a new commission
-3. FreelanceBuddy adds the new commission to the top of the list
+1. User requests to add a new commission
+2. FreelanceBuddy adds the new commission to the top of the list
 
     Use case ends.
 
 **Extensions** 
 
-* 1a. The list is empty
-
-    Use case resumes at step 2.
-
-* 2a. The user inputs an invalid syntax
-    * 2a1. FreelanceBuddy shows an error message
+* 1a. The user inputs an invalid syntax
+    * 1a1. FreelanceBuddy shows an error message
 
         Use case resumes at step 1.
 
 #### Use Case: UC12 - Delete a finance entry
 
-**Precondition**: User is on **Finance** tab
+**Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
 
 **MSS**
 
-1. FreelanceBuddy shows a list of commissions and expenses
-2. User requests to delete a specific entry in the list
-3. FreelanceBuddy deletes the entry
+1. User requests to delete a specific entry in the list
+2. FreelanceBuddy deletes the entry
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty
-
-    Use case ends.
-
-* 2a. The user inputs an invalid index
-  * 2a1. FreelanceBuddy shows an error message
+* 1a. The user inputs an invalid index
+  * 1a1. FreelanceBuddy shows an error message
     
     Use case resumes at step 1.
 
 #### Use Case: UC13 - View all finance entries
 
-**Precondition**: User is on **Finance** tab
+**Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
 
 **MSS**
 
