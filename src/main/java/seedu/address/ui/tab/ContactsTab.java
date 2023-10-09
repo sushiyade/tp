@@ -1,11 +1,8 @@
 package seedu.address.ui.tab;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
@@ -26,7 +23,7 @@ public class ContactsTab extends UiPart<Region> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
 
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
