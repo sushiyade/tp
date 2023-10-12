@@ -20,16 +20,16 @@ public class TimeEnd {
             "End time should be in the format dd-MM-yyyy HH:mm (e.g., 23-09-2023 16:40)";
 
     /*
-     * The regular expression to validate the start time format.
+     * The regular expression to validate the end time format.
      */
     private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}";
 
     public final LocalDateTime timeEnd;
 
     /**
-     * Constructs a {@code TimeStart}.
+     * Constructs a {@code TimeEnd}.
      *
-     * @param time A valid start time.
+     * @param time A valid end time.
      */
     public TimeEnd(LocalDateTime time) {
         requireNonNull(time);
@@ -38,7 +38,7 @@ public class TimeEnd {
     }
 
     /**
-     * Returns true if a given string is a valid start time.
+     * Returns true if a given string is a valid end time.
      */
     public static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -55,12 +55,12 @@ public class TimeEnd {
             return true;
         }
 
-        if (!(other instanceof TimeStart)) {
+        if (!(other instanceof TimeEnd)) {
             return false;
         }
 
-        TimeStart otherTimeStart = (TimeStart) other;
-        return timeEnd.equals(otherTimeStart.timeStart);
+        TimeEnd otherTimeEnd = (TimeEnd) other;
+        return timeEnd.equals(otherTimeEnd.timeEnd);
     }
 
     @Override
