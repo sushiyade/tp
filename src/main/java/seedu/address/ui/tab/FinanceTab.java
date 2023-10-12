@@ -43,6 +43,7 @@ public class FinanceTab extends UiPart<Region> {
 
     public FinanceTab() {
         super(FXML);
+        helpWindow = new HelpWindow();
     }
 
     public void setup(Logic logic) {

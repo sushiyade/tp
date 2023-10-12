@@ -42,6 +42,7 @@ public class EventsTab extends UiPart<Region> {
 
     public EventsTab() {
         super(FXML);
+        helpWindow = new HelpWindow();
     }
 
     public void setup(Logic logic) {
