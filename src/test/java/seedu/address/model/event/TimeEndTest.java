@@ -1,13 +1,13 @@
 package seedu.address.model.event;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class TimeEndTest {
 
@@ -57,7 +57,8 @@ public class TimeEndTest {
         assertFalse(timeEnd.equals(5.0f));
 
         // different values -> returns false
-        LocalDateTime differentTime = LocalDateTime.parse("24-09-2023 16:40", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        LocalDateTime differentTime = LocalDateTime.parse("24-09-2023 16:40",
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         assertFalse(timeEnd.equals(new TimeEnd(differentTime)));
     }
 }
