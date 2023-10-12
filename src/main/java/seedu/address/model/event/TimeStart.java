@@ -32,7 +32,7 @@ public class TimeStart {
      */
     public TimeStart(LocalDateTime time) {
         requireNonNull(time);
-        checkArgument(isValidTime(time.toString()), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTime(time.format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeStart = time;
     }
 

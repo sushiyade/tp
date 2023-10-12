@@ -33,7 +33,7 @@ public class TimeEnd {
      */
     public TimeEnd(LocalDateTime time) {
         requireNonNull(time);
-        checkArgument(isValidTime(time.toString()), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTime(time.format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeEnd = time;
     }
 
