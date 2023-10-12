@@ -6,7 +6,6 @@ import seedu.address.model.person.Person;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class Event {
 

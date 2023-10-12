@@ -1,5 +1,9 @@
 package seedu.address.model.event;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,6 +13,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TimeEnd {
 
+    DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
     public static final String MESSAGE_CONSTRAINTS =
             "End time should be in the format dd-MM-yyyy HH:mm (e.g., 23-09-2023 16:40)";
 
@@ -17,16 +23,16 @@ public class TimeEnd {
      */
     public static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}";
 
-    public final String timeEnd;
+    public final LocalDateTime timeEnd;
 
     /**
      * Constructs a {@code TimeStart}.
      *
      * @param time A valid start time.
      */
-    public TimeEnd(String time) {
+    public TimeEnd(LocalDateTime time) {
         requireNonNull(time);
-        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTime(time.toString()), MESSAGE_CONSTRAINTS);
         timeEnd = time;
     }
 
@@ -39,7 +45,7 @@ public class TimeEnd {
 
     @Override
     public String toString() {
-        return timeEnd;
+        return timeEnd.format(DATE_TIME_FORMATTER);
     }
 
     @Override
