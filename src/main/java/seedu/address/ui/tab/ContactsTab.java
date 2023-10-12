@@ -42,7 +42,7 @@ public class ContactsTab extends UiPart<Region> {
     private StackPane resultDisplayPlaceholder;
 
     /**
-     * Creates a {@code ContactsTab} with the given {@code Logic}.
+     * Creates a {@code ContactsTab}.
      */
     public ContactsTab() {
         super(FXML);

@@ -40,6 +40,9 @@ public class EventsTab extends UiPart<Region> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
+    /**
+     * Creates a {@code EventsTab}.
+     */
     public EventsTab() {
         super(FXML);
         helpWindow = new HelpWindow();

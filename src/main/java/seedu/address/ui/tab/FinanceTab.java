@@ -41,6 +41,9 @@ public class FinanceTab extends UiPart<Region> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
+    /**
+     * Creates a {@code FinanceTab}.
+     */
     public FinanceTab() {
         super(FXML);
         helpWindow = new HelpWindow();
