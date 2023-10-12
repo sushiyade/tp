@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class Description {
 
-    private final String descriptionText;
+    private final String description;
 
     public Description(String descriptionText) {
-        this.descriptionText = descriptionText;
+        this.description = descriptionText;
     }
 
-    public String getDescriptionText() {
-        return descriptionText;
+    public String getDescription() {
+        return description;
     }
 
     @Override
@@ -23,16 +23,16 @@ public class Description {
             return false;
         }
         Description description = (Description) obj;
-        return Objects.equals(descriptionText, description.descriptionText);
+        return Objects.equals(description, description.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(descriptionText);
+        return Objects.hash(description);
     }
 
     @Override
     public String toString() {
-        return descriptionText;
+        return description;
     }
 }
