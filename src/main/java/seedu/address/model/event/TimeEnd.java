@@ -4,30 +4,30 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the start time of an event in the address book.
+ * Represents the end time of an event in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class TimeStart {
+public class TimeEnd {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Start time should be in the format dd-MM-yyyy HH:mm (e.g., 23-09-2023 16:40)";
+            "End time should be in the format dd-MM-yyyy HH:mm (e.g., 23-09-2023 16:40)";
 
     /*
      * The regular expression to validate the start time format.
      */
     public static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}";
 
-    public final String timeStart;
+    public final String timeEnd;
 
     /**
      * Constructs a {@code TimeStart}.
      *
      * @param time A valid start time.
      */
-    public TimeStart(String time) {
+    public TimeEnd(String time) {
         requireNonNull(time);
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        timeStart = time;
+        timeEnd = time;
     }
 
     /**
@@ -39,7 +39,7 @@ public class TimeStart {
 
     @Override
     public String toString() {
-        return timeStart;
+        return timeEnd;
     }
 
     @Override
@@ -53,11 +53,11 @@ public class TimeStart {
         }
 
         TimeStart otherTimeStart = (TimeStart) other;
-        return timeStart.equals(otherTimeStart.timeStart);
+        return timeEnd.equals(otherTimeStart.timeStart);
     }
 
     @Override
     public int hashCode() {
-        return timeStart.hashCode();
+        return timeEnd.hashCode();
     }
 }
