@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class TimeStartTest {
     @Test
     public void constructor_invalidTime_throwsIllegalArgumentException() {
         String invalidTime = "Invalid Time";
-        assertThrows(IllegalArgumentException.class, () -> new TimeStart(LocalDateTime.parse(invalidTime,
+        assertThrows(DateTimeParseException.class, () -> new TimeStart(LocalDateTime.parse(invalidTime,
                 DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))));
     }
 
