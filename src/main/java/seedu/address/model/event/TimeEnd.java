@@ -1,11 +1,12 @@
 package seedu.address.model.event;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+
 
 /**
  * Represents the end time of an event in the address book.
@@ -13,15 +14,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TimeEnd {
 
-    DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    public static final String MESSAGE_CONSTRAINTS =
+    private static final String MESSAGE_CONSTRAINTS =
             "End time should be in the format dd-MM-yyyy HH:mm (e.g., 23-09-2023 16:40)";
 
     /*
      * The regular expression to validate the start time format.
      */
-    public static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}";
+    private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}";
 
     public final LocalDateTime timeEnd;
 

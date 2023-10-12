@@ -1,12 +1,16 @@
 package seedu.address.model.event;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.ArrayList;
-
+/**
+ * Represents an Event in the address book.
+ * Guarantees: field values are validated, immutable.
+ */
 public class Event {
 
     private final Name name;
@@ -17,7 +21,7 @@ public class Event {
     private Description description;
 
 
-    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd) throws TimeStartAfterTimeEndException{
+    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd) throws TimeStartAfterTimeEndException {
         this(name, timeStart, timeEnd, new ArrayList<>(), null, null);
     }
 
@@ -36,6 +40,16 @@ public class Event {
         this(name, timeStart, timeEnd, new ArrayList<>(), null, description);
     }
 
+    /**
+     * Constructs an {@code Event}.
+     * @param name
+     * @param timeStart
+     * @param timeEnd
+     * @param clients
+     * @param location
+     * @param description
+     * @throws TimeStartAfterTimeEndException
+     */
     public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd, List<Person> clients,
                  Location location, Description description) throws TimeStartAfterTimeEndException {
         this.name = name;

@@ -2,6 +2,9 @@ package seedu.address.model.event;
 
 import java.util.Objects;
 
+/**
+ * Represents a Event's location in the address book.
+ */
 public class Location {
 
     private final String locationName;

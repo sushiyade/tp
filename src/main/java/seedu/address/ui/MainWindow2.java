@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,9 +18,11 @@ import seedu.address.ui.tab.ContactsTab;
 import seedu.address.ui.tab.EventsTab;
 import seedu.address.ui.tab.FinanceTab;
 
-import java.util.logging.Logger;
-
-public class MainWindow2 extends UiPart<Stage>{
+/**
+ * The Main Window. Provides the basic application layout containing
+ * a menu bar and space where other JavaFX elements can be placed.
+ */
+public class MainWindow2 extends UiPart<Stage> {
     private static final String FXML = "MainWindow2.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());

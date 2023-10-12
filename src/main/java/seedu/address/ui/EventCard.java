@@ -1,7 +1,7 @@
 package seedu.address.ui;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
+//import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,7 +15,7 @@ import seedu.address.model.event.Event;
  */
 public class EventCard extends UiPart<Region> {
 
-    DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     private static final String FXML = "eventListCard.fxml";
 
@@ -61,8 +61,6 @@ public class EventCard extends UiPart<Region> {
         timeEnd.setText(event.getTimeEnd().toString());
         location.setText(event.getLocation().toString());
         description.setText(event.getDescription().toString());
-//        event.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
     }
 }

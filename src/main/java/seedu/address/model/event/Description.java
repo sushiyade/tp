@@ -2,6 +2,9 @@ package seedu.address.model.event;
 
 import java.util.Objects;
 
+/**
+ * Represents a Person's description in the address book.
+ */
 public class Description {
 
     private final String description;

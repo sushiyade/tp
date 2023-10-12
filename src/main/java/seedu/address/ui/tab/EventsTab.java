@@ -1,5 +1,7 @@
 package seedu.address.ui.tab;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -8,10 +10,16 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.*;
+import seedu.address.ui.CommandBox;
+import seedu.address.ui.HelpWindow;
+import seedu.address.ui.PersonListPanel;
+import seedu.address.ui.ResultDisplay;
+import seedu.address.ui.UiPart;
 
-import java.util.logging.Logger;
 
+/**
+ * The Events Tab.
+ */
 public class EventsTab extends UiPart<Region> {
     private static final String FXML = "EventsTab.fxml";
 
