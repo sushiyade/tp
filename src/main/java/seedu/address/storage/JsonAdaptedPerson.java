@@ -1,17 +1,17 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramName;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -24,7 +24,6 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-//    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String company;
     private final String telegramName;
 
@@ -41,9 +40,6 @@ class JsonAdaptedPerson {
         this.address = address;
         this.company = company;
         this.telegramName = telegramName;
-//        if (tags != null) {
-//            this.tags.addAll(tags);
-//        }
     }
 
     /**
@@ -56,9 +52,6 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         company = source.getCompany().companyName;
         telegramName = source.getTelegramName().telegramName;
-//        tags.addAll(source.getTags().stream()
-//                .map(JsonAdaptedTag::new)
-//                .collect(Collectors.toList()));
     }
 
     /**
@@ -67,11 +60,6 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-//        final List<Tag> personTags = new ArrayList<>();
-//        for (JsonAdaptedTag tag : tags) {
-//            personTags.add(tag.toModelType());
-//        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -99,10 +87,6 @@ class JsonAdaptedPerson {
         if (address != null) {
             final Address modelAddress = new Address(address);
         }
-//        if (!Address.isValidAddress(address)) {
-//            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-//        }
-
         if (company != null) {
             final Company modelCompany = new Company(company);
         }
@@ -110,13 +94,6 @@ class JsonAdaptedPerson {
             final TelegramName modelTelegramName = new TelegramName(telegramName);
         }
 
-//        if (company == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
-//        }
-//
-//        if (telegramName)
-
-//        final Set<Tag> modelTags = new HashSet<>(personTags);
         if (company == null && telegramName == null && address == null) {
             return new Person(modelName, modelPhone, modelEmail);
         } else if (company == null && telegramName == null) {
