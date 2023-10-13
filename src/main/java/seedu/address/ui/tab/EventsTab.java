@@ -43,7 +43,7 @@ public class EventsTab extends UiPart<Region> {
     private StackPane resultDisplayPlaceholder;
 
     /**
-     * Creates a {@code ContactsTab}.
+     * Creates a {@code EventsTab}.
      */
     public EventsTab() {
         super(FXML);
