@@ -1,6 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramName;
 
 /**
  * A utility class to help with building Person objects.
@@ -61,6 +67,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building to null.
+     */
     public PersonBuilder withAddress() {
         this.address = new Address(null);
         return this;
@@ -82,25 +91,41 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Company} of the {@code Person} that we are building to null.
+     */
     public PersonBuilder withCompany() {
         this.company = new Company(null);
         return this;
     }
+
+    /**
+     * Sets the {@code Company} of the {@code Person} that we are building.
+     */
     public PersonBuilder withCompany(String company) {
         this.company = new Company(company);
         return this;
     }
 
+    /**
+     * Sets the {@code TelegramName} of the {@code Person} that we are building.
+     */
     public PersonBuilder withTelegramName(String telegramName) {
         this.telegramName = new TelegramName(telegramName);
         return this;
     }
 
+    /**
+     * Sets the {@code TelegramName} of the {@code Person} that we are building to null.
+     */
     public PersonBuilder withTelegramName() {
         this.telegramName = new TelegramName(null);
         return this;
     }
 
+    /**
+     * Builds a person with the given attributes.
+     */
     public Person build() {
         return new Person(name, phone, email, address, company, telegramName);
     }
