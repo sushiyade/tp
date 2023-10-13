@@ -38,6 +38,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setEventsFilePath(newUserPrefs.getEventsFilePath());
+        setFinanceFilePath(newUserPrefs.getFinanceFilePath());
     }
 
     public GuiSettings getGuiSettings() {
