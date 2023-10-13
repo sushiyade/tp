@@ -10,11 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,7 +24,9 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+//    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String company;
+    private final String telegramName;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,14 +34,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("company") String company, @JsonProperty("telegramName") String telegramName) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        this.company = company;
+        this.telegramName = telegramName;
+//        if (tags != null) {
+//            this.tags.addAll(tags);
+//        }
     }
 
     /**
@@ -54,9 +54,11 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        company = source.getCompany().companyName;
+        telegramName = source.getTelegramName().telegramName;
+//        tags.addAll(source.getTags().stream()
+//                .map(JsonAdaptedTag::new)
+//                .collect(Collectors.toList()));
     }
 
     /**
@@ -65,10 +67,10 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
-        }
+//        final List<Tag> personTags = new ArrayList<>();
+//        for (JsonAdaptedTag tag : tags) {
+//            personTags.add(tag.toModelType());
+//        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -94,16 +96,45 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (address != null) {
+            final Address modelAddress = new Address(address);
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
+//        if (!Address.isValidAddress(address)) {
+//            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+//        }
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (company != null) {
+            final Company modelCompany = new Company(company);
+        }
+        if (telegramName != null) {
+            final TelegramName modelTelegramName = new TelegramName(telegramName);
+        }
+
+//        if (company == null) {
+//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+//        }
+//
+//        if (telegramName)
+
+//        final Set<Tag> modelTags = new HashSet<>(personTags);
+        if (company == null && telegramName == null && address == null) {
+            return new Person(modelName, modelPhone, modelEmail);
+        } else if (company == null && telegramName == null) {
+            return new Person(modelName, modelPhone, modelEmail, new Address(address));
+        } else if (company == null && address == null) {
+            return new Person(modelName, modelPhone, modelEmail, new TelegramName(telegramName));
+        } else if (telegramName == null && address == null) {
+            return new Person(modelName, modelPhone, modelEmail, new Company(company));
+        } else if (company == null) {
+            return new Person(modelName, modelPhone, modelEmail, new Address(address), new TelegramName(telegramName));
+        } else if (telegramName == null) {
+            return new Person(modelName, modelPhone, modelEmail, new Address(address), new Company(company));
+        } else if (address == null) {
+            return new Person(modelName, modelPhone, modelEmail, new Company(company), new TelegramName(telegramName));
+        } else {
+            return new Person(modelName, modelPhone, modelEmail, new Address(address), new Company(company),
+                    new TelegramName(telegramName));
+        }
     }
 
 }

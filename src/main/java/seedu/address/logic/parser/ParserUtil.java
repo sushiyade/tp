@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +117,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Company parseCompany(String company) throws ParseException {
+        String trimmedCompany = company.trim();
+        if (!Email.isValidEmail(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
+    }
+
+
+    public static TelegramName parseTelegramName(String telegramName) throws ParseException {
+        String trimmedTelegramName = telegramName.trim();
+        if (!Email.isValidEmail(trimmedTelegramName)) {
+            throw new ParseException(TelegramName.MESSAGE_CONSTRAINTS);
+        }
+        return new TelegramName(trimmedTelegramName);
     }
 }

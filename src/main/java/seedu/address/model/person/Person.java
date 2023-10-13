@@ -22,19 +22,57 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Address address; // Company Address
+    private final Company company; // Company Name
+    private final TelegramName telegramName;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code Person}.
+     * @param name A valid name.
+     * @param phone A valid phone number.
+     * @param email A valid email address.
+     * @param address An optional address.
+     * @param company An optional company.
+     * @param telegramName An optional telegram name.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Company company, TelegramName telegramName) {
+        requireAllNonNull(name, phone, email);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.company = company;
+        this.telegramName = telegramName;
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, TelegramName telegramName) {
+        this(name, phone, email, address, null, telegramName);
+    }
+
+    public Person(Name name, Phone phone, Email email, Company company, TelegramName telegramName) {
+        this(name, phone, email, null, company, telegramName);
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Company company) {
+        this(name, phone, email, address, company, null);
+    }
+
+    public Person(Name name, Phone phone, Email email, TelegramName telegramName) {
+        this(name, phone, email, null, null, telegramName);
+    }
+
+    public Person(Name name, Phone phone, Email email, Company company) {
+        this(name, phone, email, null, company, null);
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address) {
+        this(name, phone, email, address, null, null);
+    }
+
+    public Person(Name name, Phone phone, Email email) {
+        this(name, phone, email, null, null, null);
     }
 
     public Name getName() {
@@ -51,6 +89,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public TelegramName getTelegramName() {
+        return telegramName;
     }
 
     /**
@@ -92,15 +138,13 @@ public class Person {
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && email.equals(otherPerson.email);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, company, telegramName);
     }
 
     @Override
@@ -110,7 +154,8 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
+                .add("company", company)
+                .add("telegramName", telegramName)
                 .toString();
     }
 
