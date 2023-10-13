@@ -24,12 +24,14 @@ public class EventsTab extends UiPart<Region> {
     private static final String FXML = "EventsTab.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+
     private Logic logic;
-    private HelpWindow helpWindow;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -40,8 +42,12 @@ public class EventsTab extends UiPart<Region> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
+    /**
+     * Creates a {@code EventsTab}.
+     */
     public EventsTab() {
         super(FXML);
+        helpWindow = new HelpWindow();
     }
 
     public void setup(Logic logic) {
