@@ -26,11 +26,10 @@ public class FinanceTab extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Logic logic;
 
-    private final HelpWindow helpWindow;
-
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;

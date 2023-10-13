@@ -21,15 +21,17 @@ import seedu.address.ui.UiPart;
  * The Events Tab.
  */
 public class EventsTab extends UiPart<Region> {
-    private static final String FXML = "EventsTab.fxml";
+    private static final String FXML = "ContactsTab.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+
     private Logic logic;
-    private final HelpWindow helpWindow;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -41,7 +43,7 @@ public class EventsTab extends UiPart<Region> {
     private StackPane resultDisplayPlaceholder;
 
     /**
-     * Creates a {@code EventsTab}.
+     * Creates a {@code ContactsTab}.
      */
     public EventsTab() {
         super(FXML);
