@@ -31,6 +31,8 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.events.JsonEventsStorage;
+import seedu.address.storage.finance.JsonFinanceStorage;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -47,8 +49,13 @@ public class LogicManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonEventsStorage eventsStorage =
+                new JsonEventsStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonFinanceStorage financeStorage =
+                new JsonFinanceStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                eventsStorage, financeStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -158,9 +165,25 @@ public class LogicManagerTest {
             }
         };
 
+        // TODO: Add @Override below
+        JsonEventsStorage eventsStorage = new JsonEventsStorage(prefPath) {
+            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+                    throws IOException {
+                throw e;
+            }
+        };
+
+        JsonFinanceStorage financeStorage = new JsonFinanceStorage(prefPath) {
+            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+                    throws IOException {
+                throw e;
+            }
+        };
+
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                eventsStorage, financeStorage);
 
         logic = new LogicManager(model, storage);
 
