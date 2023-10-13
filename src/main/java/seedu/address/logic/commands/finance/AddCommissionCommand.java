@@ -1,16 +1,37 @@
 package seedu.address.logic.commands.finance;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
+import seedu.address.model.finance.Commission;
 /**
  * Adds a Commission to the app.
  */
 public class AddCommissionCommand extends Command {
+    public static final String COMMAND_WORD = "add-c";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds a commission to the Finance Tab."
+            + "Parameters: "
+            + PREFIX_AMOUNT + "AMOUNT"
+            + PREFIX_CLIENT + "CLIENT"
+            + PREFIX_DESCRIPTION + "DESCRIPTION"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_AMOUNT + "1000"
+            + PREFIX_CLIENT + "John Doe"
+            + PREFIX_DESCRIPTION + "Wedding photo shoot";
+    public static final String MESSAGE_SUCCESS = "New commission added: %1$s";
+    private Commission toAdd;
+    public AddCommissionCommand(Commission commission) {
+        this.toAdd = commission;
+    }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        model.addCommission(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatCommission(toAdd)));
     }
 }

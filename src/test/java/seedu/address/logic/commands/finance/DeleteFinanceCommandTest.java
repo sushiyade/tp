@@ -14,7 +14,7 @@ public class DeleteFinanceCommandTest {
 
     @Test
     public void execute_addSuccessful() throws Exception {
-        CommandResult commandResult = new AddCommissionCommand().execute(model);
+        CommandResult commandResult = new AddCommissionCommand(null).execute(model);
         assertEquals(commandResult, null);
     }
 }

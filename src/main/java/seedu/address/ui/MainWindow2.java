@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.parser.finance.FinanceParser;
 import seedu.address.ui.tab.ContactsTab;
 import seedu.address.ui.tab.EventsTab;
 import seedu.address.ui.tab.FinanceTab;
@@ -118,7 +119,8 @@ public class MainWindow2 extends UiPart<Stage> {
         eventsTabPlaceholder.setContent(eventsTab.getRoot());
 
         FinanceTab financeTab = new FinanceTab();
-        financeTab.setup(logic);
+        Logic financeParser = logic.setNewParser(new FinanceParser());
+        financeTab.setup(financeParser);
         financeTabPlaceholder.setContent(financeTab.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 public class AmountTest {
     @Test
     public void equals() {
-        Amount amount = new Amount(80);
+        Amount amount = new Amount("80");
 
         // same object -> returns true
         assertTrue(amount.equals(amount));
 
         // same values -> returns true
-        assertTrue(amount.equals(new Amount(80)));
+        assertTrue(amount.equals(new Amount("80")));
 
         // null -> returns false
         assertFalse(amount.equals(null));
@@ -23,6 +23,6 @@ public class AmountTest {
         assertFalse(amount.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(amount.equals(new Amount(100)));
+        assertFalse(amount.equals(new Amount("100")));
     }
 }

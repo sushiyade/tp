@@ -1,13 +1,12 @@
 package seedu.address.model.finance;
 
-import seedu.address.model.person.Person;
 
 /**
  * Represents a commission from a client.
  */
-public class Commission {
+public class Commission extends Finance {
     private Amount amount;
-    private Person client;
+    private ClientName client;
     private Description description;
 
     /**
@@ -17,7 +16,7 @@ public class Commission {
      * @param client      The client or payee associated with the commission.
      * @param description A description of the commission.
      */
-    public Commission(Amount amount, Person client, Description description) {
+    public Commission(Amount amount, ClientName client, Description description) {
         this.amount = amount;
         this.client = client;
         this.description = description;
@@ -37,7 +36,7 @@ public class Commission {
      *
      * @return The client or payee associated with the commission.
      */
-    public Person getClient() {
+    public ClientName getClient() {
         return client;
     }
 

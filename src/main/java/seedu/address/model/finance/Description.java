@@ -6,6 +6,9 @@ import static java.util.Objects.requireNonNull;
  * Represents a Description of a Finance.
  */
 public class Description {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Descriptions cannot start with a whitespace";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     private String value;
     /**
      * Constructs a Description object with the specified description value.
@@ -16,6 +19,13 @@ public class Description {
         requireNonNull(description);
         this.value = description;
     }
+    /**
+     * Returns true if a given string is a valid description.
+     */
+    public static boolean isValidDescription(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -31,7 +41,5 @@ public class Description {
         Description otherDescription = (Description) other;
         return value.equals(otherDescription.value);
     }
-
-
 
 }

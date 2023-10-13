@@ -4,7 +4,6 @@ package seedu.address.model.finance;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +29,7 @@ public class CommissionTest {
         assertFalse(commission.equals(5.0f));
 
         // different Amount -> returns false
-        Commission editedCommission = new CommissionBuilder().withAmount(90).build();
+        Commission editedCommission = new CommissionBuilder().withAmount("90").build();
         assertFalse(commission.equals(editedCommission));
 
         // different Description -> returns false
@@ -38,7 +37,7 @@ public class CommissionTest {
         assertFalse(commission.equals(editedCommission));
 
         // different Person -> returns false
-        editedCommission = new CommissionBuilder().withPerson(BOB).build();
+        editedCommission = new CommissionBuilder().withPerson("BOB").build();
         assertFalse(commission.equals(editedCommission));
     }
 }
