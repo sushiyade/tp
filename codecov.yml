@@ -1,0 +1,4 @@
+ignore:
+  - "src/main/java/seedu/address/ui/tab/*.java"
+  - "src/main/java/seedu/address/storage/events/*.java"
+  - "src/main/java/seedu/address/storage/finance/*.java"
