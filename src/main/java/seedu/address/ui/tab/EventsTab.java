@@ -21,7 +21,7 @@ import seedu.address.ui.UiPart;
  * The Events Tab.
  */
 public class EventsTab extends UiPart<Region> {
-    private static final String FXML = "ContactsTab.fxml";
+    private static final String FXML = "EventsTab.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
