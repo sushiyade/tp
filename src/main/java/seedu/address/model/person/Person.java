@@ -45,34 +45,6 @@ public class Person {
         this.telegramName = telegramName;
     }
 
-    public Person(Name name, Phone phone, Email email, Address address, TelegramName telegramName) {
-        this(name, phone, email, address, null, telegramName);
-    }
-
-    public Person(Name name, Phone phone, Email email, Company company, TelegramName telegramName) {
-        this(name, phone, email, null, company, telegramName);
-    }
-
-    public Person(Name name, Phone phone, Email email, Address address, Company company) {
-        this(name, phone, email, address, company, null);
-    }
-
-    public Person(Name name, Phone phone, Email email, TelegramName telegramName) {
-        this(name, phone, email, null, null, telegramName);
-    }
-
-    public Person(Name name, Phone phone, Email email, Company company) {
-        this(name, phone, email, null, company, null);
-    }
-
-    public Person(Name name, Phone phone, Email email, Address address) {
-        this(name, phone, email, address, null, null);
-    }
-
-    public Person(Name name, Phone phone, Email email) {
-        this(name, phone, email, null, null, null);
-    }
-
     public Name getName() {
         return name;
     }
