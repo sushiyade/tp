@@ -35,6 +35,9 @@ public class TelegramName {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidTelegramName(String test) {
+        if (test.isEmpty()) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

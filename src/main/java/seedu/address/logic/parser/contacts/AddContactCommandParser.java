@@ -45,9 +45,9 @@ public class AddContactCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(null));
-        Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).orElse(null));
-        TelegramName telegramName = ParserUtil.parseTelegramName(argMultimap.getValue(PREFIX_TELEGRAM_NAME).orElse(null));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).orElse(""));
+        TelegramName telegramName = ParserUtil.parseTelegramName(argMultimap.getValue(PREFIX_TELEGRAM_NAME).orElse(""));
 
         Person person = new Person(name, phone, email, address, company, telegramName);
 

@@ -26,8 +26,6 @@ public class Person {
     private final Company company; // Company Name
     private final TelegramName telegramName;
 
-    private final Set<Tag> tags = new HashSet<>();
-
     /**
      * Constructs a {@code Person}.
      * @param name A valid name.
@@ -97,14 +95,6 @@ public class Person {
 
     public TelegramName getTelegramName() {
         return telegramName;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
