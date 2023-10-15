@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's Telegram name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTelegramName(String)}
  */
 public class TelegramName {
 
@@ -27,14 +27,17 @@ public class TelegramName {
      */
     public TelegramName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTelegramName(name), MESSAGE_CONSTRAINTS);
         telegramName = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidTelegramName(String test) {
+        if (test.isEmpty()) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

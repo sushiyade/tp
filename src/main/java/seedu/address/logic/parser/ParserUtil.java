@@ -69,7 +69,6 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
@@ -100,7 +99,7 @@ public class ParserUtil {
      */
     public static Company parseCompany(String company) throws ParseException {
         String trimmedCompany = company.trim();
-        if (!Email.isValidEmail(trimmedCompany)) {
+        if (!Company.isValidCompany(trimmedCompany)) {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
@@ -111,8 +110,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code telegramName} is invalid.
      */
     public static TelegramName parseTelegramName(String telegramName) throws ParseException {
+
         String trimmedTelegramName = telegramName.trim();
-        if (!Email.isValidEmail(trimmedTelegramName)) {
+        if (!TelegramName.isValidTelegramName(trimmedTelegramName)) {
             throw new ParseException(TelegramName.MESSAGE_CONSTRAINTS);
         }
         return new TelegramName(trimmedTelegramName);

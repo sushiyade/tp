@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        company = source.getCompany().companyName;
+        company = source.getCompany().value;
         telegramName = source.getTelegramName().telegramName;
     }
 
@@ -84,34 +84,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address != null) {
-            final Address modelAddress = new Address(address);
-        }
-        if (company != null) {
-            final Company modelCompany = new Company(company);
-        }
-        if (telegramName != null) {
-            final TelegramName modelTelegramName = new TelegramName(telegramName);
-        }
+        final Address modelAddress = new Address(address);
 
-        if (company == null && telegramName == null && address == null) {
-            return new Person(modelName, modelPhone, modelEmail);
-        } else if (company == null && telegramName == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Address(address));
-        } else if (company == null && address == null) {
-            return new Person(modelName, modelPhone, modelEmail, new TelegramName(telegramName));
-        } else if (telegramName == null && address == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Company(company));
-        } else if (company == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Address(address), new TelegramName(telegramName));
-        } else if (telegramName == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Address(address), new Company(company));
-        } else if (address == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Company(company), new TelegramName(telegramName));
-        } else {
-            return new Person(modelName, modelPhone, modelEmail, new Address(address), new Company(company),
-                    new TelegramName(telegramName));
-        }
+        final Company modelCompany = new Company(company);
+
+        final TelegramName modelTelegramName = new TelegramName(telegramName);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCompany, modelTelegramName);
     }
 
 }

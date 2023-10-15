@@ -2,10 +2,11 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.person.Name.isValidName;
 
 /**
  * Represents a Person's company in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
  */
 public class Company {
 
@@ -16,9 +17,9 @@ public class Company {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{1,256}$";
 
-    public final String companyName;
+    public final String value;
 
     /**
      * Constructs a {@code Name}.
@@ -27,21 +28,24 @@ public class Company {
      */
     public Company(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        companyName = name;
+        checkArgument(isValidCompany(name), MESSAGE_CONSTRAINTS);
+        value = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidCompany(String test) {
+        if (test.isEmpty()) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
 
     @Override
     public String toString() {
-        return companyName;
+        return value;
     }
 
     @Override
@@ -56,12 +60,12 @@ public class Company {
         }
 
         Company otherName = (Company) other;
-        return companyName.equals(otherName.companyName);
+        return value.equals(otherName.value);
     }
 
     @Override
     public int hashCode() {
-        return companyName.hashCode();
+        return value.hashCode();
     }
 
 }
