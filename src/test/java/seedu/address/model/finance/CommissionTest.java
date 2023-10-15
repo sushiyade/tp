@@ -1,16 +1,20 @@
 package seedu.address.model.finance;
 
-
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCommissions.COMMISSION_FROM_ALICE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.CommissionBuilder;
 
 public class CommissionTest {
-
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Commission(null, null, null));
+    }
     @Test
     public void equals() {
         Commission commission = new CommissionBuilder().build();
@@ -39,5 +43,12 @@ public class CommissionTest {
         // different Person -> returns false
         editedCommission = new CommissionBuilder().withPerson("BOB").build();
         assertFalse(commission.equals(editedCommission));
+    }
+    @Test
+    public void toStringMethod() {
+        String expected = Commission.class.getCanonicalName() + "{client=" + COMMISSION_FROM_ALICE.getClient()
+                + ", amount=" + COMMISSION_FROM_ALICE.getAmount()
+                + ", description=" + COMMISSION_FROM_ALICE.getDescription() + "}";
+        assertEquals(expected, COMMISSION_FROM_ALICE.toString());
     }
 }

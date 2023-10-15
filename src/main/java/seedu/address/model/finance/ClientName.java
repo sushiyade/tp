@@ -3,7 +3,6 @@ package seedu.address.model.finance;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Name;
 /**
  * Represents a Client's name in the address book.
  * Guarantees: is valid as declared in {@link #isValidClientName(String)}
@@ -52,11 +51,11 @@ public class ClientName {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof ClientName)) {
             return false;
         }
 
-        Name otherName = (Name) other;
+        ClientName otherName = (ClientName) other;
         return fullName.equals(otherName.fullName);
     }
 

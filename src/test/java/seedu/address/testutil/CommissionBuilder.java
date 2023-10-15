@@ -9,9 +9,9 @@ import seedu.address.model.finance.Description;
  * A utility class to help with building Commission objects.
  */
 public class CommissionBuilder {
-    public static final String DEFAULT_AMOUNT = "80";
+    public static final String DEFAULT_AMOUNT = "$900";
     public static final String DEFAULT_DESCRIPTION = "Test Description";
-    public static final String DEFAULT_NAME = "Alice Parker";
+    public static final String DEFAULT_NAME = "Amy Bee";
     private ClientName client;
     private Amount amount;
     private Description description;

@@ -9,7 +9,7 @@ public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Descriptions cannot start with a whitespace";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    private String value;
+    public final String value;
     /**
      * Constructs a Description object with the specified description value.
      *
@@ -40,6 +40,10 @@ public class Description {
 
         Description otherDescription = (Description) other;
         return value.equals(otherDescription.value);
+    }
+    @Override
+    public String toString() {
+        return value;
     }
 
 }

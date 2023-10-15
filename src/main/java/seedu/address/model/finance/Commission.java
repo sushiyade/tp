@@ -1,6 +1,8 @@
 package seedu.address.model.finance;
 
+import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.util.ToStringBuilder;
 /**
  * Represents a commission from a client.
  */
@@ -17,6 +19,9 @@ public class Commission extends Finance {
      * @param description A description of the commission.
      */
     public Commission(Amount amount, ClientName client, Description description) {
+        requireNonNull(amount);
+        requireNonNull(client);
+        requireNonNull(description);
         this.amount = amount;
         this.client = client;
         this.description = description;
@@ -39,6 +44,15 @@ public class Commission extends Finance {
     public ClientName getClient() {
         return client;
     }
+    /**
+     * Returns true if two commissions have the same fields.
+     * This is a less strict equals that is used for testing.
+     */
+    public boolean haveSameFields(Commission commission) {
+        return amount.equals(commission.getAmount())
+                && client.equals((commission.getClient()))
+                && description.equals(commission.getDescription());
+    }
 
     /**
      * Get the description of the commission.
@@ -55,5 +69,14 @@ public class Commission extends Finance {
     @Override
     public boolean equals(Object other) {
         return this == other;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("client", client)
+                .add("amount", amount)
+                .add("description", description)
+                .toString();
     }
 }

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Finance> financeList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        financeList = new FilteredList<>(this.addressBook.getFinanceList());
     }
 
     public ModelManager() {
@@ -152,5 +155,8 @@ public class ModelManager implements Model {
     @Override
     public void addCommission(Commission commission) {
         addressBook.addFinance(commission);
+    }
+    public ObservableList<Finance> getFinanceList() {
+        return financeList;
     }
 }

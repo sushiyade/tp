@@ -101,6 +101,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addFinance(Finance finance) {
         finances.add(finance);
     }
+    public ObservableList<Finance> getFinanceList() {
+        return finances.asUnmodifiableObservableList();
+    }
 
     //// util methods
 

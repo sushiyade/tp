@@ -29,14 +29,14 @@ public class AddCommissionParser implements Parser {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CLIENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommissionCommand.MESSAGE_USAGE));
         }
-
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION);
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         ClientName client = ParserUtil.parseClientName(argMultimap.getValue(PREFIX_CLIENT).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(null));
 
         Commission commission = new Commission(amount, client, description);
         return new AddCommissionCommand(commission);

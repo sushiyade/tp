@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -161,6 +162,11 @@ public class AddCommandTest {
 
         @Override
         public void addCommission(Commission commission) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Finance> getFinanceList() {
             throw new AssertionError("This method should not be called.");
         }
     }

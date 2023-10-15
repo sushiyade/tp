@@ -137,7 +137,7 @@ public class ParserUtil {
         if (!Amount.isValidAmount(trimmedAmount)) {
             throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
         }
-        return new Amount(trimmedAmount);
+        return new Amount("$" + trimmedAmount);
     }
 
     /**
@@ -147,7 +147,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code amount} is invalid.
      */
     public static Description parseDescription(String description) throws ParseException {
-        requireNonNull(description);
+        if (description == null) {
+            return new Description(" ");
+        }
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);

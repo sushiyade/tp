@@ -25,6 +25,13 @@ public class FinanceList implements Iterable<Finance> {
         requireNonNull(toAdd);
         internalList.add(toAdd);
     }
+    /**
+     * Returns true if the list contains an equivalent Finance as the given argument.
+     */
+    public boolean contains(Finance toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -33,8 +40,13 @@ public class FinanceList implements Iterable<Finance> {
         return internalUnmodifiableList;
     }
 
+
     @Override
     public Iterator<Finance> iterator() {
         return internalList.iterator();
+    }
+    @Override
+    public String toString() {
+        return internalList.toString();
     }
 }

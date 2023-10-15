@@ -86,7 +86,13 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+    @Override
     public Logic setNewParser(ParseCommandHandlers newParser) {
         return new LogicManager(this.model, this.storage, newParser);
+    }
+
+    @Override
+    public ObservableList<Finance> getFinanceList() {
+        return model.getFinanceList();
     }
 }

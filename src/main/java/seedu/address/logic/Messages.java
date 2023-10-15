@@ -53,7 +53,8 @@ public class Messages {
      */
     public static String formatCommission(Commission commission) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(commission.getAmount())
+        builder.append("Amount: ")
+                .append(commission.getAmount())
                 .append("; Client: ")
                 .append(commission.getClient())
                 .append("; Description: ")
