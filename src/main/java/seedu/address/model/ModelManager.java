@@ -74,6 +74,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getEventsFilePath() {
+        return userPrefs.getEventsFilePath();
+    }
+
+    @Override
+    public Path getFinanceFilePath() {
+        return userPrefs.getFinanceFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);

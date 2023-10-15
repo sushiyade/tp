@@ -42,6 +42,16 @@ public interface Model {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the user prefs' events file path.
+     */
+    Path getEventsFilePath();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getFinanceFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
