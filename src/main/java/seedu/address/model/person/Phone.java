@@ -14,6 +14,7 @@ public class Phone {
             "Phone numbers should only contain numbers, and it should be at least 5 digits long";
     public static final String VALIDATION_REGEX = "^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?"
             + "[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$";
+
     public final String value;
 
     /**
