@@ -18,7 +18,7 @@ public class TelegramName {
      */
     public static final String VALIDATION_REGEX = ".*\\B@(?=\\w{5,32}\\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*.*";
 
-    public final String telegramName;
+    public final String value;
 
     /**
      * Constructs a {@code Name}.
@@ -28,7 +28,7 @@ public class TelegramName {
     public TelegramName(String name) {
         requireNonNull(name);
         checkArgument(isValidTelegramName(name), MESSAGE_CONSTRAINTS);
-        telegramName = name;
+        value = name;
     }
 
     /**
@@ -44,7 +44,7 @@ public class TelegramName {
 
     @Override
     public String toString() {
-        return telegramName;
+        return value;
     }
 
     @Override
@@ -59,12 +59,12 @@ public class TelegramName {
         }
 
         TelegramName otherName = (TelegramName) other;
-        return telegramName.equals(otherName.telegramName);
+        return value.equals(otherName.value);
     }
 
     @Override
     public int hashCode() {
-        return telegramName.hashCode();
+        return value.hashCode();
     }
 
 }

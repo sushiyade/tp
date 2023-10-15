@@ -40,6 +40,8 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label company;
+    @FXML
+    private Label telegramName;
 //    @FXML
 //    private FlowPane tags;
 
@@ -55,5 +57,6 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         address.setText(person.getAddress().value);
         company.setText(person.getCompany().value);
+        telegramName.setText(person.getTelegramName().value);
     }
 }
