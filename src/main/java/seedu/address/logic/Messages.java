@@ -43,7 +43,10 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
+                .append("; Company: ")
+                .append(person.getCompany())
+                .append("; TelegramName: ")
+                .append(person.getTelegramName());
         return builder.toString();
     }
 
