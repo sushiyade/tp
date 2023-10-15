@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -23,9 +22,9 @@ import seedu.address.model.finance.Description;
 /**
  * Parses input arguments and creates a new AddCommissionCommand object
  */
-public class AddCommissionParser implements Parser {
+public class AddCommissionParser implements Parser<AddCommissionCommand> {
     @Override
-    public Command parse(String args) throws ParseException {
+    public AddCommissionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION);
 
