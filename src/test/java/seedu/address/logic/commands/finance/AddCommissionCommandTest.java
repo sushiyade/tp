@@ -149,6 +149,16 @@ public class AddCommissionCommandTest {
         public ObservableList<Finance> getFinanceList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Path getEventsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getFinanceFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
