@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
 /**
@@ -94,4 +96,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //=========== Finance ==================================================================================
+
+    /**
+     * Adds the given commission.
+     * {@code person} must not already exist in the address book.
+     */
+    void addCommission(Commission commission);
+
+    public ObservableList<Finance> getFinanceList();
 }

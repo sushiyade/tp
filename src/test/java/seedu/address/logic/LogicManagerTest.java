@@ -22,7 +22,9 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.finance.FinanceParser;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -56,7 +58,16 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
                 eventsStorage, financeStorage);
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, storage, new AddressBookParser());
+
+    }
+
+    @Test
+    public void setNewParser() {
+        FinanceParser financeParser = new FinanceParser();
+        Logic newLogic = logic.setNewParser(financeParser);
+        // parser changed to FinanceParser
+        assertEquals(newLogic.getParser(), financeParser);
     }
 
     @Test
@@ -185,7 +196,7 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
                 eventsStorage, financeStorage);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, storage, new AddressBookParser());
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY

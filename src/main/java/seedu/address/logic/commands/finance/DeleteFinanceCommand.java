@@ -9,6 +9,8 @@ import seedu.address.model.Model;
  * Deletes a Finance identified using it's displayed index.
  */
 public class DeleteFinanceCommand extends Command {
+    public static final String COMMAND_WORD = "delete";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         return null;
