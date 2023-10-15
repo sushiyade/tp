@@ -40,13 +40,33 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
-        TelegramName telegramName = ParserUtil.parseTelegramName(argMultimap.getValue(PREFIX_TELEGRAM_NAME).get());
+        Address address;
+        Company company;
+        TelegramName telegramName;
+
+
+        if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
+            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        } else {
+            address = new Address("");
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_COMPANY)) {
+            company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
+        } else {
+            company = new Company("");
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_TELEGRAM_NAME)) {
+            telegramName = ParserUtil.parseTelegramName(argMultimap.getValue(PREFIX_TELEGRAM_NAME).get());
+        } else {
+            telegramName = new TelegramName("");
+        }
 
         Person person = new Person(name, phone, email, address, company, telegramName);
 

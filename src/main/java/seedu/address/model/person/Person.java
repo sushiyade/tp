@@ -88,15 +88,27 @@ public class Person {
     }
 
     public Address getAddress() {
-        return address;
+        if (address == null) {
+            return new Address("");
+        } else {
+            return address;
+        }
     }
 
     public Company getCompany() {
-        return company;
+        if (company == null) {
+            return new Company("");
+        } else {
+            return company;
+        }
     }
 
     public TelegramName getTelegramName() {
-        return telegramName;
+        if (telegramName == null) {
+            return new TelegramName("");
+        } else {
+            return telegramName;
+        }
     }
 
     /**

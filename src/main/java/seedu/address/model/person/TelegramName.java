@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -26,7 +25,6 @@ public class TelegramName {
      * @param name A valid name.
      */
     public TelegramName(String name) {
-        requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         telegramName = name;
     }
