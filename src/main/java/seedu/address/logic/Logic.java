@@ -54,4 +54,5 @@ public interface Logic {
      */
     Logic setNewParser(ParseCommandHandlers parser);
     ObservableList<Finance> getFinanceList();
+    ParseCommandHandlers getParser();
 }

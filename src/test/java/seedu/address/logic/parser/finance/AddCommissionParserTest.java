@@ -1,10 +1,12 @@
 package seedu.address.logic.parser.finance;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DEFAULT_AMOUNT;
 import static seedu.address.logic.commands.CommandTestUtil.DEFAULT_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -52,5 +54,13 @@ class AddCommissionParserTest {
         Commission expectedCommission = new CommissionBuilder().withDescription(" ").build();
         assertParseSuccess(parser, DEFAULT_AMOUNT + CLIENT_DESC_AMY,
                 new AddCommissionCommand(expectedCommission));
+    }
+    @Test
+    public void parse_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommissionCommand.MESSAGE_USAGE);
+
+        // missing amount prefix
+        assertParseFailure(parser, VALID_AMOUNT + CLIENT_DESC_AMY + DEFAULT_DESCRIPTION,
+                expectedMessage);
     }
 }

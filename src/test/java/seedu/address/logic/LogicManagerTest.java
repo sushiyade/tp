@@ -24,6 +24,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.finance.FinanceParser;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -59,6 +60,14 @@ public class LogicManagerTest {
                 eventsStorage, financeStorage);
         logic = new LogicManager(model, storage, new AddressBookParser());
 
+    }
+
+    @Test
+    public void setNewParser() {
+        FinanceParser financeParser = new FinanceParser();
+        Logic newLogic = logic.setNewParser(financeParser);
+        // parser changed to FinanceParser
+        assertEquals(newLogic.getParser(), financeParser);
     }
 
     @Test

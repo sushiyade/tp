@@ -95,4 +95,7 @@ public class LogicManager implements Logic {
     public ObservableList<Finance> getFinanceList() {
         return model.getFinanceList();
     }
+    public ParseCommandHandlers getParser() {
+        return parser;
+    }
 }
