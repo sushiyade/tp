@@ -27,7 +27,6 @@ public class Company {
      * @param name A valid name.
      */
     public Company(String name) {
-        requireNonNull(name);
         checkArgument(isValidCompany(name), MESSAGE_CONSTRAINTS);
         value = name;
     }

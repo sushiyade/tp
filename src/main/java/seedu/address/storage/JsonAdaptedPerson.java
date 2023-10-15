@@ -51,7 +51,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         company = source.getCompany().value;
-        telegramName = source.getTelegramName().telegramName;
+        telegramName = source.getTelegramName().value;
     }
 
     /**

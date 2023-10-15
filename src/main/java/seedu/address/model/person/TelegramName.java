@@ -26,7 +26,6 @@ public class TelegramName {
      * @param name A valid name.
      */
     public TelegramName(String name) {
-        requireNonNull(name);
         checkArgument(isValidTelegramName(name), MESSAGE_CONSTRAINTS);
         value = name;
     }
