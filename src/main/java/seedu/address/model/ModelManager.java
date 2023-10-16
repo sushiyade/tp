@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
+import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +25,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Event> eventList;
+    private final FilteredList<Finance> financeList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +39,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        eventList = new FilteredList<>(this.addressBook.getEventList());
+        financeList = new FilteredList<>(this.addressBook.getFinanceList());
     }
 
     public ModelManager() {
@@ -67,6 +74,16 @@ public class ModelManager implements Model {
     @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
+    }
+
+    @Override
+    public Path getEventsFilePath() {
+        return userPrefs.getEventsFilePath();
+    }
+
+    @Override
+    public Path getFinanceFilePath() {
+        return userPrefs.getFinanceFilePath();
     }
 
     @Override
@@ -111,6 +128,28 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Events =============================================================
+    @Override
+    public void addEvent(Event event) {
+        addressBook.addEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
+    }
+
+    @Override
+    public boolean isValidClient(Person client) {
+        requireAllNonNull(client);
+        return addressBook.isValidClient(client);
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return eventList;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -145,4 +184,14 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    //===========  Finance =============================================================
+
+
+    @Override
+    public void addCommission(Commission commission) {
+        addressBook.addFinance(commission);
+    }
+    public ObservableList<Finance> getFinanceList() {
+        return financeList;
+    }
 }

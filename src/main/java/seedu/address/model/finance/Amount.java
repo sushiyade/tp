@@ -1,11 +1,22 @@
 package seedu.address.model.finance;
 
+import static java.util.Objects.requireNonNull;
 /**
  * Represents an Amount received in a Commission or spent in an Expense.
  */
 public class Amount {
-    private int value;
-    public Amount(int amount) {
+    public static final String VALIDATION_REGEX = "^[1-9]\\d*(\\.\\d{1,2})?|0\\.\\d{1,2}$\n";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Amounts should be strictly positive and up to 2dp";
+    public final String value;
+    /**
+     * Constructs a Description object with the specified description value.
+     *
+     * @param amount The description value to be associated with this object.
+     */
+    public Amount(String amount) {
+        requireNonNull(amount);
+        //checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
         this.value = amount;
     }
 
@@ -21,6 +32,14 @@ public class Amount {
         }
 
         Amount otherAmount = (Amount) other;
-        return this.value == otherAmount.value;
+        return this.value.equals(otherAmount.value);
+    }
+    public static boolean isValidAmount(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }

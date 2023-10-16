@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
@@ -14,6 +15,9 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.parser.contacts.ContactParser;
+import seedu.address.logic.parser.events.EventParser;
+import seedu.address.logic.parser.finance.FinanceParser;
 import seedu.address.ui.tab.ContactsTab;
 import seedu.address.ui.tab.EventsTab;
 import seedu.address.ui.tab.FinanceTab;
@@ -110,15 +114,18 @@ public class MainWindow2 extends UiPart<Stage> {
      */
     void fillInnerParts() {
         ContactsTab contactsTab = new ContactsTab();
-        contactsTab.setup(logic);
+        Logic contactParser = logic.setNewParser(new ContactParser());
+        contactsTab.setup(contactParser);
         contactsTabPlaceholder.setContent(contactsTab.getRoot());
 
         EventsTab eventsTab = new EventsTab();
-        eventsTab.setup(logic);
+        Logic eventParser = logic.setNewParser(new EventParser());
+        eventsTab.setup(eventParser);
         eventsTabPlaceholder.setContent(eventsTab.getRoot());
 
         FinanceTab financeTab = new FinanceTab();
-        financeTab.setup(logic);
+        Logic financeParser = logic.setNewParser(new FinanceParser());
+        financeTab.setup(financeParser);
         financeTabPlaceholder.setContent(financeTab.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

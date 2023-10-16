@@ -5,16 +5,18 @@ import java.util.Objects;
 /**
  * Represents a Person's description in the address book.
  */
-public class Description {
+public class EventDescription {
 
-    private final String description;
+    public final String value;
 
-    public Description(String descriptionText) {
-        this.description = descriptionText;
+    public static final String MESSAGE_CONSTRAINTS = "Location can take any values up to 256 characters";
+
+    public EventDescription(String descriptionText) {
+        this.value = descriptionText;
     }
 
     public String getDescription() {
-        return description;
+        return value;
     }
 
     @Override
@@ -25,17 +27,12 @@ public class Description {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Description description = (Description) obj;
-        return Objects.equals(description, description.description);
+        EventDescription eventDescription = (EventDescription) obj;
+        return Objects.equals(value, eventDescription.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description);
-    }
-
-    @Override
-    public String toString() {
-        return description;
+        return Objects.hash(value);
     }
 }

@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
+import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
 /**
@@ -38,6 +41,16 @@ public interface Model {
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+
+    /**
+     * Returns the user prefs' events file path.
+     */
+    Path getEventsFilePath();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getFinanceFilePath();
 
     /**
      * Sets the user prefs' address book file path.
@@ -76,6 +89,29 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Adds the given {@code event}.
+     */
+    void addEvent(Event event);
+
+    /**
+     * Checks if client tagged exists.
+     * @return true if client exist false if client does not.
+     */
+    boolean isValidClient(Person client);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event target);
+
+    /**
+     * Returns an unmodifiable view of events
+     */
+    ObservableList<Event> getEventList();
+
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -84,4 +120,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //=========== Finance ==================================================================================
+
+    /**
+     * Adds the given commission.
+     * {@code person} must not already exist in the address book.
+     */
+    void addCommission(Commission commission);
+
+    public ObservableList<Finance> getFinanceList();
 }
