@@ -18,7 +18,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_COMPANY = "Google";
-    public static final String DEFAULT_TELEGRAM_NAME = "@amy";
+    public static final String DEFAULT_TELEGRAM_NAME = "@amybee";
 
     private Name name;
     private Phone phone;
@@ -71,7 +71,7 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building to null.
      */
     public PersonBuilder withAddress() {
-        this.address = new Address(null);
+        this.address = new Address("");
         return this;
     }
 
@@ -95,7 +95,7 @@ public class PersonBuilder {
      * Sets the {@code Company} of the {@code Person} that we are building to null.
      */
     public PersonBuilder withCompany() {
-        this.company = new Company(null);
+        this.company = new Company("");
         return this;
     }
 
@@ -119,7 +119,7 @@ public class PersonBuilder {
      * Sets the {@code TelegramName} of the {@code Person} that we are building to null.
      */
     public PersonBuilder withTelegramName() {
-        this.telegramName = new TelegramName(null);
+        this.telegramName = new TelegramName("");
         return this;
     }
 

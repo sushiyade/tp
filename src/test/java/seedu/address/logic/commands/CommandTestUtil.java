@@ -38,8 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_COMPANY_AMY = "Google";
     public static final String VALID_COMPANY_BOB = "Facebook";
-    public static final String VALID_TELEGRAM_NAME_AMY = "@amy";
-    public static final String VALID_TELEGRAM_NAME_BOB = "@bob";
+    public static final String VALID_TELEGRAM_NAME_AMY = "@amybee";
+    public static final String VALID_TELEGRAM_NAME_BOB = "@bobby";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
