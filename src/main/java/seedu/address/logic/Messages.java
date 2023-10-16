@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.person.Person;
 
 /**
@@ -48,6 +49,7 @@ public class Messages {
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
+
     /**
      * Formats the {@code commission} for display to the user.
      */
@@ -62,4 +64,17 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code expense} for display to the user.
+     */
+    public static String formatExpense(Expense expense) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Amount: ")
+                .append(expense.getAmount())
+                .append("; Client: ")
+                .append(expense.getClient())
+                .append("; Description: ")
+                .append(expense.getDescription());
+        return builder.toString();
+    }
 }

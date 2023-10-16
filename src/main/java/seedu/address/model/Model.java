@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
@@ -101,9 +102,15 @@ public interface Model {
 
     /**
      * Adds the given commission.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must already exist in the address book.
      */
     void addCommission(Commission commission);
 
     public ObservableList<Finance> getFinanceList();
+
+    /**
+     * Adds the given expense.
+     * If included, {@code person} must already exist in the address book.
+     */
+    void addExpense(Expense expense);
 }

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
@@ -168,5 +169,10 @@ public class ModelManager implements Model {
     }
     public ObservableList<Finance> getFinanceList() {
         return financeList;
+    }
+
+    @Override
+    public void addExpense(Expense expense) {
+        addressBook.addFinance(expense);
     }
 }
