@@ -21,7 +21,7 @@ public class Expense extends Finance {
      * @param description A description of the exoense
      */
     public Expense(Amount amount, ClientName client, Description description) {
-        requireAllNonNull(amount, client, description);
+        requireAllNonNull(amount, description);
         this.amount = amount;
         this.client = client;
         this.description = description;

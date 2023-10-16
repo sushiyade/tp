@@ -28,13 +28,16 @@ public class AddExpenseParser implements Parser<AddExpenseCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CLIENT)
+        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExpenseCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION);
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
-        ClientName client = ParserUtil.parseClientName(argMultimap.getValue(PREFIX_CLIENT).get());
+        ClientName client = null;
+        if (argMultimap.getValue(PREFIX_CLIENT).isPresent()) {
+            client = ParserUtil.parseClientName(argMultimap.getValue(PREFIX_CLIENT).get());
+        }
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(null));
 
         Expense expense = new Expense(amount, client, description);
