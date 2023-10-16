@@ -3,7 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+<<<<<<< HEAD
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+=======
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+>>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -36,10 +42,18 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+<<<<<<< HEAD
     public static final String VALID_COMPANY_AMY = "Google";
     public static final String VALID_COMPANY_BOB = "Facebook";
     public static final String VALID_TELEGRAM_NAME_AMY = "@amybee";
     public static final String VALID_TELEGRAM_NAME_BOB = "@bobby";
+=======
+    public static final String VALID_TAG_HUSBAND = "husband";
+    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DESCRIPTION = "Test Description";
+    public static final String VALID_AMOUNT = "900";
+
+>>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -49,11 +63,20 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+<<<<<<< HEAD
     public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
     public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
     public static final String TELEGRAM_NAME_DESC_AMY = " " + PREFIX_TELEGRAM_NAME + VALID_TELEGRAM_NAME_AMY;
     public static final String TELEGRAM_NAME_DESC_BOB = " " + PREFIX_TELEGRAM_NAME + VALID_TELEGRAM_NAME_BOB;
 
+=======
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String CLIENT_DESC_AMY = " " + PREFIX_CLIENT + VALID_NAME_AMY;
+    public static final String CLIENT_DESC_BOB = " " + PREFIX_CLIENT + VALID_NAME_AMY;
+    public static final String DEFAULT_DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
+    public static final String DEFAULT_AMOUNT = " " + PREFIX_AMOUNT + VALID_AMOUNT;
+>>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

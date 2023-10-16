@@ -6,7 +6,7 @@ import seedu.address.logic.commands.contacts.*;
 import seedu.address.logic.commands.events.AddEventCommand;
 import seedu.address.logic.commands.events.DeleteEventCommand;
 import seedu.address.logic.commands.events.ListEventCommand;
-import seedu.address.logic.parser.contacts.AddEventCommandParser;
+import seedu.address.logic.parser.ParseCommandHandlers;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 /**
  * Parses user input.
  */
-public class EventParser {
+public class EventParser extends ParseCommandHandlers {
 
     /**
      * Used for initial separation of command word and args.

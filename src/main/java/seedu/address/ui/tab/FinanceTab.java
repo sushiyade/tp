@@ -11,11 +11,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.CommandBox;
+import seedu.address.ui.FinanceListPanel;
 import seedu.address.ui.HelpWindow;
-import seedu.address.ui.PersonListPanel;
 import seedu.address.ui.ResultDisplay;
 import seedu.address.ui.UiPart;
-
 
 /**
  * The Finance Tab.
@@ -27,7 +26,7 @@ public class FinanceTab extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FinanceListPanel financeListPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -35,7 +34,7 @@ public class FinanceTab extends UiPart<Region> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane financeListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -54,8 +53,8 @@ public class FinanceTab extends UiPart<Region> {
     }
 
     private void setInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        financeListPanel = new FinanceListPanel(logic.getFinanceList());
+        financeListPanelPlaceholder.getChildren().add(financeListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -64,8 +63,8 @@ public class FinanceTab extends UiPart<Region> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public FinanceListPanel getPersonListPanel() {
+        return financeListPanel;
     }
 
     /**
@@ -74,6 +73,7 @@ public class FinanceTab extends UiPart<Region> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        System.out.println("here");
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());

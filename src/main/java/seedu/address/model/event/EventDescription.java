@@ -5,13 +5,13 @@ import java.util.Objects;
 /**
  * Represents a Person's description in the address book.
  */
-public class Description {
+public class EventDescription {
 
     public final String value;
 
     public static final String MESSAGE_CONSTRAINTS = "Location can take any values up to 256 characters";
 
-    public Description(String descriptionText) {
+    public EventDescription(String descriptionText) {
         this.value = descriptionText;
     }
 
@@ -27,8 +27,8 @@ public class Description {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Description description = (Description) obj;
-        return Objects.equals(value, description.value);
+        EventDescription eventDescription = (EventDescription) obj;
+        return Objects.equals(value, eventDescription.value);
     }
 
     @Override
