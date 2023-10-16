@@ -5,12 +5,14 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Company;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TelegramName;
+import seedu.address.model.event.*;
+import seedu.address.model.person.*;
+
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -41,8 +43,8 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!EventName.isValidEventName(trimmedName)) {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -110,11 +112,71 @@ public class ParserUtil {
      * @throws ParseException if the given {@code telegramName} is invalid.
      */
     public static TelegramName parseTelegramName(String telegramName) throws ParseException {
-
         String trimmedTelegramName = telegramName.trim();
         if (!TelegramName.isValidTelegramName(trimmedTelegramName)) {
             throw new ParseException(TelegramName.MESSAGE_CONSTRAINTS);
         }
         return new TelegramName(trimmedTelegramName);
+    }
+
+    public static EventName parseEventName(String eventName) throws ParseException {
+        String trimmedEventName = eventName.trim();
+        if (!EventName.isValidEventName(trimmedEventName)) {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
+        }
+        return new EventName(trimmedEventName);
+    }
+
+    public static TimeStart parseTimeStart(String timeStart) throws ParseException {
+        String trimmedTimeStart = timeStart.trim();
+        if (!TimeStart.isValidTime(trimmedTimeStart)) {
+            throw new ParseException(TimeStart.MESSAGE_CONSTRAINTS);
+        }
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedTimeStart, TimeStart.DATE_TIME_FORMATTER);
+        return new TimeStart(dateTime);
+    }
+
+    public static TimeEnd parseTimeEnd(String timeEnd) throws ParseException {
+        String trimmedTimeEnd = timeEnd.trim();
+        if (!TimeEnd.isValidTime(trimmedTimeEnd)) {
+            throw new ParseException(TimeEnd.MESSAGE_CONSTRAINTS);
+        }
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedTimeEnd, TimeEnd.DATE_TIME_FORMATTER);
+        return new TimeEnd(dateTime);
+    }
+
+    public static Location parseLocation(String location) throws ParseException {
+        String trimmedLocation = location.trim();
+        if (!EventName.isValidEventName(trimmedLocation)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
+        }
+        return new Location(trimmedLocation);
+    }
+
+    public static Description parseDescription(String description) throws ParseException {
+        String trimmedDescription = description.trim();
+        if (!EventName.isValidEventName(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    public static Set<Person> parseClients(Collection<String> clients) throws ParseException {
+        requireNonNull(clients);
+        final Set<Person> clientSet = new HashSet<>();
+        for (String clientName : clients) {
+            clientSet.add(parseClient(clientName));
+        }
+        return clientSet;
+    }
+
+    private static Person parseClient(String clientName) throws ParseException {
+        requireNonNull(clientName);
+        String trimmedClientName = clientName.trim();
+        if (!Name.isValidName(clientName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Person(new Name(clientName), new Phone("00000"), new Email("filler@email.com"),
+                new Address(""), new Company(""), new TelegramName(""));
     }
 }

@@ -5,12 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Event's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidEventName(String)}
  */
-public class Name {
+public class EventName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Event name should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -18,30 +18,24 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String eventName;
+    public final String value;
 
     /**
      * Constructs a {@code Name}.
      *
      * @param name A valid name.
      */
-    public Name(String name) {
+    public EventName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        eventName = name;
+        checkArgument(isValidEventName(name), MESSAGE_CONSTRAINTS);
+        value = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidEventName(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-
-    @Override
-    public String toString() {
-        return eventName;
     }
 
     @Override
@@ -51,17 +45,17 @@ public class Name {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof EventName)) {
             return false;
         }
 
-        Name otherName = (Name) other;
-        return eventName.equals(otherName.eventName);
+        EventName otherEventName = (EventName) other;
+        return value.equals(otherEventName.value);
     }
 
     @Override
     public int hashCode() {
-        return eventName.hashCode();
+        return value.hashCode();
     }
 
 }

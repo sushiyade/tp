@@ -1,9 +1,6 @@
 package seedu.address.model.event;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
@@ -14,17 +11,17 @@ import seedu.address.model.person.Person;
  */
 public class Event {
 
-    private final Name name;
-    private final LocalDateTime timeStart;
-    private final LocalDateTime timeEnd;
-    private final List<Person> clients;
+    private final EventName eventName;
+    private final TimeStart timeStart;
+    private final TimeEnd timeEnd;
+    private final Set<Person> clients = new HashSet<>();
     private final Location location;
     private final Description description;
 
 
     /**
      * Constructs an {@code Event}.
-     * @param name A valid name.
+     * @param eventName A valid name.
      * @param timeStart A valid start time.
      * @param timeEnd A valid end time after start time.
      * @param clients An optional list of clients.
@@ -32,66 +29,35 @@ public class Event {
      * @param description An optional description.
      * @throws TimeStartAfterTimeEndException if the start time is after the end time.
      */
-    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd, List<Person> clients,
+    public Event(EventName eventName, TimeStart timeStart, TimeEnd timeEnd, Set<Person> clients,
                  Location location, Description description) throws TimeStartAfterTimeEndException {
-        this.name = name;
+        this.eventName = eventName;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
 
         if (timeStart.isAfter(timeEnd)) {
-            throw new TimeStartAfterTimeEndException("TimeStart cannot be after TimeEnd.");
+            throw new TimeStartAfterTimeEndException();
         }
 
-        this.clients = new ArrayList<>(clients);
+        this.clients.addAll(clients);
         this.location = location;
         this.description = description;
     }
 
-    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd) throws TimeStartAfterTimeEndException {
-        this(name, timeStart, timeEnd, new ArrayList<>(), null, null);
+    public EventName getName() {
+        return eventName;
     }
 
-    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd,
-                 List<Person> clients) throws TimeStartAfterTimeEndException {
-        this(name, timeStart, timeEnd, clients, null, null);
-    }
-
-    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd,
-                 Location location) throws TimeStartAfterTimeEndException {
-        this(name, timeStart, timeEnd, new ArrayList<>(), location, null);
-    }
-
-    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd,
-                 Description description) throws TimeStartAfterTimeEndException {
-        this(name, timeStart, timeEnd, new ArrayList<>(), null, description);
-    }
-
-    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd,
-                 List<Person> clients, Location location) throws TimeStartAfterTimeEndException {
-        this(name, timeStart, timeEnd, clients, location, null);
-    }
-
-    public Event(Name name, LocalDateTime timeStart, LocalDateTime timeEnd,
-                 List<Person> clients, Description description) throws TimeStartAfterTimeEndException {
-        this(name, timeStart, timeEnd, clients, null, description);
-    }
-
-
-
-    public Name getName() {
-        return name;
-    }
-
-    public LocalDateTime getTimeStart() {
+    public TimeStart getTimeStart() {
         return timeStart;
     }
 
-    public LocalDateTime getTimeEnd() {
+    public TimeEnd getTimeEnd() {
         return timeEnd;
     }
 
-    public List<Person> getClients() {
-        return new ArrayList<>(clients); // Return a copy of the client list
+    public Set<Person> getClients() {
+        return Collections.unmodifiableSet(clients); // Return a copy of the client list
     }
 
     public Location getLocation() {
@@ -105,6 +71,6 @@ public class Event {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, timeStart, timeEnd, clients, location, description);
+        return Objects.hash(eventName, timeStart, timeEnd, clients, location, description);
     }
 }

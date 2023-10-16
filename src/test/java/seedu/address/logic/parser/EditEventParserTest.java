@@ -38,7 +38,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.parser.contacts.EditCommandParser;
+import seedu.address.logic.parser.contacts.EditContactCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -47,12 +47,12 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramName;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditEventParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private EditContactCommandParser parser = new EditContactCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

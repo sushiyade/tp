@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 //import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -40,13 +41,13 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label timeEnd;
     @FXML
-    private Label clients;
-    @FXML
     private Label location;
     @FXML
     private Label description;
     @FXML
-    private FlowPane tags;
+    private FlowPane clients;
+//    @FXML
+//    private FlowPane tags;
 
     /**
      * Creates a {@code eventCode} with the given {@code event} and index to display.
@@ -55,12 +56,13 @@ public class EventCard extends UiPart<Region> {
         super(FXML);
         this.event = event;
         id.setText(displayedIndex + ". ");
-        name.setText(event.getName().eventName);
-        clients.setText(event.getClients().toString());
-        timeStart.setText(event.getTimeStart().toString());
-        timeEnd.setText(event.getTimeEnd().toString());
-        location.setText(event.getLocation().toString());
-        description.setText(event.getDescription().toString());
-
+        name.setText(event.getName().value);
+        timeStart.setText(event.getTimeStart().value);
+        timeEnd.setText(event.getTimeEnd().value);
+        location.setText(event.getLocation().value);
+        description.setText(event.getDescription().value);
+        event.getClients().stream()
+                .sorted(Comparator.comparing(client -> client.getName().fullName))
+                .forEach(client -> clients.getChildren().add(new Label(client.getName().fullName)));
     }
 }

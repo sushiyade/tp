@@ -7,14 +7,16 @@ import java.util.Objects;
  */
 public class Description {
 
-    private final String description;
+    public final String value;
+
+    public static final String MESSAGE_CONSTRAINTS = "Location can take any values up to 256 characters";
 
     public Description(String descriptionText) {
-        this.description = descriptionText;
+        this.value = descriptionText;
     }
 
     public String getDescription() {
-        return description;
+        return value;
     }
 
     @Override
@@ -26,16 +28,11 @@ public class Description {
             return false;
         }
         Description description = (Description) obj;
-        return Objects.equals(description, description.description);
+        return Objects.equals(value, description.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description);
-    }
-
-    @Override
-    public String toString() {
-        return description;
+        return Objects.hash(value);
     }
 }

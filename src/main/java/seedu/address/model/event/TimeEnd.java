@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -14,9 +15,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class TimeEnd {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "End time should be in the format dd-MM-yyyy HH:mm (e.g., 23-09-2023 16:40)";
 
     /*
@@ -24,7 +25,9 @@ public class TimeEnd {
      */
     private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}";
 
-    public final LocalDateTime timeEnd;
+    private final LocalDateTime timeEnd;
+
+    public final String value = toString();
 
     /**
      * Constructs a {@code TimeEnd}.
@@ -42,6 +45,10 @@ public class TimeEnd {
      */
     public static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public LocalDateTime getTime() {
+        return timeEnd;
     }
 
     @Override
