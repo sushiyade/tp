@@ -5,8 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.finance.Commission;
-import seedu.address.model.finance.Expense;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_FINANCE_DISPLAYED_INDEX = "The finance index provided is invalid";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -36,7 +37,7 @@ public class Messages {
     /**
      * Formats the {@code person} for display to the user.
      */
-    public static String format(Person person) {
+    public static String formatPerson(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
                 .append("; Phone: ")
@@ -51,30 +52,16 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code commission} for display to the user.
+     * Formats the {@code finance entry} for display to the user.
      */
-    public static String formatCommission(Commission commission) {
+    public static String formatFinance(Finance finance) {
         final StringBuilder builder = new StringBuilder();
         builder.append("Amount: ")
-                .append(commission.getAmount())
+                .append(finance.getAmount())
                 .append("; Client: ")
-                .append(commission.getClient())
+                .append(finance.getClient())
                 .append("; Description: ")
-                .append(commission.getDescription());
-        return builder.toString();
-    }
-
-    /**
-     * Formats the {@code expense} for display to the user.
-     */
-    public static String formatExpense(Expense expense) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Amount: ")
-                .append(expense.getAmount())
-                .append("; Client: ")
-                .append(expense.getClient())
-                .append("; Description: ")
-                .append(expense.getDescription());
+                .append(finance.getDescription());
         return builder.toString();
     }
 }

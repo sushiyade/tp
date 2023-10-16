@@ -33,7 +33,7 @@ public class AddCommissionCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.addCommission(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatCommission(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatFinance(toAdd)));
     }
 
     @Override

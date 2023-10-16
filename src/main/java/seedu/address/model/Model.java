@@ -113,4 +113,6 @@ public interface Model {
      * If included, {@code person} must already exist in the address book.
      */
     void addExpense(Expense expense);
+
+    void deleteFinance(Finance financeToDelete);
 }

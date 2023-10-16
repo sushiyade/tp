@@ -175,4 +175,9 @@ public class ModelManager implements Model {
     public void addExpense(Expense expense) {
         addressBook.addFinance(expense);
     }
+
+    @Override
+    public void deleteFinance(Finance target) {
+        addressBook.removeFinance(target);
+    }
 }

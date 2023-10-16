@@ -33,7 +33,7 @@ public class AddCommissionCommandTest {
         ModelStubAcceptingCommissionAdded modelStub = new ModelStubAcceptingCommissionAdded();
         Commission commission = new CommissionBuilder().build();
         CommandResult commandResult = new AddCommissionCommand(commission).execute(modelStub);
-        assertEquals(String.format(AddCommissionCommand.MESSAGE_SUCCESS, Messages.formatCommission(commission)),
+        assertEquals(String.format(AddCommissionCommand.MESSAGE_SUCCESS, Messages.formatFinance(commission)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(commission), modelStub.commissionsAdded);
     }
@@ -153,6 +153,11 @@ public class AddCommissionCommandTest {
 
         @Override
         public void addExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteFinance(Finance financeToDelete) {
             throw new AssertionError("This method should not be called.");
         }
 

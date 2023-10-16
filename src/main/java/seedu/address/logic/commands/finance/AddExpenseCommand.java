@@ -34,7 +34,7 @@ public class AddExpenseCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.addExpense(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatExpense(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatFinance(toAdd)));
     }
 
     @Override

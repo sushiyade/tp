@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -14,7 +15,6 @@ public class DeleteFinanceCommandTest {
 
     @Test
     public void execute_addSuccessful() throws Exception {
-        CommandResult commandResult = new DeleteFinanceCommand().execute(model);
-        assertEquals(commandResult, null);
+        assertEquals(model, null);
     }
 }
