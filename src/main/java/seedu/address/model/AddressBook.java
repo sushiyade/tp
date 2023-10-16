@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventList;
+import seedu.address.model.finance.Finance;
+import seedu.address.model.finance.FinanceList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -20,6 +22,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final EventList events;
 
+    private final FinanceList finances;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -30,8 +33,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         events = new EventList();
+        finances = new FinanceList();
     }
-
     public AddressBook() {}
 
     /**
@@ -122,6 +125,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    // finance-level methods
+    public void addFinance(Finance finance) {
+        finances.add(finance);
+    }
+    public ObservableList<Finance> getFinanceList() {
+        return finances.asUnmodifiableObservableList();
     }
 
     //// util methods

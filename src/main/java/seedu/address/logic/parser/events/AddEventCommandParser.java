@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.contacts;
+package seedu.address.logic.parser.events;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_DATE_TIME;
@@ -12,6 +12,7 @@ import seedu.address.logic.commands.events.AddEventCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.*;
+import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 
@@ -41,12 +42,12 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         TimeStart timeStart = ParserUtil.parseTimeStart(argMultimap.getValue(PREFIX_TIME_START).get());
         TimeEnd timeEnd = ParserUtil.parseTimeEnd(argMultimap.getValue(PREFIX_TIME_END).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(""));
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
+        EventDescription eventDescription = ParserUtil.parseEventDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
         Set<Person> clients = ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_CLIENT));
 
         Event event;
         try {
-            event = new Event(eventName, timeStart, timeEnd, clients, location, description);
+            event = new Event(eventName, timeStart, timeEnd, clients, location, eventDescription);
         } catch (TimeStartAfterTimeEndException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_DATE_TIME));
         }

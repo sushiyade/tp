@@ -16,7 +16,7 @@ public class Event {
     private final TimeEnd timeEnd;
     private final Set<Person> clients = new HashSet<>();
     private final Location location;
-    private final Description description;
+    private final EventDescription eventDescription;
 
 
     /**
@@ -26,11 +26,11 @@ public class Event {
      * @param timeEnd A valid end time after start time.
      * @param clients An optional list of clients.
      * @param location An optional location.
-     * @param description An optional description.
+     * @param eventDescription An optional description.
      * @throws TimeStartAfterTimeEndException if the start time is after the end time.
      */
     public Event(EventName eventName, TimeStart timeStart, TimeEnd timeEnd, Set<Person> clients,
-                 Location location, Description description) throws TimeStartAfterTimeEndException {
+                 Location location, EventDescription eventDescription) throws TimeStartAfterTimeEndException {
         this.eventName = eventName;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
@@ -41,7 +41,7 @@ public class Event {
 
         this.clients.addAll(clients);
         this.location = location;
-        this.description = description;
+        this.eventDescription = eventDescription;
     }
 
     public EventName getName() {
@@ -64,13 +64,13 @@ public class Event {
         return location;
     }
 
-    public Description getDescription() {
-        return description;
+    public EventDescription getDescription() {
+        return eventDescription;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(eventName, timeStart, timeEnd, clients, location, description);
+        return Objects.hash(eventName, timeStart, timeEnd, clients, location, eventDescription);
     }
 }

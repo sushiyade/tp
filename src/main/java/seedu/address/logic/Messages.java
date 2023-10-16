@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.event.Event;
+import seedu.address.model.finance.Commission;
 import seedu.address.model.person.Person;
 
 /**
@@ -70,6 +71,19 @@ public class Messages {
                 .append(event.getLocation())
                 .append("; Description: ")
                 .append(event.getDescription());
+        return builder.toString();
+    }
+    /**
+     * Formats the {@code commission} for display to the user.
+     */
+    public static String formatCommission(Commission commission) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Amount: ")
+                .append(commission.getAmount())
+                .append("; Client: ")
+                .append(commission.getClient())
+                .append("; Description: ")
+                .append(commission.getDescription());
         return builder.toString();
     }
 

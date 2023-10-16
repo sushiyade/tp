@@ -9,6 +9,8 @@ import seedu.address.model.Model;
  * Lists all Finances to the user.
  */
 public class ListFinanceCommand extends Command {
+    public static final String COMMAND_WORD = "list";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         return null;
