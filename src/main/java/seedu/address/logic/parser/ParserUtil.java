@@ -119,6 +119,12 @@ public class ParserUtil {
         return new TelegramName(trimmedTelegramName);
     }
 
+    /**
+     * Parses a {@code String eventName} into an {@code EventName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code eventName} is invalid.
+     */
     public static EventName parseEventName(String eventName) throws ParseException {
         String trimmedEventName = eventName.trim();
         if (!EventName.isValidEventName(trimmedEventName)) {
@@ -127,6 +133,12 @@ public class ParserUtil {
         return new EventName(trimmedEventName);
     }
 
+    /**
+     * Parses a {@code String timeStart} into a {@code TimeStart}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code timeStart} is invalid.
+     */
     public static TimeStart parseTimeStart(String timeStart) throws ParseException {
         String trimmedTimeStart = timeStart.trim();
         if (!TimeStart.isValidTime(trimmedTimeStart)) {
@@ -136,6 +148,12 @@ public class ParserUtil {
         return new TimeStart(dateTime);
     }
 
+    /**
+     * Parses a {@code String timeEnd} into a {@code TimeEnd}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code timeEnd} is invalid.
+     */
     public static TimeEnd parseTimeEnd(String timeEnd) throws ParseException {
         String trimmedTimeEnd = timeEnd.trim();
         if (!TimeEnd.isValidTime(trimmedTimeEnd)) {
@@ -145,6 +163,12 @@ public class ParserUtil {
         return new TimeEnd(dateTime);
     }
 
+    /**
+     * Parses a {@code String location} into a {@code Location}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code location} is invalid.
+     */
     public static Location parseLocation(String location) throws ParseException {
         String trimmedLocation = location.trim();
         if (!EventName.isValidEventName(trimmedLocation)) {
@@ -153,6 +177,12 @@ public class ParserUtil {
         return new Location(trimmedLocation);
     }
 
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
     public static Description parseDescription(String description) throws ParseException {
         String trimmedDescription = description.trim();
         if (!EventName.isValidEventName(trimmedDescription)) {
@@ -161,6 +191,11 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
+    /**
+     * Parses a collection of client names into a set of {@code Person} objects.
+     *
+     * @throws ParseException if a client name is invalid.
+     */
     public static Set<Person> parseClients(Collection<String> clients) throws ParseException {
         requireNonNull(clients);
         final Set<Person> clientSet = new HashSet<>();
@@ -170,6 +205,12 @@ public class ParserUtil {
         return clientSet;
     }
 
+    /**
+     * Parses a {@code String clientName} into a {@code Person} object.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code clientName} is invalid.
+     */
     private static Person parseClient(String clientName) throws ParseException {
         requireNonNull(clientName);
         String trimmedClientName = clientName.trim();

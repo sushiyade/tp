@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.events;
 
+import java.util.Set;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
@@ -9,10 +11,13 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
-import java.util.Set;
-
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 
 /**
  * Adds a person to the address book.

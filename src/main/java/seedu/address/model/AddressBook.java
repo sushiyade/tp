@@ -76,7 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean isValidClient(Person client) {
         requireNonNull(client);
-        return persons.containClient(client);
+        return persons.contains(client);
     }
 
     /**

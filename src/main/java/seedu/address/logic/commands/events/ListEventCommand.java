@@ -5,7 +5,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Lists all events in the address book to the user.
