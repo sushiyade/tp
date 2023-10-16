@@ -2,6 +2,10 @@ package seedu.address.logic.parser.events;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.contacts.*;
+import seedu.address.logic.commands.events.AddEventCommand;
+import seedu.address.logic.commands.events.DeleteEventCommand;
+import seedu.address.logic.commands.events.ListEventCommand;
 import seedu.address.logic.parser.contacts.AddEventCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -46,23 +50,25 @@ public class EventParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditEventParser().parse(arguments);
+//        NOT IMPLEMENTED YET
+//        case EditContactCommand.COMMAND_WORD:
+//            return new EditEventParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+//        NOT IMPLEMENTED YET
+//        case ClearContactCommand.COMMAND_WORD:
+//            return new ClearContactCommand();
 
-        case FindCommand.COMMAND_WORD:
+        case FindContactCommand.COMMAND_WORD:
             return new FindEventCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListEventCommand.COMMAND_WORD:
+            return new ListEventCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

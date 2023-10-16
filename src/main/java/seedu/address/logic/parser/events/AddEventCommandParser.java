@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.logic.commands.events.AddEventCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -21,8 +21,8 @@ import seedu.address.model.person.Person;
 public class AddEventCommandParser implements Parser<AddEventCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddEventCommand
+     * and returns an AddEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddEventCommand parse(String args) throws ParseException {
@@ -32,7 +32,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_TIME_START, PREFIX_TIME_END)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TIME_START, PREFIX_TIME_END,

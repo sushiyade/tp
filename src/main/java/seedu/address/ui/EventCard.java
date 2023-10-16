@@ -46,6 +46,7 @@ public class EventCard extends UiPart<Region> {
     private Label description;
     @FXML
     private FlowPane clients;
+
 //    @FXML
 //    private FlowPane tags;
 

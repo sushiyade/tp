@@ -71,6 +71,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if client tagged is valid.
+     */
     public boolean isValidClient(Person client) {
         requireNonNull(client);
         return persons.containClient(client);
@@ -104,10 +107,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /// event-level operations
+
+    /**
+     * Adds an event to the address book.
+     * The event must not already exist in the address book.
+     */
     public void addEvent(Event event) {
         events.add(event);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
     public void removeEvent(Event key) {
         events.remove(key);
     }

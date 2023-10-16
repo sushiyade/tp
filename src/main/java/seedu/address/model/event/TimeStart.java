@@ -45,6 +45,9 @@ public class TimeStart {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Checks if start time is after end time.
+     */
     public boolean isAfter(TimeEnd timeEnd) {
         return timeStart.isAfter(timeEnd.getTime())
 ;    }

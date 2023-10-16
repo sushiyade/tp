@@ -47,6 +47,9 @@ public class TimeEnd {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns end time in LocalDateTime type.
+     */
     public LocalDateTime getTime() {
         return timeEnd;
     }

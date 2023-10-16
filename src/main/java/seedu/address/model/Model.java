@@ -77,12 +77,26 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Adds the given {@code event}.
+     */
     void addEvent(Event event);
 
+    /**
+     * Checks if client tagged exists.
+     * @return true if client exist false if client does not.
+     */
     boolean isValidClient(Person client);
 
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
     void deleteEvent(Event target);
 
+    /**
+     * Returns an unmodifiable view of events
+     */
     ObservableList<Event> getEventList();
 
 
