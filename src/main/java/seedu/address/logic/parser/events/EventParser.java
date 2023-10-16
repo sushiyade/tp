@@ -1,34 +1,31 @@
-package seedu.address.logic.parser.contacts;
+package seedu.address.logic.parser.events;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.contacts.*;
+import seedu.address.logic.commands.events.AddEventCommand;
+import seedu.address.logic.commands.events.DeleteEventCommand;
+import seedu.address.logic.commands.events.ListEventCommand;
+import seedu.address.logic.parser.contacts.AddEventCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.contacts.AddContactCommand;
-import seedu.address.logic.commands.contacts.ClearContactCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.contacts.DeleteContactCommand;
-import seedu.address.logic.commands.contacts.EditContactCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.contacts.FindContactCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.contacts.ListContactCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.
  */
-public class ContactParser {
+public class EventParser {
 
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Logger logger = LogsCenter.getLogger(ContactParser.class);
+    private static final Logger logger = LogsCenter.getLogger(EventParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -53,23 +50,25 @@ public class ContactParser {
 
         switch (commandWord) {
 
-        case AddContactCommand.COMMAND_WORD:
-            return new AddContactCommandParser().parse(arguments);
+        case AddEventCommand.COMMAND_WORD:
+            return new AddEventCommandParser().parse(arguments);
 
-        case EditContactCommand.COMMAND_WORD:
-            return new EditContactCommandParser().parse(arguments);
+//        NOT IMPLEMENTED YET
+//        case EditContactCommand.COMMAND_WORD:
+//            return new EditEventParser().parse(arguments);
 
-        case DeleteContactCommand.COMMAND_WORD:
-            return new DeleteContactCommandParser().parse(arguments);
+        case DeleteEventCommand.COMMAND_WORD:
+            return new DeleteEventCommandParser().parse(arguments);
 
-        case ClearContactCommand.COMMAND_WORD:
-            return new ClearContactCommand();
+//        NOT IMPLEMENTED YET
+//        case ClearContactCommand.COMMAND_WORD:
+//            return new ClearContactCommand();
 
         case FindContactCommand.COMMAND_WORD:
-            return new FindContactCommandParser().parse(arguments);
+            return new FindEventCommandParser().parse(arguments);
 
-        case ListContactCommand.COMMAND_WORD:
-            return new ListContactCommand();
+        case ListEventCommand.COMMAND_WORD:
+            return new ListEventCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -1,18 +1,18 @@
-package seedu.address.logic.parser.contacts;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.Arrays;
+package seedu.address.logic.parser.events;
 
 import seedu.address.logic.commands.contacts.FindContactCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
+import java.util.Arrays;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 /**
- * Parses input arguments and creates a new FindCommand object
+ * !!! NOT IMPLEMENTED !!! Parses input arguments and creates a new FindCommand object
  */
-public class FindContactCommandParser implements Parser<FindContactCommand> {
+public class FindEventCommandParser implements Parser<FindContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

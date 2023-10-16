@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
 /**
@@ -75,6 +76,29 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Adds the given {@code event}.
+     */
+    void addEvent(Event event);
+
+    /**
+     * Checks if client tagged exists.
+     * @return true if client exist false if client does not.
+     */
+    boolean isValidClient(Person client);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event target);
+
+    /**
+     * Returns an unmodifiable view of events
+     */
+    ObservableList<Event> getEventList();
+
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

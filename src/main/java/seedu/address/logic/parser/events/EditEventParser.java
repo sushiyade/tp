@@ -1,13 +1,4 @@
-package seedu.address.logic.parser.contacts;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM_NAME;
+package seedu.address.logic.parser.events;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.contacts.EditContactCommand;
@@ -18,10 +9,14 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
+
 /**
- * Parses input arguments and creates a new EditCommand object
+ * !!!! NOT IMPLEMENTED Parses input arguments and creates a new EditCommand object
  */
-public class EditContactCommandParser implements Parser<EditContactCommand> {
+public class EditEventParser implements Parser<EditContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
