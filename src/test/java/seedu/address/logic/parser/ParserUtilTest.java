@@ -23,33 +23,20 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-<<<<<<< HEAD
     private static final String INVALID_COMPANY = " @!&*";
     private static final String INVALID_TELEGRAM_NAME = "R@chel_!.";
-
-
-=======
-    private static final String INVALID_TAG = "#friend";
     private static final String INVALID_AMOUNT = "-900";
     private static final String INVALID_CLIENT = "R@chel";
     private static final String INVALID_DESCRIPTION = " ";
->>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3
-
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-<<<<<<< HEAD
     private static final String VALID_COMPANY = "Google";
     private static final String VALID_TELEGRAM_NAME = "@rachel_walker";
-=======
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_AMOUNT = "900";
     private static final String VALID_CLIENT = "Rachel Walker";
     private static final String VALID_DESCRIPTION = "Test Description";
->>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3
-
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -180,30 +167,6 @@ public class ParserUtilTest {
         assertEquals(expectedCompany, ParserUtil.parseCompany(VALID_COMPANY));
     }
 
-<<<<<<< HEAD
-=======
-    @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-    }
-
-    @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    }
-
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
-    }
     @Test
     void parseAmount_withInvalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAmount(INVALID_AMOUNT));
@@ -239,6 +202,5 @@ public class ParserUtilTest {
         Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
->>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3
 }
 
