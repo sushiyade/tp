@@ -58,6 +58,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setFinances(newData.getFinanceList());
     }
 
     //// person-level operations
@@ -141,5 +142,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void removeFinance(Finance key) {
         finances.remove(key);
+    }
+
+    /**
+     * Replaces the contents of the finance list with {@code finances}.
+     * {@code finances} must not contain duplicate finances.
+     */
+    public void setFinances(List<Finance> finances) {
+        this.finances.setFinances(finances);
     }
 }

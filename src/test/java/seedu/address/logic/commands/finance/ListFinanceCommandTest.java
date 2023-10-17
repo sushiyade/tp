@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.finance;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +10,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 public class ListFinanceCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalPersonsBook(), new UserPrefs());
 
     @Test
     public void execute_addSuccessful() throws Exception {
         CommandResult commandResult = new ListFinanceCommand().execute(model);
-        assertEquals(commandResult, null);
+        assertNull(commandResult);
     }
 }

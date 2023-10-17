@@ -106,7 +106,7 @@ public interface Model {
      */
     void addCommission(Commission commission);
 
-    public ObservableList<Finance> getFinanceList();
+    ObservableList<Finance> getFinanceList();
 
     /**
      * Adds the given expense.

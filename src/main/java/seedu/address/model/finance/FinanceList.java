@@ -1,8 +1,10 @@
 package seedu.address.model.finance;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +12,6 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of Finances that does not allow nulls.
- *
  * Supports a minimal set of list operations.
  */
 public class FinanceList implements Iterable<Finance> {
@@ -60,5 +61,10 @@ public class FinanceList implements Iterable<Finance> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+
+    public void setFinances(List<Finance> finances) {
+        requireAllNonNull(finances);
+        internalList.setAll(finances);
     }
 }

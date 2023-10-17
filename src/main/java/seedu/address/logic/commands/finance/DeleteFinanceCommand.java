@@ -46,4 +46,19 @@ public class DeleteFinanceCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_FINANCE_SUCCESS,
                 Messages.formatFinance(financeToDelete)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteFinanceCommand)) {
+            return false;
+        }
+
+        DeleteFinanceCommand otherDeleteFinanceCommand = (DeleteFinanceCommand) other;
+        return targetIndex.equals(otherDeleteFinanceCommand.targetIndex);
+    }
 }
