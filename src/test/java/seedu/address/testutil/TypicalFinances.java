@@ -21,11 +21,21 @@ public class TypicalFinances {
             new ClientName("T"),
             new Description("")
     );
+    public static final Commission RECEIVED_TWENTY = new Commission(
+            new Amount("20"),
+            new ClientName("H"),
+            new Description("Payday")
+    );
 
     public static final Expense SPENT_TWENTY = new Expense(
             new Amount("20"),
-            new ClientName("T"),
+            new ClientName("G"),
             new Description("")
+    );
+    public static final Expense SPENT_THIRTY = new Expense(
+            new Amount("30"),
+            new ClientName("K"),
+            new Description("Extra")
     );
 
     /**
@@ -39,7 +49,37 @@ public class TypicalFinances {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} with all the typical expenses.
+     */
+    public static AddressBook getTypicalExpenseOnlyBook() {
+        AddressBook ab = new AddressBook();
+        for (Finance finance : getTypicalExpensesOnly()) {
+            ab.addFinance(finance);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical commissions.
+     */
+    public static AddressBook getTypicalCommissionOnlyBook() {
+        AddressBook ab = new AddressBook();
+        for (Finance finance : getTypicalCommissionsOnly()) {
+            ab.addFinance(finance);
+        }
+        return ab;
+    }
+
     public static List<Finance> getTypicalFinances() {
-        return new ArrayList<>(Arrays.asList(RECEIVED_TEN, SPENT_TWENTY));
+        return new ArrayList<>(Arrays.asList(RECEIVED_TEN, RECEIVED_TWENTY, SPENT_TWENTY, SPENT_THIRTY));
+    }
+
+    public static List<Finance> getTypicalExpensesOnly() {
+        return new ArrayList<>(Arrays.asList(SPENT_TWENTY, SPENT_THIRTY));
+    }
+
+    public static List<Finance> getTypicalCommissionsOnly() {
+        return new ArrayList<>(Arrays.asList(RECEIVED_TEN, RECEIVED_TWENTY));
     }
 }

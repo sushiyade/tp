@@ -48,4 +48,19 @@ public class ListFinanceCommand extends Command {
         }
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListFinanceCommand)) {
+            return false;
+        }
+
+        ListFinanceCommand otherListFinanceCommand = (ListFinanceCommand) other;
+        return type.equals(otherListFinanceCommand.type);
+    }
 }
