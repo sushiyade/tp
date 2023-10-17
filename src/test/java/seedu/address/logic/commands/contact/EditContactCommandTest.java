@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.contact;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -32,7 +32,7 @@ import seedu.address.testutil.PersonBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
-public class EditCommandTest {
+public class EditContactCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
