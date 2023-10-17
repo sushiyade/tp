@@ -14,31 +14,31 @@ import seedu.address.model.finance.Finance;
  */
 public class TypicalFinances {
     public static final Commission COMMISSION_TEN_FROM_T = new CommissionBuilder()
-            .withAmount("10")
+            .withAmount("$10")
             .withPerson("T")
             .withDescription("")
             .build();
     public static final Commission COMMISSION_TWENTY_FROM_H = new CommissionBuilder()
-            .withAmount("20")
+            .withAmount("$20")
             .withPerson("H")
             .withDescription("Payday")
             .build();
 
     public static final Expense EXPENSE_TWENTY_TO_G = new ExpenseBuilder()
-            .withAmount("20")
+            .withAmount("$20")
             .withPerson("G")
             .withDescription("")
             .build();
     public static final Expense EXPENSE_THIRTY_TO_K = new ExpenseBuilder()
-            .withAmount("30")
+            .withAmount("$30")
             .withPerson("K")
             .withDescription("Extra")
             .build();
     public static final Commission COMMISSION_FROM_ALICE = new CommissionBuilder().withPerson("ALICE")
-            .withAmount("80")
+            .withAmount("$80")
             .withDescription("Ninjavan UI payment").build();
     public static final Commission COMMISSION_FROM_BOB = new CommissionBuilder().withPerson("BOB")
-            .withAmount("1000")
+            .withAmount("$1000")
             .withDescription("Wedding photoshoot").build();
 
     /**

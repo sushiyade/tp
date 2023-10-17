@@ -19,8 +19,8 @@ public class ExpenseTest {
 
     @Test
     public void getAmount_returnsCorrectAmount() {
-        assertEquals(EXPENSE_TWENTY_TO_G.getAmount(), new Amount("20"));
-        assertEquals(EXPENSE_THIRTY_TO_K.getAmount(), new Amount("30"));
+        assertEquals(EXPENSE_TWENTY_TO_G.getAmount(), new Amount("$20"));
+        assertEquals(EXPENSE_THIRTY_TO_K.getAmount(), new Amount("$30"));
     }
 
     @Test
