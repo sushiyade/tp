@@ -44,7 +44,6 @@ public class EventBuilder {
         timeEnd = new TimeEnd(LocalDateTime.parse(DEFAULT_TIME_END, DATE_TIME_FORMATTER));
         eventDescription = new EventDescription(DEFAULT_EVENT_DESCRIPTION);
         location = new Location(DEFAULT_LOCATION);
-        clients.add(new PersonBuilder(ALICE).build());
     }
 
     /**
@@ -56,7 +55,10 @@ public class EventBuilder {
         timeEnd = eventToCopy.getTimeEnd();
         eventDescription = eventToCopy.getDescription();
         location = eventToCopy.getLocation();
-        clients = eventToCopy.getClients().isEmpty() ? null : eventToCopy.getClients();
+        if (!eventToCopy.getClients().isEmpty()) {
+            clients = eventToCopy.getClients();
+        }
+        //clients = eventToCopy.getClients().isEmpty() ? null : eventToCopy.getClients();
     }
 
     /**

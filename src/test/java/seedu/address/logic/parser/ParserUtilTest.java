@@ -19,7 +19,13 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramName;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "\"Lorem ipsum dolor sit amet, " +
+            "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
+            "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco " +
+            "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+            " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat" +
+            " cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\n" +
+            "\n";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
