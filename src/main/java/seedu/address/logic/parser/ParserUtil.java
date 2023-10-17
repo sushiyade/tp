@@ -227,7 +227,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code clientName} is invalid.
      */
-    private static Person parseClient(String clientName) throws ParseException {
+    public static Person parseClient(String clientName) throws ParseException {
         requireNonNull(clientName);
         String trimmedClientName = clientName.trim();
         if (!Name.isValidName(clientName)) {

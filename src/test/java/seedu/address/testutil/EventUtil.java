@@ -27,7 +27,6 @@ public class EventUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + event.getName().value + " ");
         sb.append(PREFIX_TIME_START + event.getTimeStart().getValue() + " ");
-        System.out.println(event.getTimeStart().getValue());
         sb.append(PREFIX_TIME_END + event.getTimeEnd().getValue() + " ");
         event.getClients().stream().forEach(
                 s -> sb.append(PREFIX_CLIENT + s.getName().fullName + " ")

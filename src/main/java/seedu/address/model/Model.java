@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -99,6 +100,8 @@ public interface Model {
      * @return true if client exist false if client does not.
      */
     boolean isValidClient(Person client);
+
+    Set<Person> getAllMatchedClients(Set<Person> clients);
 
     /**
      * Deletes the given event.
