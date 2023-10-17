@@ -18,7 +18,7 @@ public class Event {
     private final EventName eventName;
     private final TimeStart timeStart;
     private final TimeEnd timeEnd;
-    private final Set<Person> clients = new HashSet<>();
+    private Set<Person> clients = new HashSet<>();
     private final Location location;
     private final EventDescription eventDescription;
 
@@ -70,6 +70,10 @@ public class Event {
 
     public EventDescription getDescription() {
         return eventDescription;
+    }
+
+    public void setMatchedClientInstance(Set<Person> actualClients) {
+        clients = actualClients;
     }
 
     @Override

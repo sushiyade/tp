@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -151,6 +152,11 @@ public class ModelManager implements Model {
     public boolean isValidClient(Person client) {
         requireAllNonNull(client);
         return addressBook.isValidClient(client);
+    }
+
+    @Override
+    public Set<Person> getAllMatchedClients(Set<Person> clients) {
+        return addressBook.getAllMatchedClients(clients);
     }
 
     @Override

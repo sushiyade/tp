@@ -8,32 +8,40 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.Location;
+import seedu.address.model.event.TimeEnd;
+import seedu.address.model.event.TimeStart;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Company;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TelegramName;
+import seedu.address.model.person.*;
+import seedu.address.testutil.PersonBuilder;
+
+import java.util.*;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_NAME = createMoreThanAllowedString();
+    private static final String INVALID_PHONE = "+65";
+    private static final String INVALID_ADDRESS = createMoreThanAllowedString();
+    private static final String INVALID_COMPANY = createMoreThanAllowedString();
+
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_COMPANY = " @!&*";
     private static final String INVALID_TELEGRAM_NAME = "R@chel_!.";
     private static final String INVALID_AMOUNT = "-900";
     private static final String INVALID_CLIENT = "R@chel";
-    private static final String INVALID_DESCRIPTION = " ";
+    private static final String INVALID_DESCRIPTION = createMoreThanAllowedString();
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_COMPANY = "Google";
     private static final String VALID_TELEGRAM_NAME = "@rachel_walker";
+    private static final String VALID_EVENT_NAME = "Meeting with Alice";
+    private static final String VALID_DATEIME = "18-10-2023 12:00";
+    private static final String INVALID_DATETIME = "today 6pm";
+    private static final String VALID_LOCATION = "Starbucks@Utown";
+    private static final String INVALID_LOCATION = createMoreThanAllowedString();
     private static final String VALID_AMOUNT = "900";
     private static final String VALID_CLIENT = "Rachel Walker";
     private static final String VALID_DESCRIPTION = "Test Description";
@@ -147,7 +155,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseTelegramName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTelegramName(INVALID_EMAIL));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTelegramName(INVALID_TELEGRAM_NAME));
     }
 
     @Test
@@ -165,6 +173,151 @@ public class ParserUtilTest {
     public void parseCompany_validValueWithoutWhitespace_returnsCompany() throws Exception {
         Company expectedCompany = new Company(VALID_COMPANY);
         assertEquals(expectedCompany, ParserUtil.parseCompany(VALID_COMPANY));
+    }
+
+    @Test
+    public void parseEventName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventName((String) null));
+    }
+
+    @Test
+    public void parseEventName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventName(INVALID_NAME));
+    }
+
+    @Test
+    public void parseEventName_validValueWithoutWhitespace_returnsName() throws Exception {
+        EventName expectedName = new EventName(VALID_EVENT_NAME);
+        assertEquals(expectedName, ParserUtil.parseEventName(VALID_EVENT_NAME));
+    }
+
+    @Test
+    public void parseEventName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        EventName expectedName = new EventName(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseEventName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseTimeStart_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTimeStart((String) null));
+    }
+
+    @Test
+    public void parseTimeStart_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeStart(INVALID_DATETIME));
+    }
+
+    @Test
+    public void parseTimeStart_validValueWithoutWhitespace_returnsName() throws Exception {
+        TimeStart expectedTimeStart = new TimeStart(VALID_DATEIME);
+        assertEquals(expectedTimeStart, ParserUtil.parseTimeStart(VALID_DATEIME));
+    }
+
+    @Test
+    public void parseTimeStart_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String stringWithWhitespace = WHITESPACE + VALID_DATEIME + WHITESPACE;
+        TimeStart expectedTimeStart = new TimeStart(VALID_DATEIME);
+        assertEquals(expectedTimeStart, ParserUtil.parseTimeStart(stringWithWhitespace));
+    }
+
+    @Test
+    public void parseTimeEnd_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTimeEnd((String) null));
+    }
+
+    @Test
+    public void parseTimeEnd_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeEnd(INVALID_DATETIME));
+    }
+
+    @Test
+    public void parseTimeEnd_validValueWithoutWhitespace_returnsName() throws Exception {
+        TimeEnd expectedTimeEnd = new TimeEnd(VALID_DATEIME);
+        assertEquals(expectedTimeEnd, ParserUtil.parseTimeEnd(VALID_DATEIME));
+    }
+
+    @Test
+    public void parseTimeEnd_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String stringWithWhitespace = WHITESPACE + VALID_DATEIME + WHITESPACE;
+        TimeEnd expectedTimeEnd = new TimeEnd(VALID_DATEIME);
+        assertEquals(expectedTimeEnd, ParserUtil.parseTimeEnd(stringWithWhitespace));
+    }
+
+    @Test
+    public void parseLocation_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLocation((String) null));
+    }
+
+    @Test
+    public void parseLocation_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLocation(INVALID_LOCATION));
+    }
+
+    @Test
+    public void parseLocation_validValueWithoutWhitespace_returnsName() throws Exception {
+        Location expectedName = new Location(VALID_LOCATION);
+        assertEquals(expectedName, ParserUtil.parseLocation(VALID_LOCATION));
+    }
+
+    @Test
+    public void parseLocation_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_LOCATION + WHITESPACE;
+        Location expectedName = new Location(VALID_LOCATION);
+        assertEquals(expectedName, ParserUtil.parseLocation(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValueWithoutWhitespace_returnsName() throws Exception {
+        Description expectedName = new Description(VALID_DESCRIPTION);
+        assertEquals(expectedName, ParserUtil.parseDescription(VALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        Description expectedName = new Description(VALID_DESCRIPTION);
+        assertEquals(expectedName, ParserUtil.parseDescription(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseClient_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClient(INVALID_NAME));
+    }
+
+    @Test
+    public void parseClient_validValueWithoutWhitespace_returnsName() throws Exception {
+        Person expectedPerson = new Person(new Name(VALID_NAME), new Phone("00000"), new Email("filler@email.com"),
+                new Address(""), new Company(""), new TelegramName(""));
+        assertEquals(expectedPerson, ParserUtil.parseClient(VALID_NAME));
+    }
+
+    @Test
+    public void parseClients_invalidValue_throwsParseException() {
+        Collection<String> invalidNames = new ArrayList<>();
+        invalidNames.add(INVALID_NAME);
+        assertThrows(ParseException.class, () -> ParserUtil.parseClients(invalidNames));
+    }
+
+    @Test
+    public void parseClients_validValueWithoutWhitespace_returnsName() throws Exception {
+        Person expectedPerson = new Person(new Name(VALID_NAME), new Phone("00000"), new Email("filler@email.com"),
+                new Address(""), new Company(""), new TelegramName(""));
+        Set<Person> expectedSet = new HashSet<>();
+        expectedSet.add(expectedPerson);
+        ArrayList<String> collectionOfValidName = new ArrayList<>();
+        collectionOfValidName.add(VALID_NAME);
+        assertEquals(expectedSet, ParserUtil.parseClients(collectionOfValidName));
     }
 
     @Test
@@ -201,6 +354,14 @@ public class ParserUtilTest {
     public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
         Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
+    }
+
+    private static String createMoreThanAllowedString() {
+        StringBuilder sb =  new StringBuilder();
+        for (int i = 0; i < 257; i++) {
+            sb.append("a");
+        }
+        return sb.toString();
     }
 }
 

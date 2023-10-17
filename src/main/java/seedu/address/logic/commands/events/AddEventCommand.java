@@ -61,10 +61,14 @@ public class AddEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Set<Person> clients = toAdd.getClients();
-        boolean validClients = clients.stream().allMatch(model::isValidClient);
-        if (!validClients) {
+        boolean hasValidClients = clients.stream().allMatch(model::isValidClient);
+        if (!hasValidClients) {
             throw new CommandException(MESSAGE_CLIENT_DOES_NOT_EXIST);
+        } else {
+            Set<Person> validClients = model.getAllMatchedClients(clients);
+            toAdd.setMatchedClientInstance(validClients);
         }
+
         model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
