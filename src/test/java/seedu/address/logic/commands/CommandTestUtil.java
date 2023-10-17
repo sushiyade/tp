@@ -2,15 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM_NAME;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -30,7 +22,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+//-------------------------------Contacts-----------------------------
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -43,8 +35,6 @@ public class CommandTestUtil {
     public static final String VALID_COMPANY_BOB = "Facebook";
     public static final String VALID_TELEGRAM_NAME_AMY = "@amybee";
     public static final String VALID_TELEGRAM_NAME_BOB = "@bobby";
-    public static final String VALID_DESCRIPTION = "Test Description";
-    public static final String VALID_AMOUNT = "900";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -59,15 +49,72 @@ public class CommandTestUtil {
     public static final String TELEGRAM_NAME_DESC_BOB = " " + PREFIX_TELEGRAM_NAME + VALID_TELEGRAM_NAME_BOB;
     public static final String CLIENT_DESC_AMY = " " + PREFIX_CLIENT + VALID_NAME_AMY;
     public static final String CLIENT_DESC_BOB = " " + PREFIX_CLIENT + VALID_NAME_AMY;
-    public static final String DEFAULT_DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
-    public static final String DEFAULT_AMOUNT = " " + PREFIX_AMOUNT + VALID_AMOUNT;
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "\"Lorem ipsum dolor sit amet, consectetur " +
+            "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
+            "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute " +
+            "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur " +
+            "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est " +
+            "laborum.\"\n" +
+            "\n";
+    // name must be less than 256 characters
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "Google&"; // '&' not allowed in company
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS + "\"Lorem ipsum dolor sit amet, " +
+            "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo " +
+            "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat " +
+            "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
+            "mollit anim id est laborum.\"\n" +
+            "\n"; // addresses must be less than 256 characters
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "\"Lorem ipsum dolor sit amet, " +
+            "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo " +
+            "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat " +
+            "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
+            "mollit anim id est laborum.\"\n" +
+            "\n";
+    // company must be less than 256 characters
+
     public static final String INVALID_TELEGRAM_NAME_DESC = " "
             + PREFIX_TELEGRAM_NAME + "!.d_"; // '.' not allowed in telegram name
+
+    //-------------------------------Events-----------------------------
+    public static final String VALID_EVENT_NAME_MEETING = "Meeting";
+    public static final String VALID_EVENT_NAME_BIRTHDAY = "Birthday";
+    public static final String VALID_TIME_START_MEETING = "01-01-2023 14:00";
+    public static final String VALID_TIME_START_BIRTHDAY = "01-01-2023 15:00";
+    public static final String VALID_TIME_END_MEETING = "01-01-2023 15:00";
+    public static final String VALID_TIME_END_BIRTHDAY = "01-01-2023 16:00";
+    public static final String VALID_LOCATION_MEETING = "Meeting Room";
+    public static final String VALID_LOCATION_BIRTHDAY = "Conference Room";
+    public static final String VALID_DESCRIPTION_MEETING = "Meeting for discussion";
+    public static final String VALID_DESCRIPTION_BIRTHDAY = "Birthday celebration";
+    public static final String EVENT_NAME_DESC_MEETING = " " + PREFIX_NAME + VALID_EVENT_NAME_MEETING;
+    public static final String EVENT_NAME_DESC_BIRTHDAY = " " + PREFIX_NAME + VALID_EVENT_NAME_BIRTHDAY;
+    public static final String TIME_START_DESC_MEETING = " " + PREFIX_TIME_START + VALID_TIME_START_MEETING;
+    public static final String TIME_START_DESC_BIRTHDAY = " " + PREFIX_TIME_START + VALID_TIME_START_BIRTHDAY;
+    public static final String TIME_END_DESC_MEETING = " " + PREFIX_TIME_END + VALID_TIME_END_MEETING;
+    public static final String TIME_END_DESC_BIRTHDAY = " " + PREFIX_TIME_END + VALID_TIME_END_BIRTHDAY;
+    public static final String LOCATION_DESC_MEETING = " " + PREFIX_LOCATION + VALID_LOCATION_MEETING;
+    public static final String LOCATION_DESC_BIRTHDAY = " " + PREFIX_LOCATION + VALID_LOCATION_BIRTHDAY;
+    public static final String DESCRIPTION_DESC_MEETING = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MEETING;
+    public static final String DESCRIPTION_DESC_BIRTHDAY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BIRTHDAY;
+    public static final String CLIENT_DESC_MEETING = " " + PREFIX_CLIENT + VALID_NAME_BOB;
+    public static final String CLIENT_DESC_BIRTHDAY = " " + PREFIX_CLIENT + VALID_NAME_AMY;
+    public static final String INVALID_EVENT_NAME_DESC = " " + PREFIX_NAME + " Meeting&";
+    // ' ' not allowed to be starting character in names
+    public static final String INVALID_TIME_START_DESC = " " + PREFIX_TIME_START + "01-01-2023 14:00";
+    public static final String INVALID_TIME_END_DESC = " " + PREFIX_TIME_END + "01-01-2023 12:00";
+    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION + " Meeting Room";
+    // ' ' not allowed to be starting character in location
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " Meeting for discussion";
+    // ' ' not allowed to be starting character in description
+
+    //-------------------------------Finance-----------------------------
+    public static final String VALID_DESCRIPTION = "Test Description";
+    public static final String VALID_AMOUNT = "900";
+    public static final String DEFAULT_DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
+    public static final String DEFAULT_AMOUNT = " " + PREFIX_AMOUNT + VALID_AMOUNT;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
