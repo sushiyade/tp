@@ -182,6 +182,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredFinanceList(Predicate<Finance> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addExpense(Expense expense) {
             throw new AssertionError("This method should not be called.");
         }
