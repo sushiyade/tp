@@ -27,6 +27,8 @@ public class EventList implements Iterable<Event> {
     }
 
     public void remove(Event key) {
+        requireNonNull(key);
+        internalList.remove(key);
     }
 
     /**

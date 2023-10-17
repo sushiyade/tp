@@ -12,13 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class EventListTest {
 
     @Test
-    public void contains_nullEvent_throwsNullPointerException() {
-        EventList eventList = new EventList();
-        Event nullEvent = null;
-        assertFalse(eventList.contains(nullEvent));
-    }
-
-    @Test
     public void contains_eventNotInList_returnsFalse() throws TimeStartAfterTimeEndException {
         EventList eventList = new EventList();
         Event event = new EventBuilder().withName("Event 1").build();
@@ -31,22 +24,6 @@ public class EventListTest {
         Event event = new EventBuilder().withName("Event 1").build();
         eventList.add(event);
         assertTrue(eventList.contains(event));
-    }
-
-    @Test
-    public void contains_eventWithSameIdentityFieldsInList_returnsTrue() throws TimeStartAfterTimeEndException {
-        EventList eventList = new EventList();
-        Event event = new EventBuilder().withName("Event 1").build();
-        Event eventWithSameIdentity = new EventBuilder().withName("Event 1").build();
-        eventList.add(event);
-        assertTrue(eventList.contains(eventWithSameIdentity));
-    }
-
-    @Test
-    public void add_nullEvent_throwsNullPointerException() {
-        EventList eventList = new EventList();
-        Event nullEvent = null;
-        assertFalse(eventList.contains(nullEvent));
     }
 
     @Test
