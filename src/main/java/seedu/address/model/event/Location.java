@@ -2,6 +2,8 @@ package seedu.address.model.event;
 
 import java.util.Objects;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Event's location in the address book.
  */
@@ -10,9 +12,17 @@ public class Location {
     public final String value;
     public static final String MESSAGE_CONSTRAINTS = "Location can take any values up to 256 characters";
 
+    public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{0,256}$";
+
     public Location(String locationName) {
+        checkArgument(isValidLocation(locationName), MESSAGE_CONSTRAINTS);
         this.value = locationName;
     }
+
+    public static boolean isValidLocation(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
 
     public String getLocationName() {
         return value;
