@@ -61,7 +61,6 @@ public class CommandTestUtil {
     public static final String CLIENT_DESC_BOB = " " + PREFIX_CLIENT + VALID_NAME_AMY;
     public static final String DEFAULT_DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
     public static final String DEFAULT_AMOUNT = " " + PREFIX_AMOUNT + VALID_AMOUNT;
-
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol

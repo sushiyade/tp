@@ -37,7 +37,14 @@ public class TimeEnd {
         requireNonNull(time);
         checkArgument(isValidTime(time.format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeEnd = time;
-        value = timeEnd.toString();
+        value = timeToString(time);
+    }
+
+    public TimeEnd(String timeString) {
+        requireNonNull(timeString);
+        checkArgument(isValidTime(stringToTime(timeString).format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
+        timeEnd = stringToTime(timeString);
+        value = timeString;
     }
 
     /**
@@ -56,6 +63,14 @@ public class TimeEnd {
 
     public String getValue() {
         return value;
+    }
+
+    public String timeToString(LocalDateTime time) {
+        return time.format(DATE_TIME_FORMATTER);
+    }
+
+    public LocalDateTime stringToTime(String timeString) {
+        return LocalDateTime.parse(timeString, DATE_TIME_FORMATTER);
     }
 
     @Override
