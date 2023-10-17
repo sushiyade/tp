@@ -3,13 +3,13 @@ package seedu.address.logic.commands.events;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.*;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 import java.time.LocalDateTime;
@@ -34,14 +34,9 @@ public class AddEventCommandIntegrationTest {
 
     @Test
     public void execute_newEvent_success() {
-        // to replace with EventBuilder
-        Set<Person> clients = new HashSet<>();
-
-        Event validEvent = null;
+        Event validEvent;
         try {
-            validEvent = new Event(new EventName("Sample Event"),
-                    new TimeStart(LocalDateTime.now()), new TimeEnd(LocalDateTime.now()), clients,
-                    new Location(""), new EventDescription(""));
+            validEvent = new EventBuilder().build();
         } catch (TimeStartAfterTimeEndException e) {
             throw new RuntimeException(e);
         }
@@ -55,10 +50,17 @@ public class AddEventCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddContactCommand(personInList), model,
-                AddContactCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_personDoesNotExist_throwsCommandException() {
+        Set<Person> invalidClients = new HashSet<>();
+        invalidClients.add(new PersonBuilder().withName("Daniel").build());
+        Event eventWithInvalidClients = null;
+        try {
+            eventWithInvalidClients = new EventBuilder().withClient(invalidClients).build();
+        } catch (TimeStartAfterTimeEndException e) {
+            throw new RuntimeException(e);
+        }
+        assertCommandFailure(new AddEventCommand(eventWithInvalidClients), model,
+                AddEventCommand.MESSAGE_CLIENT_DOES_NOT_EXIST);
     }
 
 }

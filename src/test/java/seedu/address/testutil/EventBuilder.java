@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -32,7 +33,7 @@ public class EventBuilder {
     private TimeEnd timeEnd;
     private EventDescription eventDescription;
     private Location location;
-    private Set<Person> clients;
+    private Set<Person> clients = new HashSet<>();
 
     /**
      * Creates an {@code EventBuilder} with the default details.
@@ -85,7 +86,7 @@ public class EventBuilder {
     /**
      * Sets the {@code Description} of the {@code Event} that we are building.
      */
-    public EventBuilder withDescription(String description) {
+    public EventBuilder withEventDescription(String description) {
         this.eventDescription = new EventDescription(description);
         return this;
     }

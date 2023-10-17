@@ -30,7 +30,7 @@ public class EventList implements Iterable<Event> {
     }
 
     /**
-     * Returns true if the list contains an equivalent Finance as the given argument.
+     * Returns true if the list contains an equivalent Events as the given argument.
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
