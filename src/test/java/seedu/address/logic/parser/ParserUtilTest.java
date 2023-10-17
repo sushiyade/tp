@@ -25,7 +25,6 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+65";
     private static final String INVALID_ADDRESS = createMoreThanAllowedString();
     private static final String INVALID_COMPANY = createMoreThanAllowedString();
-
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TELEGRAM_NAME = "R@chel_!.";
     private static final String INVALID_AMOUNT = "-900";

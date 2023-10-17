@@ -16,7 +16,7 @@ public class EventName {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{1,256}$";
+    public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{0,256}$";
 
     public final String value;
 

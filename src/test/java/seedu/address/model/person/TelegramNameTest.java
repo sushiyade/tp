@@ -15,7 +15,7 @@ public class TelegramNameTest {
 
     @Test
     public void constructor_invalidTelegramName_throwsIllegalArgumentException() {
-        String invalidTelegramName = "";
+        String invalidTelegramName = "_";
         assertThrows(IllegalArgumentException.class, () -> new TelegramName(invalidTelegramName));
     }
 
