@@ -199,6 +199,12 @@ public class ParserUtil {
         return new EventDescription(trimmedDescription);
     }
 
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
     public static Description parseDescription(String description) throws ParseException {
         String trimmedDescription = description.trim();
         if (!EventName.isValidEventName(trimmedDescription)) {

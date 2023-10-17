@@ -39,6 +39,11 @@ public class TimeStart {
         value = timeToString(time);
     }
 
+    /**
+     * Constructs a {@code TimeStart}.
+     *
+     * @param timeString A valid start time string.
+     */
     public TimeStart(String timeString) {
         requireNonNull(timeString);
         checkArgument(isValidTime(stringToTime(timeString).format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
