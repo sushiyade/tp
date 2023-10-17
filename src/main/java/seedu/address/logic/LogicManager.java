@@ -93,7 +93,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Finance> getFinanceList() {
-        return model.getFinanceList();
+        return model.getFilteredFinanceList();
     }
     public ParseCommandHandlers getParser() {
         return parser;

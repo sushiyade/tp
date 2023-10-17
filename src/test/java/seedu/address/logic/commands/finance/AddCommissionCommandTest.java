@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalCommissions.COMMISSION_FROM_ALICE;
+import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.CommissionBuilder;
@@ -32,7 +33,7 @@ public class AddCommissionCommandTest {
         ModelStubAcceptingCommissionAdded modelStub = new ModelStubAcceptingCommissionAdded();
         Commission commission = new CommissionBuilder().build();
         CommandResult commandResult = new AddCommissionCommand(commission).execute(modelStub);
-        assertEquals(String.format(AddCommissionCommand.MESSAGE_SUCCESS, Messages.formatCommission(commission)),
+        assertEquals(String.format(AddCommissionCommand.MESSAGE_SUCCESS, Messages.formatFinance(commission)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(commission), modelStub.commissionsAdded);
     }
@@ -146,7 +147,22 @@ public class AddCommissionCommandTest {
         }
 
         @Override
-        public ObservableList<Finance> getFinanceList() {
+        public ObservableList<Finance> getFilteredFinanceList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredFinanceList(Predicate<Finance> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteFinance(Finance financeToDelete) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -41,7 +42,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.formatPerson(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -176,7 +177,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Finance> getFinanceList() {
+        public ObservableList<Finance> getFilteredFinanceList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredFinanceList(Predicate<Finance> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteFinance(Finance financeToDelete) {
             throw new AssertionError("This method should not be called.");
         }
     }
