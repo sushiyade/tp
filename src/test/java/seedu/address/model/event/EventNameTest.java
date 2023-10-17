@@ -27,11 +27,17 @@ public class EventNameTest {
         // invalid name
         assertFalse(EventName.isValidEventName("")); // empty string
         assertFalse(EventName.isValidEventName(" ")); // spaces only
-        assertFalse(EventName.isValidEventName("^")); // only non-alphanumeric characters
-        assertFalse(EventName.isValidEventName("meeting*")); // contains non-alphanumeric characters
+        assertFalse(EventName.isValidEventName("Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis " +
+                "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor " +
+                "in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur " +
+                "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim " +
+                "id est laborum.")); // more than 256 characters
 
         // valid name
         assertTrue(EventName.isValidEventName("meeting with peter jack")); // alphabets only
+        assertTrue(EventName.isValidEventName("^")); // only non-alphanumeric characters
+        assertTrue(EventName.isValidEventName("meeting*")); // contains non-alphanumeric characters
         assertTrue(EventName.isValidEventName("12345")); // numbers only
         assertTrue(EventName.isValidEventName("2 meetings with peter the 2nd")); // alphanumeric characters
         assertTrue(EventName.isValidEventName("Capital Tan")); // with capital letters

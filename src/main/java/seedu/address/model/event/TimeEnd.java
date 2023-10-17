@@ -27,7 +27,7 @@ public class TimeEnd {
 
     private final LocalDateTime timeEnd;
 
-    public final String value = toString();
+    private final String value;
 
     /**
      * Constructs a {@code TimeEnd}.
@@ -38,6 +38,7 @@ public class TimeEnd {
         requireNonNull(time);
         checkArgument(isValidTime(time.format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeEnd = time;
+        value = timeEnd.toString();
     }
 
     /**
@@ -52,6 +53,10 @@ public class TimeEnd {
      */
     public LocalDateTime getTime() {
         return timeEnd;
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override

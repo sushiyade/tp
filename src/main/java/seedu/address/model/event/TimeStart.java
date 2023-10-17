@@ -25,7 +25,7 @@ public class TimeStart {
 
     private final LocalDateTime timeStart;
 
-    public final String value = "hello";
+    private final String value;
 
     /**
      * Constructs a {@code TimeStart}.
@@ -36,6 +36,7 @@ public class TimeStart {
         requireNonNull(time);
         checkArgument(isValidTime(time.format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeStart = time;
+        value = time.toString();
     }
 
     /**
@@ -49,8 +50,12 @@ public class TimeStart {
      * Checks if start time is after end time.
      */
     public boolean isAfter(TimeEnd timeEnd) {
-        return timeStart.isAfter(timeEnd.getTime())
-;    }
+        return timeStart.isAfter(timeEnd.getTime());
+    }
+
+    public String getValue() {
+        return value;
+    }
 
     @Override
     public String toString() {
