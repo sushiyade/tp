@@ -16,21 +16,17 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.logic.parser.contacts.ContactParser;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.logic.parser.events.EventParser;
+import seedu.address.model.*;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
+import seedu.address.storage.BookStorage;
+import seedu.address.storage.BookStorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.storage.events.EventsStorage;
-import seedu.address.storage.events.JsonEventsStorage;
+import seedu.address.storage.events.EventsBookStorage;
+import seedu.address.storage.events.JsonEventsBookStorage;
 import seedu.address.storage.finance.FinancesStorage;
 import seedu.address.storage.finance.JsonFinanceStorage;
 import seedu.address.ui.Ui;
@@ -47,7 +43,7 @@ public class MainApp extends Application {
 
     protected Ui ui;
     protected Logic logic;
-    protected Storage storage;
+    protected BookStorage storage;
     protected Model model;
     protected Config config;
 
@@ -63,9 +59,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        EventsStorage eventsStorage = new JsonEventsStorage(userPrefs.getEventsFilePath());
+        EventsBookStorage eventsBookStorage = new JsonEventsBookStorage(userPrefs.getEventsFilePath());
         FinancesStorage financeStorage = new JsonFinanceStorage(userPrefs.getFinanceFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, eventsStorage, financeStorage);
+        storage = new BookStorageManager(addressBookStorage, userPrefsStorage, eventsBookStorage, financeStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -79,25 +75,35 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(BookStorage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyEventsBook> eventsBookOptional;
+        Optional<ReadOnlyFinancesBook> financesBookOptional;
+        ReadOnlyAddressBook initialAddressData;
+        ReadOnlyEventsBook initialEventsData;
+        ReadOnlyFinancesBook initialFinancesData;
         try {
             addressBookOptional = storage.readAddressBook();
+            eventsBookOptional = storage.readEventsBook();
+
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialAddressData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialEventsData = eventsBookOptional.orElseGet(SampleDataUtil::getSampleEventsBook);
+            initialFinancesData = new FinancesBook();
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+            initialAddressData = new AddressBook();
+            initialEventsData = new EventsBook();
+            initialFinancesData = new FinancesBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialAddressData, initialEventsData, initialFinancesData, userPrefs);
     }
 
     private void initLogging(Config config) {

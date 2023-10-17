@@ -103,11 +103,6 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
-
-        @Override
-        public ObservableList<Event> getEventList() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
 }

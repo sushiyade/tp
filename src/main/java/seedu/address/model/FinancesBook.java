@@ -1,0 +1,94 @@
+package seedu.address.model;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.finance.Finance;
+import seedu.address.model.finance.UniqueFinanceList;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
+
+public class FinancesBook implements ReadOnlyFinancesBook {
+    private final UniqueFinanceList finances;
+
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        finances = new UniqueFinanceList();
+    }
+    public FinancesBook() {}
+
+    /**
+     * Creates an FinancesBook using the Finances in the {@code toBeCopied}
+     */
+    public FinancesBook(ReadOnlyFinancesBook toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
+    //// list overwrite operations
+
+    /**
+     * Replaces the contents of the finance list with {@code finances}.
+     * {@code finances} must not contain duplicate finances.
+     */
+    public void setFinances(List<Finance> finances) {
+        this.finances.setFinances(finances);
+    }
+
+    /**
+     * Resets the existing data of this {@code FinancesBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyFinancesBook newData) {
+        requireNonNull(newData);
+
+        setFinances(newData.getFinanceList());
+    }
+
+
+    // finance-level methods
+    public void addFinance(Finance finance) {
+        finances.add(finance);
+    }
+
+    @Override
+    public ObservableList<Finance> getFinanceList() {
+        return finances.asUnmodifiableObservableList();
+    }
+
+
+    //// util methods
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("finances", finances)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FinancesBook)) {
+            return false;
+        }
+
+        FinancesBook otherFinancesBook = (FinancesBook) other;
+        return finances.equals(otherFinancesBook.finances);
+    }
+
+    @Override
+    public int hashCode() {
+        return finances.hashCode();
+    }
+}

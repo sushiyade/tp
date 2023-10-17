@@ -2,7 +2,14 @@ package seedu.address.model.util;
 
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.EventsBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEventsBook;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.TimeEnd;
+import seedu.address.model.event.TimeStart;
+import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -37,11 +44,44 @@ public class SampleDataUtil {
         };
     }
 
+    public static Event[] getSampleEvents() {
+        try {
+            return new Event[] {
+                    new EventBuilder().withName("Meeting with Alice")
+                            .withTimeStart("23-09-2023 09:00")
+                            .withTimeEnd("23-09-2023 10:00")
+                            .build(),
+                    new EventBuilder().withName("Conference with Bob")
+                            .withTimeStart("24-09-2023 14:00")
+                            .withTimeEnd("24-09-2023 18:00")
+                            .build(),
+                    new EventBuilder().withName("Team Lunch")
+                            .withTimeStart("25-09-2023 12:00")
+                            .withTimeEnd("25-09-2023 13:00")
+                            .build(),
+                    new EventBuilder().withName("Project Presentation")
+                            .withTimeStart("26-09-2023 15:00")
+                            .withTimeEnd("26-09-2023 16:30")
+                            .build()
+            };
+        } catch (TimeStartAfterTimeEndException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyEventsBook getSampleEventsBook() {
+        EventsBook sampleEb = new EventsBook();
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleEb.addEvent(sampleEvent);
+        }
+        return sampleEb;
     }
 }

@@ -8,31 +8,32 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEventsBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.storage.events.EventsStorage;
+import seedu.address.storage.events.EventsBookStorage;
 import seedu.address.storage.finance.FinancesStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
  */
-public class StorageManager implements Storage {
+public class BookStorageManager implements BookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(BookStorageManager.class);
     private AddressBookStorage addressBookStorage;
-    private EventsStorage eventsStorage;
+    private EventsBookStorage eventsBookStorage;
     private FinancesStorage financeStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UserPrefStorage},
-     * {@code EventsStorage} and {@code FinanceStorage}.
+     * Creates a {@code BookStorageManager} with the given {@code AddressBookStorage}, {@code UserPrefStorage},
+     * {@code EventsBookStorage} and {@code FinanceStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
-                          EventsStorage eventsStorage, FinancesStorage financeStorage) {
+    public BookStorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                              EventsBookStorage eventsBookStorage, FinancesStorage financeStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.eventsStorage = eventsStorage;
+        this.eventsBookStorage = eventsBookStorage;
         this.financeStorage = financeStorage;
     }
 
@@ -81,6 +82,36 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+
+    // ================ EventsBook methods ==============================
+
+    @Override
+    public Path getEventsBookFilePath() {
+        return eventsBookStorage.getEventsBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyEventsBook> readEventsBook() throws DataLoadingException {
+        return readEventsBook(eventsBookStorage.getEventsBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyEventsBook> readEventsBook(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return eventsBookStorage.readEventsBook(filePath);
+    }
+
+    @Override
+    public void saveEventsBook(ReadOnlyEventsBook eventsBook) throws IOException {
+        saveEventsBook(eventsBook, eventsBookStorage.getEventsBookFilePath());
+    }
+
+    @Override
+    public void saveEventsBook(ReadOnlyEventsBook eventsBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        eventsBookStorage.saveEventsBook(eventsBook, filePath);
     }
 
 }

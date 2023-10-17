@@ -23,6 +23,8 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final EventsBook eventsBook;
+    private final FinancesBook financesBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> eventList;
@@ -31,20 +33,22 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyEventsBook eventsBook, ReadOnlyFinancesBook financesBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.eventsBook = new EventsBook(eventsBook);
+        this.financesBook = new FinancesBook(financesBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        eventList = new FilteredList<>(this.addressBook.getEventList());
-        financeList = new FilteredList<>(this.addressBook.getFinanceList());
+        eventList = new FilteredList<>(this.eventsBook.getEventList());
+        financeList = new FilteredList<>(this.financesBook.getFinanceList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -131,12 +135,12 @@ public class ModelManager implements Model {
     //=========== Events =============================================================
     @Override
     public void addEvent(Event event) {
-        addressBook.addEvent(event);
+        eventsBook.addEvent(event);
     }
 
     @Override
     public void deleteEvent(Event target) {
-        addressBook.removeEvent(target);
+        eventsBook.removeEvent(target);
     }
 
     /**
@@ -144,7 +148,7 @@ public class ModelManager implements Model {
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
-        return addressBook.hasEvent(event);
+        return eventsBook.hasEvent(event);
     }
 
     @Override
@@ -197,7 +201,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addCommission(Commission commission) {
-        addressBook.addFinance(commission);
+        financesBook.addFinance(commission);
     }
     public ObservableList<Finance> getFinanceList() {
         return financeList;

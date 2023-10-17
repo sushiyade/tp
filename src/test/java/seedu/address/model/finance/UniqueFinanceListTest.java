@@ -8,29 +8,29 @@ import static seedu.address.testutil.TypicalCommissions.COMMISSION_FROM_ALICE;
 
 import org.junit.jupiter.api.Test;
 
-class FinanceListTest {
-    private final FinanceList financeList = new FinanceList();
+class UniqueFinanceListTest {
+    private final UniqueFinanceList uniqueFinanceList = new UniqueFinanceList();
     @Test
     public void contains_nullCommission_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> financeList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueFinanceList.contains(null));
     }
     @Test
     public void contains_commissionNotInList_returnsFalse() {
-        assertFalse(financeList.contains(COMMISSION_FROM_ALICE));
+        assertFalse(uniqueFinanceList.contains(COMMISSION_FROM_ALICE));
     }
     @Test
     public void contains_commissionInList_returnsTrue() {
-        financeList.add(COMMISSION_FROM_ALICE);
-        assertTrue(financeList.contains(COMMISSION_FROM_ALICE));
+        uniqueFinanceList.add(COMMISSION_FROM_ALICE);
+        assertTrue(uniqueFinanceList.contains(COMMISSION_FROM_ALICE));
     }
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> financeList.asUnmodifiableObservableList().remove(0));
+                -> uniqueFinanceList.asUnmodifiableObservableList().remove(0));
     }
     @Test
     public void toStringMethod() {
-        assertEquals(financeList.asUnmodifiableObservableList().toString(), financeList.toString());
+        assertEquals(uniqueFinanceList.asUnmodifiableObservableList().toString(), uniqueFinanceList.toString());
     }
 }
 
