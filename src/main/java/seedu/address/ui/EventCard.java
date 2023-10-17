@@ -58,8 +58,8 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().value);
-        timeStart.setText(event.getTimeStart().value);
-        timeEnd.setText(event.getTimeEnd().value);
+        timeStart.setText(event.getTimeStart().getValue());
+        timeEnd.setText(event.getTimeEnd().getValue());
         location.setText(event.getLocation().value);
         description.setText(event.getDescription().value);
         event.getClients().stream()
