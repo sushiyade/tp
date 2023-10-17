@@ -2,7 +2,10 @@ package seedu.address.testutil;
 
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
-import seedu.address.testutil.EventBuilder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TypicalEvents {
 
@@ -60,6 +63,9 @@ public class TypicalEvents {
         }
     }
 
-
     private TypicalEvents() {} // prevents instantiation
+
+    public static List<Event> getTypicalEvents() {
+        return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3, EVENT4));
+    }
 }
