@@ -2,17 +2,31 @@ package seedu.address.logic.parser.events;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.logic.commands.events.AddEventCommand;
-import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.*;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDescription;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.Location;
+import seedu.address.model.event.TimeEnd;
+import seedu.address.model.event.TimeStart;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 
@@ -42,7 +56,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         TimeStart timeStart = ParserUtil.parseTimeStart(argMultimap.getValue(PREFIX_TIME_START).get());
         TimeEnd timeEnd = ParserUtil.parseTimeEnd(argMultimap.getValue(PREFIX_TIME_END).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(""));
-        EventDescription eventDescription = ParserUtil.parseEventDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
+        EventDescription eventDescription = ParserUtil.parseEventDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
+                .orElse(""));
         Set<Person> clients = ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_CLIENT));
 
         Event event;

@@ -1,20 +1,22 @@
 package seedu.address.model.event;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Objects;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's description in the address book.
  */
 public class EventDescription {
-
-    public final String value;
-
     public static final String MESSAGE_CONSTRAINTS = "Location can take any values up to 256 characters";
-
     public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{0,256}$";
-
+    public final String value;
+    /**
+     * Constructs a {@code EventDescription}.
+     *
+     * @param descriptionText A valid description.
+     */
     public EventDescription(String descriptionText) {
         checkArgument(isValidDescription(descriptionText), MESSAGE_CONSTRAINTS);
         this.value = descriptionText;

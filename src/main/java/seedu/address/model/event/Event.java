@@ -1,6 +1,9 @@
 package seedu.address.model.event;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;

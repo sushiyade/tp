@@ -3,13 +3,14 @@ package seedu.address.model.event;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 /**
  * A list of Finances that does not allow nulls.
@@ -22,8 +23,7 @@ public class EventList implements Iterable<Event> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds an Event to the list.
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);
