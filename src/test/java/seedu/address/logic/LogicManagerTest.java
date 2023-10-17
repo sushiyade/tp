@@ -22,7 +22,7 @@ import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.contacts.ListContactCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.contacts.ContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.finance.FinanceParser;
 import seedu.address.model.Model;
@@ -58,7 +58,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
                 eventsStorage, financeStorage);
-        logic = new LogicManager(model, storage, new AddressBookParser());
+        logic = new LogicManager(model, storage, new ContactParser());
 
     }
 
@@ -196,7 +196,7 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
                 eventsStorage, financeStorage);
 
-        logic = new LogicManager(model, storage, new AddressBookParser());
+        logic = new LogicManager(model, storage, new ContactParser());
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddContactCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY

@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Event;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
@@ -131,6 +132,26 @@ public class AddCommissionCommandTest {
         }
 
         @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isValidClient(Person client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -164,7 +185,7 @@ public class AddCommissionCommandTest {
     /**
      * A Model stub that contains a single commission.
      */
-    private class ModelStubWithCommission extends AddCommissionCommandTest.ModelStub {
+    private class ModelStubWithCommission extends ModelStub {
         private final Commission commission;
 
         ModelStubWithCommission(Commission commission) {
@@ -173,7 +194,7 @@ public class AddCommissionCommandTest {
         }
 
     }
-    private class ModelStubAcceptingCommissionAdded extends AddCommissionCommandTest.ModelStub {
+    private class ModelStubAcceptingCommissionAdded extends ModelStub {
         final ArrayList<Commission> commissionsAdded = new ArrayList<>();
 
         @Override

@@ -23,12 +23,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/AddContactCommandTest.java
 import seedu.address.model.event.Event;
-=======
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Finance;
->>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3:src/test/java/seedu/address/logic/commands/AddCommandTest.java
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -176,16 +173,14 @@ public class AddContactCommandTest {
         }
 
         @Override
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/AddContactCommandTest.java
         public ObservableList<Event> getEventList() {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
         public void addCommission(Commission commission) {
->>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3:src/test/java/seedu/address/logic/commands/AddCommandTest.java
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/AddContactCommandTest.java
         public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -197,9 +192,9 @@ public class AddContactCommandTest {
 
         @Override
         public void addEvent(Event event) {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
         public ObservableList<Finance> getFinanceList() {
->>>>>>> 445626735408bd197764f086b9bb111b4ceb4df3:src/test/java/seedu/address/logic/commands/AddCommandTest.java
             throw new AssertionError("This method should not be called.");
         }
     }
