@@ -13,8 +13,13 @@ import org.junit.jupiter.api.Test;
 public class TimeEndTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TimeEnd(null));
+    public void constructor_null_String_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TimeEnd((String) null));
+    }
+
+    @Test
+    public void constructor_null_LocalDateTime_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TimeEnd((LocalDateTime) null));
     }
 
     @Test

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.contacts;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -47,7 +47,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramName;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
-public class EditEventParserTest {
+public class EditContactParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE);
@@ -83,18 +83,24 @@ public class EditEventParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + createMoreThanAllowedString(),
+                Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid company
+        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC + createMoreThanAllowedString(),
+                Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_COMPANY_DESC + createMoreThanAllowedString(),
+                Company.MESSAGE_CONSTRAINTS); // invalid company
         assertParseFailure(parser, "1" + INVALID_TELEGRAM_NAME_DESC,
                 TelegramName.MESSAGE_CONSTRAINTS); // invalid telegram name
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + createMoreThanAllowedString()
+                        + INVALID_EMAIL_DESC
+                        + VALID_ADDRESS_AMY + createMoreThanAllowedString()
+                        + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -194,5 +200,13 @@ public class EditEventParserTest {
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS));
+    }
+
+    private String createMoreThanAllowedString() {
+        StringBuilder sb =  new StringBuilder();
+        for (int i = 0; i < 257; i++) {
+            sb.append("a");
+        }
+        return sb.toString();
     }
 }

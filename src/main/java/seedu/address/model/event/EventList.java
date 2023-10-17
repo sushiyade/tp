@@ -2,8 +2,12 @@ package seedu.address.model.event;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 import java.util.Iterator;
+import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
@@ -26,7 +30,16 @@ public class EventList implements Iterable<Event> {
         internalList.add(toAdd);
     }
 
-    public void remove(Event key) {
+    public void remove(Event toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new EventNotFoundException();
+        }
+    }
+
+    public void setEvents(List<Event> events) {
+        requireNonNull(events);
+        internalList.setAll(events);
     }
 
     /**
