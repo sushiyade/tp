@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +21,6 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class EventTest {
-
     @Test
     public void constructor_noName_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new Event(new EventName(""),
@@ -60,8 +60,8 @@ public class EventTest {
                     new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
                     new Location(""), new EventDescription(""));
             assertEquals("Sample Event", event.getName().toString());
-            assertEquals(startTime, event.getTimeStart());
-            assertEquals(endTime, event.getTimeEnd());
+            assertEquals(new TimeStart(startTime), event.getTimeStart());
+            assertEquals(new TimeEnd(endTime), event.getTimeEnd());
         } catch (TimeStartAfterTimeEndException e) {
             throw new AssertionError("TimeStartAfterTimeEndException should not be thrown.");
         }
@@ -83,6 +83,26 @@ public class EventTest {
         } catch (TimeStartAfterTimeEndException e) {
             throw new AssertionError("TimeStartAfterTimeEndException should not be thrown.");
         }
-
     }
+
+    @Test
+    public void equals() throws TimeStartAfterTimeEndException {
+        // Test with same event name, start time and end time should return false as no 2 events are the same
+        LocalDateTime startTime = LocalDateTime.of(2023, 1, 1, 12, 0);
+        LocalDateTime endTime = LocalDateTime.of(2023, 1, 1, 13, 0);
+        Event event1 = new Event(new EventName("Sample Event"),
+                new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
+                new Location(""), new EventDescription(""));
+        Event event2 = new Event(new EventName("Sample Event"),
+                new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
+                new Location(""), new EventDescription(""));
+        assertFalse(event1.equals(event2));
+
+        // Test with different event names
+        Event event3 = new Event(new EventName("Different Event"),
+                new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
+                new Location(""), new EventDescription(""));
+        assertFalse(event1.equals(event3));
+    }
+
 }
