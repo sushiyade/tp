@@ -139,6 +139,11 @@ public class ModelManager implements Model {
         addressBook.removeEvent(target);
     }
 
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
     @Override
     public boolean isValidClient(Person client) {
         requireAllNonNull(client);
