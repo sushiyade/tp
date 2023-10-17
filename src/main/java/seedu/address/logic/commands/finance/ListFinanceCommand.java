@@ -40,10 +40,8 @@ public class ListFinanceCommand extends Command {
         case EXPENSE:
             model.updateFilteredFinanceList(PREDICATE_SHOW_ALL_EXPENSES);
             break;
-        case ALL:
-            model.updateFilteredFinanceList(PREDICATE_SHOW_ALL_FINANCES);
-            break;
         default:
+            model.updateFilteredFinanceList(PREDICATE_SHOW_ALL_FINANCES);
             break;
         }
         return new CommandResult(MESSAGE_SUCCESS);
