@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.finance.Amount;
+import seedu.address.model.finance.ClientName;
+import seedu.address.model.finance.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -116,5 +119,53 @@ public class ParserUtil {
             throw new ParseException(TelegramName.MESSAGE_CONSTRAINTS);
         }
         return new TelegramName(trimmedTelegramName);
+    }
+
+    /**
+     * Parses a {@code String amount} into an {@code Amount}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code amount} is invalid.
+     */
+    public static Amount parseAmount(String amount) throws ParseException {
+        requireNonNull(amount);
+        String trimmedAmount = amount.trim();
+        if (!Amount.isValidAmount(trimmedAmount)) {
+            throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
+        }
+        return new Amount("$" + trimmedAmount);
+    }
+
+    /**
+     * Parses a {@code String amount} into an {@code Amount}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code amount} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        if (description == null) {
+            return new Description(" ");
+        }
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ClientName parseClientName(String clientName) throws ParseException {
+        requireNonNull(clientName);
+        String trimmedName = clientName.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(ClientName.MESSAGE_CONSTRAINTS);
+        }
+        return new ClientName(trimmedName);
     }
 }

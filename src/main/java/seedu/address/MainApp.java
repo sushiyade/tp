@@ -15,6 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -28,6 +29,10 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.events.EventsStorage;
+import seedu.address.storage.events.JsonEventsStorage;
+import seedu.address.storage.finance.FinancesStorage;
+import seedu.address.storage.finance.JsonFinanceStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -58,11 +63,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        EventsStorage eventsStorage = new JsonEventsStorage(userPrefs.getEventsFilePath());
+        FinancesStorage financeStorage = new JsonFinanceStorage(userPrefs.getFinanceFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, eventsStorage, financeStorage);
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, storage, new AddressBookParser());
 
         ui = new UiManager(logic);
     }
