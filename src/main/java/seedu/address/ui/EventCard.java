@@ -46,9 +46,8 @@ public class EventCard extends UiPart<Region> {
     private Label description;
     @FXML
     private FlowPane clients;
-
-//    @FXML
-//    private FlowPane tags;
+    //@FXML
+    //private FlowPane tags;
 
     /**
      * Creates a {@code eventCode} with the given {@code event} and index to display.
