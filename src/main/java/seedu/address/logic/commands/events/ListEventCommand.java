@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.events;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Lists all events in the address book to the user.
