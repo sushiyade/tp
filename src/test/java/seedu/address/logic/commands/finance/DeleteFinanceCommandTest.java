@@ -19,7 +19,7 @@ public class DeleteFinanceCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Finance financeToDelete = model.getFinanceList().get(INDEX_FIRST.getZeroBased());
+        Finance financeToDelete = model.getFilteredFinanceList().get(INDEX_FIRST.getZeroBased());
         DeleteFinanceCommand deleteFinanceCommand = new DeleteFinanceCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteFinanceCommand.MESSAGE_DELETE_FINANCE_SUCCESS,
@@ -33,7 +33,7 @@ public class DeleteFinanceCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFinanceList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFinanceList().size() + 1);
         DeleteFinanceCommand deleteFinanceCommand = new DeleteFinanceCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteFinanceCommand, model, Messages.MESSAGE_INVALID_FINANCE_DISPLAYED_INDEX);

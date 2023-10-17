@@ -147,7 +147,7 @@ public class AddCommissionCommandTest {
         }
 
         @Override
-        public ObservableList<Finance> getFinanceList() {
+        public ObservableList<Finance> getFilteredFinanceList() {
             throw new AssertionError("This method should not be called.");
         }
 

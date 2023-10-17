@@ -17,6 +17,15 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Finance> PREDICATE_SHOW_ALL_FINANCES = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Finance> PREDICATE_SHOW_ALL_EXPENSES = finance -> finance instanceof Expense;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Finance> PREDICATE_SHOW_ALL_COMMISSIONS = finance -> finance instanceof Commission;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -106,7 +115,14 @@ public interface Model {
      */
     void addCommission(Commission commission);
 
-    ObservableList<Finance> getFinanceList();
+    /** Returns an unmodifiable view of the filtered finance list */
+    ObservableList<Finance> getFilteredFinanceList();
+
+    /**
+     * Updates the filter of the filtered finance list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredFinanceList(Predicate<Finance> predicate);
 
     /**
      * Adds the given expense.
