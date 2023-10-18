@@ -7,10 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyEventsBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.storage.events.EventsBookStorage;
 import seedu.address.storage.finance.FinancesStorage;
 
@@ -22,7 +19,7 @@ public class BookStorageManager implements BookStorage {
     private static final Logger logger = LogsCenter.getLogger(BookStorageManager.class);
     private AddressBookStorage addressBookStorage;
     private EventsBookStorage eventsBookStorage;
-    private FinancesStorage financeStorage;
+    private FinancesStorage financesBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
@@ -34,7 +31,7 @@ public class BookStorageManager implements BookStorage {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.eventsBookStorage = eventsBookStorage;
-        this.financeStorage = financeStorage;
+        this.financesBookStorage = financeStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -114,4 +111,32 @@ public class BookStorageManager implements BookStorage {
         eventsBookStorage.saveEventsBook(eventsBook, filePath);
     }
 
+    // ================ FinancesBook methods ==============================
+
+    @Override
+    public Path getFinancesBookFilePath() {
+        return financesBookStorage.getFinancesBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyFinancesBook> readFinancesBook() throws DataLoadingException {
+        return readFinancesBook(financesBookStorage.getFinancesBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyFinancesBook> readFinancesBook(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return financesBookStorage.readFinancesBook(filePath);
+    }
+
+    @Override
+    public void saveFinancesBook(ReadOnlyFinancesBook financesBook) throws IOException {
+        saveFinancesBook(financesBook, financesBookStorage.getFinancesBookFilePath());
+    }
+
+    @Override
+    public void saveFinancesBook(ReadOnlyFinancesBook financesBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        financesBookStorage.saveFinancesBook(financesBook, filePath);
+    }
 }

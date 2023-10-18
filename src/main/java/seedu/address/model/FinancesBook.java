@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.event.Event;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.finance.UniqueFinanceList;
 
@@ -53,8 +54,21 @@ public class FinancesBook implements ReadOnlyFinancesBook {
 
 
     // finance-level methods
+
+    /**
+     * Returns true if a finance with the same identity as {@code finance} exists in the finances book.
+     */
+    public boolean hasFinance(Finance finance) {
+        requireNonNull(finance);
+        return finances.contains(finance);
+    }
+
     public void addFinance(Finance finance) {
         finances.add(finance);
+    }
+
+    public void removeFinance(Finance target) {
+        finances.remove(target);
     }
 
     @Override

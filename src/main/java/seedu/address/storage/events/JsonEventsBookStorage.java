@@ -41,12 +41,13 @@ public class JsonEventsBookStorage implements EventsBookStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
+    @Override
     public Optional<ReadOnlyEventsBook> readEventsBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableEventsBook> jsonEventsBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableEventsBook.class);
-        if (!jsonEventsBook.isPresent()) {
+        if (jsonEventsBook.isEmpty()) {
             return Optional.empty();
         }
 

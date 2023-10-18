@@ -53,5 +53,4 @@ public class JsonSerializableEventsBook {
         }
         return eventsBook;
     }
-
 }
