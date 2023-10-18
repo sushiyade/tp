@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -258,7 +259,7 @@ public class AddEventCommandTest {
 
         @Override
         public Set<Person> getAllMatchedClients(Set<Person> clients) {
-            throw new AssertionError("This method should not be called.");
+            return null;
         }
 
         @Override

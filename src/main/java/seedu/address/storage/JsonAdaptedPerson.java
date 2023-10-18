@@ -86,7 +86,7 @@ public class JsonAdaptedPerson {
 
         final Address modelAddress;
 
-        if (address == "") {
+        if (address == "" || address == null) {
             modelAddress = new Address("");
         } else if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -95,7 +95,7 @@ public class JsonAdaptedPerson {
         }
 
         final Company modelCompany;
-        if (company == "") {
+        if (company == "" || company == null) {
             modelCompany = new Company("");
         } else if (!Company.isValidCompany(company)) {
             throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
@@ -104,7 +104,7 @@ public class JsonAdaptedPerson {
         }
 
         final TelegramName modelTelegramName;
-        if (telegramName == "") {
+        if (telegramName == "" || telegramName == null) {
             modelTelegramName = new TelegramName("");
         } else if (!TelegramName.isValidTelegramName(telegramName)) {
             throw new IllegalValueException(TelegramName.MESSAGE_CONSTRAINTS);

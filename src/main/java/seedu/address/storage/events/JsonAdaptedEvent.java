@@ -92,7 +92,7 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(TimeStart.MESSAGE_CONSTRAINTS);
         }
 
-        if (location == null) {
+        if (location == "" || location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Location.class.getSimpleName()));
         }
@@ -100,7 +100,7 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
 
-        if (eventDescription == null) {
+        if (eventDescription == "" || eventDescription == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     EventDescription.class.getSimpleName()));
         }
