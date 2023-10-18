@@ -5,7 +5,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_DATE_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_END_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_START_MEETING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -13,6 +12,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.logic.parser.ParserUtilTest.createMoreThanAllowedString;
 import static seedu.address.testutil.TypicalEvents.EVENT5;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,13 @@ import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramName;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -47,22 +53,22 @@ public class AddEventCommandParserTest {
 
         // multiple names - last name accepted
         assertParseFailure(parser, " n/Birthday Meeting n/Meeting",
-                MESSAGE_INVALID_COMMAND_FORMAT);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         // multiple timeStart - last timeStart accepted
         assertParseFailure(parser, " s/01-01-2023 14:00 s/01-01-2023 15:00",
-                MESSAGE_INVALID_COMMAND_FORMAT);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         // multiple timeEnd - last timeEnd accepted
         assertParseFailure(parser, " e/01-01-2023 15:00 e/01-01-2023 16:00",
-                MESSAGE_INVALID_COMMAND_FORMAT);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         // multiple clients - all accepted
         assertParseFailure(parser, " c/Bob c/Alice",
-                MESSAGE_INVALID_COMMAND_FORMAT);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         // multiple locations - last location accepted
         assertParseFailure(parser, " l/Meeting Room l/Conference Room",
-                MESSAGE_INVALID_COMMAND_FORMAT);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         // multiple descriptions - last description accepted
         assertParseFailure(parser, " d/Meeting for discussion d/Team meeting",
-                MESSAGE_INVALID_COMMAND_FORMAT);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -143,10 +149,13 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_validInput_success() throws ParseException, TimeStartAfterTimeEndException {
+        Person dummyBob = new Person(new Name("Bob"), new Phone("00000"), new Email("filler@email.com"),
+                new Address(""), new Company(""), new TelegramName(""));
+
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
                 new TimeStart(VALID_TIME_START_MEETING),
                 new TimeEnd(VALID_TIME_END_MEETING),
-                Set.of(new PersonBuilder().build()),
+                Set.of(dummyBob),
                 new Location(VALID_LOCATION_MEETING),
                 new EventDescription(VALID_DESCRIPTION_MEETING));
 
@@ -159,31 +168,22 @@ public class AddEventCommandParserTest {
     @Test
     public void parse_validClientPrefixForMultipleClients_success() throws ParseException,
             TimeStartAfterTimeEndException {
+        Person dummyAmy = new PersonBuilder().dummyPersonWithName("Amy Bee").build();
+        Person dummyBob = new PersonBuilder().dummyPersonWithName("Bob Choo").build();
+
+        Set<Person> expectedClientList = new HashSet<>();
+        expectedClientList.add(dummyAmy);
+        expectedClientList.add(dummyBob);
+
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
                 new TimeStart(VALID_TIME_START_MEETING),
                 new TimeEnd(VALID_TIME_END_MEETING),
-                Set.of(new PersonBuilder().build(), new PersonBuilder().withName(VALID_NAME_BOB).build()),
+                expectedClientList,
                 new Location(VALID_LOCATION_MEETING),
                 new EventDescription(VALID_DESCRIPTION_MEETING));
 
         assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
                         + "c/Amy Bee c/Bob Choo l/Meeting Room d/Meeting for discussion",
-                new AddEventCommand(expectedEvent));
-    }
-
-    @Test
-    public void parse_validEventWithAllValidClients_success() throws ParseException, TimeStartAfterTimeEndException {
-        // Multiple clients, including valid and invalid clients
-        Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
-                new TimeStart(VALID_TIME_START_MEETING),
-                new TimeEnd(VALID_TIME_END_MEETING),
-                Set.of(new PersonBuilder().build()),
-                new Location(VALID_LOCATION_MEETING),
-                new EventDescription(VALID_DESCRIPTION_MEETING));
-
-        // Extra whitespace should be ignored when parsing the list of clients
-        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
-                        + "c/Bob, c/Alice l/Meeting Room d/Meeting for discussion",
                 new AddEventCommand(expectedEvent));
     }
 

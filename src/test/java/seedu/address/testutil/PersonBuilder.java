@@ -124,6 +124,19 @@ public class PersonBuilder {
     }
 
     /**
+     * Creates dummy person that is created during add event operation as placeholder clients
+     */
+    public PersonBuilder dummyPersonWithName(String name) {
+        this.name = new Name(name);
+        this.phone = new Phone("00000");
+        this.email = new Email("filler@email.com");
+        this.address = new Address("");
+        this.company = new Company("");
+        this.telegramName = new TelegramName("");
+        return this;
+    }
+
+    /**
      * Builds a person with the given attributes.
      */
     public Person build() {

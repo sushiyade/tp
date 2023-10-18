@@ -76,6 +76,19 @@ public class Event {
         clients = actualClients;
     }
 
+    /**
+     * Checks if event name is same to the other event
+     */
+    public boolean haveSameFields(Event other) {
+        boolean isSame = eventName.equals(other.getName());
+        isSame = isSame && timeStart.equals(other.getTimeStart());
+        isSame = isSame && timeEnd.equals(other.getTimeEnd());
+        isSame = isSame && clients.equals(other.getClients());
+        isSame = isSame && location.equals(other.getLocation());
+        isSame = isSame && eventDescription.equals(other.getDescription());
+        return isSame;
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
