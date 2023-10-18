@@ -3,6 +3,7 @@ package seedu.address.logic.commands.contact;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventsBook;
+import static seedu.address.testutil.TypicalFinances.getTypicalFinancesBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +26,7 @@ public class AddContactCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPersonsBook(), getTypicalEventsBook(), model.getFinancesBook(),
+        model = new ModelManager(getTypicalPersonsBook(), getTypicalEventsBook(), getTypicalFinancesBook(),
                 new UserPrefs());
     }
 
