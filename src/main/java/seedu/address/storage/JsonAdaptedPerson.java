@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +14,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramName;
 
-import java.util.Objects;
 
 /**
  * Jackson-friendly version of {@link Person}.

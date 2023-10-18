@@ -41,6 +41,7 @@ import seedu.address.testutil.PersonBuilder;
 
 
 
+
 public class AddEventCommandTest {
 
     @Test
@@ -258,7 +259,7 @@ public class AddEventCommandTest {
 
         @Override
         public Set<Person> getAllMatchedClients(Set<Person> clients) {
-            return null;
+            return clients;
         }
 
         @Override
