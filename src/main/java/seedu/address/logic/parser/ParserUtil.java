@@ -184,7 +184,7 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         String trimmedLocation = location.trim();
-        if (!EventName.isValidEventName(trimmedLocation)) {
+        if (!Location.isValidLocation(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
         return new Location(trimmedLocation);
