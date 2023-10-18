@@ -40,6 +40,11 @@ public class TimeEnd {
         value = timeToString(time);
     }
 
+    /**
+     * Constructs a {@code TimeEnd}.
+     *
+     * @param timeString A valid end time string.
+     */
     public TimeEnd(String timeString) {
         requireNonNull(timeString);
         checkArgument(isValidTime(stringToTime(timeString).format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);

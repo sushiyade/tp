@@ -84,11 +84,27 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        final Address modelAddress = new Address(address);
+        final Address modelAddress;
 
-        final Company modelCompany = new Company(company);
+        if (address == "") {
+            modelAddress = new Address("");
+        } else {
+            modelAddress = new Address(address);
+        }
 
-        final TelegramName modelTelegramName = new TelegramName(telegramName);
+        final Company modelCompany;
+        if (company == "") {
+            modelCompany = new Company("");
+        } else {
+            modelCompany = new Company(company);
+        }
+
+        final TelegramName modelTelegramName;
+        if (telegramName == "") {
+            modelTelegramName = new TelegramName("");
+        } else {
+            modelTelegramName = new TelegramName(telegramName);
+        }
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCompany, modelTelegramName);
     }
