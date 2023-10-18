@@ -5,7 +5,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_DATE_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_END_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_START_MEETING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;

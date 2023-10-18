@@ -76,13 +76,16 @@ public class Event {
         clients = actualClients;
     }
 
-    public boolean haveSameFields(Event toAdd) {
-        boolean isSame = eventName.equals(toAdd.getName());
-        isSame = isSame && timeStart.equals(toAdd.getTimeStart());
-        isSame = isSame && timeEnd.equals(toAdd.getTimeEnd());
-        isSame = isSame && clients.equals(toAdd.getClients());
-        isSame = isSame && location.equals(toAdd.getLocation());
-        isSame = isSame && eventDescription.equals(toAdd.getDescription());
+    /**
+     * Checks if event name is same to the other event
+     */
+    public boolean haveSameFields(Event other) {
+        boolean isSame = eventName.equals(other.getName());
+        isSame = isSame && timeStart.equals(other.getTimeStart());
+        isSame = isSame && timeEnd.equals(other.getTimeEnd());
+        isSame = isSame && clients.equals(other.getClients());
+        isSame = isSame && location.equals(other.getLocation());
+        isSame = isSame && eventDescription.equals(other.getDescription());
         return isSame;
     }
 

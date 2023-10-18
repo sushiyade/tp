@@ -123,6 +123,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Creates dummy person that is created during add event operation as placeholder clients
+     */
     public PersonBuilder dummyPersonWithName(String name) {
         this.name = new Name(name);
         this.phone = new Phone("00000");
