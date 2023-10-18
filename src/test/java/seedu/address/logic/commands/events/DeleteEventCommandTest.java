@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventsBook;
+import static seedu.address.testutil.TypicalFinances.getTypicalFinancesBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +27,7 @@ import seedu.address.model.event.Event;
  */
 public class DeleteEventCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(),
+    private Model model = new ModelManager(getTypicalPersonsBook(), getTypicalEventsBook(), getTypicalFinancesBook(),
             new UserPrefs());
 
     @Test
@@ -35,7 +37,8 @@ public class DeleteEventCommandTest {
         String expectedMessage = String.format(DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
                 Messages.format(eventToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new EventsBook(), new FinancesBook(),
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventsBook(),
+                model.getFinancesBook(),
                 new UserPrefs());
         expectedModel.deleteEvent(eventToDelete);
 

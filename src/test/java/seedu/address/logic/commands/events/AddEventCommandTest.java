@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -258,7 +259,16 @@ public class AddEventCommandTest {
 
         @Override
         public Set<Person> getAllMatchedClients(Set<Person> clients) {
-            throw new AssertionError("This method should not be called.");
+            final ObservableList<Person> internalList = FXCollections.observableArrayList();
+
+            Set<Person> matchedClients = new HashSet<>();
+
+            for (Person person : internalList) {
+                if (clients.stream().anyMatch(p -> p.getName().equals(person))) {
+                    matchedClients.add(person);
+                }
+            }
+            return matchedClients;
         }
 
         @Override
