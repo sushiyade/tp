@@ -6,10 +6,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_END_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_START_MEETING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtilTest.createMoreThanAllowedString;
 import static seedu.address.testutil.TypicalEvents.EVENT5;
 
 import java.util.Set;
@@ -105,16 +107,22 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_invalidValue_throwsParseException() {
+        final String TEXT_MORE_THAN_256 = createMoreThanAllowedString();
         // invalid name
-        assertParseFailure(parser, " n/ Me@ting s/01-01-2023 14:00 e/01-01-2023 15:00", EventName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, String.format(" n/%s s/01-01-2023 14:00 e/01-01-2023 15:00",
+                TEXT_MORE_THAN_256), EventName.MESSAGE_CONSTRAINTS);
         // invalid timeStart
-        assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00x e/01-01-2023 15:00", TimeStart.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00x e/01-01-2023 15:00",
+                TimeStart.MESSAGE_CONSTRAINTS);
         // invalid timeEnd
-        assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00x", TimeEnd.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00x",
+                TimeEnd.MESSAGE_CONSTRAINTS);
         // invalid client
-        assertParseFailure(parser, " c/ Alic@", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, String.format(" n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 c/%s ",
+                TEXT_MORE_THAN_256), Name.MESSAGE_CONSTRAINTS);
         // invalid location
-        assertParseFailure(parser, " l/Con@ference Room", Location.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, String.format(" n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 l/%s",
+                TEXT_MORE_THAN_256), Location.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -155,12 +163,12 @@ public class AddEventCommandParserTest {
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
                 new TimeStart(VALID_TIME_START_MEETING),
                 new TimeEnd(VALID_TIME_END_MEETING),
-                Set.of(new PersonBuilder().withName(VALID_NAME_AMY).build(), new PersonBuilder().build()),
+                Set.of(new PersonBuilder().build(), new PersonBuilder().withName(VALID_NAME_BOB).build()),
                 new Location(VALID_LOCATION_MEETING),
                 new EventDescription(VALID_DESCRIPTION_MEETING));
 
         assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
-                        + "c/Amy c/Bob l/Meeting Room d/Meeting for discussion",
+                        + "c/Amy Bee c/Bob Choo l/Meeting Room d/Meeting for discussion",
                 new AddEventCommand(expectedEvent));
     }
 
