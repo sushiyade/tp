@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
@@ -27,7 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> eventList;
-    private final FilteredList<Finance> financeList;
+    private final FilteredList<Finance> filteredFinances;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,7 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         eventList = new FilteredList<>(this.addressBook.getEventList());
-        financeList = new FilteredList<>(this.addressBook.getFinanceList());
+        filteredFinances = new FilteredList<>(this.addressBook.getFinanceList());
     }
 
     public ModelManager() {
@@ -205,7 +206,28 @@ public class ModelManager implements Model {
     public void addCommission(Commission commission) {
         addressBook.addFinance(commission);
     }
+    public ObservableList<Finance> getFilteredFinanceList() {
+        return filteredFinances;
+    }
+
+    @Override
+    public void updateFilteredFinanceList(Predicate<Finance> predicate) {
+        requireNonNull(predicate);
+        filteredFinances.setPredicate(predicate);
+    }
+
+    @Override
+    public void addExpense(Expense expense) {
+        addressBook.addFinance(expense);
+    }
+
+    @Override
+    public void deleteFinance(Finance target) {
+        addressBook.removeFinance(target);
+    }
+
+    @Override
     public ObservableList<Finance> getFinanceList() {
-        return financeList;
+        return addressBook.getFinanceList();
     }
 }

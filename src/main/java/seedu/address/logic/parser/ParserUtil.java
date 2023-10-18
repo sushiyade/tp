@@ -18,6 +18,7 @@ import seedu.address.model.event.TimeStart;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
+import seedu.address.model.finance.FinanceListType;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -275,5 +276,27 @@ public class ParserUtil {
             throw new ParseException(ClientName.MESSAGE_CONSTRAINTS);
         }
         return new ClientName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String financeListType} into a {@code FinanceListType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code financeListType} is invalid.
+     */
+    public static FinanceListType parseFinanceListType(String financeListType) throws ParseException {
+        requireNonNull(financeListType);
+        String trimmedFinanceType = financeListType.trim();
+        switch (trimmedFinanceType) {
+        case "expense":
+            return FinanceListType.EXPENSE;
+        case "commission":
+            return FinanceListType.COMMISSION;
+        case "":
+            return FinanceListType.ALL;
+        default:
+            throw new ParseException("Allowed values: expense, commission, <blank>");
+        }
+
     }
 }

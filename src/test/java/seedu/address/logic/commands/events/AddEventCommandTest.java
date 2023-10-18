@@ -13,8 +13,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
-import seedu.address.model.finance.Commission;
-import seedu.address.model.finance.Finance;
+import seedu.address.model.finance.*;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -194,6 +193,26 @@ public class AddEventCommandTest {
 
         @Override
         public void addCommission(Commission commission) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Finance> getFilteredFinanceList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredFinanceList(Predicate<Finance> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteFinance(Finance financeToDelete) {
             throw new AssertionError("This method should not be called.");
         }
 
