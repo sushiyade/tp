@@ -30,9 +30,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.storage.BookStorageManager;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.BookStorageManager;
 import seedu.address.storage.events.JsonEventsBookStorage;
 import seedu.address.storage.finance.JsonFinanceStorage;
 import seedu.address.testutil.PersonBuilder;
@@ -55,7 +55,8 @@ public class LogicManagerTest {
                 new JsonEventsBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonFinanceStorage financeStorage =
                 new JsonFinanceStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder
+                .resolve("userPrefs.json"));
         BookStorageManager storage = new BookStorageManager(addressBookStorage, userPrefsStorage,
                 eventsStorage, financeStorage);
         logic = new LogicManager(model, storage, new ContactParser());
@@ -141,7 +142,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getEventsBook(), model.getFinancesBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getEventsBook(), model.getFinancesBook(),
+                new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

@@ -13,11 +13,16 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.contacts.ClearContactCommand;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.EventsBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.finance.Finance;
 
 public class DeleteFinanceCommandTest {
-    private final Model model = new ModelManager(new AddressBook(), new EventsBook(), getTypicalFinancesBook(), new UserPrefs());
+    private final Model model = new ModelManager(new AddressBook(), new EventsBook(), getTypicalFinancesBook(),
+            new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -27,7 +32,8 @@ public class DeleteFinanceCommandTest {
         String expectedMessage = String.format(DeleteFinanceCommand.MESSAGE_DELETE_FINANCE_SUCCESS,
                 Messages.formatFinance(financeToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventsBook(), model.getFinancesBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventsBook(),
+                model.getFinancesBook(), new UserPrefs());
         expectedModel.deleteFinance(financeToDelete);
 
         assertCommandSuccess(deleteFinanceCommand, model, expectedMessage, expectedModel);

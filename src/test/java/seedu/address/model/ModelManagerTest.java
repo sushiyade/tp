@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
-import seedu.address.testutil.EventBuilder;
 
 public class ModelManagerTest {
 
@@ -147,7 +146,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, emptyEventsBook, emptyFinancesBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, emptyEventsBook, emptyFinancesBook,
+                userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
@@ -160,6 +160,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, emptyEventsBook, emptyFinancesBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, emptyEventsBook, emptyFinancesBook,
+                differentUserPrefs)));
     }
 }

@@ -2,8 +2,8 @@ package seedu.address.logic.commands.contact;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventsBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,14 +25,16 @@ public class AddContactCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPersonsBook(), getTypicalEventsBook(), model.getFinancesBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPersonsBook(), getTypicalEventsBook(), model.getFinancesBook(),
+                new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getEventsBook(), model.getFinancesBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getEventsBook(), model.getFinancesBook(),
+                new UserPrefs());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddContactCommand(validPerson), model,

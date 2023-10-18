@@ -6,7 +6,11 @@ import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.*;
+import seedu.address.model.EventsBook;
+import seedu.address.model.FinancesBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

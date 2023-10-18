@@ -13,7 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.model.*;
+import seedu.address.model.EventsBook;
+import seedu.address.model.FinancesBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -21,7 +25,8 @@ import seedu.address.model.event.Event;
  */
 public class DeleteEventCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(),
+            new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -30,7 +35,8 @@ public class DeleteEventCommandTest {
         String expectedMessage = String.format(DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
                 Messages.format(eventToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new EventsBook(), new FinancesBook(),
+                new UserPrefs());
         expectedModel.deleteEvent(eventToDelete);
 
         assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
