@@ -2,7 +2,18 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -22,7 +33,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-//-------------------------------Contacts-----------------------------
+    //-------------------------------Contacts-----------------------------
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -49,30 +60,27 @@ public class CommandTestUtil {
     public static final String TELEGRAM_NAME_DESC_BOB = " " + PREFIX_TELEGRAM_NAME + VALID_TELEGRAM_NAME_BOB;
     public static final String CLIENT_DESC_AMY = " " + PREFIX_CLIENT + VALID_NAME_AMY;
     public static final String CLIENT_DESC_BOB = " " + PREFIX_CLIENT + VALID_NAME_AMY;
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "\"Lorem ipsum dolor sit amet, consectetur " +
-            "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
-            "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute " +
-            "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur " +
-            "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est " +
-            "laborum.\"\n" +
-            "\n";
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "\"Lorem ipsum dolor sit amet, consectetur "
+            + "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim "
+            + "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+            + "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
+            + "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est "
+            + "laborum.\"\n" + "\n";
     // name must be less than 256 characters
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS + "\"Lorem ipsum dolor sit amet, " +
-            "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo " +
-            "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat " +
-            "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
-            "mollit anim id est laborum.\"\n" +
-            "\n"; // addresses must be less than 256 characters
-    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "\"Lorem ipsum dolor sit amet, " +
-            "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo " +
-            "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat " +
-            "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
-            "mollit anim id est laborum.\"\n" +
-            "\n";
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS + "\"Lorem ipsum dolor sit amet, consectetur"
+            + " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim "
+            + "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+            + "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
+            + "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est "
+            + "laborum.\"\n" + "\n"; // addresses must be less than 256 characters
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "\"Lorem ipsum dolor sit amet, consectetur"
+            + " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim "
+            + "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+            + "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
+            + "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est "
+            + "laborum.\"\n" + "\n";
     // company must be less than 256 characters
 
     public static final String INVALID_TELEGRAM_NAME_DESC = " "

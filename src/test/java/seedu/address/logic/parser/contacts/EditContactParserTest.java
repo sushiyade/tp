@@ -38,7 +38,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.contacts.EditContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand.EditPersonDescriptor;
-import seedu.address.logic.parser.contacts.EditContactCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -203,7 +202,7 @@ public class EditContactParserTest {
     }
 
     private String createMoreThanAllowedString() {
-        StringBuilder sb =  new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 257; i++) {
             sb.append("a");
         }

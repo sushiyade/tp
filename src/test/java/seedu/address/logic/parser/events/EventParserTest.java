@@ -1,27 +1,28 @@
 package seedu.address.logic.parser.events;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.events.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Event;
-import seedu.address.testutil.*;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.events.AddEventCommand;
+import seedu.address.logic.commands.events.DeleteEventCommand;
+import seedu.address.logic.commands.events.ListEventCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Event;
+import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.EventUtil;
+import seedu.address.testutil.PersonBuilder;
+
 
 public class EventParserTest {
 
