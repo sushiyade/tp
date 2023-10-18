@@ -85,7 +85,7 @@ public class AddEventCommand extends Command {
         }
 
         AddEventCommand otherAddCommand = (AddEventCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        return toAdd.haveSameFields(otherAddCommand.toAdd);
     }
 
     @Override
