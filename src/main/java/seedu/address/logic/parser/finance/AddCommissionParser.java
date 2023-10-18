@@ -35,7 +35,7 @@ public class AddCommissionParser implements Parser<AddCommissionCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION);
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         ClientName client = ParserUtil.parseClientName(argMultimap.getValue(PREFIX_CLIENT).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(null));
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
 
         Commission commission = new Commission(amount, client, description);
         return new AddCommissionCommand(commission);
