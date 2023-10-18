@@ -5,7 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.*;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEventsBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.storage.events.EventsBookStorage;
 import seedu.address.storage.finance.FinancesStorage;
 
@@ -38,7 +41,7 @@ public interface BookStorage extends AddressBookStorage, UserPrefsStorage, Event
     @Override
     void saveEventsBook(ReadOnlyEventsBook eventsBook) throws IOException;
 
-    /**
+    /*
     @Override
     Path getFinancesBookFilePath();
 
@@ -47,6 +50,6 @@ public interface BookStorage extends AddressBookStorage, UserPrefsStorage, Event
 
     @Override
     void saveFinancesBook(ReadOnlyFinancesBook financesBook) throws IOException;
-    **/
+    */
 
 }

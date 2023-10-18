@@ -1,19 +1,14 @@
 package seedu.address.storage.finance;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.EventsBook;
-import seedu.address.model.FinancesBook;
-import seedu.address.model.ReadOnlyEventsBook;
-import seedu.address.model.ReadOnlyFinancesBook;
-import seedu.address.model.event.Event;
-import seedu.address.model.finance.Finance;
-import seedu.address.storage.events.JsonAdaptedEvent;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.FinancesBook;
+import seedu.address.model.ReadOnlyFinancesBook;
 
 /**
  * An Immutable Finances that is serializable to JSON format.
