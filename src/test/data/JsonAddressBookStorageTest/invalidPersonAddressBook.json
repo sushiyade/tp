@@ -1,8 +1,10 @@
 {
   "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "name": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \"\n + \"eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\"\n            + \" exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\"\n            +\" reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\"\n            + \" cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\";",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "company": "IBM",
+    "telegramName": "@hanskolo"
   } ]
 }
