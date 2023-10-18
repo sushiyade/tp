@@ -27,6 +27,9 @@ public class EventName {
      */
     public EventName(String name) {
         requireNonNull(name);
+        if (name.equals("")) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
         checkArgument(isValidEventName(name), MESSAGE_CONSTRAINTS);
         value = name;
     }
