@@ -13,6 +13,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramName;
 
+import java.util.Objects;
+
 /**
  * Jackson-friendly version of {@link Person}.
  */
@@ -86,7 +88,7 @@ public class JsonAdaptedPerson {
 
         final Address modelAddress;
 
-        if (address == "" || address == null) {
+        if (Objects.equals(address, "") || address == null) {
             modelAddress = new Address("");
         } else if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -95,7 +97,7 @@ public class JsonAdaptedPerson {
         }
 
         final Company modelCompany;
-        if (company == "" || company == null) {
+        if (Objects.equals(company, "") || company == null) {
             modelCompany = new Company("");
         } else if (!Company.isValidCompany(company)) {
             throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
@@ -104,7 +106,7 @@ public class JsonAdaptedPerson {
         }
 
         final TelegramName modelTelegramName;
-        if (telegramName == "" || telegramName == null) {
+        if (Objects.equals(telegramName, "") || telegramName == null) {
             modelTelegramName = new TelegramName("");
         } else if (!TelegramName.isValidTelegramName(telegramName)) {
             throw new IllegalValueException(TelegramName.MESSAGE_CONSTRAINTS);
