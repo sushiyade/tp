@@ -1,12 +1,11 @@
 package seedu.address.storage.events;
 
-
-import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyEventsBook;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.ReadOnlyEventsBook;
 
 /**
  * Represents a storage for {@link seedu.address.model.EventsBook}.

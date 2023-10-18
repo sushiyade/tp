@@ -1,16 +1,24 @@
 package seedu.address.storage.events;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.*;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
-import seedu.address.model.person.*;
-import seedu.address.storage.JsonAdaptedPerson;
 
-import java.sql.Time;
-import java.util.*;
-import java.util.stream.Collectors;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventDescription;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.Location;
+import seedu.address.model.event.TimeEnd;
+import seedu.address.model.event.TimeStart;
+import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAdaptedPerson;
 
 /**
  * Jackson-friendly version of {@link Event}.
@@ -31,7 +39,8 @@ public class JsonAdaptedEvent {
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("eventName") String eventName, @JsonProperty("timeStart") String timeStart,
                             @JsonProperty("timeEnd") String timeEnd, @JsonProperty("location") String location,
-                            @JsonProperty("telegramName") String eventDescription, @JsonProperty("clients") List<JsonAdaptedPerson> clients) {
+                            @JsonProperty("telegramName") String eventDescription, @JsonProperty("clients")
+                                List<JsonAdaptedPerson> clients) {
         this.eventName = eventName;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
@@ -68,28 +77,32 @@ public class JsonAdaptedEvent {
         }
 
         if (eventName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventName.class.getSimpleName()));
         }
         if (!EventName.isValidEventName(eventName)) {
             throw new IllegalValueException(EventName.MESSAGE_CONSTRAINTS);
         }
 
         if (timeStart == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeStart.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TimeStart.class.getSimpleName()));
         }
         if (!TimeStart.isValidTime(timeStart)) {
             throw new IllegalValueException(TimeStart.MESSAGE_CONSTRAINTS);
         }
 
         if (location == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Location.class.getSimpleName()));
         }
         if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
 
         if (eventDescription == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventDescription.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventDescription.class.getSimpleName()));
         }
         if (!EventDescription.isValidDescription(eventDescription)) {
             throw new IllegalValueException(EventDescription.MESSAGE_CONSTRAINTS);
@@ -108,7 +121,8 @@ public class JsonAdaptedEvent {
         final Set<Person> modelClients = new HashSet<>(eventClients);
 
         try {
-            return new Event(modelEventName, modelTimeStart, modelTimeEnd, modelClients, modelLocation, modelEventDescription);
+            return new Event(modelEventName, modelTimeStart, modelTimeEnd, modelClients, modelLocation,
+                    modelEventDescription);
         } catch (TimeStartAfterTimeEndException e) {
             throw new RuntimeException(e);
         }

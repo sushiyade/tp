@@ -2,8 +2,10 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Person;
 
+/**
+ * This class implements a read only event book that is unmodifiable.
+ */
 public interface ReadOnlyEventsBook {
     /**
      * Returns an unmodifiable view of the events list.

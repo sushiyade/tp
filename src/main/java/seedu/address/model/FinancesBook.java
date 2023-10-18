@@ -1,15 +1,17 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.event.Event;
-import seedu.address.model.finance.Finance;
-import seedu.address.model.finance.UniqueFinanceList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.finance.Finance;
+import seedu.address.model.finance.UniqueFinanceList;
 
+/**
+ * This class implements the finance book in the application
+ */
 public class FinancesBook implements ReadOnlyFinancesBook {
     private final UniqueFinanceList finances;
 
