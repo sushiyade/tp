@@ -27,6 +27,9 @@ public class EventName {
      */
     public EventName(String name) {
         requireNonNull(name);
+        if (name.equals("")) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
         checkArgument(isValidEventName(name), MESSAGE_CONSTRAINTS);
         value = name;
     }
@@ -35,6 +38,9 @@ public class EventName {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidEventName(String test) {
+        if (test.equals("")) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

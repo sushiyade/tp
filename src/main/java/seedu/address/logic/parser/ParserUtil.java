@@ -198,7 +198,7 @@ public class ParserUtil {
      */
     public static EventDescription parseEventDescription(String description) throws ParseException {
         String trimmedDescription = description.trim();
-        if (!EventName.isValidEventName(trimmedDescription)) {
+        if (!EventDescription.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new EventDescription(trimmedDescription);
