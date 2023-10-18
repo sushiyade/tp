@@ -1,13 +1,17 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
-
-import java.util.*;
-
+/**
+ * A utility class containing a list of {@code Events} objects to be used in tests.
+ */
 public class TypicalEvents {
 
-        public static final Event EVENT1;
+    public static final Event EVENT1;
 
     static {
         try {
@@ -34,7 +38,7 @@ public class TypicalEvents {
     }
 
     // Manually added
-        public static final Event EVENT3;
+    public static final Event EVENT3;
 
     static {
         try {
@@ -48,7 +52,7 @@ public class TypicalEvents {
     }
 
     // Manually added - Event's details found in {@code CommandTestUtil}
-        public static final Event EVENT4;
+    public static final Event EVENT4;
 
     static {
         try {

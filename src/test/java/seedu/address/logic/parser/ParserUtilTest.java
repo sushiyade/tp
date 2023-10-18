@@ -5,6 +5,11 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -15,10 +20,14 @@ import seedu.address.model.event.TimeStart;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
-import seedu.address.model.person.*;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramName;
 
-import java.util.*;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = createMoreThanAllowedString();
@@ -356,7 +365,7 @@ public class ParserUtilTest {
     }
 
     private static String createMoreThanAllowedString() {
-        StringBuilder sb =  new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 257; i++) {
             sb.append("a");
         }
