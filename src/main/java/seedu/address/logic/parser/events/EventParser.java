@@ -57,16 +57,16 @@ public class EventParser extends ParseCommandHandlers {
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
 
-//        NOT IMPLEMENTED YET
-//        case EditContactCommand.COMMAND_WORD:
-//            return new EditEventParser().parse(arguments);
+        //NOT IMPLEMENTED YET
+        //case EditContactCommand.COMMAND_WORD:
+        //return new EditEventParser().parse(arguments);
 
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
-//        NOT IMPLEMENTED YET
-//        case ClearContactCommand.COMMAND_WORD:
-//            return new ClearContactCommand();
+        //NOT IMPLEMENTED YET
+        //case ClearContactCommand.COMMAND_WORD:
+        //return new ClearContactCommand();
 
         case FindContactCommand.COMMAND_WORD:
             return new FindEventCommandParser().parse(arguments);
