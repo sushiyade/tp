@@ -1,18 +1,22 @@
 package seedu.address.logic.commands.events;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
@@ -44,19 +48,16 @@ public class DeleteEventCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//
-//        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-//        DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST_PERSON);
-//
-//        String expectedMessage = String.format(DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
-//                Messages.format(personToDelete));
-//
-//        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.deletePerson(personToDelete);
-//        showNoPerson(expectedModel);
+        //showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        //Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        //DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST_PERSON);
+        //String expectedMessage = String.format(DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
+        //Messages.format(personToDelete));
+        //Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        //expectedModel.deletePerson(personToDelete);
+        //showNoPerson(expectedModel);
 
-//        assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
+        //assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
 
         // TO IMPLEMENT WHEN THERE IS EDIT METHOD
         assertEquals(true, true);
@@ -64,15 +65,14 @@ public class DeleteEventCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//
-//        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-//        // ensures that outOfBoundIndex is still in bounds of address book list
-//        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-//
-//        DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
+        //showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        //Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        //assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-//        assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        //DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
+
+        //assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // TO IMPLEMENT WHEN THERE IS EDIT METHOD
         assertEquals(true, true);

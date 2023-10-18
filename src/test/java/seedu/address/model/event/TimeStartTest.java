@@ -14,12 +14,12 @@ import org.junit.jupiter.api.Test;
 public class TimeStartTest {
 
     @Test
-    public void constructor_null_String_throwsNullPointerException() {
+    public void constructor_nullString_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TimeStart((String) null));
     }
 
     @Test
-    public void constructor_null_LocalDateTime_throwsNullPointerException() {
+    public void constructor_nullLocalDateTime_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TimeStart((LocalDateTime) null));
     }
 

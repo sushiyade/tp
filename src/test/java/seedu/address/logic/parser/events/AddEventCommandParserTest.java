@@ -1,19 +1,23 @@
 package seedu.address.logic.parser.events;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_DATE_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_END_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_START_MEETING;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalEvents.EVENT5;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.events.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.testutil.TypicalEvents.EVENT5;
-
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
@@ -22,18 +26,17 @@ import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-import java.util.Set;
+
 
 public class AddEventCommandParserTest {
 
     private AddEventCommandParser parser = new AddEventCommandParser();
 
     @Test
-    public void parse_DuplicateInvalidFormat_failure() throws TimeStartAfterTimeEndException {
+    public void parse_duplicateInvalidFormat_failure() throws TimeStartAfterTimeEndException {
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
                 new TimeStart(VALID_TIME_START_MEETING),
                 new TimeEnd(VALID_TIME_END_MEETING),
@@ -141,12 +144,14 @@ public class AddEventCommandParserTest {
                 new EventDescription(VALID_DESCRIPTION_MEETING));
 
         // valid input
-        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 c/Bob l/Meeting Room d/Meeting for discussion",
+        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 "
+                        + "e/01-01-2023 15:00 c/Bob l/Meeting Room d/Meeting for discussion",
                 new AddEventCommand(expectedEvent));
     }
 
     @Test
-    public void parse_validClientPrefixForMultipleClients_success() throws ParseException, TimeStartAfterTimeEndException {
+    public void parse_validClientPrefixForMultipleClients_success() throws ParseException,
+            TimeStartAfterTimeEndException {
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
                 new TimeStart(VALID_TIME_START_MEETING),
                 new TimeEnd(VALID_TIME_END_MEETING),
@@ -154,7 +159,8 @@ public class AddEventCommandParserTest {
                 new Location(VALID_LOCATION_MEETING),
                 new EventDescription(VALID_DESCRIPTION_MEETING));
 
-        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 c/Amy c/Bob l/Meeting Room d/Meeting for discussion",
+        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
+                        + "c/Amy c/Bob l/Meeting Room d/Meeting for discussion",
                 new AddEventCommand(expectedEvent));
     }
 
@@ -169,18 +175,21 @@ public class AddEventCommandParserTest {
                 new EventDescription(VALID_DESCRIPTION_MEETING));
 
         // Extra whitespace should be ignored when parsing the list of clients
-        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 c/Bob, c/Alice l/Meeting Room d/Meeting for discussion",
+        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
+                        + "c/Bob, c/Alice l/Meeting Room d/Meeting for discussion",
                 new AddEventCommand(expectedEvent));
     }
 
     @Test
     public void parse_validEventWithInvalidClients_throwsParseException() {
         // Only invalid clients
-        assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 c/Alic@ l/Meeting Room d/Meeting for discussion",
+        assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
+                        + "c/Alic@ l/Meeting Room d/Meeting for discussion",
                 Name.MESSAGE_CONSTRAINTS);
 
         // Both valid and invalid clients
-        assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 c/Bob, c/ Alic@ l/Meeting Room d/Meeting for discussion",
+        assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
+                        + "c/Bob, c/ Alic@ l/Meeting Room d/Meeting for discussion",
                 Name.MESSAGE_CONSTRAINTS);
     }
 

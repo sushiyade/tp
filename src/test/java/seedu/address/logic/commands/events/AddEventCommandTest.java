@@ -1,7 +1,23 @@
 package seedu.address.logic.commands.events;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.EVENT1;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
@@ -13,24 +29,15 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
-import seedu.address.model.finance.*;
+import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.EVENT1;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+
 
 public class AddEventCommandTest {
 
@@ -56,7 +63,8 @@ public class AddEventCommandTest {
     }
 
     @Test
-    public void execute_invalidClients_throwsCommandException() throws CommandException, TimeStartAfterTimeEndException {
+    public void execute_invalidClients_throwsCommandException() throws CommandException,
+            TimeStartAfterTimeEndException {
         ModelStubAcceptingEventAdded modelStub = new ModelStubAcceptingEventAdded();
         Person validPerson = new PersonBuilder().build();
         new AddContactCommand(validPerson).execute(modelStub);
@@ -67,8 +75,8 @@ public class AddEventCommandTest {
         Event validEvent = new EventBuilder().withClient(inValidClients).build();
         AddEventCommand addEventCommand = new AddEventCommand(validEvent);
 
-        assertThrows(CommandException.class, AddEventCommand.MESSAGE_CLIENT_DOES_NOT_EXIST,
-                () -> addEventCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddEventCommand.MESSAGE_CLIENT_DOES_NOT_EXIST, () ->
+                addEventCommand.execute(modelStub));
     }
 
     @Test
@@ -103,7 +111,7 @@ public class AddEventCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override

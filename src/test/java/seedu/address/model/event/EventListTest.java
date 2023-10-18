@@ -1,14 +1,12 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventList;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
-import seedu.address.testutil.EventBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
+import seedu.address.testutil.EventBuilder;
 public class EventListTest {
 
     @Test
