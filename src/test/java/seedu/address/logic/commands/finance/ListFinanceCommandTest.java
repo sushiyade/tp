@@ -12,7 +12,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.contacts.ClearContactCommand;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.EventsBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.finance.FinanceListType;
 
 public class ListFinanceCommandTest {
@@ -24,9 +28,12 @@ public class ListFinanceCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(new AddressBook(), new EventsBook(), getTypicalFinancesBook(), new UserPrefs());
-        expectedAllModel = new ModelManager(new AddressBook(), new EventsBook(), getTypicalFinancesBook(), new UserPrefs());
-        expectedExpenseOnlyModel = new ModelManager(new AddressBook(), new EventsBook(), getTypicalExpenseOnlyBook(), new UserPrefs());
-        expectedCommissionOnlyModel = new ModelManager(new AddressBook(), new EventsBook(), getTypicalCommissionOnlyBook(), new UserPrefs());
+        expectedAllModel = new ModelManager(new AddressBook(), new EventsBook(), getTypicalFinancesBook(),
+                new UserPrefs());
+        expectedExpenseOnlyModel = new ModelManager(new AddressBook(), new EventsBook(), getTypicalExpenseOnlyBook(),
+                new UserPrefs());
+        expectedCommissionOnlyModel = new ModelManager(new AddressBook(), new EventsBook(),
+                getTypicalCommissionOnlyBook(), new UserPrefs());
     }
 
     @Test

@@ -29,7 +29,8 @@ import seedu.address.testutil.PersonBuilder;
 public class EventParserTest {
 
     private final EventParser parser = new EventParser();
-    private final ModelManager model = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
+    private final ModelManager model = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(),
+            new UserPrefs());
 
     @Test
     public void parseCommand_add() throws Exception {

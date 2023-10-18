@@ -11,7 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.model.*;
+import seedu.address.model.EventsBook;
+import seedu.address.model.FinancesBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
@@ -43,7 +47,8 @@ public class AddEventCommandIntegrationTest {
             throw new RuntimeException(e);
         }
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new EventsBook(), new FinancesBook(),
+                new UserPrefs());
         expectedModel.addEvent(validEvent);
 
         assertCommandSuccess(new AddEventCommand(validEvent), model,
