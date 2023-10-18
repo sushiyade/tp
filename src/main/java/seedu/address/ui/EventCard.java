@@ -18,7 +18,7 @@ public class EventCard extends UiPart<Region> {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    private static final String FXML = "eventListCard.fxml";
+    private static final String FXML = "EventListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -41,13 +41,11 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label timeEnd;
     @FXML
-    private Label location;
+    private Label eventLocation;
     @FXML
     private Label description;
     @FXML
     private FlowPane clients;
-    //@FXML
-    //private FlowPane tags;
 
     /**
      * Creates a {@code eventCode} with the given {@code event} and index to display.
@@ -57,9 +55,9 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().value);
-        timeStart.setText(event.getTimeStart().getValue());
-        timeEnd.setText(event.getTimeEnd().getValue());
-        location.setText(event.getLocation().value);
+        timeStart.setText("Start: " + event.getTimeStart().getValue());
+        timeEnd.setText("End: " + event.getTimeEnd().getValue());
+        eventLocation.setText("Location: " + event.getLocation().value);
         description.setText(event.getDescription().value);
         event.getClients().stream()
                 .sorted(Comparator.comparing(client -> client.getName().fullName))

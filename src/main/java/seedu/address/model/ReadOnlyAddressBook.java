@@ -1,8 +1,6 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.event.Event;
-import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,8 +13,4 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
-
-    ObservableList<Event> getEventList();
-
-    ObservableList<Finance> getFinanceList();
 }

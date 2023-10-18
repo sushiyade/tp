@@ -3,14 +3,9 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventList;
-import seedu.address.model.finance.Finance;
-import seedu.address.model.finance.FinanceList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -21,9 +16,6 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final EventList events;
-
-    private final FinanceList finances;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -33,8 +25,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        events = new EventList();
-        finances = new FinanceList();
     }
     public AddressBook() {}
 
@@ -57,21 +47,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the events list with {@code persons}.
-     */
-    public void setEvents(List<Event> events) {
-        this.events.setEvents(events);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setEvents(newData.getEventList());
-        setFinances(newData.getFinanceList());
     }
 
     //// person-level operations
@@ -82,14 +63,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
-    }
-
-    /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
-     */
-    public boolean hasEvent(Event event) {
-        requireNonNull(event);
-        return events.contains(event);
     }
 
     /**
@@ -127,35 +100,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    /// event-level operations
-
-    /**
-     * Adds an event to the address book.
-     * The event must not already exist in the address book.
-     */
-    public void addEvent(Event event) {
-        events.add(event);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeEvent(Event key) {
-        events.remove(key);
-    }
-
-    public Set<Person> getAllMatchedClients(Set<Person> clients) {
-        return persons.getAllMatchedClients(clients);
-    }
-
-    // finance-level methods
-    public void addFinance(Finance finance) {
-        finances.add(finance);
-    }
-    public ObservableList<Finance> getFinanceList() {
-        return finances.asUnmodifiableObservableList();
-    }
 
     //// util methods
 
@@ -171,10 +115,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    @Override
-    public ObservableList<Event> getEventList() {
-        return events.asUnmodifiableObservableList();
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -194,17 +134,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    public void removeFinance(Finance key) {
-        finances.remove(key);
-    }
-
-    /**
-     * Replaces the contents of the finance list with {@code finances}.
-     * {@code finances} must not contain duplicate finances.
-     */
-    public void setFinances(List<Finance> finances) {
-        this.finances.setFinances(finances);
     }
 }
