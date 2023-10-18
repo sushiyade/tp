@@ -57,7 +57,8 @@ public class AddContactCommandTest {
         AddContactCommand addContactCommand = new AddContactCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddContactCommand.MESSAGE_DUPLICATE_PERSON, () -> addContactCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddContactCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                addContactCommand.execute(modelStub));
     }
 
     @Test
@@ -196,28 +197,23 @@ public class AddContactCommandTest {
         @Override
         public boolean isValidClient(Person client) {
             throw new AssertionError("This method should not be called.");
-        }    
-
+        }
         @Override
         public void updateFilteredFinanceList(Predicate<Finance> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public Set<Person> getAllMatchedClients(Set<Person> clients) {
             throw new AssertionError("This method should not be called.");
         }
-    
         @Override
         public void addExpense(Expense expense) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void addEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
-        
         @Override
         public ObservableList<Finance> getFinanceList() {
             throw new AssertionError("This method should not be called.");
