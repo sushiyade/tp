@@ -38,6 +38,9 @@ public class EventName {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidEventName(String test) {
+        if (test.equals("")) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
