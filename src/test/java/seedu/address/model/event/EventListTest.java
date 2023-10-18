@@ -34,6 +34,7 @@ public class EventListTest {
     public void remove_eventNotInList_returnsFalse() throws TimeStartAfterTimeEndException {
         UniqueEventList eventList = new UniqueEventList();
         Event event = new EventBuilder().withName("Event 1").build();
+        eventList.add(event);
         eventList.remove(event);
         assertFalse(eventList.contains(event));
     }
