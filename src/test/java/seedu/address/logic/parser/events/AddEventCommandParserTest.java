@@ -192,12 +192,12 @@ public class AddEventCommandParserTest {
     public void parse_validEventWithInvalidClients_throwsParseException() {
         // Only invalid clients
         assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
-                        + "c/Alic@ l/Meeting Room d/Meeting for discussion",
+                        + "c/ l/Meeting Room d/Meeting for discussion",
                 Name.MESSAGE_CONSTRAINTS);
 
         // Both valid and invalid clients
         assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 "
-                        + "c/Bob, c/ Alic@ l/Meeting Room d/Meeting for discussion",
+                        + "c/Bob, c/ l/Meeting Room d/Meeting for discussion",
                 Name.MESSAGE_CONSTRAINTS);
     }
 
