@@ -10,11 +10,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.CommandBox;
-import seedu.address.ui.HelpWindow;
-import seedu.address.ui.PersonListPanel;
-import seedu.address.ui.ResultDisplay;
-import seedu.address.ui.UiPart;
+import seedu.address.model.event.Event;
+import seedu.address.ui.*;
 
 
 /**
@@ -28,7 +25,7 @@ public class EventsTab extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
 
     private final HelpWindow helpWindow;
@@ -37,7 +34,7 @@ public class EventsTab extends UiPart<Region> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -56,8 +53,8 @@ public class EventsTab extends UiPart<Region> {
     }
 
     private void setInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        eventListPanel = new EventListPanel(logic.getEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -66,8 +63,8 @@ public class EventsTab extends UiPart<Region> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public EventListPanel getEventListPanel() {
+        return eventListPanel;
     }
 
     /**
