@@ -123,6 +123,16 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder dummyPersonWithName(String name) {
+        this.name = new Name(name);
+        this.phone = new Phone("00000");
+        this.email = new Email("filler@email.com");
+        this.address = new Address("");
+        this.company = new Company("");
+        this.telegramName = new TelegramName("");
+        return this;
+    }
+
     /**
      * Builds a person with the given attributes.
      */

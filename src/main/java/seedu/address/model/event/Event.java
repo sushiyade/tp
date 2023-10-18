@@ -76,6 +76,16 @@ public class Event {
         clients = actualClients;
     }
 
+    public boolean haveSameFields(Event toAdd) {
+        boolean isSame = eventName.equals(toAdd.getName());
+        isSame = isSame && timeStart.equals(toAdd.getTimeStart());
+        isSame = isSame && timeEnd.equals(toAdd.getTimeEnd());
+        isSame = isSame && clients.equals(toAdd.getClients());
+        isSame = isSame && location.equals(toAdd.getLocation());
+        isSame = isSame && eventDescription.equals(toAdd.getDescription());
+        return isSame;
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
