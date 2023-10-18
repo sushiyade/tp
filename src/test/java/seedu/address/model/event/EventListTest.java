@@ -11,14 +11,14 @@ public class EventListTest {
 
     @Test
     public void contains_eventNotInList_returnsFalse() throws TimeStartAfterTimeEndException {
-        EventList eventList = new EventList();
+        UniqueEventList eventList = new UniqueEventList();
         Event event = new EventBuilder().withName("Event 1").build();
         assertFalse(eventList.contains(event));
     }
 
     @Test
     public void contains_eventInList_returnsTrue() throws TimeStartAfterTimeEndException {
-        EventList eventList = new EventList();
+        UniqueEventList eventList = new UniqueEventList();
         Event event = new EventBuilder().withName("Event 1").build();
         eventList.add(event);
         assertTrue(eventList.contains(event));
@@ -26,13 +26,13 @@ public class EventListTest {
 
     @Test
     public void add_validEvent_returnsTrue() throws TimeStartAfterTimeEndException {
-        EventList eventList = new EventList();
+        UniqueEventList eventList = new UniqueEventList();
         Event event = new EventBuilder().withName("Event 1").build();
         eventList.add(event);
     }
     @Test
     public void remove_eventNotInList_returnsFalse() throws TimeStartAfterTimeEndException {
-        EventList eventList = new EventList();
+        UniqueEventList eventList = new UniqueEventList();
         Event event = new EventBuilder().withName("Event 1").build();
         eventList.remove(event);
         assertFalse(eventList.contains(event));
@@ -40,7 +40,7 @@ public class EventListTest {
 
     @Test
     public void remove_eventInList_returnsFalse() throws TimeStartAfterTimeEndException {
-        EventList eventList = new EventList();
+        UniqueEventList eventList = new UniqueEventList();
         Event event = new EventBuilder().withName("Event 1").build();
         eventList.add(event);
         eventList.remove(event);
@@ -49,7 +49,7 @@ public class EventListTest {
 
     @Test
     public void iterator() throws TimeStartAfterTimeEndException {
-        EventList eventList = new EventList();
+        UniqueEventList eventList = new UniqueEventList();
         Event event1 = new EventBuilder().withName("Event 1").build();
         Event event2 = new EventBuilder().withName("Event 2").build();
         eventList.add(event1);

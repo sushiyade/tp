@@ -8,10 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -108,13 +105,15 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Event> getEventList() {
-            throw new AssertionError("This method should not be called.");
-        }
+        public Set<Person> getAllMatchedClients(Set<Person> clients) {
+            Set<Person> matchedClients = new HashSet<>();
 
-        @Override
-        public ObservableList<Finance> getFinanceList() {
-            return finances;
+            for (Person person : persons) {
+                if (clients.stream().anyMatch(p -> person.equals(p.getName()))) {
+                    matchedClients.add(person);
+                }
+            }
+            return matchedClients;
         }
     }
 

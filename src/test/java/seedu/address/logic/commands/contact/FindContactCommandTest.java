@@ -16,17 +16,15 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.contacts.FindContactCommand;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindContactCommandTest {
-    private Model model = new ModelManager(getTypicalPersonsBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalPersonsBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
 
     @Test
     public void equals() {

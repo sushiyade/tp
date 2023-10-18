@@ -18,10 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.event.Event;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
@@ -115,6 +112,26 @@ public class AddCommissionCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventsBook(ReadOnlyEventsBook eventsBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEventsBook getEventsBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setFinancesBook(ReadOnlyFinancesBook financesBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyFinancesBook getFinancesBook() {
             throw new AssertionError("This method should not be called.");
         }
 
