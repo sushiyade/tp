@@ -37,7 +37,7 @@ public class TimeEnd {
         requireNonNull(time);
         checkArgument(isValidTime(time.format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeEnd = time;
-        value = timeEnd.toString();
+        value = timeToString(time);
     }
 
     public TimeEnd(String timeString) {

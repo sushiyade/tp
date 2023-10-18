@@ -134,6 +134,16 @@ public class ModelManager implements Model {
 
     //=========== Events =============================================================
     @Override
+    public void setEventsBook(ReadOnlyEventsBook eventsBook) {
+        this.eventsBook.resetData(eventsBook);
+    }
+
+    @Override
+    public ReadOnlyEventsBook getEventsBook() {
+        return eventsBook;
+    }
+
+    @Override
     public void addEvent(Event event) {
         eventsBook.addEvent(event);
     }
@@ -198,6 +208,15 @@ public class ModelManager implements Model {
 
     //===========  Finance =============================================================
 
+    @Override
+    public void setFinancesBook(ReadOnlyFinancesBook financesBook) {
+        this.financesBook.resetData(financesBook);
+    }
+
+    @Override
+    public ReadOnlyFinancesBook getFinancesBook() {
+        return financesBook;
+    }
 
     @Override
     public void addCommission(Commission commission) {

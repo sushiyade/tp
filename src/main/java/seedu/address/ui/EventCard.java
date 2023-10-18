@@ -41,7 +41,7 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label timeEnd;
     @FXML
-    private Label location;
+    private Label eventLocation;
     @FXML
     private Label description;
     @FXML
@@ -55,9 +55,9 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().value);
-        timeStart.setText(event.getTimeStart().getValue());
-        timeEnd.setText(event.getTimeEnd().getValue());
-        location.setText(event.getLocation().value);
+        timeStart.setText("Start: " + event.getTimeStart().getValue());
+        timeEnd.setText("End: " + event.getTimeEnd().getValue());
+        eventLocation.setText("Location: " + event.getLocation().value);
         description.setText(event.getDescription().value);
         event.getClients().stream()
                 .sorted(Comparator.comparing(client -> client.getName().fullName))

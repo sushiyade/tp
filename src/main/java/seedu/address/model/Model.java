@@ -66,6 +66,23 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Replaces events book data with the data in {@code eventsBook}.
+     */
+    void setEventsBook(ReadOnlyEventsBook eventsBook);
+
+    /** Returns the EventsBook */
+    ReadOnlyEventsBook getEventsBook();
+
+
+    /**
+     * Replaces finance book data with the data in {@code financesBook}.
+     */
+    void setFinancesBook(ReadOnlyFinancesBook financesBook);
+
+    /** Returns the AddressBook */
+    ReadOnlyFinancesBook getFinancesBook();
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
