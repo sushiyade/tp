@@ -10,13 +10,14 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
+
 /**
- * Adds a Commission to the app.
+ * Adds an Expense to the app.
  */
-public class AddCommissionCommand extends Command {
-    public static final String COMMAND_WORD = "add-c";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds a commission to the Finance Tab. "
+public class AddExpenseCommand extends Command {
+    public static final String COMMAND_WORD = "add-e";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds an expense to the Finance Tab. "
             + "Parameters: "
             + PREFIX_AMOUNT + "AMOUNT "
             + PREFIX_CLIENT + "CLIENT "
@@ -25,14 +26,14 @@ public class AddCommissionCommand extends Command {
             + PREFIX_AMOUNT + "1000 "
             + PREFIX_CLIENT + "John Doe "
             + PREFIX_DESCRIPTION + "Wedding photo shoot ";
-    public static final String MESSAGE_SUCCESS = "New commission added: %1$s";
-    private Commission toAdd;
-    public AddCommissionCommand(Commission commission) {
-        this.toAdd = commission;
+    public static final String MESSAGE_SUCCESS = "New expense added: %1$s";
+    private Expense toAdd;
+    public AddExpenseCommand(Expense expense) {
+        this.toAdd = expense;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.addCommission(toAdd);
+        model.addExpense(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatFinance(toAdd)));
     }
 
@@ -43,12 +44,12 @@ public class AddCommissionCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommissionCommand)) {
+        if (!(other instanceof AddExpenseCommand)) {
             return false;
         }
 
-        AddCommissionCommand otherAddCommissionCommand = (AddCommissionCommand) other;
-        return toAdd.haveSameFields(otherAddCommissionCommand.toAdd);
+        AddExpenseCommand otherAddExpenseCommand = (AddExpenseCommand) other;
+        return toAdd.haveSameFields(otherAddExpenseCommand.toAdd);
     }
     @Override
     public String toString() {

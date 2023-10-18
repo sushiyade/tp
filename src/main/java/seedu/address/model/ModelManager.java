@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Finance> financeList;
+    private final FilteredList<Finance> filteredFinances;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,7 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        financeList = new FilteredList<>(this.addressBook.getFinanceList());
+        filteredFinances = new FilteredList<>(this.addressBook.getFinanceList());
     }
 
     public ModelManager() {
@@ -166,7 +167,23 @@ public class ModelManager implements Model {
     public void addCommission(Commission commission) {
         addressBook.addFinance(commission);
     }
-    public ObservableList<Finance> getFinanceList() {
-        return financeList;
+    public ObservableList<Finance> getFilteredFinanceList() {
+        return filteredFinances;
+    }
+
+    @Override
+    public void updateFilteredFinanceList(Predicate<Finance> predicate) {
+        requireNonNull(predicate);
+        filteredFinances.setPredicate(predicate);
+    }
+
+    @Override
+    public void addExpense(Expense expense) {
+        addressBook.addFinance(expense);
+    }
+
+    @Override
+    public void deleteFinance(Finance target) {
+        addressBook.removeFinance(target);
     }
 }
