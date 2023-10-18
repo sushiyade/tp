@@ -1,21 +1,21 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
-import seedu.address.model.event.EventDescription;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.event.Event;
-import seedu.address.model.event.Location;
+import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
+import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building Event objects.
@@ -26,7 +26,7 @@ public class EventBuilder {
     public static final String DEFAULT_TIME_END = "23-09-2023 10:00";
     public static final String DEFAULT_EVENT_DESCRIPTION = "Discussion";
     public static final String DEFAULT_LOCATION = "Conference Room";
-    DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     private EventName eventName;
     private TimeStart timeStart;
