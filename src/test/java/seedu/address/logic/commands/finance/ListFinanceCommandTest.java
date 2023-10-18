@@ -6,15 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFinances.getTypicalCommissionOnlyBook;
 import static seedu.address.testutil.TypicalFinances.getTypicalExpenseOnlyBook;
-import static seedu.address.testutil.TypicalFinances.getTypicalFinanceBook;
+import static seedu.address.testutil.TypicalFinances.getTypicalFinancesBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.contacts.ClearContactCommand;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.finance.FinanceListType;
 
 public class ListFinanceCommandTest {
@@ -25,10 +23,10 @@ public class ListFinanceCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalFinanceBook(), new UserPrefs());
-        expectedAllModel = new ModelManager(getTypicalFinanceBook(), new UserPrefs());
-        expectedExpenseOnlyModel = new ModelManager(getTypicalExpenseOnlyBook(), new UserPrefs());
-        expectedCommissionOnlyModel = new ModelManager(getTypicalCommissionOnlyBook(), new UserPrefs());
+        model = new ModelManager(new AddressBook(), new EventsBook(), getTypicalFinancesBook(), new UserPrefs());
+        expectedAllModel = new ModelManager(new AddressBook(), new EventsBook(), getTypicalFinancesBook(), new UserPrefs());
+        expectedExpenseOnlyModel = new ModelManager(new AddressBook(), new EventsBook(), getTypicalExpenseOnlyBook(), new UserPrefs());
+        expectedCommissionOnlyModel = new ModelManager(new AddressBook(), new EventsBook(), getTypicalCommissionOnlyBook(), new UserPrefs());
     }
 
     @Test
