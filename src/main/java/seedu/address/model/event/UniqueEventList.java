@@ -1,6 +1,7 @@
 package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.Iterator;
 import java.util.List;
 

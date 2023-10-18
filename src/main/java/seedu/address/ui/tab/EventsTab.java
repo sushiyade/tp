@@ -10,9 +10,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Event;
-import seedu.address.ui.*;
-
+import seedu.address.ui.CommandBox;
+import seedu.address.ui.EventListPanel;
+import seedu.address.ui.HelpWindow;
+import seedu.address.ui.ResultDisplay;
+import seedu.address.ui.UiPart;
 
 /**
  * The Events Tab.

@@ -1,14 +1,17 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * This class implements the event book in the application
+ */
 public class EventsBook implements ReadOnlyEventsBook {
     private final UniqueEventList events;
 
