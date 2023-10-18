@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
+import seedu.address.model.EventsBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
+import seedu.address.model.person.Person;
+
 /**
  * A utility class containing a list of {@code Events} objects to be used in tests.
  */
@@ -80,6 +84,18 @@ public class TypicalEvents {
     }
 
     private TypicalEvents() {} // prevents instantiation
+
+    /**
+     * Returns an {@code EventsBook} with all the typical persons.
+     */
+    public static EventsBook getTypicalEventsBook() {
+        EventsBook eb = new EventsBook();
+        for (Event event : getTypicalEvents()) {
+            eb.addEvent(event);
+        }
+
+        return eb;
+    }
 
     public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3, EVENT4, EVENT5));

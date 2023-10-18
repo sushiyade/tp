@@ -6,9 +6,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
@@ -19,8 +18,8 @@ public class ListEventCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPersonsBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getAddressBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
     }
 
     @Test
