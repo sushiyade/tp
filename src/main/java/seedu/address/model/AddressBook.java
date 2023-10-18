@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -72,6 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setEvents(newData.getEventList());
+        setFinances(newData.getFinanceList());
     }
 
     //// person-level operations
@@ -194,5 +194,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    public void removeFinance(Finance key) {
+        finances.remove(key);
+    }
+
+    /**
+     * Replaces the contents of the finance list with {@code finances}.
+     * {@code finances} must not contain duplicate finances.
+     */
+    public void setFinances(List<Finance> finances) {
+        this.finances.setFinances(finances);
     }
 }

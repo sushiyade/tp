@@ -21,12 +21,12 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
 public class EventParserTest {
 
     private final EventParser parser = new EventParser();
-    private final ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final ModelManager model = new ModelManager(getTypicalPersonsBook(), new UserPrefs());
 
     @Test
     public void parseCommand_add() throws Exception {

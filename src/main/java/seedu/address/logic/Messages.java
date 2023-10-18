@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.event.Event;
-import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +22,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_DATE_TIME = "Invalid date time input! End before start!";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
+    public static final String MESSAGE_INVALID_FIANCE_DISPLAYED_INDEX = "The finance index provided is invalid";
 
 
     /**
@@ -39,7 +40,7 @@ public class Messages {
     /**
      * Formats the {@code person} for display to the user.
      */
-    public static String format(Person person) {
+    public static String formatPerson(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
                 .append("; Phone: ")
@@ -73,18 +74,18 @@ public class Messages {
                 .append(event.getDescription());
         return builder.toString();
     }
+
     /**
-     * Formats the {@code commission} for display to the user.
+     * Formats the {@code finance entry} for display to the user.
      */
-    public static String formatCommission(Commission commission) {
+    public static String formatFinance(Finance finance) {
         final StringBuilder builder = new StringBuilder();
         builder.append("Amount: ")
-                .append(commission.getAmount())
+                .append(finance.getAmount())
                 .append("; Client: ")
-                .append(commission.getClient())
+                .append(finance.getClient())
                 .append("; Description: ")
-                .append(commission.getDescription());
+                .append(finance.getDescription());
         return builder.toString();
     }
-
 }

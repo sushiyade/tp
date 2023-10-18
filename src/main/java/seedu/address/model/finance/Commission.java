@@ -1,6 +1,6 @@
 package seedu.address.model.finance;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 /**
@@ -19,9 +19,7 @@ public class Commission extends Finance {
      * @param description A description of the commission.
      */
     public Commission(Amount amount, ClientName client, Description description) {
-        requireNonNull(amount);
-        requireNonNull(client);
-        requireNonNull(description);
+        requireAllNonNull(amount, client, description);
         this.amount = amount;
         this.client = client;
         this.description = description;

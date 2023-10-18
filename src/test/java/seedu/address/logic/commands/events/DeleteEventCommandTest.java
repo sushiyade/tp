@@ -11,7 +11,7 @@ import seedu.address.model.event.Event;
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -19,7 +19,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
  */
 public class DeleteEventCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPersonsBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

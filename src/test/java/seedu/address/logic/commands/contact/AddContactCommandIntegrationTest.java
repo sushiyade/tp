@@ -2,7 +2,7 @@ package seedu.address.logic.commands.contact;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class AddContactCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPersonsBook(), new UserPrefs());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AddContactCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddContactCommand(validPerson), model,
-                String.format(AddContactCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                String.format(AddContactCommand.MESSAGE_SUCCESS, Messages.formatPerson(validPerson)),
                 expectedModel);
     }
 
