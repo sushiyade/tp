@@ -87,7 +87,6 @@ public class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         final Address modelAddress;
-
         if (Objects.equals(address, "") || address == null) {
             modelAddress = new Address("");
         } else if (!Address.isValidAddress(address)) {

@@ -3,7 +3,6 @@ package seedu.address.storage.events;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -93,18 +92,19 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(TimeStart.MESSAGE_CONSTRAINTS);
         }
 
-        if (Objects.equals(location, "") || location == null) {
+        if (timeEnd == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Location.class.getSimpleName()));
+                    TimeStart.class.getSimpleName()));
         }
+
+        if (!TimeEnd.isValidTime(timeEnd)) {
+            throw new IllegalValueException(TimeStart.MESSAGE_CONSTRAINTS);
+        }
+
         if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
 
-        if (Objects.equals(eventDescription, "") || eventDescription == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    EventDescription.class.getSimpleName()));
-        }
         if (!EventDescription.isValidDescription(eventDescription)) {
             throw new IllegalValueException(EventDescription.MESSAGE_CONSTRAINTS);
         }
