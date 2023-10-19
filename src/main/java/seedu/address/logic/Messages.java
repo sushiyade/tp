@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.event.Event;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
@@ -19,6 +20,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_DATE_TIME = "Invalid date time input! End before start!";
+    public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
     public static final String MESSAGE_INVALID_FINANCE_DISPLAYED_INDEX = "The finance index provided is invalid";
 
 
@@ -46,8 +49,29 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; Company: ")
+                .append(person.getCompany())
+                .append("; TelegramName: ")
+                .append(person.getTelegramName());
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code event} for display to the user.
+     */
+    public static String format(Event event) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(event.getName())
+                .append("; Start: ")
+                .append(event.getTimeStart())
+                .append("; End: ")
+                .append(event.getTimeEnd())
+                .append("; Clients: ")
+                .append(event.getClients())
+                .append("; Location: ")
+                .append(event.getLocation())
+                .append("; Description: ")
+                .append(event.getDescription());
         return builder.toString();
     }
 

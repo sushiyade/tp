@@ -3,11 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.finance.Finance;
-import seedu.address.model.finance.FinanceList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -18,8 +17,6 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-
-    private final FinanceList finances;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -29,7 +26,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        finances = new FinanceList();
     }
     public AddressBook() {}
 
@@ -58,7 +54,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setFinances(newData.getFinanceList());
     }
 
     //// person-level operations
@@ -69,6 +64,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if client tagged is valid.
+     */
+    public boolean isValidClient(Person client) {
+        requireNonNull(client);
+        return persons.contains(client);
     }
 
     /**
@@ -90,6 +93,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    public Set<Person> getAllMatchedClients(Set<Person> clients) {
+        return persons.getAllMatchedClients(clients);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -98,13 +105,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    // Finance methods
-    public void addFinance(Finance finance) {
-        finances.add(finance);
-    }
-    public ObservableList<Finance> getFinanceList() {
-        return finances.asUnmodifiableObservableList();
-    }
 
     //// util methods
 
@@ -119,6 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -138,17 +139,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    public void removeFinance(Finance key) {
-        finances.remove(key);
-    }
-
-    /**
-     * Replaces the contents of the finance list with {@code finances}.
-     * {@code finances} must not contain duplicate finances.
-     */
-    public void setFinances(List<Finance> finances) {
-        this.finances.setFinances(finances);
     }
 }

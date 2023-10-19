@@ -13,9 +13,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class TimeStart {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Start time should be in the format dd-MM-yyyy HH:mm (e.g., 23-09-2023 16:40)";
 
     /*
@@ -23,7 +23,9 @@ public class TimeStart {
      */
     private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}";
 
-    public final LocalDateTime timeStart;
+    private final LocalDateTime timeStart;
+
+    private final String value;
 
     /**
      * Constructs a {@code TimeStart}.
@@ -34,6 +36,19 @@ public class TimeStart {
         requireNonNull(time);
         checkArgument(isValidTime(time.format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeStart = time;
+        value = timeToString(time);
+    }
+
+    /**
+     * Constructs a {@code TimeStart}.
+     *
+     * @param timeString A valid start time string.
+     */
+    public TimeStart(String timeString) {
+        requireNonNull(timeString);
+        checkArgument(isValidTime(stringToTime(timeString).format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
+        timeStart = stringToTime(timeString);
+        value = timeString;
     }
 
     /**
@@ -41,6 +56,25 @@ public class TimeStart {
      */
     public static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Checks if start time is after end time.
+     */
+    public boolean isAfter(TimeEnd timeEnd) {
+        return timeStart.isAfter(timeEnd.getTime());
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String timeToString(LocalDateTime time) {
+        return time.format(DATE_TIME_FORMATTER);
+    }
+
+    public LocalDateTime stringToTime(String timeString) {
+        return LocalDateTime.parse(timeString, DATE_TIME_FORMATTER);
     }
 
     @Override

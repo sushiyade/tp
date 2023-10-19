@@ -1,26 +1,24 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.TelegramName;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
-class JsonAdaptedPerson {
+public class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -28,7 +26,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String company;
+    private final String telegramName;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,14 +35,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("company") String company, @JsonProperty("telegramName") String telegramName) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        this.company = company;
+        this.telegramName = telegramName;
     }
 
     /**
@@ -54,9 +52,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        company = source.getCompany().value;
+        telegramName = source.getTelegramName().value;
     }
 
     /**
@@ -65,11 +62,6 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -94,16 +86,35 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
+        final Address modelAddress;
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (Objects.equals(address, "") || address == null) {
+            modelAddress = new Address("");
+        } else if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        } else {
+            modelAddress = new Address(address);
+        }
+
+        final Company modelCompany;
+        if (Objects.equals(company, "") || company == null) {
+            modelCompany = new Company("");
+        } else if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
+        } else {
+            modelCompany = new Company(company);
+        }
+
+        final TelegramName modelTelegramName;
+        if (Objects.equals(telegramName, "") || telegramName == null) {
+            modelTelegramName = new TelegramName("");
+        } else if (!TelegramName.isValidTelegramName(telegramName)) {
+            throw new IllegalValueException(TelegramName.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTelegramName = new TelegramName(telegramName);
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCompany, modelTelegramName);
     }
 
 }

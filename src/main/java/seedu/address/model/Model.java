@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
@@ -75,6 +77,23 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Replaces events book data with the data in {@code eventsBook}.
+     */
+    void setEventsBook(ReadOnlyEventsBook eventsBook);
+
+    /** Returns the EventsBook */
+    ReadOnlyEventsBook getEventsBook();
+
+
+    /**
+     * Replaces finance book data with the data in {@code financesBook}.
+     */
+    void setFinancesBook(ReadOnlyFinancesBook financesBook);
+
+    /** Returns the AddressBook */
+    ReadOnlyFinancesBook getFinancesBook();
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
@@ -97,6 +116,31 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Adds the given {@code event}.
+     */
+    void addEvent(Event event);
+
+    /**
+     * Checks if client tagged exists.
+     * @return true if client exist false if client does not.
+     */
+    boolean isValidClient(Person client);
+
+    Set<Person> getAllMatchedClients(Set<Person> clients);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event target);
+
+    /**
+     * Returns an unmodifiable view of events
+     */
+    ObservableList<Event> getEventList();
+
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -131,4 +175,6 @@ public interface Model {
     void addExpense(Expense expense);
 
     void deleteFinance(Finance financeToDelete);
+
+    ObservableList<Finance> getFinanceList();
 }

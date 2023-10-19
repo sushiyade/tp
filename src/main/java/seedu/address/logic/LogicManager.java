@@ -15,9 +15,10 @@ import seedu.address.logic.parser.ParseCommandHandlers;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Event;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
-import seedu.address.storage.Storage;
+import seedu.address.storage.BookStorage;
 
 /**
  * The main LogicManager of the app.
@@ -31,13 +32,13 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
-    private final Storage storage;
+    private final BookStorage storage;
     private final ParseCommandHandlers parser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and {@code BookStorage}.
      */
-    public LogicManager(Model model, Storage storage, ParseCommandHandlers parser) {
+    public LogicManager(Model model, BookStorage storage, ParseCommandHandlers parser) {
         this.model = model;
         this.storage = storage;
         this.parser = parser;
@@ -48,11 +49,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+
         Command command = parser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveEventsBook(model.getEventsBook());
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -90,7 +93,10 @@ public class LogicManager implements Logic {
     public Logic setNewParser(ParseCommandHandlers newParser) {
         return new LogicManager(this.model, this.storage, newParser);
     }
-
+    @Override
+    public ObservableList<Event> getEventList() {
+        return model.getEventList();
+    }
     @Override
     public ObservableList<Finance> getFinanceList() {
         return model.getFilteredFinanceList();
