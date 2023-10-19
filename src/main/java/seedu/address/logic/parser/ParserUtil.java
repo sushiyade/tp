@@ -211,8 +211,11 @@ public class ParserUtil {
      * @throws ParseException if the given {@code description} is invalid.
      */
     public static Description parseDescription(String description) throws ParseException {
+        if (description == null) {
+            return new Description(" ");
+        }
         String trimmedDescription = description.trim();
-        if (!EventDescription.isValidDescription(trimmedDescription)) {
+        if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
