@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,10 +14,11 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramName;
 
+
 /**
  * Jackson-friendly version of {@link Person}.
  */
-class JsonAdaptedPerson {
+public class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -50,8 +52,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        company = source.getCompany().companyName;
-        telegramName = source.getTelegramName().telegramName;
+        company = source.getCompany().value;
+        telegramName = source.getTelegramName().value;
     }
 
     /**
@@ -84,34 +86,35 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address != null) {
-            final Address modelAddress = new Address(address);
-        }
-        if (company != null) {
-            final Company modelCompany = new Company(company);
-        }
-        if (telegramName != null) {
-            final TelegramName modelTelegramName = new TelegramName(telegramName);
+        final Address modelAddress;
+
+        if (Objects.equals(address, "") || address == null) {
+            modelAddress = new Address("");
+        } else if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        } else {
+            modelAddress = new Address(address);
         }
 
-        if (company == null && telegramName == null && address == null) {
-            return new Person(modelName, modelPhone, modelEmail);
-        } else if (company == null && telegramName == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Address(address));
-        } else if (company == null && address == null) {
-            return new Person(modelName, modelPhone, modelEmail, new TelegramName(telegramName));
-        } else if (telegramName == null && address == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Company(company));
-        } else if (company == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Address(address), new TelegramName(telegramName));
-        } else if (telegramName == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Address(address), new Company(company));
-        } else if (address == null) {
-            return new Person(modelName, modelPhone, modelEmail, new Company(company), new TelegramName(telegramName));
+        final Company modelCompany;
+        if (Objects.equals(company, "") || company == null) {
+            modelCompany = new Company("");
+        } else if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
         } else {
-            return new Person(modelName, modelPhone, modelEmail, new Address(address), new Company(company),
-                    new TelegramName(telegramName));
+            modelCompany = new Company(company);
         }
+
+        final TelegramName modelTelegramName;
+        if (Objects.equals(telegramName, "") || telegramName == null) {
+            modelTelegramName = new TelegramName("");
+        } else if (!TelegramName.isValidTelegramName(telegramName)) {
+            throw new IllegalValueException(TelegramName.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTelegramName = new TelegramName(telegramName);
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCompany, modelTelegramName);
     }
 
 }

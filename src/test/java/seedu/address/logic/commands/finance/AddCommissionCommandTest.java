@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEventsBook;
+import seedu.address.model.ReadOnlyFinancesBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Event;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
@@ -117,6 +121,26 @@ public class AddCommissionCommandTest {
         }
 
         @Override
+        public void setEventsBook(ReadOnlyEventsBook eventsBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEventsBook getEventsBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setFinancesBook(ReadOnlyFinancesBook financesBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyFinancesBook getFinancesBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person commission) {
             throw new AssertionError("This method should not be called.");
         }
@@ -128,6 +152,31 @@ public class AddCommissionCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isValidClient(Person client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Person> getAllMatchedClients(Set<Person> clients) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -167,6 +216,11 @@ public class AddCommissionCommandTest {
         }
 
         @Override
+        public ObservableList<Finance> getFinanceList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getEventsFilePath() {
             throw new AssertionError("This method should not be called.");
         }
@@ -180,7 +234,7 @@ public class AddCommissionCommandTest {
     /**
      * A Model stub that contains a single commission.
      */
-    private class ModelStubWithCommission extends AddCommissionCommandTest.ModelStub {
+    private class ModelStubWithCommission extends ModelStub {
         private final Commission commission;
 
         ModelStubWithCommission(Commission commission) {
@@ -189,7 +243,7 @@ public class AddCommissionCommandTest {
         }
 
     }
-    private class ModelStubAcceptingCommissionAdded extends AddCommissionCommandTest.ModelStub {
+    private class ModelStubAcceptingCommissionAdded extends ModelStub {
         final ArrayList<Commission> commissionsAdded = new ArrayList<>();
 
         @Override

@@ -51,7 +51,7 @@ class AddCommissionParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // no description
-        Commission expectedCommission = new CommissionBuilder().withDescription(" ").build();
+        Commission expectedCommission = new CommissionBuilder().withDescription("").build();
         assertParseSuccess(parser, DEFAULT_AMOUNT + CLIENT_DESC_AMY,
                 new AddCommissionCommand(expectedCommission));
     }

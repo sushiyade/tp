@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
@@ -23,26 +25,33 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final EventsBook eventsBook;
+    private final FinancesBook financesBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
     private final FilteredList<Finance> filteredFinances;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyEventsBook eventsBook,
+                        ReadOnlyFinancesBook financesBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.eventsBook = new EventsBook(eventsBook);
+        this.financesBook = new FinancesBook(financesBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredFinances = new FilteredList<>(this.addressBook.getFinanceList());
+        filteredEvents = new FilteredList<>(this.eventsBook.getEventList());
+        filteredFinances = new FilteredList<>(this.financesBook.getFinanceList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new EventsBook(), new FinancesBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -126,6 +135,51 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Events =============================================================
+    @Override
+    public void setEventsBook(ReadOnlyEventsBook eventsBook) {
+        this.eventsBook.resetData(eventsBook);
+    }
+
+    @Override
+    public ReadOnlyEventsBook getEventsBook() {
+        return eventsBook;
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        eventsBook.addEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        eventsBook.removeEvent(target);
+    }
+
+    /**
+     * Returns true if an event with the same identity as {@code event} exists in the address book.
+     */
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return eventsBook.hasEvent(event);
+    }
+
+    @Override
+    public boolean isValidClient(Person client) {
+        requireAllNonNull(client);
+        return addressBook.isValidClient(client);
+    }
+
+    @Override
+    public Set<Person> getAllMatchedClients(Set<Person> clients) {
+        return addressBook.getAllMatchedClients(clients);
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return filteredEvents;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -162,10 +216,19 @@ public class ModelManager implements Model {
 
     //===========  Finance =============================================================
 
+    @Override
+    public void setFinancesBook(ReadOnlyFinancesBook financesBook) {
+        this.financesBook.resetData(financesBook);
+    }
+
+    @Override
+    public ReadOnlyFinancesBook getFinancesBook() {
+        return financesBook;
+    }
 
     @Override
     public void addCommission(Commission commission) {
-        addressBook.addFinance(commission);
+        financesBook.addFinance(commission);
     }
     public ObservableList<Finance> getFilteredFinanceList() {
         return filteredFinances;
@@ -179,11 +242,16 @@ public class ModelManager implements Model {
 
     @Override
     public void addExpense(Expense expense) {
-        addressBook.addFinance(expense);
+        financesBook.addFinance(expense);
     }
 
     @Override
     public void deleteFinance(Finance target) {
-        addressBook.removeFinance(target);
+        financesBook.removeFinance(target);
+    }
+
+    @Override
+    public ObservableList<Finance> getFinanceList() {
+        return financesBook.getFinanceList();
     }
 }

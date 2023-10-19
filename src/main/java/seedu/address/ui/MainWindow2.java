@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.parser.contacts.ContactParser;
+import seedu.address.logic.parser.events.EventParser;
 import seedu.address.logic.parser.finance.FinanceParser;
 import seedu.address.ui.tab.ContactsTab;
 import seedu.address.ui.tab.EventsTab;
@@ -111,11 +113,13 @@ public class MainWindow2 extends UiPart<Stage> {
      */
     void fillInnerParts() {
         ContactsTab contactsTab = new ContactsTab();
-        contactsTab.setup(logic);
+        Logic contactParser = logic.setNewParser(new ContactParser());
+        contactsTab.setup(contactParser);
         contactsTabPlaceholder.setContent(contactsTab.getRoot());
 
         EventsTab eventsTab = new EventsTab();
-        eventsTab.setup(logic);
+        Logic eventParser = logic.setNewParser(new EventParser());
+        eventsTab.setup(eventParser);
         eventsTabPlaceholder.setContent(eventsTab.getRoot());
 
         FinanceTab financeTab = new FinanceTab();

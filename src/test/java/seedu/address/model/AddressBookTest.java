@@ -11,7 +11,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -107,8 +109,15 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Finance> getFinanceList() {
-            return finances;
+        public Set<Person> getAllMatchedClients(Set<Person> clients) {
+            Set<Person> matchedClients = new HashSet<>();
+
+            for (Person person : persons) {
+                if (clients.stream().anyMatch(p -> person.equals(p.getName()))) {
+                    matchedClients.add(person);
+                }
+            }
+            return matchedClients;
         }
     }
 

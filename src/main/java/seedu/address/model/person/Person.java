@@ -2,13 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -25,8 +21,6 @@ public class Person {
     private final Address address; // Company Address
     private final Company company; // Company Name
     private final TelegramName telegramName;
-
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs a {@code Person}.
@@ -45,34 +39,6 @@ public class Person {
         this.address = address;
         this.company = company;
         this.telegramName = telegramName;
-    }
-
-    public Person(Name name, Phone phone, Email email, Address address, TelegramName telegramName) {
-        this(name, phone, email, address, null, telegramName);
-    }
-
-    public Person(Name name, Phone phone, Email email, Company company, TelegramName telegramName) {
-        this(name, phone, email, null, company, telegramName);
-    }
-
-    public Person(Name name, Phone phone, Email email, Address address, Company company) {
-        this(name, phone, email, address, company, null);
-    }
-
-    public Person(Name name, Phone phone, Email email, TelegramName telegramName) {
-        this(name, phone, email, null, null, telegramName);
-    }
-
-    public Person(Name name, Phone phone, Email email, Company company) {
-        this(name, phone, email, null, company, null);
-    }
-
-    public Person(Name name, Phone phone, Email email, Address address) {
-        this(name, phone, email, address, null, null);
-    }
-
-    public Person(Name name, Phone phone, Email email) {
-        this(name, phone, email, null, null, null);
     }
 
     public Name getName() {
@@ -97,14 +63,6 @@ public class Person {
 
     public TelegramName getTelegramName() {
         return telegramName;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -138,7 +96,10 @@ public class Person {
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email);
+                && email.equals(otherPerson.email)
+                && address.equals(otherPerson.address)
+                && company.equals(otherPerson.company)
+                && telegramName.equals(otherPerson.telegramName);
     }
 
     @Override

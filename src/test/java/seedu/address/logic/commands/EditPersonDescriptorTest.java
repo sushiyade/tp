@@ -14,7 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_NAME_B
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.contacts.EditContactCommand.EditPersonDescriptor;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -70,7 +70,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
                 + editPersonDescriptor.getAddress().orElse(null) + ", company="
-                + editPersonDescriptor.getCompany().orElse(null) + ", company="
+                + editPersonDescriptor.getCompany().orElse(null) + ", telegramName="
                 + editPersonDescriptor.getTelegramName().orElse(null) + "}";
 
         assertEquals(expected, editPersonDescriptor.toString());

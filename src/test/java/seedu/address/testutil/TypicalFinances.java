@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.FinancesBook;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
@@ -42,36 +42,36 @@ public class TypicalFinances {
             .withDescription("Wedding photoshoot").build();
 
     /**
-     * Returns an {@code AddressBook} with all the typical finances.
+     * Returns an {@code FinancesBook} with all the typical finances.
      */
-    public static AddressBook getTypicalFinanceBook() {
-        AddressBook ab = new AddressBook();
+    public static FinancesBook getTypicalFinancesBook() {
+        FinancesBook fb = new FinancesBook();
         for (Finance finance : getTypicalFinances()) {
-            ab.addFinance(finance);
+            fb.addFinance(finance);
         }
-        return ab;
+        return fb;
     }
 
     /**
      * Returns an {@code AddressBook} with all the typical expenses.
      */
-    public static AddressBook getTypicalExpenseOnlyBook() {
-        AddressBook ab = new AddressBook();
+    public static FinancesBook getTypicalExpenseOnlyBook() {
+        FinancesBook fb = new FinancesBook();
         for (Finance finance : getTypicalExpensesOnly()) {
-            ab.addFinance(finance);
+            fb.addFinance(finance);
         }
-        return ab;
+        return fb;
     }
 
     /**
      * Returns an {@code AddressBook} with all the typical commissions.
      */
-    public static AddressBook getTypicalCommissionOnlyBook() {
-        AddressBook ab = new AddressBook();
+    public static FinancesBook getTypicalCommissionOnlyBook() {
+        FinancesBook fb = new FinancesBook();
         for (Finance finance : getTypicalCommissionsOnly()) {
-            ab.addFinance(finance);
+            fb.addFinance(finance);
         }
-        return ab;
+        return fb;
     }
 
     public static List<Finance> getTypicalFinances() {
