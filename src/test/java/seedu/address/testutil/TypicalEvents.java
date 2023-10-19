@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.EventsBook;
