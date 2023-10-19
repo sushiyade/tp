@@ -3,6 +3,7 @@ package seedu.address.model.event;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.time.LocalDateTime;
@@ -82,7 +83,7 @@ public class EventTest {
 
     @Test
     public void equals() throws TimeStartAfterTimeEndException {
-        // Test with same event name, start time and end time should return false as no 2 events are the same
+        // Test with same event name, start time and end time
         LocalDateTime startTime = LocalDateTime.of(2023, 1, 1, 12, 0);
         LocalDateTime endTime = LocalDateTime.of(2023, 1, 1, 13, 0);
         Event event1 = new Event(new EventName("Sample Event"),
@@ -91,7 +92,7 @@ public class EventTest {
         Event event2 = new Event(new EventName("Sample Event"),
                 new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
                 new Location(""), new EventDescription(""));
-        assertFalse(event1.equals(event2));
+        assertTrue(event1.equals(event2));
 
         // Test with different event names
         Event event3 = new Event(new EventName("Different Event"),
