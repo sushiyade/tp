@@ -63,7 +63,7 @@ public class FinanceTab extends UiPart<Region> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    public FinanceListPanel getPersonListPanel() {
+    public FinanceListPanel getFinanceListPanel() {
         return financeListPanel;
     }
 
@@ -73,7 +73,6 @@ public class FinanceTab extends UiPart<Region> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        System.out.println("here");
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());

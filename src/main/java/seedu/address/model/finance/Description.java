@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Descriptions cannot start with a whitespace";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{0,256}$";
     public final String value;
     /**
      * Constructs a Description object with the specified description value.
