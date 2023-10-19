@@ -1,15 +1,10 @@
 package seedu.address.storage.events;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
-import seedu.address.storage.JsonAdaptedPerson;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtilTest.createMoreThanAllowedString;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.EVENT5;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+
+import org.junit.jupiter.api.Test;
 
 public class JsonAdaptedEventTest {
     private static final String TEXT_MORE_THAN_256 = createMoreThanAllowedString();
