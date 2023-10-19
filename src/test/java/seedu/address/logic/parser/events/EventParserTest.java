@@ -6,7 +6,10 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +24,10 @@ import seedu.address.model.FinancesBook;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.EventUtil;
 import seedu.address.testutil.PersonBuilder;
-
 
 public class EventParserTest {
 
@@ -34,7 +37,9 @@ public class EventParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Event event = new EventBuilder().build();
+        HashSet<Person> clients = new HashSet<>();
+        clients.add(ALICE);
+        Event event = new EventBuilder().withClient(clients).build();
         model.addPerson(new PersonBuilder().withName("Alice").build());
         AddEventCommand command = (AddEventCommand) parser.parseCommand(EventUtil.getAddCommand(event));
 

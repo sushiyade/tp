@@ -2,6 +2,8 @@ package seedu.address.storage.finance;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FinancesBook;
 import seedu.address.model.ReadOnlyFinancesBook;
+import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
+import seedu.address.model.finance.Finance;
 
 /**
  * An Immutable Finances that is serializable to JSON format.
@@ -32,7 +37,16 @@ public class JsonSerializableFinancesBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableFinancesBook}.
      */
     public JsonSerializableFinancesBook(ReadOnlyFinancesBook source) {
-        //finances.addAll(source.getFinanceList().stream().map(JsonAdaptedFinance::new).collect(Collectors.toList()));
+        finances.addAll(source.getFinanceList().stream()
+                .map(finance -> {
+                    if (finance instanceof Commission) {
+                        return new JsonAdaptedCommission((Commission) finance);
+                    } else if (finance instanceof Expense) {
+                        return new JsonAdaptedExpense((Expense) finance);
+                    }
+                    return null;
+                }).filter(Objects::nonNull)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -42,16 +56,20 @@ public class JsonSerializableFinancesBook {
      */
     public FinancesBook toModelType() throws IllegalValueException {
         FinancesBook financesBook = new FinancesBook();
-        /*
-        for (JsonAdaptedFinance jsonAdaptedFinance : finances) {
 
-            Finance finance = jsonAdaptedFinance.toModelType();
+        for (JsonAdaptedFinance jsonAdaptedFinance : finances) {
+            Finance finance = null;
+            if (jsonAdaptedFinance instanceof JsonAdaptedCommission) {
+                finance = ((JsonAdaptedCommission) jsonAdaptedFinance).toModelType();
+            } else if (jsonAdaptedFinance instanceof JsonAdaptedExpense) {
+                finance = ((JsonAdaptedExpense) jsonAdaptedFinance).toModelType();
+            }
             if (financesBook.hasFinance(finance)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FINANCE);
             }
             financesBook.addFinance(finance);
         }
-         */
+
         return financesBook;
     }
 }

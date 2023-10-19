@@ -34,7 +34,7 @@ public class JsonAdaptedEvent {
     private final List<JsonAdaptedPerson> clients = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("eventName") String eventName, @JsonProperty("timeStart") String timeStart,
@@ -52,7 +52,7 @@ public class JsonAdaptedEvent {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Event} into this class for Jackson use.
      */
     public JsonAdaptedEvent(Event source) {
         eventName = source.getName().value;
