@@ -3,6 +3,7 @@ package seedu.address.ui.tab;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
@@ -33,6 +34,9 @@ public class EventsTab extends UiPart<Region> {
     private final HelpWindow helpWindow;
 
     @FXML
+    private TabPane tabPane;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
@@ -44,9 +48,10 @@ public class EventsTab extends UiPart<Region> {
     /**
      * Creates a {@code EventsTab}.
      */
-    public EventsTab() {
+    public EventsTab(TabPane tabPane) {
         super(FXML);
         helpWindow = new HelpWindow();
+        this.tabPane = tabPane;
     }
 
     public void setup(Logic logic) {
@@ -88,6 +93,10 @@ public class EventsTab extends UiPart<Region> {
                 handleExit();
             }
 
+            if (commandResult.isChangeTab()) {
+                handleTabChange(commandResult.getTabToChange());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -110,5 +119,9 @@ public class EventsTab extends UiPart<Region> {
     // TODO: Implement better exit handling within tabs.
     private void handleExit() {
         System.exit(0);
+    }
+
+    private void handleTabChange(int tabIndex) {
+        tabPane.getSelectionModel().select(tabIndex);
     }
 }

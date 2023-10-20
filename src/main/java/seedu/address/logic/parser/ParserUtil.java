@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,6 +35,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_TAB_NAME = "Tab name is not a valid tab name. ";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -45,6 +48,20 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code tab} and returns it if valid. Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified tab name is invalid.
+     */
+    public static String parseTab(String tab) throws ParseException {
+        String trimmedTab = tab.trim();
+        String[] validTabs = {"contacts", "finance", "events"};
+        if (Arrays.stream(validTabs).anyMatch(x -> x.equals(trimmedTab))) {
+            return trimmedTab;
+        } else {
+            throw new ParseException(MESSAGE_INVALID_TAB_NAME);
+        }
     }
 
     /**

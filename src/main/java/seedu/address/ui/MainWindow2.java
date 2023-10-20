@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -41,6 +42,9 @@ public class MainWindow2 extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     private Tab contactsTabPlaceholder;
@@ -112,17 +116,17 @@ public class MainWindow2 extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        ContactsTab contactsTab = new ContactsTab();
+        ContactsTab contactsTab = new ContactsTab(tabPane);
         Logic contactParser = logic.setNewParser(new ContactParser());
         contactsTab.setup(contactParser);
         contactsTabPlaceholder.setContent(contactsTab.getRoot());
 
-        EventsTab eventsTab = new EventsTab();
+        EventsTab eventsTab = new EventsTab(tabPane);
         Logic eventParser = logic.setNewParser(new EventParser());
         eventsTab.setup(eventParser);
         eventsTabPlaceholder.setContent(eventsTab.getRoot());
 
-        FinanceTab financeTab = new FinanceTab();
+        FinanceTab financeTab = new FinanceTab(tabPane);
         Logic financeParser = logic.setNewParser(new FinanceParser());
         financeTab.setup(financeParser);
         financeTabPlaceholder.setContent(financeTab.getRoot());

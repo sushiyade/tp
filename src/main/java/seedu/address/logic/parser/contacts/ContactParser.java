@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.logic.commands.contacts.ClearContactCommand;
 import seedu.address.logic.commands.contacts.DeleteContactCommand;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.contacts.EditContactCommand;
 import seedu.address.logic.commands.contacts.FindContactCommand;
 import seedu.address.logic.commands.contacts.ListContactCommand;
 import seedu.address.logic.parser.ParseCommandHandlers;
+import seedu.address.logic.parser.TabCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -77,6 +79,9 @@ public class ContactParser extends ParseCommandHandlers {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case TabCommand.COMMAND_WORD:
+            return new TabCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
