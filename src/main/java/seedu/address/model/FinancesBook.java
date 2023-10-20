@@ -60,10 +60,10 @@ public class FinancesBook implements ReadOnlyFinancesBook {
     /**
      * Returns true if a finance with the same identity as {@code finance} exists in the finances book.
      */
-    public boolean hasFinance(Finance finance) {
-        requireNonNull(finance);
-        return finances.contains(finance);
-    }
+    //public boolean hasFinance(Finance finance) {
+    //    requireNonNull(finance);
+    //    return finances.contains(finance);
+    //}
 
     public void addFinance(Finance finance) {
         finances.add(finance);
@@ -88,20 +88,20 @@ public class FinancesBook implements ReadOnlyFinancesBook {
                 .toString();
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof FinancesBook)) {
-            return false;
-        }
-
-        FinancesBook otherFinancesBook = (FinancesBook) other;
-        return finances.equals(otherFinancesBook.finances);
-    }
+    //@Override
+    //public boolean equals(Object other) {
+    //    if (other == this) {
+    //        return true;
+    //    }
+    //
+    //    // instanceof handles nulls
+    //    if (!(other instanceof FinancesBook)) {
+    //        return false;
+    //    }
+    //
+    //    FinancesBook otherFinancesBook = (FinancesBook) other;
+    //    return finances.equals(otherFinancesBook.finances);
+    //}
 
     @Override
     public int hashCode() {
