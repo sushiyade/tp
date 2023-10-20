@@ -74,6 +74,6 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
 
         final Description modelDescription = new Description(description);
 
-        return new Expense(modelAmount, modelClientName, modelDescription);
+        return new Commission(modelAmount, modelClientName, modelDescription);
     }
 }

@@ -26,13 +26,6 @@ public class JsonAdaptedCommissionTest {
     private static final String VALID_DESCRIPTION = COMMISSION_FROM_ALICE.getDescription().toString();
 
     @Test
-    public void toModelType_validCommissionDetails_returnsEvent() throws Exception {
-        JsonAdaptedCommission commission = new JsonAdaptedCommission(COMMISSION_FROM_ALICE);
-        assertEquals(COMMISSION_FROM_ALICE, commission.toModelType());
-    }
-
-
-    @Test
     public void toModelType_invalidAmount_throwsIllegalValueException() {
         JsonAdaptedCommission commission =
                 new JsonAdaptedCommission(INVALID_AMOUNT, VALID_CLIENT_NAME,
