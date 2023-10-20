@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
-            "Descriptions cannot start with a whitespace";
+            "Descriptions can take any values up to 256 characters";
     public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{0,256}$";
     public final String value;
     /**

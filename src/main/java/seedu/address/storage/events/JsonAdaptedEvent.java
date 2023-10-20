@@ -94,11 +94,11 @@ public class JsonAdaptedEvent {
 
         if (timeEnd == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TimeStart.class.getSimpleName()));
+                    TimeEnd.class.getSimpleName()));
         }
 
         if (!TimeEnd.isValidTime(timeEnd)) {
-            throw new IllegalValueException(TimeStart.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(TimeEnd.MESSAGE_CONSTRAINTS);
         }
 
         if (!Location.isValidLocation(location)) {
