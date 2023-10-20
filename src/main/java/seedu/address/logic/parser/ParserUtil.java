@@ -212,7 +212,7 @@ public class ParserUtil {
      */
     public static Description parseDescription(String description) throws ParseException {
         String trimmedDescription = description.trim();
-        if (!EventDescription.isValidDescription(trimmedDescription)) {
+        if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);

@@ -38,7 +38,7 @@ public class AddExpenseParser implements Parser<AddExpenseCommand> {
         if (argMultimap.getValue(PREFIX_CLIENT).isPresent()) {
             client = ParserUtil.parseClientName(argMultimap.getValue(PREFIX_CLIENT).get());
         }
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(null));
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
 
         Expense expense = new Expense(amount, client, description);
         return new AddExpenseCommand(expense);
