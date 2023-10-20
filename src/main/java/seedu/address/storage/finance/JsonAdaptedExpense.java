@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.EventName;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
@@ -43,7 +42,7 @@ public class JsonAdaptedExpense extends JsonAdaptedFinance {
 
 
     /**
-     * Converts this Jackson-friendly adapted event object into the model's {@code Expense} object.
+     * Converts this Jackson-friendly adapted Expense object into the model's {@code Expense} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted expense.
      */
@@ -53,7 +52,7 @@ public class JsonAdaptedExpense extends JsonAdaptedFinance {
                     Amount.class.getSimpleName()));
         }
         if (!Amount.isValidAmount(amount)) {
-            throw new IllegalValueException(EventName.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
         }
 
         if (client == null) {

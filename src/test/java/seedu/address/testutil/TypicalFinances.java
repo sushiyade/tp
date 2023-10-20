@@ -30,7 +30,7 @@ public class TypicalFinances {
             .withDescription("")
             .build();
     public static final Expense EXPENSE_THIRTY_TO_K = new ExpenseBuilder()
-            .withAmount("$30")
+            .withAmount("30")
             .withPerson("K")
             .withDescription("Extra")
             .build();
