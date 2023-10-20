@@ -1,16 +1,19 @@
 package seedu.address.storage.finance;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
-import seedu.address.model.finance.Description;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtilTest.createMoreThanAllowedString;
 import static seedu.address.storage.finance.JsonAdaptedCommission.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.finance.Amount;
+import seedu.address.model.finance.ClientName;
+import seedu.address.model.finance.Description;
+
+
 
 public class JsonAdaptedCommissionTest {
     private static final String TEXT_MORE_THAN_256 = createMoreThanAllowedString();
