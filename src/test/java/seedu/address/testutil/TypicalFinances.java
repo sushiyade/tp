@@ -25,7 +25,7 @@ public class TypicalFinances {
             .build();
 
     public static final Expense EXPENSE_TWENTY_TO_G = new ExpenseBuilder()
-            .withAmount("$20")
+            .withAmount("20")
             .withPerson("G")
             .withDescription("")
             .build();
