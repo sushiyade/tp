@@ -8,7 +8,6 @@ import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Description;
-import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 
 /**
