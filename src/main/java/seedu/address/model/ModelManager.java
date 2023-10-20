@@ -156,9 +156,7 @@ public class ModelManager implements Model {
         eventsBook.removeEvent(target);
     }
 
-    /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
-     */
+    @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return eventsBook.hasEvent(event);

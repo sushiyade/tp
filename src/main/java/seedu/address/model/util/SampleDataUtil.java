@@ -3,10 +3,18 @@ package seedu.address.model.util;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.EventsBook;
+import seedu.address.model.FinancesBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyEventsBook;
+import seedu.address.model.ReadOnlyFinancesBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
+import seedu.address.model.finance.Amount;
+import seedu.address.model.finance.ClientName;
+import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Description;
+import seedu.address.model.finance.Expense;
+import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -66,6 +74,15 @@ public class SampleDataUtil {
         }
     }
 
+    public static Finance[] getSampleFinances() {
+        return new Finance[] {
+            new Commission(new Amount("200"), new ClientName("Bob"), new Description("WOOOO FREE MONEY")),
+            new Commission(new Amount("200"), new ClientName("Alice"), new Description("")),
+            new Expense(new Amount("12"), new ClientName("Mackers"), new Description("fries")),
+            new Expense(new Amount("4.50"), new ClientName("NTUC"), new Description("buy bread"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -80,5 +97,13 @@ public class SampleDataUtil {
             sampleEb.addEvent(sampleEvent);
         }
         return sampleEb;
+    }
+
+    public static ReadOnlyFinancesBook getSampleFinancesBook() {
+        FinancesBook sampleFb = new FinancesBook();
+        for (Finance sampleFinance : getSampleFinances()) {
+            sampleFb.addFinance(sampleFinance);
+        }
+        return sampleFb;
     }
 }

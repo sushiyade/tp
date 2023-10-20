@@ -101,9 +101,10 @@ public class UniquePersonList implements Iterable<Person> {
 
     public Set<Person> getAllMatchedClients(Set<Person> clients) {
         Set<Person> matchedClients = new HashSet<>();
+        clients.toString();
 
         for (Person person : internalList) {
-            if (clients.stream().anyMatch(p -> p.getName().equals(person))) {
+            if (clients.stream().anyMatch(p -> p.getName().equals(person.getName()))) {
                 matchedClients.add(person);
             }
         }

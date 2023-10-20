@@ -89,6 +89,30 @@ public class Event {
         return isSame;
     }
 
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Event)) {
+            return false;
+        }
+
+        Event otherEvent = (Event) other;
+        return eventName.equals(otherEvent.eventName)
+                && timeStart.equals(otherEvent.timeStart)
+                && timeEnd.equals(otherEvent.timeEnd)
+                && clients.equals(otherEvent.clients)
+                && location.equals(otherEvent.location)
+                && eventDescription.equals(otherEvent.eventDescription);
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

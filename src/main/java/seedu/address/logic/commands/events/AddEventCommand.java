@@ -45,7 +45,7 @@ public class AddEventCommand extends Command {
             + PREFIX_DESCRIPTION + "Settle product development deliverables for next phase";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the events book";
     public static final String MESSAGE_CLIENT_DOES_NOT_EXIST = "Client tagged does not exist in your contacts";
     private final Event toAdd;
 
@@ -60,6 +60,11 @@ public class AddEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasEvent(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
+
         Set<Person> clients = toAdd.getClients();
         boolean hasValidClients = clients.stream().allMatch(model::isValidClient);
         if (!hasValidClients) {

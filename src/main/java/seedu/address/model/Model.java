@@ -118,6 +118,11 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Returns true if an event with the same identity as {@code event} exists in the events book.
+     */
+    boolean hasEvent(Event toAdd);
+
+    /**
      * Adds the given {@code event}.
      */
     void addEvent(Event event);

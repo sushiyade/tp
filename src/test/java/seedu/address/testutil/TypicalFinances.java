@@ -25,17 +25,17 @@ public class TypicalFinances {
             .build();
 
     public static final Expense EXPENSE_TWENTY_TO_G = new ExpenseBuilder()
-            .withAmount("$20")
+            .withAmount("20")
             .withPerson("G")
             .withDescription("")
             .build();
     public static final Expense EXPENSE_THIRTY_TO_K = new ExpenseBuilder()
-            .withAmount("$30")
+            .withAmount("30")
             .withPerson("K")
             .withDescription("Extra")
             .build();
     public static final Commission COMMISSION_FROM_ALICE = new CommissionBuilder().withPerson("ALICE")
-            .withAmount("$80")
+            .withAmount("80")
             .withDescription("Ninjavan UI payment").build();
     public static final Commission COMMISSION_FROM_BOB = new CommissionBuilder().withPerson("BOB")
             .withAmount("$1000")

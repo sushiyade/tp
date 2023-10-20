@@ -57,7 +57,7 @@ public class EventCard extends UiPart<Region> {
         name.setText(event.getName().value);
         timeStart.setText("Start: " + event.getTimeStart().getValue());
         timeEnd.setText("End: " + event.getTimeEnd().getValue());
-        eventLocation.setText("Location: " + event.getLocation().value);
+        eventLocation.setText(event.getLocation().value);
         description.setText(event.getDescription().value);
         event.getClients().stream()
                 .sorted(Comparator.comparing(client -> client.getName().fullName))

@@ -95,14 +95,15 @@ public class MainApp extends Application {
         try {
             addressBookOptional = storage.readAddressBook();
             eventsBookOptional = storage.readEventsBook();
+            financesBookOptional = storage.readFinancesBook();
 
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
             }
             initialAddressData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialEventsData = eventsBookOptional.orElseGet(SampleDataUtil::getSampleEventsBook);
-            initialFinancesData = new FinancesBook();
+            initialFinancesData = financesBookOptional.orElseGet(SampleDataUtil::getSampleFinancesBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
