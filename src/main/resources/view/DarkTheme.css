@@ -99,6 +99,14 @@
     -fx-padding: 0 0 0 0;
 }
 
+.finance-cell .list-cell:filled:even {
+    -fx-background-color: #5f8c6e; /* New color for special cells */
+}
+
+.finance-cell .list-cell:filled:odd {
+    -fx-background-color: #2e4536; /* New color for special cells */
+}
+
 .list-cell:filled:even {
     -fx-background-color: #3c3e3f;
 }

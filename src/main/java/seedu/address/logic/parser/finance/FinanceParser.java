@@ -10,11 +10,13 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
 import seedu.address.logic.commands.finance.AddExpenseCommand;
 import seedu.address.logic.commands.finance.DeleteFinanceCommand;
 import seedu.address.logic.commands.finance.ListFinanceCommand;
 import seedu.address.logic.parser.ParseCommandHandlers;
+import seedu.address.logic.parser.TabCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -57,6 +59,8 @@ public class FinanceParser extends ParseCommandHandlers {
             return new ListFinanceParser().parse(arguments);
         case AddExpenseCommand.COMMAND_WORD:
             return new AddExpenseParser().parse(arguments);
+        case TabCommand.COMMAND_WORD:
+            return new TabCommandParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

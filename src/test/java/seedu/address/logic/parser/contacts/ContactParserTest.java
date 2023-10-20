@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.logic.commands.contacts.ClearContactCommand;
 import seedu.address.logic.commands.contacts.DeleteContactCommand;
@@ -86,6 +87,13 @@ public class ContactParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD) instanceof ListContactCommand);
         assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
+    }
+
+    @Test
+    public void parseCommand_tabCommand() throws ParseException {
+        TabCommand command = (TabCommand) parser.parseCommand(
+                TabCommand.COMMAND_WORD + " finance");
+        assertEquals(new TabCommand("finance"), command);
     }
 
     @Test
