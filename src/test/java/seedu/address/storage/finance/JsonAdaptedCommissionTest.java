@@ -1,6 +1,5 @@
 package seedu.address.storage.finance;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtilTest.createMoreThanAllowedString;
 import static seedu.address.storage.finance.JsonAdaptedCommission.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
