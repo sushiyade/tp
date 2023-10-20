@@ -12,7 +12,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
-import seedu.address.logic.commands.contacts.FindContactCommand;
 import seedu.address.logic.commands.events.AddEventCommand;
 import seedu.address.logic.commands.events.DeleteEventCommand;
 import seedu.address.logic.commands.events.ListEventCommand;
@@ -66,12 +65,13 @@ public class EventParser extends ParseCommandHandlers {
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
-        //NOT IMPLEMENTED YET
-        //case ClearContactCommand.COMMAND_WORD:
-        //return new ClearContactCommand();
+        // NOT IMPLEMENTED YET
+        // case ClearContactCommand.COMMAND_WORD:
+        // return new ClearContactCommand();
 
-        case FindContactCommand.COMMAND_WORD:
-            return new FindEventCommandParser().parse(arguments);
+        // NOT IMPLEMENTED YET
+        //case FindContactCommand.COMMAND_WORD:
+        //    return new FindEventCommandParser().parse(arguments);
 
         case ListEventCommand.COMMAND_WORD:
             return new ListEventCommand();

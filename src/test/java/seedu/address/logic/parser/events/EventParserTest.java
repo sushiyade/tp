@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.events.AddEventCommand;
 import seedu.address.logic.commands.events.DeleteEventCommand;
 import seedu.address.logic.commands.events.ListEventCommand;
@@ -70,6 +71,13 @@ public class EventParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListEventCommand.COMMAND_WORD) instanceof ListEventCommand);
         assertTrue(parser.parseCommand(ListEventCommand.COMMAND_WORD + " 3") instanceof ListEventCommand);
+    }
+
+    @Test
+    public void parseCommand_tabCommand() throws ParseException {
+        TabCommand command = (TabCommand) parser.parseCommand(
+                TabCommand.COMMAND_WORD + " finance");
+        assertEquals(new TabCommand("finance"), command);
     }
 
     @Test

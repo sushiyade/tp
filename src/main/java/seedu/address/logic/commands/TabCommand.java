@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 
 /**
@@ -38,5 +39,25 @@ public class TabCommand extends Command {
         }
         return new CommandResult("", false, tabIndex, false);
     }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
 
+        // instanceof handles nulls
+        if (!(other instanceof TabCommand)) {
+            return false;
+        }
+
+        TabCommand otherTabCommand = (TabCommand) other;
+        return tabName.equals(otherTabCommand.tabName);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("tabName", tabName)
+                .toString();
+    }
 }

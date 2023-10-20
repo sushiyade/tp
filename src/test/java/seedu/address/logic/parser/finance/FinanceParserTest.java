@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
 import seedu.address.logic.commands.finance.AddExpenseCommand;
 import seedu.address.logic.commands.finance.DeleteFinanceCommand;
@@ -57,6 +58,13 @@ public class FinanceParserTest {
                 ListFinanceCommand.COMMAND_WORD + " expense") instanceof ListFinanceCommand);
         assertTrue(parser.parseCommand(
                 ListFinanceCommand.COMMAND_WORD + " commission") instanceof ListFinanceCommand);
+    }
+
+    @Test
+    public void parseCommand_tabCommand() throws ParseException {
+        TabCommand command = (TabCommand) parser.parseCommand(
+                TabCommand.COMMAND_WORD + " finance");
+        assertEquals(new TabCommand("finance"), command);
     }
 
     @Test

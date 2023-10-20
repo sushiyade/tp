@@ -13,6 +13,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
@@ -73,6 +74,32 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseTab_invalidInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTab(null));
+    }
+
+    @Test
+    public void parseTab_validInput_success() throws ParseException {
+        assertEquals("contacts", ParserUtil.parseTab("contacts"));
+        assertEquals("finance", ParserUtil.parseTab("finance"));
+        assertEquals("events", ParserUtil.parseTab("events"));
+    }
+
+    @Test
+    public void parseTab_validInputWithWhitespace_success() throws ParseException {
+        assertEquals("contacts", ParserUtil.parseTab("  contacts  "));
+        assertEquals("finance", ParserUtil.parseTab("  finance  "));
+        assertEquals("events", ParserUtil.parseTab("  events  "));
+    }
+
+    @Test
+    public void parseTab_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("invalidTab"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("  "));
     }
 
     @Test
@@ -276,26 +303,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDescription_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
+    public void parseEventDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventDescription((String) null));
     }
 
     @Test
-    public void parseDescription_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+    public void parseEventDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDescription(INVALID_DESCRIPTION));
     }
 
     @Test
-    public void parseDescription_validValueWithoutWhitespace_returnsName() throws Exception {
-        Description expectedName = new Description(VALID_DESCRIPTION);
-        assertEquals(expectedName, ParserUtil.parseDescription(VALID_DESCRIPTION));
+    public void parseEventDescription_validValueWithoutWhitespace_returnsName() throws Exception {
+        EventDescription expectedName = new EventDescription(VALID_DESCRIPTION);
+        assertEquals(expectedName, ParserUtil.parseEventDescription(VALID_DESCRIPTION));
     }
 
     @Test
     public void parseDescription_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
-        Description expectedName = new Description(VALID_DESCRIPTION);
-        assertEquals(expectedName, ParserUtil.parseDescription(nameWithWhitespace));
+        EventDescription expectedName = new EventDescription(VALID_DESCRIPTION);
+        assertEquals(expectedName, ParserUtil.parseEventDescription(nameWithWhitespace));
     }
 
     @Test
