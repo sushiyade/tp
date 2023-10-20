@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Finance;
 
 /**
@@ -36,5 +37,11 @@ public class FinanceCard extends UiPart<Region> {
             client.setText("No client");
         }
         description.setText(finance.getDescription().value);
+        boolean isCommission = finance instanceof Commission;
+        if (isCommission) {
+            cardPane.setStyle("-fx-background-color: #6c937a");
+        } else {
+            cardPane.setStyle("-fx-background-color: #b14e4e");
+        }
     }
 }
