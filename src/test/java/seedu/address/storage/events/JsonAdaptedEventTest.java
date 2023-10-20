@@ -115,5 +115,4 @@ public class JsonAdaptedEventTest {
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
-
 }

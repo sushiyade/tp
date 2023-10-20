@@ -35,7 +35,7 @@ public class TypicalFinances {
             .withDescription("Extra")
             .build();
     public static final Commission COMMISSION_FROM_ALICE = new CommissionBuilder().withPerson("ALICE")
-            .withAmount("$80")
+            .withAmount("80")
             .withDescription("Ninjavan UI payment").build();
     public static final Commission COMMISSION_FROM_BOB = new CommissionBuilder().withPerson("BOB")
             .withAmount("$1000")
