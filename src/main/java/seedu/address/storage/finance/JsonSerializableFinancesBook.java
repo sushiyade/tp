@@ -64,9 +64,6 @@ public class JsonSerializableFinancesBook {
             } else if (jsonAdaptedFinance instanceof JsonAdaptedExpense) {
                 finance = ((JsonAdaptedExpense) jsonAdaptedFinance).toModelType();
             }
-            if (financesBook.hasFinance(finance)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_FINANCE);
-            }
             financesBook.addFinance(finance);
         }
 
