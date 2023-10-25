@@ -83,13 +83,13 @@ public class AddEventCommandParserTest {
         expectedEvent3 = new EventBuilder(EVENT5).withLocation("").withEventDescription("").build();
 
         //no description
-        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 l/Meeting Room",
+        assertParseSuccess(parser, " n/Meeting s/01-01-2024 14:00 e/01-01-2024 15:00 l/Meeting Room",
                 new AddEventCommand(expectedEvent1));
         // no location
-        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 d/Meeting for discussion",
+        assertParseSuccess(parser, " n/Meeting s/01-01-2024 14:00 e/01-01-2024 15:00 d/Meeting for discussion",
                 new AddEventCommand(expectedEvent2));
         // no description and location
-        assertParseSuccess(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00",
+        assertParseSuccess(parser, " n/Meeting s/01-01-2024 14:00 e/01-01-2024 15:00",
                 new AddEventCommand(expectedEvent3));
     }
 

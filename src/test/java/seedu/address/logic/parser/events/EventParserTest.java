@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.events.AddEventCommand;
 import seedu.address.logic.commands.events.DeleteEventCommand;
+import seedu.address.logic.commands.events.FilterEventNameCommand;
+import seedu.address.logic.commands.events.FilterEventTimeCommand;
 import seedu.address.logic.commands.events.ListEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EventsBook;
@@ -25,6 +28,8 @@ import seedu.address.model.FinancesBook;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventNameContainsKeywordsPredicate;
+import seedu.address.model.event.EventTimeBeforePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.EventUtil;
@@ -54,6 +59,26 @@ public class EventParserTest {
         DeleteEventCommand command = (DeleteEventCommand) parser.parseCommand(
                 DeleteEventCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
         assertEquals(new DeleteEventCommand(INDEX_FIRST_EVENT), command);
+    }
+
+    @Test
+    public void parseCommand_filterEventTime() throws Exception {
+        String args = "01-01-2023";
+        String hourMinArgs = args.trim() + " 23:59";
+        FilterEventTimeCommand command = (FilterEventTimeCommand) parser.parseCommand(
+                FilterEventTimeCommand.COMMAND_WORD + " " + args);
+
+        assertEquals(new FilterEventTimeCommand(new EventTimeBeforePredicate(hourMinArgs)), command);
+    }
+
+    @Test
+    public void parseCommand_filterEventName() throws Exception {
+        String args = "keyword1 keyword2";
+        FilterEventNameCommand command = (FilterEventNameCommand) parser.parseCommand(
+                FilterEventNameCommand.COMMAND_WORD + " " + args);
+
+        assertEquals(new FilterEventNameCommand(new EventNameContainsKeywordsPredicate(
+                Arrays.asList(args.split("\\s+")))), command);
     }
 
     /* TODO IMPLEMENT EDIT TEST WHEN IMPLEMENTED */
