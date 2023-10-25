@@ -12,7 +12,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -39,28 +38,15 @@ public class EventTest {
     }
 
     @Test
-    public void constructor_startAfterEnd_throwsTimeStartAfterTimeEndException() {
-        LocalDateTime startTime = LocalDateTime.of(2023, 1, 1, 12, 0);
-        LocalDateTime endTime = LocalDateTime.of(2022, 1, 1, 12, 0);
-        assertThrows(TimeStartAfterTimeEndException.class, () -> new Event(new EventName("Sample Event"),
-                new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
-                new Location(""), new EventDescription("")));
-    }
-
-    @Test
     public void constructor_validParameters_createsEvent() {
         LocalDateTime startTime = LocalDateTime.of(2023, 1, 1, 12, 0);
         LocalDateTime endTime = LocalDateTime.of(2023, 1, 1, 13, 0);
-        try {
-            Event event = new Event(new EventName("Sample Event"),
-                    new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
-                    new Location(""), new EventDescription(""));
-            assertEquals("Sample Event", event.getName().toString());
-            assertEquals(new TimeStart(startTime), event.getTimeStart());
-            assertEquals(new TimeEnd(endTime), event.getTimeEnd());
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new AssertionError("TimeStartAfterTimeEndException should not be thrown.");
-        }
+        Event event = new Event(new EventName("Sample Event"),
+                new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
+                new Location(""), new EventDescription(""));
+        assertEquals("Sample Event", event.getName().toString());
+        assertEquals(new TimeStart(startTime), event.getTimeStart());
+        assertEquals(new TimeEnd(endTime), event.getTimeEnd());
     }
 
     @Test
@@ -69,20 +55,16 @@ public class EventTest {
         LocalDateTime endTime = LocalDateTime.of(2023, 1, 1, 13, 0);
         Set<Person> clients = new HashSet<>();
         clients.add(new PersonBuilder(ALICE).build());
-        try {
-            Event event = new Event(new EventName("Sample Event"),
-                    new TimeStart(startTime), new TimeEnd(endTime), clients,
-                    new Location(""), new EventDescription(""));
-            Set<Person> eventClients = event.getClients();
-            assertEquals(clients, eventClients);
-            assertFalse(eventClients == clients); // Ensure it's a copy, not the same list object.
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new AssertionError("TimeStartAfterTimeEndException should not be thrown.");
-        }
+        Event event = new Event(new EventName("Sample Event"),
+                new TimeStart(startTime), new TimeEnd(endTime), clients,
+                new Location(""), new EventDescription(""));
+        Set<Person> eventClients = event.getClients();
+        assertEquals(clients, eventClients);
+        assertFalse(eventClients == clients); // Ensure it's a copy, not the same list object.
     }
 
     @Test
-    public void equals() throws TimeStartAfterTimeEndException {
+    public void equals() {
         // Test with same event name, start time and end time
         LocalDateTime startTime = LocalDateTime.of(2023, 1, 1, 12, 0);
         LocalDateTime endTime = LocalDateTime.of(2023, 1, 1, 13, 0);

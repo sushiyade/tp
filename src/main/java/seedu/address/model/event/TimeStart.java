@@ -1,27 +1,20 @@
 package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Represents the start time of an event in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class TimeStart {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Start time should be in the format dd-MM-yyyy HH:mm (e.g., 23-09-2023 16:40)";
-
-    /*
-     * The regular expression to validate the start time format.
-     */
-    private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}";
 
     private final LocalDateTime timeStart;
 
@@ -34,7 +27,6 @@ public class TimeStart {
      */
     public TimeStart(LocalDateTime time) {
         requireNonNull(time);
-        checkArgument(isValidTime(time.format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeStart = time;
         value = timeToString(time);
     }
@@ -44,19 +36,12 @@ public class TimeStart {
      *
      * @param timeString A valid start time string.
      */
-    public TimeStart(String timeString) {
+    public TimeStart(String timeString) throws ParseException {
         requireNonNull(timeString);
-        checkArgument(isValidTime(stringToTime(timeString).format(DATE_TIME_FORMATTER)), MESSAGE_CONSTRAINTS);
         timeStart = stringToTime(timeString);
         value = timeString;
     }
 
-    /**
-     * Returns true if a given string is a valid start time.
-     */
-    public static boolean isValidTime(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
 
     /**
      * Checks if start time is after end time.
@@ -73,8 +58,8 @@ public class TimeStart {
         return time.format(DATE_TIME_FORMATTER);
     }
 
-    public LocalDateTime stringToTime(String timeString) {
-        return LocalDateTime.parse(timeString, DATE_TIME_FORMATTER);
+    public LocalDateTime stringToTime(String timeString) throws ParseException {
+        return DateTimeParser.parseDateTimeInstance(timeString);
     }
 
     @Override

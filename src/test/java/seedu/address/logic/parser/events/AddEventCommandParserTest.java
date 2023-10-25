@@ -18,6 +18,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.events.AddEventCommand;
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDescription;
@@ -25,7 +26,6 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -43,7 +43,7 @@ public class AddEventCommandParserTest {
     private AddEventCommandParser parser = new AddEventCommandParser();
 
     @Test
-    public void parse_duplicateInvalidFormat_failure() throws TimeStartAfterTimeEndException {
+    public void parse_duplicateInvalidFormat_failure() throws ParseException {
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
                 new TimeStart(VALID_TIME_START_MEETING),
                 new TimeEnd(VALID_TIME_END_MEETING),
@@ -72,7 +72,7 @@ public class AddEventCommandParserTest {
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() throws ParseException, TimeStartAfterTimeEndException {
+    public void parse_optionalFieldsMissing_success() throws ParseException {
         final Event expectedEvent1;
         expectedEvent1 = new EventBuilder(EVENT5).withEventDescription("").build();
 
@@ -118,10 +118,10 @@ public class AddEventCommandParserTest {
                 textMoreThan256), EventName.MESSAGE_CONSTRAINTS);
         // invalid timeStart
         assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00x e/01-01-2023 15:00",
-                TimeStart.MESSAGE_CONSTRAINTS);
+                DateTimeParser.INVALID_DATETIME_FORMAT);
         // invalid timeEnd
         assertParseFailure(parser, " n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00x",
-                TimeEnd.MESSAGE_CONSTRAINTS);
+                DateTimeParser.INVALID_DATETIME_FORMAT);
         // invalid client
         assertParseFailure(parser, String.format(" n/Meeting s/01-01-2023 14:00 e/01-01-2023 15:00 c/%s ",
                 textMoreThan256), Name.MESSAGE_CONSTRAINTS);
@@ -148,7 +148,7 @@ public class AddEventCommandParserTest {
     }
 
     @Test
-    public void parse_validInput_success() throws ParseException, TimeStartAfterTimeEndException {
+    public void parse_validInput_success() throws ParseException {
         Person dummyBob = new Person(new Name("Bob"), new Phone("00000"), new Email("filler@email.com"),
                 new Address(""), new Company(""), new TelegramName(""));
 
@@ -166,8 +166,7 @@ public class AddEventCommandParserTest {
     }
 
     @Test
-    public void parse_validClientPrefixForMultipleClients_success() throws ParseException,
-            TimeStartAfterTimeEndException {
+    public void parse_validClientPrefixForMultipleClients_success() throws ParseException {
         Person dummyAmy = new PersonBuilder().dummyPersonWithName("Amy Bee").build();
         Person dummyBob = new PersonBuilder().dummyPersonWithName("Bob Choo").build();
 

@@ -30,22 +30,6 @@ public class TimeEndTest {
     }
 
     @Test
-    public void isValidTime() {
-        // null time
-        assertThrows(NullPointerException.class, () -> TimeEnd.isValidTime(null));
-
-        // invalid time
-        assertFalse(TimeEnd.isValidTime("")); // empty string
-        assertFalse(TimeEnd.isValidTime("23-09-2023 16:40:30")); // seconds included
-        assertFalse(TimeEnd.isValidTime("2023-09-23 16:40")); // year-month-day format
-
-        // valid time
-        assertTrue(TimeEnd.isValidTime("23-09-2023 16:40")); // valid time format
-        assertTrue(TimeEnd.isValidTime("01-01-2022 00:00")); // minimum date and time
-        assertTrue(TimeEnd.isValidTime("31-12-9999 23:59")); // maximum date and time
-    }
-
-    @Test
     public void equals() {
         LocalDateTime time = LocalDateTime.parse("23-09-2023 16:40", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         TimeEnd timeEnd = new TimeEnd(time);

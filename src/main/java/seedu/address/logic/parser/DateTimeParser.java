@@ -1,15 +1,18 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.time.DateTimeException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalAccessor;
 import java.util.Locale;
+
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Implements class that handles parsing of time input.
@@ -18,16 +21,30 @@ import java.util.Locale;
  * @version 03/09/2023
  */
 public class DateTimeParser {
-    private static final LocalDate TODAY = LocalDate.now();
-    private static final LocalTime TIME_NOW = LocalTime.now();
-    private static final LocalDateTime NOW = LocalDateTime.now();
+    public static final String INVALID_DATETIME_FORMAT = "Invalid date-time format!";
+    private static final LocalTime MIDNIGHT = LocalTime.of(0, 0);
+    private static final String INVALID_DATETIME_DURATION = "Invalid date-time duration! "
+            + "End time cannot be before start time";
+    private static final String INVALID_COMBINATION = "Invalid combination of start and end time";
+
+    private static LocalDate getToday() {
+        return LocalDate.now();
+    }
+
+    private static LocalTime getTimeNow() {
+        return LocalTime.now();
+    }
+
+    private static LocalDateTime getNow() {
+        return LocalDateTime.now();
+    }
 
     /**
      * Parses number format single-word string into time.
      */
     private static LocalTime parseOneElementNumberTimeFormat(String timeInput) {
         if (timeInput.contains(" ")) {
-            return null;    // one element format should not contain space
+            return null; //one element format should not contain space
         }
 
         String[] formatsWithoutEnglish = {"HHmm", "HH:mm", "HH.mm", "ha", "h:mma", "h.mma"};
@@ -62,10 +79,10 @@ public class DateTimeParser {
      */
     private static LocalTime parseOneElementEnglishTimeFormat(String timeInput) {
         if (timeInput.contains(" ")) {
-            return null;    // one element format should not contain space
+            return null; // one element format should not contain space
         }
 
-        String lowerCasedTimeInput  = timeInput.toLowerCase();
+        String lowerCasedTimeInput = timeInput.toLowerCase();
 
         switch (lowerCasedTimeInput) {
         case "noon":
@@ -77,19 +94,25 @@ public class DateTimeParser {
         }
     }
 
+    private static LocalTime parseOneElementTime(String timeInput) {
+        LocalTime time = parseOneElementNumberTimeFormat(timeInput);
+        if (time == null) {
+            time = parseOneElementEnglishTimeFormat(timeInput);
+        }
+        return time;
+    }
+
     /**
      * Parses number format double-word string into time.
      * @param timeInput
      * @return
      */
-    private static LocalTime parseTwoElementNumberTimeFormat(String timeInput) {
+    private static LocalTime parseTwoElementsNumberTimeFormat(String timeInput) {
         if (timeInput.split(" ").length != 2) {
             return null;
         }
 
-        String[] formats = {
-                "h a", "h:mm a", "h.mm a"
-        };
+        String[] formats = {"h a", "h:mm a", "h.mm a"};
         for (String format : formats) {
             try {
                 DateTimeFormatter dtf = new DateTimeFormatterBuilder()
@@ -105,9 +128,45 @@ public class DateTimeParser {
         return null;
     }
 
+    private static LocalTime parseTwoElementsTime(String timeInput) {
+        return parseTwoElementsNumberTimeFormat(timeInput);
+    }
+
+    private static LocalTime parseThreeElementsEnglishTimeFormat(String timeInput) {
+        String lowerCasedDateInput = timeInput.toLowerCase();
+        String[] tokenisedString = lowerCasedDateInput.split(" ");
+        if (tokenisedString.length != 3) {
+            return null;
+        } else if (!tokenisedString[0].equals("in")) {
+            return null;
+        } else if (!StringUtil.isNonZeroUnsignedInteger(tokenisedString[1])) {
+            return null;
+        }
+
+        int toAdd = Integer.parseInt(tokenisedString[1]);
+        switch (tokenisedString[2]) {
+        case "min":
+        case "mins":
+        case "minute":
+        case "minutes":
+            return getTimeNow().plusMinutes(toAdd);
+        case "hr":
+        case "hrs":
+        case "hour":
+        case "hours":
+            return getTimeNow().plusHours(toAdd);
+        default:
+            return null;
+        }
+    }
+
+    private static LocalTime parseThreeElementsTime(String timeInput) {
+        return parseThreeElementsEnglishTimeFormat(timeInput);
+    }
+
     private static LocalDate parseOneElementNumberDateFormat(String dateInput) {
         if (dateInput.contains(" ")) {
-            return null;    // should contain one element only
+            return null; // should contain one element only
         }
 
         String[] formatsWithYear = {"d-M-yyyy", "d-M-yy", "d/M/yyyy", "d/M/yy", "yyyy-M-d", "yy-M-d"};
@@ -132,9 +191,9 @@ public class DateTimeParser {
                     DateTimeFormatter dtf = new DateTimeFormatterBuilder()
                             .parseCaseInsensitive()
                             .appendPattern(format)
-                            .parseDefaulting(ChronoField.YEAR, TODAY.getYear())
+                            .parseDefaulting(ChronoField.YEAR, getToday().getYear())
                             .toFormatter(Locale.ENGLISH);
-                    LocalDate date = LocalDate.parse(input, dtf);
+                    LocalDate date = LocalDate.parse(dateInput, dtf);
                     return date;
                 } catch (DateTimeException e) {
                     // try other formats
@@ -144,308 +203,443 @@ public class DateTimeParser {
         return null;
     }
 
-    private static LocalDateTime parseOneElementEnglishDateFormat(String dateInput, boolean hasTimeParsed) {
+    private static LocalDate parseOneElementEnglishDateFormat(String dateInput) {
         if (dateInput.contains(" ")) {
-            return null;    // should contain one element only
+            return null; //should contain one element only
         }
 
-        String[] dateOnlyFormats = {"tmr", "tomorrow", "today", "yesterday"};
-        String now = "now";
         String lowerCasedDateInput = dateInput.toLowerCase();
 
-        if (hasTimeParsed) {
-            switch (lowerCasedDateInput) {
-            case "tmr":
-            case "tomorrow":
-                return TODAY.plusDays(1);
-            case "today":
-                return TODAY;
-            case "yesterday":
-                return TODAY.minusDays(1);
-            default:
-                return null;
-            }
-        } else {
-            return lowerCasedDateInput.equals(now) ?
+        switch (lowerCasedDateInput) {
+        case "tmr":
+        case "tomorrow":
+            return getToday().plusDays(1);
+        case "today":
+        case "tdy":
+            return getToday();
+        case "yesterday":
+        case "ytd":
+            return getToday().minusDays(1);
+        default:
+            return null;
         }
     }
 
-    /**
-     * Parses input for display.
-     *
-     * @param input date time input by user.
-     * @return date time format for display.
-     * @throws ParseException invalid format.
-     */
-    public static LocalDateTime parseDateTime(String input) throws ParseException {
-        String[] out = new String[2];
-        String[] dateTime = input.split(", ");
-        String exceptionMessage = "";
-        boolean firstElementNotDate = false;
-
-        String missingComma = "If you are putting both date and time, you might have missed \", \" "
-                + "between the date and the time\n (e.g. \"1 Jan, 5pm\").\n"
-                + "Try \"help datetime\" to learn more about accepted date time formats";
-
-        if (dateTime.length ==  2) {
-            try {
-                out[0] = parseDateOut(dateTime[0]);
-            } catch (ParseException e) {
-                exceptionMessage += (e.getMessage() + ". ");
-            }
-            try {
-                out[1] = parseTimeOut(dateTime[1]);
-            } catch (ParseException e) {
-                exceptionMessage += (e.getMessage() + ". ");
-            }
-            if (exceptionMessage.isEmpty()) {
-                return out;
-            } else {
-                throw new ParseException(exceptionMessage);
-            }
-        } else if (dateTime.length == 1){
-            try {
-                out[0] = parseDateOut(dateTime[0]);
-            } catch (ParseException e) {
-                exceptionMessage += (e.getMessage() + ". ");
-                firstElementNotDate = true;
-            }
-            if (firstElementNotDate) {
-                try {
-                    out[1] = parseTimeOut(dateTime[0]);
-                } catch (ParseException e) {
-                    exceptionMessage += (e.getMessage() + ". ");
-                }
-            }
-            if (out[0] == null && out[1] == null) {
-                throw new ParseException(exceptionMessage += missingComma);
-            } else {
-                return out;
-            }
-        } else {
-            throw new ParseException("Not sure what you did there but I couldn't understand "
-                    + "your date time input");
+    private static LocalDate parseOneElementDate(String dateInput) {
+        LocalDate date = parseOneElementNumberDateFormat(dateInput);
+        if (date == null) {
+            date = parseOneElementEnglishDateFormat(dateInput);
         }
+        return date;
     }
 
-    /**
-     * Parses date input for display.
-     *
-     * @param input date input.
-     * @return output date.
-     * @throws ParseException if invalid format.
-     */
-    private static String parseNumberedDate(String input) throws ParseException {
-        String[] formatsWithYear = {"d-M-yyyy", "d-M-yy", "d/M/yyyy", "d/M/yy",
-                "MMM d yyyy", "MMM d yy", "d MMM yyyy", "d MMM yy", "yyyy-M-d", "yy-M-d"
-        };
-        String[] formatsWithoutYear = {"d/M", "d-M", "MMM d", "d MMM"};
-
-        if (input.contains(" ")) {
-            input = formatDateWithWords(input);
+    private static LocalDate parseTwoElementsNumberDateFormat(String dateInput) {
+        if (dateInput.split(" ").length != 2) {
+            return null;
         }
-
-        for (String format : formatsWithYear) {
-            try {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
-                LocalDate date = LocalDate.parse(input, dtf);
-                return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-            } catch (DateTimeException e) {
-                // try other formats
-            }
-        }
+        String[] formatsWithoutYear = {"MMM d", "d MMM"};
 
         for (String format : formatsWithoutYear) {
             try {
                 DateTimeFormatter dtf = new DateTimeFormatterBuilder()
+                        .parseCaseInsensitive()
                         .appendPattern(format)
-                        .parseDefaulting(ChronoField.YEAR, today.getYear())
+                        .parseDefaulting(ChronoField.YEAR, getToday().getYear())
                         .toFormatter(Locale.ENGLISH);
-                LocalDate date = LocalDate.parse(input, dtf);
-                return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                LocalDate date = LocalDate.parse(dateInput, dtf);
+                return date;
             } catch (DateTimeException e) {
                 // try other formats
             }
         }
-        // if failed all formats throw exception
-        throw new ParseException("Date or date format is invalid");
+        return null;
     }
 
-    /**
-     * Formats date input with "MMM" format to the first letter to be upper case and
-     * the rest, smaller case. For example, sep -> Sep to enable the parse to recognise the month.
-     * This allows input to not case-sensitive.
-     *
-     * @param date date input from user.
-     * @return date in corrected format (if there contains words).
-     */
-    public static String formatDateWithWords(String date) {
-        StringBuilder result = new StringBuilder();
-
-        // Split the input into words
-        String[] words = date.split("\\s+");
-        for (String word : words) {
-            if (!word.isEmpty()) {
-                // Capitalize the first letter and convert the rest to lowercase
-                String capitalizedWord = Character.toUpperCase(word.charAt(0)) +
-                        word.substring(1).toLowerCase();
-
-                result.append(capitalizedWord).append(" ");
-            }
+    private static LocalDate parseTwoElementsEnglishDateFormat(String dateInput) {
+        String lowerCasedDateInput = dateInput.toLowerCase();
+        String[] tokenisedString = lowerCasedDateInput.split(" ");
+        if (tokenisedString.length != 2) {
+            return null;
+        } else if (!tokenisedString[0].equals("next")) {
+            return null;
         }
-        return result.toString().trim(); // Remove trailing space
-    }
 
-    /**
-     * Parses time input for display.
-     *
-     * @param input time input.
-     * @return output time.
-     * @throws ParseException if invalid format.
-     */
-    public static String parseTimeOut(String input) throws ParseException{
-        String[] formatsWithoutEnglish = {
-                "HHmm", "HH:mm", "HH.mm"
-        };
-        String[] formatsWithEnglish = {
-                "h a", "ha", "h:mm a", "h:mma", "h.mm a", "h.mma"
-        };
-
-        for (String format : formatsWithoutEnglish) {
-            try {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
-                LocalTime date = LocalTime.parse(input, dtf);
-                return date.format(DateTimeFormatter.ofPattern("h:mm a"));
-            } catch (DateTimeException e) {
-                // try other formats
-            }
+        switch (tokenisedString[1]) {
+        case "day":
+            return getToday().plusDays(1);
+        case "week":
+            return getToday().plusWeeks(1);
+        case "month":
+            return getToday().plusMonths(1);
+        case "year":
+            return getToday().plusYears(1);
+        default:
         }
-        for (String format : formatsWithEnglish) {
+        String[] daysOfTheWeekFormats = {"EEEE", "E"};
+        for (String format : daysOfTheWeekFormats) {
             try {
                 DateTimeFormatter dtf = new DateTimeFormatterBuilder()
                         .parseCaseInsensitive()
                         .appendPattern(format)
                         .toFormatter(Locale.ENGLISH);
-//                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
-                LocalTime date = LocalTime.parse(input, dtf);
-                return date.format(DateTimeFormatter.ofPattern("h:mm a"));
+                TemporalAccessor accessor = dtf.parse(tokenisedString[1]);
+                DayOfWeek next = DayOfWeek.from(accessor);
+                DayOfWeek today = getToday().getDayOfWeek();
+                int diff = today.compareTo(next);
+                return next.getValue() <= today.getValue() ? getToday().plusDays(7 - diff)
+                        : getToday().plusDays(-diff);
+            } catch (DateTimeException e) {
+                // try next format
+            }
+        }
+        return null;
+    }
+
+    private static LocalDate parseTwoElementsDate(String dateInput) {
+        LocalDate date = parseTwoElementsNumberDateFormat(dateInput);
+        if (date == null) {
+            date = parseTwoElementsEnglishDateFormat(dateInput);
+        }
+        return date;
+    }
+
+    private static LocalDate parseThreeElementsNumberDateFormat(String dateInput) {
+        if (dateInput.split(" ").length != 3) {
+            return null;
+        }
+        String[] formats = {"MMM d yyyy", "d MMM yyyy", "MMM d yy", "d MMM yy"};
+
+        for (String format : formats) {
+            try {
+                DateTimeFormatter dtf = new DateTimeFormatterBuilder()
+                        .parseCaseInsensitive()
+                        .appendPattern(format)
+                        .toFormatter(Locale.ENGLISH);
+                LocalDate date = LocalDate.parse(dateInput, dtf);
+                return date;
             } catch (DateTimeException e) {
                 // try other formats
             }
         }
+        return null;
+    }
 
-        // if failed all formats throw exception
-        throw new ParseException("Time or time format is invalid");
+    private static LocalDate parseThreeElementsEnglishDateFormat(String dateInput) {
+        String lowerCasedDateInput = dateInput.toLowerCase();
+        String[] tokenisedString = lowerCasedDateInput.split(" ");
+        if (tokenisedString.length != 3) {
+            return null;
+        } else if (!tokenisedString[0].equals("in")) {
+            return null;
+        } else if (!StringUtil.isNonZeroUnsignedInteger(tokenisedString[1])) {
+            return null;
+        }
+
+        int toAdd = Integer.parseInt(tokenisedString[1]);
+        switch (tokenisedString[2]) {
+        case "day":
+        case "days":
+            return getToday().plusDays(toAdd);
+        case "week":
+        case "weeks":
+            return getToday().plusWeeks(toAdd);
+        case "month":
+        case "months":
+            return getToday().plusMonths(toAdd);
+        case "year":
+        case "years":
+            return getToday().plusYears(toAdd);
+        default:
+            return null;
+        }
+    }
+
+    private static LocalDate parseThreeElementsDate(String dateInput) {
+        LocalDate date = parseThreeElementsNumberDateFormat(dateInput);
+        if (date == null) {
+            date = parseThreeElementsEnglishDateFormat(dateInput);
+        }
+        return date;
+    }
+
+    private static LocalDateTime parseNowDateTimeFormats(String dateTimeInput) {
+        String lowerCasedDateTimeInput = dateTimeInput.toLowerCase();
+        String[] tokenisedString = lowerCasedDateTimeInput.split(" ");
+
+        if (!dateTimeInput.contains("now")) {
+            return null;
+        } else if (tokenisedString.length != 1 && tokenisedString.length != 4) {
+            return null;
+        } else if (!StringUtil.isNonZeroUnsignedInteger(tokenisedString[0]) && tokenisedString.length == 4) {
+            return null;
+        }
+
+        String[] format = {"from", "now"};
+        if (tokenisedString.length == 1) {
+            return getNow();
+        } else if (format[0].equals(tokenisedString[2]) && format[1].equals(tokenisedString[3])) {
+            int toAdd = Integer.parseInt(tokenisedString[0]);
+            switch (tokenisedString[1]) {
+            case "min":
+            case "mins":
+            case "minute":
+            case "minutes":
+                return getNow().plusMinutes(toAdd);
+            case "hr":
+            case "hrs":
+            case "hour":
+            case "hours":
+                return getNow().plusHours(toAdd);
+            case "day":
+            case "days":
+                return getNow().plusDays(toAdd);
+            case "week":
+            case "weeks":
+                return getNow().plusWeeks(toAdd);
+            case "month":
+            case "months":
+                return getNow().plusMonths(toAdd);
+            case "year":
+            case "years":
+                return getNow().plusYears(toAdd);
+            default:
+                return null;
+            }
+        }
+        return null;
     }
 
     /**
-     * Checks if to date is after from date.
-     *
-     * @param fromDate start date.
-     * @param toDate end date.
-     * @throws ParseException if end date is before start date.
+     * Returns a Date-Time in {@code LocalDateTime} type for instances by taking in a String input.
+     * @param input Use string input.
+     * @throws ParseException thrown if input is of invalid format.
      */
-    public static void checkValidEventDate(String fromDate, String toDate) throws ParseException {
-        LocalDate from = LocalDate.parse(fromDate,
-                DateTimeFormatter.ofPattern("MMM d yyyy"));
-        LocalDate to = LocalDate.parse(toDate,
-                DateTimeFormatter.ofPattern("MMM d yyyy"));
-        if (to.isBefore(from)) {
-            throw new ParseException("to date cannot be earlier than from date\n"
-                    + toDate + " is before " + fromDate);
+    public static LocalDateTime parseDateTimeInstance(String input) throws ParseException {
+        LocalDate date;
+        LocalTime time;
+        if (input.contains("now")) {
+            LocalDateTime dt = parseNowDateTimeFormats(input);
+            if (dt == null) {
+                throw new ParseException(INVALID_DATETIME_FORMAT);
+            }
+            return dt;
+        }
+
+        String[] tokenisedString = input.split(" ");
+        int numberOfEle = tokenisedString.length;
+        if (tokenisedString.length > 5) {
+            throw new ParseException(INVALID_DATETIME_FORMAT);
+        }
+
+        switch (numberOfEle) {
+        case 1:
+            return parseOneElement(tokenisedString);
+        case 2:
+            return parseTwoElements(tokenisedString);
+        case 3:
+            return parseThreeElements(tokenisedString);
+        case 4:
+            return parseFourElements(tokenisedString);
+        case 5:
+            return parseFiveElements(tokenisedString);
+        default:
+            throw new ParseException(INVALID_DATETIME_FORMAT);
+        }
+    }
+
+    private static LocalDateTime parseOneElement(String[] tokenisedString) throws ParseException {
+        LocalDate date = parseOneElementDate(tokenisedString[0]);
+        LocalTime time = parseOneElementTime(tokenisedString[0]);
+        if (date != null) {
+            return LocalDateTime.of(date, MIDNIGHT);
+        } else if (time != null) {
+            date = getNextDateOfTime(time);
+            return LocalDateTime.of(date, time);
+        }
+        throw new ParseException(INVALID_DATETIME_FORMAT);
+    }
+
+    private static LocalDateTime parseTwoElements(String[] tokenisedString) throws ParseException {
+        LocalDate date;
+        LocalTime time = parseOneElementTime(tokenisedString[1]);
+        if (time != null) {
+            date = parseOneElementDate(tokenisedString[0]);
+            if (date != null) {
+                return LocalDateTime.of(date, time);
+            }
+            throw new ParseException(INVALID_DATETIME_FORMAT);
+        }
+
+        date = parseTwoElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 1));
+        time = parseTwoElementsTime(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 1));
+        if (date != null) {
+            return LocalDateTime.of(date, MIDNIGHT);
+        } else if (time != null) {
+            date = getNextDateOfTime(time);
+            return LocalDateTime.of(date, time);
+        }
+        throw new ParseException(INVALID_DATETIME_FORMAT);
+    }
+
+    private static LocalDateTime parseThreeElements(String[] tokenisedString) throws ParseException {
+        LocalDate date;
+        LocalTime time = parseOneElementTime(tokenisedString[2]);
+        if (time != null) {
+            date = parseTwoElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 1));
+            return date == null ? null : LocalDateTime.of(date, time);
+        }
+
+        time = parseTwoElementsTime(StringUtil.concatStringArrayWithSpace(tokenisedString, 1, 2));
+        if (time != null) {
+            date = parseOneElementDate(tokenisedString[0]);
+            if (date != null) {
+                return LocalDateTime.of(date, time);
+            }
+            throw new ParseException(INVALID_DATETIME_FORMAT);
+        }
+
+        date = parseThreeElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
+        time = parseThreeElementsTime(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
+        if (date != null) {
+            return LocalDateTime.of(date, MIDNIGHT);
+        } else if (time != null) {
+            date = getNextDateOfTime(time);
+            return LocalDateTime.of(date, time);
+        }
+        throw new ParseException(INVALID_DATETIME_FORMAT);
+    }
+
+    private static LocalDateTime parseFourElements(String[] tokenisedString) throws ParseException {
+        LocalDate date;
+        LocalTime time = parseOneElementTime(tokenisedString[3]);
+        if (time != null) {
+            date = parseThreeElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
+            if (date != null) {
+                return LocalDateTime.of(date, time);
+            }
+            throw new ParseException(INVALID_DATETIME_FORMAT);
+        }
+        time = parseTwoElementsTime(StringUtil.concatStringArrayWithSpace(tokenisedString, 2, 3));
+        date = parseTwoElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 1));
+        if (date == null || time == null) {
+            throw new ParseException(INVALID_DATETIME_FORMAT);
+        } else {
+            return LocalDateTime.of(date, time);
+        }
+    }
+
+    private static LocalDateTime parseFiveElements(String[] tokenisedString) throws ParseException {
+        LocalTime time = parseTwoElementsTime(StringUtil.concatStringArrayWithSpace(tokenisedString, 3, 4));
+        LocalDate date = parseTwoElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
+        if (date == null || time == null) {
+            throw new ParseException(INVALID_DATETIME_FORMAT);
+        } else {
+            return LocalDateTime.of(date, time);
         }
     }
 
     /**
-     * Checks if to time is after from time.
-     *
-     * @param fromTime start time.
-     * @param toTime end time.
-     * @throws ParseException if end time is before start time in the same day.
+     * Returns a Date-time array in {@code LocalDateTime} type for a duration taking into account start and end inputs.
+     * @param startInput start of the event by user.
+     * @param endInput end of the event by user.
+     * @throws ParseException for invalid date-time formats or invalid durations.
      */
-    public static void checkValidEventTime(String fromTime, String toTime) throws ParseException {
-        LocalTime from = LocalTime.parse(fromTime,
-                DateTimeFormatter.ofPattern("h:mm a"));
-        LocalTime to = LocalTime.parse(toTime,
-                DateTimeFormatter.ofPattern("h:mm a"));
-        if (to.isBefore(from)) {
-            throw new ParseException("Sorry but to time cannot be before from time\n"
-                    + toTime + " is before " + fromTime);
+    public static LocalDateTime[] parseDateTimeDuration(String startInput, String endInput)
+            throws ParseException {
+        startInput = startInput.trim();
+        endInput = endInput.trim();
+        if (!isValidDateTimeFormat(startInput) || !isValidDateTimeFormat(endInput)) {
+            throw new ParseException(INVALID_DATETIME_FORMAT);
+        } else if (isValidDateFormat(startInput) && isValidTimeFormat(endInput)) {
+            throw new ParseException(INVALID_COMBINATION);
+        } else if (isValidTimeFormat(startInput) && isValidDateFormat(endInput)) {
+            throw new ParseException(INVALID_COMBINATION);
+        }
+
+        LocalDateTime[] result = new LocalDateTime[2];
+
+        if (isValidDateFormat(startInput) && isValidDateFormat(endInput)) {
+            result[0] = parseDateTimeInstance(startInput);
+            result[1] = parseDateTimeInstance(endInput).with(MIDNIGHT.minusMinutes(1));
+        } else if (isValidTimeFormat(startInput) && isValidTimeFormat(endInput)) {
+            result[1] = parseDateTimeInstance(endInput);
+            result[0] = parseDateTimeInstance(startInput).with(result[1].toLocalDate());
+        } else if (isValidTimeFormat(endInput)) {
+            result[0] = parseDateTimeInstance(startInput);
+            result[1] = parseDateTimeInstance(endInput).with(result[0].toLocalDate());
+        } else if (isValidDateFormat(endInput)) {
+            result[0] = parseDateTimeInstance(startInput);
+            result[1] = parseDateTimeInstance(endInput).with(MIDNIGHT.minusMinutes(1));
+        } else {
+            result[0] = parseDateTimeInstance(startInput);
+            result[1] = parseDateTimeInstance(endInput);
+        }
+
+        if (result[1].isAfter(result[0])) {
+            return result;
+        } else {
+            throw new ParseException(INVALID_DATETIME_DURATION);
         }
     }
 
-    public static String getTodayString() {
-        return today.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    private static boolean isValidTimeFormat(String timeInput) {
+        String[] tokenisedString = timeInput.split(" ");
+        int len = tokenisedString.length;
+
+        switch (len) {
+        case 1:
+            return parseOneElementTime(timeInput) != null;
+        case 2:
+            return parseTwoElementsTime(timeInput) != null;
+        case 3:
+            return parseThreeElementsTime(timeInput) != null;
+        default:
+            return false;
+        }
+    }
+
+    private static boolean isValidDateFormat(String dateInput) {
+        String[] tokenisedString = dateInput.split(" ");
+        int len = tokenisedString.length;
+
+        switch (len) {
+        case 1:
+            return parseOneElementDate(dateInput) != null;
+        case 2:
+            return parseTwoElementsDate(dateInput) != null;
+        case 3:
+            return parseThreeElementsDate(dateInput) != null;
+        default:
+            return false;
+        }
+    }
+
+    private static boolean isValidNowFormat(String nowInput) {
+        String[] tokenisedString = nowInput.split(" ");
+        int len = tokenisedString.length;
+
+        return parseNowDateTimeFormats(nowInput) != null;
+    }
+
+    private static boolean isValidDateTimeFormat(String dateTime) {
+        try {
+            parseDateTimeInstance(dateTime);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
 
     /**
      * Gets the next occurrence of the date for a specified time.
      *
-     * @param timeString specified time to check.
+     * @param time specified time to check.
      * @return Date of next occurrence of time.
      */
-    public static String getNextDateOfTime(String timeString) {
-        LocalTime time = LocalTime.parse(timeString,
-                DateTimeFormatter.ofPattern("h:mm a"));
-        if (time.isBefore(timeNow)) {
-            return today.plusDays(1).format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    private static LocalDate getNextDateOfTime(LocalTime time) {
+        if (time.isBefore(getTimeNow())) {
+            return getToday().plusDays(1);
         }
-        return getTodayString();
-    }
-
-    /**
-     * Gets the next occurrence of date considering both start and end time.
-     * Used for the logic for event task.
-     *
-     * @param startTimeString From time from event.
-     * @param endtimeString To time from event.
-     * @param endDateString To date from event
-     * @return Date of next occurrence.
-     */
-    public static String getNextDateOfTime(String startTimeString, String endtimeString,String endDateString) {
-        if (endDateString == null) {
-            return getNextDateOfTime(endtimeString);
-        } else {
-            return getNextDateOfTime(startTimeString);
-        }
-    }
-
-    /**
-     * Returns the date with year set to the next occurrence w.r.t the current date
-     * Used for deadline task logic and event end time
-     *
-     * @param dateString
-     * @return
-     */
-    public static String getNextDate(String dateString) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM d yyyy");
-        LocalDate date = LocalDate.parse(dateString, dtf);
-        if (date.isBefore(today)) {
-            return date.plusYears(1).format(dtf);
-        } else {
-            return date.format(dtf);
-        }
-    }
-
-    /**
-     * Used for when there is a startDate and endDate in an event, to consider valid durations.
-     *
-     * @param startDate start date of event
-     * @param endDate end date of event
-     * @return valid start date
-     */
-    public static String getNextValidDuration(String startDate, String endDate) {
-        if (endDate == null) {
-            return startDate;
-        }
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM d yyyy");
-        LocalDate end = LocalDate.parse(endDate, dtf);
-        LocalDate start = LocalDate.parse(startDate, dtf);
-        if (end.isBefore(today)) {
-            return start.plusYears(1).format(dtf);
-        } else {
-            return startDate;
-        }
+        return getToday();
     }
 }
