@@ -58,6 +58,11 @@ public class TimeStart {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public LocalDateTime getTime() {
+        return timeStart;
+    }
+
+
     /**
      * Checks if start time is after end time.
      */
@@ -75,6 +80,10 @@ public class TimeStart {
 
     public LocalDateTime stringToTime(String timeString) {
         return LocalDateTime.parse(timeString, DATE_TIME_FORMATTER);
+    }
+
+    public boolean isBefore(TimeStart time) {
+        return timeStart.isBefore(time.getTime());
     }
 
     @Override

@@ -71,8 +71,8 @@ public class TypicalEvents {
     static {
         try {
             EVENT5 = new EventBuilder().withName("Meeting")
-                    .withTimeStart("01-01-2023 14:00")
-                    .withTimeEnd("01-01-2023 15:00")
+                    .withTimeStart("01-01-2024 14:00")
+                    .withTimeEnd("01-01-2024 15:00")
                     .withLocation("Meeting Room")
                     .withEventDescription("Meeting for discussion")
                     .build();
