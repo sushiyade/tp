@@ -22,7 +22,6 @@ public class Event {
     private final Location location;
     private final EventDescription eventDescription;
 
-
     /**
      * Constructs an {@code Event}.
      * @param eventName A valid name.
