@@ -56,6 +56,7 @@ public class DateTimeParserTest {
         assertNotNull(DateTimeParser.parseDateTimeInstance("next Tuesday"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("next Wed"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("next wednesday"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next Sun"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("in 1 min"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("in 3 mins"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("in 1 minute"));
@@ -97,7 +98,10 @@ public class DateTimeParserTest {
         assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("2023-10-26 12:00 invalid"));
         assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("in -40 mins"));
         assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("-40 mins from now"));
-
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("next chicken"));
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("5 centuries from now"));
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("5 centuries for now"));
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("a b c d e f g"));
     }
 
     @Test
@@ -116,7 +120,7 @@ public class DateTimeParserTest {
 
     @Test
     public void parseDateTimeDuration_validInputTtoT_returnsLocalDateTimeArray() throws ParseException {
-        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("5pm", "6pm");
+        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("5pm", "6 pm");
         assertEquals(17, result[0].getHour());
         assertEquals(0, result[0].getMinute());
         assertEquals(18, result[1].getHour());

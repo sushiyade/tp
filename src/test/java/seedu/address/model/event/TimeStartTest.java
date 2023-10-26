@@ -31,6 +31,33 @@ public class TimeStartTest {
     }
 
     @Test
+    public void isBefore_earlierTime_returnsTrue() {
+        // Arrange
+        LocalDateTime earlierTime = LocalDateTime.now();
+        TimeStart timeStart = new TimeStart(earlierTime);
+        LocalDateTime laterTime = LocalDateTime.now().plusHours(1);
+
+        // Act
+        boolean result = timeStart.isBefore(new TimeStart(laterTime));
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void isBefore_sameTime_returnsFalse() {
+        // Arrange
+        LocalDateTime earlierTime = LocalDateTime.now();
+        TimeStart timeStart = new TimeStart(earlierTime);
+
+        // Act
+        boolean result = timeStart.isBefore(new TimeStart(earlierTime));
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void equals() {
         LocalDateTime time = LocalDateTime.parse("23-09-2023 16:40", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         TimeStart timeStart = new TimeStart(time);

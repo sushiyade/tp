@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -51,6 +52,12 @@ public class ParserUtilTest {
     private static final String VALID_CLIENT = "Rachel Walker";
     private static final String VALID_DESCRIPTION = "Test Description";
     private static final String WHITESPACE = " \t\r\n";
+
+    @Test
+    public void constructor_valid_success() {
+        ParserUtil pu = new ParserUtil();
+        assertNotNull(pu);
+    }
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {

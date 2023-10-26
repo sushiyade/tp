@@ -47,14 +47,6 @@ public class TimeStart {
         return timeStart;
     }
 
-
-    /**
-     * Checks if start time is after end time.
-     */
-    public boolean isAfter(TimeEnd timeEnd) {
-        return timeStart.isAfter(timeEnd.getTime());
-    }
-
     public String getValue() {
         return value;
     }

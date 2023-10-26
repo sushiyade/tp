@@ -614,13 +614,6 @@ public class DateTimeParser {
         }
     }
 
-    private static boolean isValidNowFormat(String nowInput) {
-        String[] tokenisedString = nowInput.split(" ");
-        int len = tokenisedString.length;
-
-        return parseNowDateTimeFormats(nowInput) != null;
-    }
-
     private static boolean isValidDateTimeFormat(String dateTime) {
         try {
             parseDateTimeInstance(dateTime);
