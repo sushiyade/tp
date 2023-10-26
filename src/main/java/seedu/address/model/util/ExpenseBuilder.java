@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.model.util;
 
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Description;
@@ -26,8 +26,7 @@ public class ExpenseBuilder {
      * Creates a {@code CommissionBuilder} with the default details.
      */
     public ExpenseBuilder() {
-        this.client = new Person(new Name(DEFAULT_NAME), new Phone("00000"), new Email("filler@email.com"),
-                new Address(""), new Company(""), new TelegramName(""));
+        this.client = null;
         this.amount = new Amount(DEFAULT_AMOUNT);
         this.description = new Description(DEFAULT_DESCRIPTION);
     }

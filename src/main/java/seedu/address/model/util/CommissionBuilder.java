@@ -1,8 +1,8 @@
-package seedu.address.testutil;
+package seedu.address.model.util;
 
 import seedu.address.model.finance.Amount;
+import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Description;
-import seedu.address.model.finance.Expense;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -12,9 +12,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramName;
 
 /**
- * A utility class to help with building Expense objects.
+ * A utility class to help with building Commission objects.
  */
-public class ExpenseBuilder {
+public class CommissionBuilder {
     public static final String DEFAULT_AMOUNT = "$900";
     public static final String DEFAULT_DESCRIPTION = "Test Description";
     public static final String DEFAULT_NAME = "Amy Bee";
@@ -25,7 +25,7 @@ public class ExpenseBuilder {
     /**
      * Creates a {@code CommissionBuilder} with the default details.
      */
-    public ExpenseBuilder() {
+    public CommissionBuilder() {
         this.client = new Person(new Name(DEFAULT_NAME), new Phone("00000"), new Email("filler@email.com"),
                 new Address(""), new Company(""), new TelegramName(""));
         this.amount = new Amount(DEFAULT_AMOUNT);
@@ -35,7 +35,7 @@ public class ExpenseBuilder {
     /**
      * Sets the {@code Amount} of the {@code Commission} that we are building.
      */
-    public ExpenseBuilder withAmount(String amount) {
+    public CommissionBuilder withAmount(String amount) {
         this.amount = new Amount(amount);
         return this;
     }
@@ -43,7 +43,7 @@ public class ExpenseBuilder {
     /**
      * Sets the {@code Description} of the {@code Commission} that we are building.
      */
-    public ExpenseBuilder withDescription(String description) {
+    public CommissionBuilder withDescription(String description) {
         this.description = new Description(description);
         return this;
     }
@@ -51,12 +51,12 @@ public class ExpenseBuilder {
     /**
      * Sets the {@code Person} of the {@code Commission} that we are building.
      */
-    public ExpenseBuilder withPerson(String clientName) {
+    public CommissionBuilder withPerson(String clientName) {
         this.client = new Person(new Name(clientName), new Phone("00000"), new Email("filler@email.com"),
                 new Address(""), new Company(""), new TelegramName(""));
         return this;
     }
-    public Expense build() {
-        return new Expense(amount, client, description);
+    public Commission build() {
+        return new Commission(amount, client, description);
     }
 }

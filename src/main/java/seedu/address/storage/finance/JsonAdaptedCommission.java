@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.Finance;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAdaptedPerson;
 
 /**
  * Jackson-friendly version of {@link Commission}.
@@ -17,15 +19,16 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Commission's %s field is missing!";
 
     private final String amount;
-    private final String client;
+    private final JsonAdaptedPerson client;
     private final String description;
 
     /**
      * Constructs a {@code JsonAdaptedCommission} with the given commission details.
      */
     @JsonCreator
-    public JsonAdaptedCommission(@JsonProperty("amount") String amount, @JsonProperty("client") String client,
-                            @JsonProperty("description") String description) {
+    public JsonAdaptedCommission(@JsonProperty("amount") String amount,
+                                 @JsonProperty("client") JsonAdaptedPerson client,
+                                 @JsonProperty("description") String description) {
         this.amount = amount;
         this.client = client;
         this.description = description;
@@ -36,7 +39,7 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
      */
     public JsonAdaptedCommission(Commission source) {
         amount = source.getAmount().value;
-        client = source.getClient().fullName;
+        client = new JsonAdaptedPerson(source.getClient());
         description = source.getDescription().value;
     }
 
@@ -55,24 +58,16 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
             throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
         }
 
-        if (client == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ClientName.class.getSimpleName()));
-        }
-        if (!ClientName.isValidClientName(client)) {
-            throw new IllegalValueException(ClientName.MESSAGE_CONSTRAINTS);
-        }
-
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
 
         final Amount modelAmount = new Amount(amount);
 
-        final ClientName modelClientName = new ClientName(client);
+        final Person modelClient = client.toModelType();
 
         final Description modelDescription = new Description(description);
 
-        return new Commission(modelAmount, modelClientName, modelDescription);
+        return new Commission(modelAmount, modelClient, modelDescription);
     }
 }

@@ -18,6 +18,7 @@ import seedu.address.model.event.EventComparator;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -175,6 +176,11 @@ public class ModelManager implements Model {
     @Override
     public Set<Person> getAllMatchedClients(Set<Person> clients) {
         return addressBook.getAllMatchedClients(clients);
+    }
+
+    @Override
+    public Person getMatchedClient(Person client) {
+        return addressBook.getMatchedClient(client);
     }
 
     @Override

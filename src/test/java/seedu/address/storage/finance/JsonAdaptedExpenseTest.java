@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
 
 public class JsonAdaptedExpenseTest {
@@ -18,7 +17,7 @@ public class JsonAdaptedExpenseTest {
     private static final String INVALID_AMOUNT = TEXT_MORE_THAN_256;
     private static final String INVALID_DESCRIPTION = TEXT_MORE_THAN_256;
 
-    private static final String VALID_CLIENT_NAME = EXPENSE_THIRTY_TO_K.getClient().toString();
+    private static final String VALID_CLIENT_NAME = EXPENSE_THIRTY_TO_K.getClientName().toString();
     private static final String VALID_AMOUNT = EXPENSE_THIRTY_TO_K.getAmount().toString();
     private static final String VALID_DESCRIPTION = EXPENSE_THIRTY_TO_K.getDescription().toString();
 

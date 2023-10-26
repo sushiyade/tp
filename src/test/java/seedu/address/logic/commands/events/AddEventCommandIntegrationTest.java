@@ -56,6 +56,6 @@ public class AddEventCommandIntegrationTest {
         invalidClients.add(new PersonBuilder().withName("Daniel").build());
         Event eventWithInvalidClients = new EventBuilder().withClient(invalidClients).build();
         assertCommandFailure(new AddEventCommand(eventWithInvalidClients), model,
-                AddEventCommand.MESSAGE_CLIENT_DOES_NOT_EXIST);
+                Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
     }
 }

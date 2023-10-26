@@ -11,6 +11,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -143,6 +144,8 @@ public interface Model {
     boolean isValidClient(Person client);
 
     Set<Person> getAllMatchedClients(Set<Person> clients);
+
+    Person getMatchedClient(Person client);
 
     /**
      * Deletes the given event.

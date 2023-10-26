@@ -46,7 +46,7 @@ public class CommissionTest {
     }
     @Test
     public void toStringMethod() {
-        String expected = Commission.class.getCanonicalName() + "{client=" + COMMISSION_FROM_ALICE.getClient()
+        String expected = Commission.class.getCanonicalName() + "{client=" + COMMISSION_FROM_ALICE.getClientName()
                 + ", amount=" + COMMISSION_FROM_ALICE.getAmount()
                 + ", description=" + COMMISSION_FROM_ALICE.getDescription() + "}";
         assertEquals(expected, COMMISSION_FROM_ALICE.toString());

@@ -25,8 +25,8 @@ public class ExpenseTest {
 
     @Test
     public void getClient_returnsCorrectClient() {
-        assertEquals(EXPENSE_TWENTY_TO_G.getClient(), new ClientName("G"));
-        assertEquals(EXPENSE_THIRTY_TO_K.getClient(), new ClientName("K"));
+        assertEquals(EXPENSE_TWENTY_TO_G.getClientName(), new ClientName("G"));
+        assertEquals(EXPENSE_THIRTY_TO_K.getClientName(), new ClientName("K"));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class ExpenseTest {
     }
     @Test
     public void toStringMethod() {
-        String expected = Expense.class.getCanonicalName() + "{client=" + EXPENSE_TWENTY_TO_G.getClient()
+        String expected = Expense.class.getCanonicalName() + "{client=" + EXPENSE_TWENTY_TO_G.getClientName()
                 + ", amount=" + EXPENSE_TWENTY_TO_G.getAmount()
                 + ", description=" + EXPENSE_TWENTY_TO_G.getDescription() + "}";
         assertEquals(expected, EXPENSE_TWENTY_TO_G.toString());

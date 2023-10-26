@@ -1,5 +1,7 @@
 package seedu.address.model.finance;
 
+import seedu.address.model.person.Person;
+
 /**
  * The parent class of Commission and Expense.
  */
@@ -16,7 +18,7 @@ public abstract class Finance {
      *
      * @return The client or payee associated with the commission.
      */
-    public abstract ClientName getClient();
+    public abstract Person getClient();
 
     /**
      * Get the description of the commission.

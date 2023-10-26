@@ -3,12 +3,14 @@ package seedu.address.model.finance;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
+
 /**
  * Represents a commission from a client.
  */
 public class Commission extends Finance {
     private Amount amount;
-    private ClientName client;
+    private Person client;
     private Description description;
 
     /**
@@ -18,7 +20,7 @@ public class Commission extends Finance {
      * @param client      The client or payee associated with the commission.
      * @param description A description of the commission.
      */
-    public Commission(Amount amount, ClientName client, Description description) {
+    public Commission(Amount amount, Person client, Description description) {
         requireAllNonNull(amount, client, description);
         this.amount = amount;
         this.client = client;
@@ -39,7 +41,7 @@ public class Commission extends Finance {
      *
      * @return The client or payee associated with the commission.
      */
-    public ClientName getClient() {
+    public Person getClient() {
         return client;
     }
     /**
@@ -50,6 +52,10 @@ public class Commission extends Finance {
         return amount.equals(commission.getAmount())
                 && client.equals((commission.getClient()))
                 && description.equals(commission.getDescription());
+    }
+
+    public void setMatchedClientInstance(Person actualClient) {
+        client = actualClient;
     }
 
     /**

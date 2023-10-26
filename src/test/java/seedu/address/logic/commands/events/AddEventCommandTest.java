@@ -76,7 +76,7 @@ public class AddEventCommandTest {
         Event validEvent = new EventBuilder().withClient(inValidClients).build();
         AddEventCommand addEventCommand = new AddEventCommand(validEvent);
 
-        assertThrows(CommandException.class, AddEventCommand.MESSAGE_CLIENT_DOES_NOT_EXIST, () ->
+        assertThrows(CommandException.class, Messages.MESSAGE_CLIENT_DOES_NOT_EXIST, () ->
                 addEventCommand.execute(modelStub));
     }
 

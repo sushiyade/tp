@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
 
 
@@ -20,7 +19,7 @@ public class JsonAdaptedCommissionTest {
     private static final String INVALID_AMOUNT = TEXT_MORE_THAN_256;
     private static final String INVALID_DESCRIPTION = TEXT_MORE_THAN_256;
 
-    private static final String VALID_CLIENT_NAME = COMMISSION_FROM_ALICE.getClient().toString();
+    private static final String VALID_CLIENT_NAME = COMMISSION_FROM_ALICE.getClientName().toString();
     private static final String VALID_AMOUNT = COMMISSION_FROM_ALICE.getAmount().toString();
     private static final String VALID_DESCRIPTION = COMMISSION_FROM_ALICE.getDescription().toString();
 
