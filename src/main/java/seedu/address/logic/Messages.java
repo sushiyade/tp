@@ -89,7 +89,9 @@ public class Messages {
                 .append("; Client: ")
                 .append(finance.getClient())
                 .append("; Description: ")
-                .append(finance.getDescription());
+                .append(finance.getDescription())
+                .append("; Time: ")
+                .append(finance.getTimeDue());
         return builder.toString();
     }
 }
