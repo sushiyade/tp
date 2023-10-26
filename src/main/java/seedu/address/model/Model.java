@@ -144,6 +144,8 @@ public interface Model {
 
     Set<Person> getAllMatchedClients(Set<Person> clients);
 
+    Person getMatchedClient(Person client);
+
     /**
      * Deletes the given event.
      * The event must exist in the address book.

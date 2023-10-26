@@ -14,7 +14,6 @@ import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.FinanceListType;
 import seedu.address.model.person.Address;
@@ -244,22 +243,7 @@ public class ParserUtil {
         if (!Amount.isValidAmount(trimmedAmount)) {
             throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
         }
-        return new Amount("$" + trimmedAmount);
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static ClientName parseClientName(String clientName) throws ParseException {
-        requireNonNull(clientName);
-        String trimmedName = clientName.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(ClientName.MESSAGE_CONSTRAINTS);
-        }
-        return new ClientName(trimmedName);
+        return new Amount(trimmedAmount);
     }
 
     /**

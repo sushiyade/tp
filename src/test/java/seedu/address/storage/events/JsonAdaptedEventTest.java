@@ -44,7 +44,6 @@ public class JsonAdaptedEventTest {
         assertEquals(EVENT5, event.toModelType());
     }
 
-
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedEvent event =

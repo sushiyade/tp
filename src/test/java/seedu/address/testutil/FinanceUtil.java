@@ -34,8 +34,8 @@ public class FinanceUtil {
      */
     public static String getFinanceDetails(Finance finance) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_AMOUNT + finance.getAmount().value.substring(1) + " ");
-        sb.append(PREFIX_CLIENT + finance.getClient().fullName + " ");
+        sb.append(PREFIX_AMOUNT + finance.getAmount().value + " ");
+        sb.append(PREFIX_CLIENT + finance.getClient().getName().fullName + " ");
         sb.append(PREFIX_DESCRIPTION + finance.getDescription().value + " ");
         return sb.toString();
     }

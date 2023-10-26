@@ -26,6 +26,7 @@ public class Messages {
             + "End time cannot be before start time";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
     public static final String MESSAGE_INVALID_FINANCE_DISPLAYED_INDEX = "The finance index provided is invalid";
+    public static final String MESSAGE_CLIENT_DOES_NOT_EXIST = "Client tagged does not exist in your contacts";
 
 
     /**

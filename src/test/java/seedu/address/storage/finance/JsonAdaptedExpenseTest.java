@@ -1,5 +1,6 @@
 package seedu.address.storage.finance;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtilTest.createMoreThanAllowedString;
 import static seedu.address.storage.finance.JsonAdaptedExpense.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -9,8 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAdaptedPerson;
 
 public class JsonAdaptedExpenseTest {
     private static final String TEXT_MORE_THAN_256 = createMoreThanAllowedString();
@@ -18,14 +20,20 @@ public class JsonAdaptedExpenseTest {
     private static final String INVALID_AMOUNT = TEXT_MORE_THAN_256;
     private static final String INVALID_DESCRIPTION = TEXT_MORE_THAN_256;
 
-    private static final String VALID_CLIENT_NAME = EXPENSE_THIRTY_TO_K.getClient().toString();
+    private static final Person VALID_CLIENT = EXPENSE_THIRTY_TO_K.getClient();
     private static final String VALID_AMOUNT = EXPENSE_THIRTY_TO_K.getAmount().toString();
     private static final String VALID_DESCRIPTION = EXPENSE_THIRTY_TO_K.getDescription().toString();
 
     @Test
+    public void toModelType_validExpenseDetails_returnsExpense() throws Exception {
+        JsonAdaptedExpense expense = new JsonAdaptedExpense(EXPENSE_THIRTY_TO_K);
+        assertEquals(EXPENSE_THIRTY_TO_K.toString(), expense.toModelType().toString());
+    }
+
+    @Test
     public void toModelType_invalidAmount_throwsIllegalValueException() {
         JsonAdaptedExpense expense =
-                new JsonAdaptedExpense(INVALID_AMOUNT, VALID_CLIENT_NAME,
+                new JsonAdaptedExpense(INVALID_AMOUNT, new JsonAdaptedPerson(VALID_CLIENT),
                         VALID_DESCRIPTION);
         String expectedMessage = Amount.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);
@@ -34,25 +42,16 @@ public class JsonAdaptedExpenseTest {
     @Test
     public void toModelType_nullAmount_throwsIllegalValueException() {
         JsonAdaptedExpense expense =
-                new JsonAdaptedExpense(null, VALID_CLIENT_NAME,
+                new JsonAdaptedExpense(null, new JsonAdaptedPerson(VALID_CLIENT),
                         VALID_DESCRIPTION);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);
     }
 
     @Test
-    public void toModelType_nullClientName_throwsIllegalValueException() {
-        JsonAdaptedExpense expense =
-                new JsonAdaptedExpense(VALID_AMOUNT, null,
-                        VALID_DESCRIPTION);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientName.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedExpense expense =
-                new JsonAdaptedExpense(VALID_AMOUNT, VALID_CLIENT_NAME,
+                new JsonAdaptedExpense(VALID_AMOUNT, new JsonAdaptedPerson(VALID_CLIENT),
                         INVALID_DESCRIPTION);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);

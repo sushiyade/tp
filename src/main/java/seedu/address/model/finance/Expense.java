@@ -3,6 +3,7 @@ package seedu.address.model.finance;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 /**
  * Represents an expense incurred by the user.
@@ -10,7 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 public class Expense extends Finance {
 
     private Amount amount;
-    private ClientName client;
+    private Person client;
     private Description description;
 
     /**
@@ -20,7 +21,7 @@ public class Expense extends Finance {
      * @param client      The client or payee associated with the expense
      * @param description A description of the exoense
      */
-    public Expense(Amount amount, ClientName client, Description description) {
+    public Expense(Amount amount, Person client, Description description) {
         requireAllNonNull(amount, description);
         this.amount = amount;
         this.client = client;
@@ -43,7 +44,7 @@ public class Expense extends Finance {
      * @return The client or payee associated with the expense.
      */
     @Override
-    public ClientName getClient() {
+    public Person getClient() {
         return client;
     }
 
@@ -60,6 +61,10 @@ public class Expense extends Finance {
         return amount.equals(expense.getAmount())
                 && client.equals((expense.getClient()))
                 && description.equals(expense.getDescription());
+    }
+
+    public void setMatchedClientInstance(Person actualClient) {
+        client = actualClient;
     }
 
     /**

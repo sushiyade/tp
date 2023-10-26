@@ -18,7 +18,6 @@ import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
@@ -322,21 +321,8 @@ public class ParserUtilTest {
     }
     @Test
     public void parseAmount_validValueWithoutWhitespace_returnsAmount() throws Exception {
-        Amount expectedAmount = new Amount("$" + VALID_AMOUNT);
+        Amount expectedAmount = new Amount(VALID_AMOUNT);
         assertEquals(expectedAmount, ParserUtil.parseAmount(VALID_AMOUNT));
-    }
-    @Test
-    void parseClientName_withInvalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseClientName(INVALID_CLIENT));
-    }
-    @Test
-    public void parseClientName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseClientName((String) null));
-    }
-    @Test
-    public void parseClientName_validValueWithoutWhitespace_returnsClientName() throws Exception {
-        ClientName expectedClientName = new ClientName(VALID_CLIENT);
-        assertEquals(expectedClientName, ParserUtil.parseClientName(VALID_CLIENT));
     }
     @Test
     void parseDescription_withInvalidValue_throwsParseException() {

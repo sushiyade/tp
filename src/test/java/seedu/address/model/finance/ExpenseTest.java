@@ -25,8 +25,8 @@ public class ExpenseTest {
 
     @Test
     public void getClient_returnsCorrectClient() {
-        assertEquals(EXPENSE_TWENTY_TO_G.getClient(), new ClientName("G"));
-        assertEquals(EXPENSE_THIRTY_TO_K.getClient(), new ClientName("K"));
+        assertEquals(EXPENSE_TWENTY_TO_G.getClient().getName().fullName, "G");
+        assertEquals(EXPENSE_THIRTY_TO_K.getClient().getName().fullName, "K");
     }
 
     @Test

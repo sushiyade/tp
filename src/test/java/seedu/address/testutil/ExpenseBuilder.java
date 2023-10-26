@@ -1,18 +1,24 @@
 package seedu.address.testutil;
 
 import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.Expense;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramName;
 
 /**
  * A utility class to help with building Expense objects.
  */
 public class ExpenseBuilder {
-    public static final String DEFAULT_AMOUNT = "$900";
+    public static final String DEFAULT_AMOUNT = "900";
     public static final String DEFAULT_DESCRIPTION = "Test Description";
     public static final String DEFAULT_NAME = "Amy Bee";
-    private ClientName client;
+    private Person client;
     private Amount amount;
     private Description description;
 
@@ -20,7 +26,8 @@ public class ExpenseBuilder {
      * Creates a {@code CommissionBuilder} with the default details.
      */
     public ExpenseBuilder() {
-        this.client = new ClientName(DEFAULT_NAME);
+        this.client = new Person(new Name(DEFAULT_NAME), new Phone("00000"), new Email("filler@email.com"),
+                new Address(""), new Company(""), new TelegramName(""));
         this.amount = new Amount(DEFAULT_AMOUNT);
         this.description = new Description(DEFAULT_DESCRIPTION);
     }
@@ -44,8 +51,9 @@ public class ExpenseBuilder {
     /**
      * Sets the {@code Person} of the {@code Commission} that we are building.
      */
-    public ExpenseBuilder withPerson(String client) {
-        this.client = new ClientName(client);
+    public ExpenseBuilder withPerson(String clientName) {
+        this.client = new Person(new Name(clientName), new Phone("00000"), new Email("filler@email.com"),
+                new Address(""), new Company(""), new TelegramName(""));
         return this;
     }
     public Expense build() {

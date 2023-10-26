@@ -32,7 +32,7 @@ public class FinanceCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         amount.setText(finance.getAmount().value);
         if (finance.getClient() != null) {
-            client.setText(finance.getClient().fullName);
+            client.setText(finance.getClient().getName().fullName);
         } else {
             client.setText("No client");
         }

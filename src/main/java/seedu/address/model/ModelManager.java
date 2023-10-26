@@ -178,6 +178,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person getMatchedClient(Person client) {
+        return addressBook.getMatchedClient(client);
+    }
+
+    @Override
     public ObservableList<Event> getEventList() {
         filteredEvents.setPredicate(PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY);
         return new SortedList<>(filteredEvents, EVENT_COMPARATOR);

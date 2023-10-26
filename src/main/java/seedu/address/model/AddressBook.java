@@ -97,6 +97,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.getAllMatchedClients(clients);
     }
 
+    public Person getMatchedClient(Person client) {
+        return persons.getMatchedClient(client);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -140,4 +144,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

@@ -15,9 +15,9 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Description;
+import seedu.address.model.person.Person;
 
 /**
  * Parses input arguments and creates a new AddCommissionCommand object
@@ -34,7 +34,7 @@ public class AddCommissionParser implements Parser<AddCommissionCommand> {
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION);
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
-        ClientName client = ParserUtil.parseClientName(argMultimap.getValue(PREFIX_CLIENT).get());
+        Person client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
 
         Commission commission = new Commission(amount, client, description);

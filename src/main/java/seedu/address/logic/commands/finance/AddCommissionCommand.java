@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.finance;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -11,6 +12,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.finance.Commission;
+import seedu.address.model.person.Person;
+
 /**
  * Adds a Commission to the app.
  */
@@ -32,6 +35,15 @@ public class AddCommissionCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        Person client = this.toAdd.getClient();
+        if (!model.isValidClient(client)) {
+            throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
+        }
+
+        toAdd.setMatchedClientInstance(model.getMatchedClient(client));
+
         model.addCommission(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatFinance(toAdd)));
     }
