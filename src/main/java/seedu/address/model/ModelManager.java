@@ -10,9 +10,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventComparator;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
@@ -22,6 +24,7 @@ import seedu.address.model.person.Person;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    public static final EventComparator EVENT_COMPARATOR = new EventComparator();
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
@@ -31,6 +34,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Finance> filteredFinances;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -175,7 +179,20 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Event> getEventList() {
-        return filteredEvents;
+        filteredEvents.setPredicate(PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY);
+        return new SortedList<>(filteredEvents, EVENT_COMPARATOR);
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        filteredEvents.setPredicate(PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY);
+        return new SortedList<>(filteredEvents, EVENT_COMPARATOR);
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================

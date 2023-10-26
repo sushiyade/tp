@@ -43,6 +43,11 @@ public class TimeStart {
     }
 
 
+    public LocalDateTime getTime() {
+        return timeStart;
+    }
+
+
     /**
      * Checks if start time is after end time.
      */
@@ -60,6 +65,10 @@ public class TimeStart {
 
     public LocalDateTime stringToTime(String timeString) throws ParseException {
         return DateTimeParser.parseDateTimeInstance(timeString);
+    }
+
+    public boolean isBefore(TimeStart time) {
+        return timeStart.isBefore(time.getTime());
     }
 
     @Override

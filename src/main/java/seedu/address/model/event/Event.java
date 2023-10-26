@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
  * Represents an Event in the address book.
  * Guarantees: field values are validated, immutable.
  */
-public class Event {
+public class Event implements Comparable<Event> {
 
     private final EventName eventName;
     private final TimeStart timeStart;
@@ -22,7 +22,6 @@ public class Event {
     private Set<Person> clients = new HashSet<>();
     private final Location location;
     private final EventDescription eventDescription;
-
 
     /**
      * Constructs an {@code Event}.
@@ -126,5 +125,16 @@ public class Event {
                 .add("location", location)
                 .add("eventdescription", eventDescription)
                 .toString();
+    }
+
+    @Override
+    public int compareTo(Event o) {
+        if (this.timeStart.isBefore(o.getTimeStart())) {
+            return -1;
+        } else if (o.getTimeStart().isBefore(this.timeStart)) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
