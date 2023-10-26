@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.events;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.DateTimeParser.parseDateTimeInstance;
 
 import seedu.address.logic.commands.events.FilterEventTimeCommand;
 import seedu.address.logic.parser.Parser;
@@ -23,9 +24,7 @@ public class FilterEventTimeCommandParser implements Parser<FilterEventTimeComma
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterEventTimeCommand.MESSAGE_USAGE));
         }
-        trimmedArgs += " 23:59";
-
-        return new FilterEventTimeCommand(new EventTimeBeforePredicate(trimmedArgs));
+        return new FilterEventTimeCommand(new EventTimeBeforePredicate(parseDateTimeInstance(trimmedArgs)));
     }
 
 

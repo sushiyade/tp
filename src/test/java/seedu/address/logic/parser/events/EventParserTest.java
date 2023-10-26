@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.DateTimeParser.parseDateTimeInstance;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -64,11 +65,12 @@ public class EventParserTest {
     @Test
     public void parseCommand_filterEventTime() throws Exception {
         String args = "01-01-2023";
-        String hourMinArgs = args.trim() + " 23:59";
+        String hourMinArgs = args.trim() + " 00:00";
         FilterEventTimeCommand command = (FilterEventTimeCommand) parser.parseCommand(
                 FilterEventTimeCommand.COMMAND_WORD + " " + args);
 
-        assertEquals(new FilterEventTimeCommand(new EventTimeBeforePredicate(hourMinArgs)), command);
+        assertEquals(new FilterEventTimeCommand(new EventTimeBeforePredicate(
+                parseDateTimeInstance(hourMinArgs))), command);
     }
 
     @Test

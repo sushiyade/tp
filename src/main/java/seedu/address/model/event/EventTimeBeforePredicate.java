@@ -13,8 +13,8 @@ public class EventTimeBeforePredicate implements Predicate<Event> {
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private final LocalDateTime eventTime;
 
-    public EventTimeBeforePredicate(String eventTime) {
-        this.eventTime = LocalDateTime.parse(eventTime, DATE_TIME_FORMATTER);
+    public EventTimeBeforePredicate(LocalDateTime eventTime) {
+        this.eventTime = eventTime; //change this to accept LocalDateTime instead of String?
     }
 
     @Override
