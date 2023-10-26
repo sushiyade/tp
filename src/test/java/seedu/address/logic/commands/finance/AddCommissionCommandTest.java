@@ -3,6 +3,7 @@ package seedu.address.logic.commands.finance;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.contacts.AddContactCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -47,6 +49,15 @@ public class AddCommissionCommandTest {
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(commission), modelStub.commissionsAdded);
     }
+
+    @Test
+    public void execute_invalidClient_throwsException() {
+        ModelStubAcceptingCommissionAdded modelStub = new ModelStubAcceptingCommissionAdded();
+        Commission commission = new CommissionBuilder().build();
+        assertThrows(CommandException.class, () -> new AddCommissionCommand(commission).execute(modelStub),
+                Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
+    }
+
     @Test
     public void equals() {
         Commission alice = new CommissionBuilder().withPerson("Alice").build();
@@ -257,18 +268,6 @@ public class AddCommissionCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single commission.
-     */
-    private class ModelStubWithCommission extends ModelStub {
-        private final Commission commission;
-
-        ModelStubWithCommission(Commission commission) {
-            requireNonNull(commission);
-            this.commission = commission;
-        }
-
-    }
     private class ModelStubAcceptingCommissionAdded extends ModelStub {
         final ArrayList<Commission> commissionsAdded = new ArrayList<>();
         final ArrayList<Person> personsAdded = new ArrayList<>();

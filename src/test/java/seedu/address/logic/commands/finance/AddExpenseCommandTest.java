@@ -3,6 +3,7 @@ package seedu.address.logic.commands.finance;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.TypicalFinances.EXPENSE_THIRTY_TO_K;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.contacts.AddContactCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -47,6 +49,15 @@ public class AddExpenseCommandTest {
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(expense), modelStub.expensesAdded);
     }
+
+    @Test
+    public void execute_invalidClient_throwsException() {
+        ModelStubAcceptingExpenseAdded modelStub = new ModelStubAcceptingExpenseAdded();
+        Expense expense = new ExpenseBuilder().build();
+        assertThrows(CommandException.class, () -> new AddExpenseCommand(expense).execute(modelStub),
+                Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
+    }
+
     @Test
     public void equals() {
         Expense alice = new ExpenseBuilder().withPerson("Alice").build();
