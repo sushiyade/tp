@@ -8,6 +8,10 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyEventsBook;
 import seedu.address.model.ReadOnlyFinancesBook;
 import seedu.address.model.event.Event;
+import seedu.address.model.finance.Amount;
+import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Description;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
@@ -66,25 +70,47 @@ public class SampleDataUtil {
 
     public static Finance[] getSampleFinances() {
         return new Finance[] {
-                new CommissionBuilder()
-                        .withPerson("Bob")
-                        .withAmount("200")
-                        .withDescription("Artwork")
-                        .build(),
-                new CommissionBuilder()
-                        .withPerson("Alice")
-                        .withAmount("100")
-                        .withDescription("")
-                        .build(),
-                new ExpenseBuilder()
-                        .withPerson("Adobe")
-                        .withAmount("1200")
-                        .withDescription("License")
-                        .build(),
-                new ExpenseBuilder()
-                        .withAmount("500")
-                        .withDescription("Party")
-                        .build()
+            new Commission(
+                    new Amount("300"),
+                    new Person(
+                            new Name("Bob"),
+                            new Phone("00000"),
+                            new Email("filler@email.com"),
+                            new Address(""),
+                            new Company(""),
+                            new TelegramName("")
+                    ),
+                    new Description("Artwork")
+            ),
+            new Commission(
+                    new Amount("100"),
+                    new Person(
+                            new Name("Alice"),
+                            new Phone("00000"),
+                            new Email("filler@email.com"),
+                            new Address(""),
+                            new Company(""),
+                            new TelegramName("")
+                    ),
+                    new Description("")
+            ),
+            new Expense(
+                    new Amount("1200"),
+                    new Person(
+                            new Name("Adobe"),
+                            new Phone("00000"),
+                            new Email("filler@email.com"),
+                            new Address(""),
+                            new Company(""),
+                            new TelegramName("")
+                    ),
+                    new Description("License")
+            ),
+            new Expense(
+                    new Amount("500"),
+                    null,
+                    new Description("Party")
+            )
         };
     }
 
