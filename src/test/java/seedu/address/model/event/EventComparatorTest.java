@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.testutil.EventBuilder;
 
 
@@ -18,24 +17,16 @@ public class EventComparatorTest {
     private static final Event EVENT1;
 
     static {
-        try {
-            EVENT1 = new EventBuilder()
-                    .withTimeStart("01-01-2023 10:00")
-                    .withTimeEnd("01-01-2023 11:00")
-                    .build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        EVENT1 = new EventBuilder()
+                .withTimeStart("01-01-2023 10:00")
+                .withTimeEnd("01-01-2023 11:00")
+                .build();
     }
 
     private static final Event EVENT2;
 
     static {
-        try {
-            EVENT2 = new EventBuilder().withTimeStart("01-01-2023 11:00").withTimeEnd("01-01-2023 12:00").build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        EVENT2 = new EventBuilder().withTimeStart("01-01-2023 11:00").withTimeEnd("01-01-2023 12:00").build();
     }
 
     @Test

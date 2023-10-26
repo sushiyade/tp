@@ -6,7 +6,6 @@ import java.util.List;
 
 import seedu.address.model.EventsBook;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 
 /**
  * A utility class containing a list of {@code Events} objects to be used in tests.
@@ -16,69 +15,59 @@ public class TypicalEvents {
     public static final Event EVENT1;
 
     static {
-        try {
-            EVENT1 = new EventBuilder().withName("Meeting with Alice")
-                    .withTimeStart("23-09-2023 09:00")
-                    .withTimeEnd("23-09-2023 10:00")
-                    .build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        EVENT1 = new EventBuilder().withName("Meeting with Alice")
+                .withTimeStart("23-09-2023 09:00")
+                .withTimeEnd("23-09-2023 10:00")
+                .build();
     }
 
     public static final Event EVENT2;
 
     static {
-        try {
-            EVENT2 = new EventBuilder().withName("Conference with Bob")
-                        .withTimeStart("24-09-2023 14:00")
-                        .withTimeEnd("24-09-2023 18:00")
-                        .build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        EVENT2 = new EventBuilder().withName("Conference with Bob")
+                    .withTimeStart("24-09-2023 14:00")
+                    .withTimeEnd("24-09-2023 18:00")
+                    .build();
     }
 
     // Manually added
     public static final Event EVENT3;
 
     static {
-        try {
-            EVENT3 = new EventBuilder().withName("Team Lunch")
-                    .withTimeStart("25-09-2023 12:00")
-                    .withTimeEnd("25-09-2023 13:00")
-                    .build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        EVENT3 = new EventBuilder().withName("Team Lunch")
+                .withTimeStart("25-09-2023 12:00")
+                .withTimeEnd("25-09-2023 13:00")
+                .build();
     }
 
     // Manually added - Event's details found in {@code CommandTestUtil}
     public static final Event EVENT4;
 
     static {
-        try {
-            EVENT4 = new EventBuilder().withName("Project Presentation")
-                    .withTimeStart("26-09-2023 15:00")
-                    .withTimeEnd("26-09-2023 16:30")
-                    .build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        EVENT4 = new EventBuilder().withName("Project Presentation")
+                .withTimeStart("26-09-2023 15:00")
+                .withTimeEnd("26-09-2023 16:30")
+                .build();
     }
 
     public static final Event EVENT5;
     static {
-        try {
-            EVENT5 = new EventBuilder().withName("Meeting")
-                    .withTimeStart("01-01-2024 14:00")
-                    .withTimeEnd("01-01-2024 15:00")
-                    .withLocation("Meeting Room")
-                    .withEventDescription("Meeting for discussion")
-                    .build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        EVENT5 = new EventBuilder().withName("Meeting")
+                .withTimeStart("01-01-2024 14:00")
+                .withTimeEnd("01-01-2024 15:00")
+                .withLocation("Meeting Room")
+                .withEventDescription("Meeting for discussion")
+                .build();
+    }
+
+    public static final Event EVENT6;
+    static {
+        EVENT6 = new EventBuilder().withName("Meeting")
+                .withTimeStart("01-01-2099 14:00")
+                .withTimeEnd("01-01-2099 15:00")
+                .withLocation("Meeting Room")
+                .withEventDescription("Meeting for discussion")
+                .build();
     }
 
     private TypicalEvents() {} // prevents instantiation
@@ -96,6 +85,6 @@ public class TypicalEvents {
     }
 
     public static List<Event> getTypicalEvents() {
-        return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3, EVENT4, EVENT5));
+        return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3, EVENT4, EVENT5, EVENT6));
     }
 }

@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
@@ -66,8 +68,8 @@ public class JsonAdaptedEventTest {
         JsonAdaptedEvent event =
                 new JsonAdaptedEvent(VALID_NAME, INVALID_DATETIME, VALID_END_TIME, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_CLIENTS);
-        String expectedMessage = TimeStart.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
+        String expectedMessage = DateTimeParser.INVALID_DATETIME_FORMAT;
+        assertThrows(ParseException.class, expectedMessage, event::toModelType);
     }
 
     @Test
@@ -84,7 +86,7 @@ public class JsonAdaptedEventTest {
         JsonAdaptedEvent event =
                 new JsonAdaptedEvent(VALID_NAME, VALID_START_TIME, INVALID_DATETIME, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_CLIENTS);
-        String expectedMessage = TimeEnd.MESSAGE_CONSTRAINTS;
+        String expectedMessage = DateTimeParser.INVALID_DATETIME_FORMAT;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 

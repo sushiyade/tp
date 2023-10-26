@@ -1,12 +1,13 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 
 /**
@@ -30,18 +31,14 @@ public class Event implements Comparable<Event> {
      * @param clients An optional list of clients.
      * @param location An optional location.
      * @param eventDescription An optional description.
-     * @throws TimeStartAfterTimeEndException if the start time is after the end time.
      */
     public Event(EventName eventName, TimeStart timeStart, TimeEnd timeEnd, Set<Person> clients,
-                 Location location, EventDescription eventDescription) throws TimeStartAfterTimeEndException {
+                 Location location, EventDescription eventDescription) {
+        requireNonNull(timeStart);
+        requireNonNull(timeEnd);
         this.eventName = eventName;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
-
-        if (timeStart.isAfter(timeEnd)) {
-            throw new TimeStartAfterTimeEndException();
-        }
-
         this.clients.addAll(clients);
         this.location = location;
         this.eventDescription = eventDescription;

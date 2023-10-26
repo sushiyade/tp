@@ -17,7 +17,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -40,12 +39,7 @@ public class AddEventCommandIntegrationTest {
 
     @Test
     public void execute_newEvent_success() {
-        Event validEvent;
-        try {
-            validEvent = new EventBuilder().build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        Event validEvent = new EventBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new EventsBook(), new FinancesBook(),
                 new UserPrefs());
@@ -60,14 +54,8 @@ public class AddEventCommandIntegrationTest {
     public void execute_personDoesNotExist_throwsCommandException() {
         Set<Person> invalidClients = new HashSet<>();
         invalidClients.add(new PersonBuilder().withName("Daniel").build());
-        Event eventWithInvalidClients = null;
-        try {
-            eventWithInvalidClients = new EventBuilder().withClient(invalidClients).build();
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        Event eventWithInvalidClients = new EventBuilder().withClient(invalidClients).build();
         assertCommandFailure(new AddEventCommand(eventWithInvalidClients), model,
                 AddEventCommand.MESSAGE_CLIENT_DOES_NOT_EXIST);
     }
-
 }
