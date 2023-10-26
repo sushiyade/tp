@@ -72,7 +72,7 @@ public class ExpenseBuilder {
         this.timeDue = new TimeDue(LocalDateTime.parse(timeDue, DATE_TIME_FORMATTER));
         return this;
     }
-    
+
     public Expense build() {
         return new Expense(amount, client, description, timeDue);
     }

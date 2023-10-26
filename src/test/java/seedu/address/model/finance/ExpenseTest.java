@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
 import static seedu.address.testutil.TypicalFinances.EXPENSE_THIRTY_TO_K;
 import static seedu.address.testutil.TypicalFinances.EXPENSE_TWENTY_TO_G;
 
@@ -14,7 +15,7 @@ import seedu.address.testutil.ExpenseBuilder;
 public class ExpenseTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Expense(null, null, null));
+        assertThrows(NullPointerException.class, () -> new Expense(null, null, null, null));
     }
 
     @Test
@@ -84,7 +85,8 @@ public class ExpenseTest {
     public void toStringMethod() {
         String expected = Expense.class.getCanonicalName() + "{client=" + EXPENSE_TWENTY_TO_G.getClient()
                 + ", amount=" + EXPENSE_TWENTY_TO_G.getAmount()
-                + ", description=" + EXPENSE_TWENTY_TO_G.getDescription() + "}";
+                + ", description=" + EXPENSE_TWENTY_TO_G.getDescription()
+                + ", timeDue=" + COMMISSION_FROM_ALICE.getTimeDue() + "}";
         assertEquals(expected, EXPENSE_TWENTY_TO_G.toString());
     }
 }

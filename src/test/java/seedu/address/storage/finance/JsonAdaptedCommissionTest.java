@@ -25,6 +25,7 @@ public class JsonAdaptedCommissionTest {
     private static final Person VALID_CLIENT = COMMISSION_FROM_ALICE.getClient();
     private static final String VALID_AMOUNT = COMMISSION_FROM_ALICE.getAmount().toString();
     private static final String VALID_DESCRIPTION = COMMISSION_FROM_ALICE.getDescription().toString();
+    private static final String VALID_TIME_DUE = COMMISSION_FROM_ALICE.getTimeDue().toString();
 
     @Test
     public void toModelType_validCommissionDetails_returnsCommission() throws Exception {
@@ -36,7 +37,7 @@ public class JsonAdaptedCommissionTest {
     public void toModelType_invalidAmount_throwsIllegalValueException() {
         JsonAdaptedCommission commission =
                 new JsonAdaptedCommission(INVALID_AMOUNT, new JsonAdaptedPerson(VALID_CLIENT),
-                        VALID_DESCRIPTION);
+                        VALID_DESCRIPTION, VALID_TIME_DUE);
         String expectedMessage = Amount.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, commission::toModelType);
     }
@@ -45,7 +46,7 @@ public class JsonAdaptedCommissionTest {
     public void toModelType_nullAmount_throwsIllegalValueException() {
         JsonAdaptedCommission commission =
                 new JsonAdaptedCommission(null, new JsonAdaptedPerson(VALID_CLIENT),
-                        VALID_DESCRIPTION);
+                        VALID_DESCRIPTION, VALID_TIME_DUE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, commission::toModelType);
     }
@@ -54,7 +55,7 @@ public class JsonAdaptedCommissionTest {
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedCommission commission =
                 new JsonAdaptedCommission(VALID_AMOUNT, new JsonAdaptedPerson(VALID_CLIENT),
-                        INVALID_DESCRIPTION);
+                        INVALID_DESCRIPTION, VALID_TIME_DUE);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, commission::toModelType);
     }

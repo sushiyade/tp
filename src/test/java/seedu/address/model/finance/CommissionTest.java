@@ -13,7 +13,7 @@ import seedu.address.testutil.CommissionBuilder;
 public class CommissionTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Commission(null, null, null));
+        assertThrows(NullPointerException.class, () -> new Commission(null, null, null, null));
     }
     @Test
     public void equals() {
@@ -48,7 +48,8 @@ public class CommissionTest {
     public void toStringMethod() {
         String expected = Commission.class.getCanonicalName() + "{client=" + COMMISSION_FROM_ALICE.getClient()
                 + ", amount=" + COMMISSION_FROM_ALICE.getAmount()
-                + ", description=" + COMMISSION_FROM_ALICE.getDescription() + "}";
+                + ", description=" + COMMISSION_FROM_ALICE.getDescription()
+                + ", timeDue=" + COMMISSION_FROM_ALICE.getTimeDue() + "}";
         assertEquals(expected, COMMISSION_FROM_ALICE.toString());
     }
 }
