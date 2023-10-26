@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.finance.AddExpenseCommand;
@@ -17,6 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.Expense;
+import seedu.address.model.finance.TimeDue;
 import seedu.address.model.person.Person;
 
 /**
@@ -40,7 +42,7 @@ public class AddExpenseParser implements Parser<AddExpenseCommand> {
         }
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
 
-        Expense expense = new Expense(amount, client, description);
+        Expense expense = new Expense(amount, client, description, new TimeDue(LocalDateTime.now()));
         return new AddExpenseCommand(expense);
     }
 

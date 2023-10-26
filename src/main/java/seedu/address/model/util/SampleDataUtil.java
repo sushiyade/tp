@@ -1,6 +1,8 @@
 package seedu.address.model.util;
 
 
+import java.time.LocalDateTime;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.EventsBook;
 import seedu.address.model.FinancesBook;
@@ -13,6 +15,7 @@ import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
+import seedu.address.model.finance.TimeDue;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -80,7 +83,8 @@ public class SampleDataUtil {
                             new Company(""),
                             new TelegramName("")
                     ),
-                    new Description("Artwork")
+                    new Description("Artwork"),
+                    new TimeDue(LocalDateTime.now())
             ),
             new Commission(
                     new Amount("100"),
@@ -92,7 +96,8 @@ public class SampleDataUtil {
                             new Company(""),
                             new TelegramName("")
                     ),
-                    new Description("")
+                    new Description(""),
+                    new TimeDue(LocalDateTime.now())
             ),
             new Expense(
                     new Amount("1200"),
@@ -104,12 +109,14 @@ public class SampleDataUtil {
                             new Company(""),
                             new TelegramName("")
                     ),
-                    new Description("License")
+                    new Description("License"),
+                    new TimeDue(LocalDateTime.now())
             ),
             new Expense(
                     new Amount("500"),
                     null,
-                    new Description("Party")
+                    new Description("Party"),
+                    new TimeDue(LocalDateTime.now())
             )
         };
     }

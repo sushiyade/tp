@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.finance.AddCommissionCommand;
@@ -17,6 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Description;
+import seedu.address.model.finance.TimeDue;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,7 +39,7 @@ public class AddCommissionParser implements Parser<AddCommissionCommand> {
         Person client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
 
-        Commission commission = new Commission(amount, client, description);
+        Commission commission = new Commission(amount, client, description, new TimeDue(LocalDateTime.now()));
         return new AddCommissionCommand(commission);
     }
 

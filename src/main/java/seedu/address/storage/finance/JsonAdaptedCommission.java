@@ -8,6 +8,7 @@ import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.Finance;
+import seedu.address.model.finance.TimeDue;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAdaptedPerson;
 
@@ -20,6 +21,7 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
     private final String amount;
     private final JsonAdaptedPerson client;
     private final String description;
+    private final String timeDue;
 
     /**
      * Constructs a {@code JsonAdaptedCommission} with the given commission details.
@@ -27,10 +29,12 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
     @JsonCreator
     public JsonAdaptedCommission(@JsonProperty("amount") String amount,
                                  @JsonProperty("client") JsonAdaptedPerson client,
-                                 @JsonProperty("description") String description) {
+                                 @JsonProperty("description") String description,
+                                 @JsonProperty("timeDue") String timeDue) {
         this.amount = amount;
         this.client = client;
         this.description = description;
+        this.timeDue = timeDue;
     }
 
     /**
@@ -40,6 +44,7 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
         amount = source.getAmount().value;
         client = new JsonAdaptedPerson(source.getClient());
         description = source.getDescription().value;
+        timeDue = source.getTimeDue().getValue();
     }
 
 
@@ -61,12 +66,19 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
 
+        if (timeDue == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TimeDue.class.getSimpleName()));
+        }
+
         final Amount modelAmount = new Amount(amount);
 
         final Person modelClient = client.toModelType();
 
         final Description modelDescription = new Description(description);
 
-        return new Commission(modelAmount, modelClient, modelDescription);
+        final TimeDue modelTimeDue = new TimeDue(timeDue);
+
+        return new Commission(modelAmount, modelClient, modelDescription, modelTimeDue);
     }
 }
