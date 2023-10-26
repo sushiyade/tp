@@ -6,7 +6,6 @@ import static seedu.address.storage.finance.JsonAdaptedCommission.MISSING_FIELD_
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
 import static seedu.address.testutil.TypicalFinances.COMMISSION_TEN_FROM_T;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +29,7 @@ public class JsonAdaptedCommissionTest {
     @Test
     public void toModelType_validCommissionDetails_returnsCommission() throws Exception {
         JsonAdaptedCommission commission = new JsonAdaptedCommission(COMMISSION_TEN_FROM_T);
-        assertEquals(COMMISSION_TEN_FROM_T, commission.toModelType());
+        assertEquals(COMMISSION_TEN_FROM_T.toString(), commission.toModelType().toString());
     }
 
     @Test

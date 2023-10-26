@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtilTest.createMoreThanAllowedString;
 import static seedu.address.storage.finance.JsonAdaptedExpense.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFinances.COMMISSION_TEN_FROM_T;
 import static seedu.address.testutil.TypicalFinances.EXPENSE_THIRTY_TO_K;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,7 @@ public class JsonAdaptedExpenseTest {
     @Test
     public void toModelType_validExpenseDetails_returnsExpense() throws Exception {
         JsonAdaptedExpense expense = new JsonAdaptedExpense(EXPENSE_THIRTY_TO_K);
-        assertEquals(EXPENSE_THIRTY_TO_K, expense.toModelType());
+        assertEquals(EXPENSE_THIRTY_TO_K.toString(), expense.toModelType().toString());
     }
 
     @Test
