@@ -31,19 +31,30 @@ public class TimeStartTest {
     }
 
     @Test
-    public void isValidTime() {
-        // null time
-        assertThrows(NullPointerException.class, () -> TimeStart.isValidTime(null));
+    public void isBefore_earlierTime_returnsTrue() {
+        // Arrange
+        LocalDateTime earlierTime = LocalDateTime.now();
+        TimeStart timeStart = new TimeStart(earlierTime);
+        LocalDateTime laterTime = LocalDateTime.now().plusHours(1);
 
-        // invalid time
-        assertFalse(TimeStart.isValidTime("")); // empty string
-        assertFalse(TimeStart.isValidTime("23-09-2023 16:40:30")); // seconds included
-        assertFalse(TimeStart.isValidTime("2023-09-23 16:40")); // year-month-day format
+        // Act
+        boolean result = timeStart.isBefore(new TimeStart(laterTime));
 
-        // valid time
-        assertTrue(TimeStart.isValidTime("23-09-2023 16:40")); // valid time format
-        assertTrue(TimeStart.isValidTime("01-01-2022 00:00")); // minimum date and time
-        assertTrue(TimeStart.isValidTime("31-12-9999 23:59")); // maximum date and time
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void isBefore_sameTime_returnsFalse() {
+        // Arrange
+        LocalDateTime earlierTime = LocalDateTime.now();
+        TimeStart timeStart = new TimeStart(earlierTime);
+
+        // Act
+        boolean result = timeStart.isBefore(new TimeStart(earlierTime));
+
+        // Assert
+        assertFalse(result);
     }
 
     @Test

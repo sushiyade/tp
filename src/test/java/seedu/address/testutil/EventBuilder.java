@@ -12,7 +12,6 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 
 
@@ -112,7 +111,7 @@ public class EventBuilder {
     /**
      * Builds an event with the given attributes.
      */
-    public Event build() throws TimeStartAfterTimeEndException {
+    public Event build() {
         return new Event(eventName, timeStart, timeEnd, clients, location, eventDescription);
     }
 }

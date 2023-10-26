@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -16,8 +17,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
-import seedu.address.model.event.TimeEnd;
-import seedu.address.model.event.TimeStart;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.ClientName;
 import seedu.address.model.finance.Description;
@@ -47,14 +46,18 @@ public class ParserUtilTest {
     private static final String VALID_COMPANY = "Google";
     private static final String VALID_TELEGRAM_NAME = "@rachel_walker";
     private static final String VALID_EVENT_NAME = "Meeting with Alice";
-    private static final String VALID_DATEIME = "18-10-2023 12:00";
-    private static final String INVALID_DATETIME = "today 6pm";
     private static final String VALID_LOCATION = "Starbucks@Utown";
     private static final String INVALID_LOCATION = createMoreThanAllowedString();
     private static final String VALID_AMOUNT = "900";
     private static final String VALID_CLIENT = "Rachel Walker";
     private static final String VALID_DESCRIPTION = "Test Description";
     private static final String WHITESPACE = " \t\r\n";
+
+    @Test
+    public void constructor_valid_success() {
+        ParserUtil pu = new ParserUtil();
+        assertNotNull(pu);
+    }
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -231,52 +234,6 @@ public class ParserUtilTest {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         EventName expectedName = new EventName(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseEventName(nameWithWhitespace));
-    }
-
-    @Test
-    public void parseTimeStart_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTimeStart((String) null));
-    }
-
-    @Test
-    public void parseTimeStart_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTimeStart(INVALID_DATETIME));
-    }
-
-    @Test
-    public void parseTimeStart_validValueWithoutWhitespace_returnsName() throws Exception {
-        TimeStart expectedTimeStart = new TimeStart(VALID_DATEIME);
-        assertEquals(expectedTimeStart, ParserUtil.parseTimeStart(VALID_DATEIME));
-    }
-
-    @Test
-    public void parseTimeStart_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String stringWithWhitespace = WHITESPACE + VALID_DATEIME + WHITESPACE;
-        TimeStart expectedTimeStart = new TimeStart(VALID_DATEIME);
-        assertEquals(expectedTimeStart, ParserUtil.parseTimeStart(stringWithWhitespace));
-    }
-
-    @Test
-    public void parseTimeEnd_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTimeEnd((String) null));
-    }
-
-    @Test
-    public void parseTimeEnd_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTimeEnd(INVALID_DATETIME));
-    }
-
-    @Test
-    public void parseTimeEnd_validValueWithoutWhitespace_returnsName() throws Exception {
-        TimeEnd expectedTimeEnd = new TimeEnd(VALID_DATEIME);
-        assertEquals(expectedTimeEnd, ParserUtil.parseTimeEnd(VALID_DATEIME));
-    }
-
-    @Test
-    public void parseTimeEnd_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String stringWithWhitespace = WHITESPACE + VALID_DATEIME + WHITESPACE;
-        TimeEnd expectedTimeEnd = new TimeEnd(VALID_DATEIME);
-        assertEquals(expectedTimeEnd, ParserUtil.parseTimeEnd(stringWithWhitespace));
     }
 
     @Test

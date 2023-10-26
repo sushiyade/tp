@@ -30,7 +30,6 @@ import seedu.address.model.ReadOnlyEventsBook;
 import seedu.address.model.ReadOnlyFinancesBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
@@ -66,8 +65,7 @@ public class AddEventCommandTest {
     }
 
     @Test
-    public void execute_invalidClients_throwsCommandException() throws CommandException,
-            TimeStartAfterTimeEndException {
+    public void execute_invalidClients_throwsCommandException() throws CommandException {
         ModelStubAcceptingEventAdded modelStub = new ModelStubAcceptingEventAdded();
         Person validPerson = new PersonBuilder().build();
         new AddContactCommand(validPerson).execute(modelStub);
@@ -83,7 +81,7 @@ public class AddEventCommandTest {
     }
 
     @Test
-    public void equals() throws TimeStartAfterTimeEndException {
+    public void equals() {
         Event a = new EventBuilder().withName("a").build();
         Event b = new EventBuilder().withName("b").build();
         AddEventCommand addACommand = new AddEventCommand(a);

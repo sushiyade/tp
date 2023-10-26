@@ -16,7 +16,6 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAdaptedPerson;
 
@@ -88,18 +87,12 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimeStart.class.getSimpleName()));
         }
-        if (!TimeStart.isValidTime(timeStart)) {
-            throw new IllegalValueException(TimeStart.MESSAGE_CONSTRAINTS);
-        }
 
         if (timeEnd == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimeEnd.class.getSimpleName()));
         }
 
-        if (!TimeEnd.isValidTime(timeEnd)) {
-            throw new IllegalValueException(TimeEnd.MESSAGE_CONSTRAINTS);
-        }
 
         if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
@@ -121,11 +114,7 @@ public class JsonAdaptedEvent {
 
         final Set<Person> modelClients = new HashSet<>(eventClients);
 
-        try {
-            return new Event(modelEventName, modelTimeStart, modelTimeEnd, modelClients, modelLocation,
-                    modelEventDescription);
-        } catch (TimeStartAfterTimeEndException e) {
-            throw new RuntimeException(e);
-        }
+        return new Event(modelEventName, modelTimeStart, modelTimeEnd, modelClients, modelLocation,
+                modelEventDescription);
     }
 }

@@ -5,14 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.event.exceptions.TimeStartAfterTimeEndException;
 import seedu.address.testutil.EventBuilder;
 
 
@@ -32,25 +30,16 @@ public class EventTimeBeforePredicateTest {
 
     @Test
     public void testTest_eventTimeBeforePredicate_returnsTrue() {
-        try {
-            Event event = new EventBuilder().withTimeStart("01-01-2023 10:00").withTimeEnd("01-01-2023 11:00").build();
-            EventTimeBeforePredicate predicate = new EventTimeBeforePredicate("01-01-2023 11:00");
-            assertTrue(predicate.test(event));
-        } catch (TimeStartAfterTimeEndException e) {
-            fail();
-        }
+        Event event = new EventBuilder().withTimeStart("01-01-2023 10:00").withTimeEnd("01-01-2023 11:00").build();
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate("01-01-2023 11:00");
+        assertTrue(predicate.test(event));
     }
 
     @Test
     public void testTest_eventTimeEqualOrAfterPredicate_returnsFalse() {
-        try {
-            Event event = new EventBuilder().withTimeStart("01-01-2023 10:00").withTimeEnd("01-01-2023 11:00").build();
-            EventTimeBeforePredicate predicate = new EventTimeBeforePredicate("01-01-2023 10:00");
-            assertFalse(predicate.test(event));
-        } catch (TimeStartAfterTimeEndException e) {
-            fail();
-        }
-
+        Event event = new EventBuilder().withTimeStart("01-01-2023 10:00").withTimeEnd("01-01-2023 11:00").build();
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate("01-01-2023 10:00");
+        assertFalse(predicate.test(event));
     }
 
     @Test
