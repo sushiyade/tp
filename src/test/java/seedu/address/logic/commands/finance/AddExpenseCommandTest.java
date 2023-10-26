@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
+import static seedu.address.testutil.TypicalFinances.EXPENSE_THIRTY_TO_K;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -33,43 +33,43 @@ import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.CommissionBuilder;
+import seedu.address.testutil.ExpenseBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommissionCommandTest {
+public class AddExpenseCommandTest {
 
     @Test
     public void execute_addSuccessful() throws Exception {
-        ModelStubAcceptingCommissionAdded modelStub = new ModelStubAcceptingCommissionAdded();
-        Person validPerson = new PersonBuilder().withName(CommissionBuilder.DEFAULT_NAME).build();
+        ModelStubAcceptingExpenseAdded modelStub = new ModelStubAcceptingExpenseAdded();
+        Person validPerson = new PersonBuilder().withName(ExpenseBuilder.DEFAULT_NAME).build();
         new AddContactCommand(validPerson).execute(modelStub);
-        Commission commission = new CommissionBuilder().build();
-        CommandResult commandResult = new AddCommissionCommand(commission).execute(modelStub);
-        assertEquals(String.format(AddCommissionCommand.MESSAGE_SUCCESS, Messages.formatFinance(commission)),
+        Expense expense = new ExpenseBuilder().build();
+        CommandResult commandResult = new AddExpenseCommand(expense).execute(modelStub);
+        assertEquals(String.format(AddExpenseCommand.MESSAGE_SUCCESS, Messages.formatFinance(expense)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(commission), modelStub.commissionsAdded);
+        assertEquals(Arrays.asList(expense), modelStub.expensesAdded);
     }
 
     @Test
     public void execute_invalidClient_throwsException() {
-        ModelStubAcceptingCommissionAdded modelStub = new ModelStubAcceptingCommissionAdded();
-        Commission commission = new CommissionBuilder().build();
-        assertThrows(CommandException.class, () -> new AddCommissionCommand(commission).execute(modelStub),
+        ModelStubAcceptingExpenseAdded modelStub = new ModelStubAcceptingExpenseAdded();
+        Expense expense = new ExpenseBuilder().build();
+        assertThrows(CommandException.class, () -> new AddExpenseCommand(expense).execute(modelStub),
                 Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
     }
 
     @Test
     public void equals() {
-        Commission alice = new CommissionBuilder().withPerson("Alice").build();
-        Commission bob = new CommissionBuilder().withPerson("Bob").build();
-        AddCommissionCommand addAliceCommand = new AddCommissionCommand(alice);
-        AddCommissionCommand addBobCommand = new AddCommissionCommand(bob);
+        Expense alice = new ExpenseBuilder().withPerson("Alice").build();
+        Expense bob = new ExpenseBuilder().withPerson("Bob").build();
+        AddExpenseCommand addAliceCommand = new AddExpenseCommand(alice);
+        AddExpenseCommand addBobCommand = new AddExpenseCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommissionCommand addAliceCommandCopy = new AddCommissionCommand(alice);
+        AddExpenseCommand addAliceCommandCopy = new AddExpenseCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -84,9 +84,9 @@ public class AddCommissionCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommissionCommand addCommissionCommand = new AddCommissionCommand(COMMISSION_FROM_ALICE);
-        String expected = AddCommissionCommand.class.getCanonicalName() + "{toAdd=" + COMMISSION_FROM_ALICE + "}";
-        assertEquals(expected, addCommissionCommand.toString());
+        AddExpenseCommand addExpenseCommand = new AddExpenseCommand(EXPENSE_THIRTY_TO_K);
+        String expected = AddExpenseCommand.class.getCanonicalName() + "{toAdd=" + EXPENSE_THIRTY_TO_K + "}";
+        assertEquals(expected, addExpenseCommand.toString());
     }
     /**
      * A default model stub that have all the methods failing.
@@ -268,14 +268,14 @@ public class AddCommissionCommandTest {
         }
     }
 
-    private class ModelStubAcceptingCommissionAdded extends ModelStub {
-        final ArrayList<Commission> commissionsAdded = new ArrayList<>();
+    private class ModelStubAcceptingExpenseAdded extends ModelStub {
+        final ArrayList<Expense> expensesAdded = new ArrayList<>();
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public void addCommission(Commission commission) {
-            requireNonNull(commission);
-            commissionsAdded.add(commission);
+        public void addExpense(Expense expense) {
+            requireNonNull(expense);
+            expensesAdded.add(expense);
         }
 
         @Override

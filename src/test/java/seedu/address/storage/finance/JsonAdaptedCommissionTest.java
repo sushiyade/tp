@@ -1,9 +1,11 @@
 package seedu.address.storage.finance;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtilTest.createMoreThanAllowedString;
 import static seedu.address.storage.finance.JsonAdaptedCommission.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
+import static seedu.address.testutil.TypicalFinances.COMMISSION_TEN_FROM_T;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +25,12 @@ public class JsonAdaptedCommissionTest {
     private static final Person VALID_CLIENT = COMMISSION_FROM_ALICE.getClient();
     private static final String VALID_AMOUNT = COMMISSION_FROM_ALICE.getAmount().toString();
     private static final String VALID_DESCRIPTION = COMMISSION_FROM_ALICE.getDescription().toString();
+
+    @Test
+    public void toModelType_validCommissionDetails_returnsCommission() throws Exception {
+        JsonAdaptedCommission commission = new JsonAdaptedCommission(COMMISSION_TEN_FROM_T);
+        assertEquals(COMMISSION_TEN_FROM_T.toString(), commission.toModelType().toString());
+    }
 
     @Test
     public void toModelType_invalidAmount_throwsIllegalValueException() {
