@@ -48,6 +48,14 @@ public class DateTimeParserTest {
         assertNotNull(DateTimeParser.parseDateTimeInstance("tmr"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("yesterday"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("ytd"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next day"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next week"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next month"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next year"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next mon"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next Tuesday"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next Wed"));
+        assertNotNull(DateTimeParser.parseDateTimeInstance("next wednesday"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("in 1 min"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("in 3 mins"));
         assertNotNull(DateTimeParser.parseDateTimeInstance("in 1 minute"));
@@ -82,26 +90,49 @@ public class DateTimeParserTest {
         assertNotNull(DateTimeParser.parseDateTimeInstance("3 years from now"));
     }
 
+
     @Test
     public void parseDateTimeInstance_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("invalid"));
         assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("2023-10-26 12:00 invalid"));
-        // Add more invalid date-time format tests as needed
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("in -40 mins"));
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeInstance("-40 mins from now"));
+
     }
 
     @Test
-    public void parseDateTimeDuration_validInput_returnsLocalDateTimeArray() throws ParseException {
+    public void parseDateTimeDuration_validInputDtToDt_returnsLocalDateTimeArray() throws ParseException {
         LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("2023-10-26 12:00", "2023-10-26 14:00");
         assertEquals(LocalDateTime.of(2023, 10, 26, 12, 0), result[0]);
         assertEquals(LocalDateTime.of(2023, 10, 26, 14, 00), result[1]);
     }
 
     @Test
-    public void parseDateTimeDuration_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeDuration("invalid", "2023-10-26T14:00"));
-        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeDuration("2023-10-26 12:00", "invalid"));
+    public void parseDateTimeDuration_validInputDToD_returnsLocalDateTimeArray() throws ParseException {
+        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("26 Oct 23", "27 Oct");
+        assertEquals(LocalDateTime.of(2023, 10, 26, 0, 0), result[0]);
+        assertEquals(LocalDateTime.of(2023, 10, 27, 23, 59), result[1]);
     }
 
-    // Add more test cases for different scenarios as needed
+    @Test
+    public void parseDateTimeDuration_validInputTToT_returnsLocalDateTimeArray() throws ParseException {
+        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("5pm", "6pm");
+        assertEquals(17, result[0].getHour());
+        assertEquals(0, result[0].getMinute());
+        assertEquals(18, result[1].getHour());
+        assertEquals(0, result[1].getMinute());
+    }
 
+    @Test
+    public void parseDateTimeDuration_validInputDTToT_returnsLocalDateTimeArray() throws ParseException {
+        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("26 Oct 23 5pm", "6pm");
+        assertEquals(LocalDateTime.of(2023, 10, 26, 17, 0), result[0]);
+        assertEquals(LocalDateTime.of(2023, 10, 26, 18, 0), result[1]);
+    }
+
+    @Test
+    public void parseDateTimeDuration_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeDuration("invalid", "2023-10-26 14:00"));
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTimeDuration("2023-10-26 12:00", "invalid"));
+    }
 }
