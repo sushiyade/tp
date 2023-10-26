@@ -33,7 +33,7 @@ public interface Model {
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY = event -> !(event.getTimeStart().getTime()
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY = event -> !(event.getTimeEnd().getTime()
             .isBefore(LocalDateTime.now()));
 
 
