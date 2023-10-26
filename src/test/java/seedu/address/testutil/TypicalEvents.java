@@ -53,8 +53,18 @@ public class TypicalEvents {
     public static final Event EVENT5;
     static {
         EVENT5 = new EventBuilder().withName("Meeting")
-                .withTimeStart("01-01-2023 14:00")
-                .withTimeEnd("01-01-2023 15:00")
+                .withTimeStart("01-01-2024 14:00")
+                .withTimeEnd("01-01-2024 15:00")
+                .withLocation("Meeting Room")
+                .withEventDescription("Meeting for discussion")
+                .build();
+    }
+
+    public static final Event EVENT6;
+    static {
+        EVENT6 = new EventBuilder().withName("Meeting")
+                .withTimeStart("01-01-2099 14:00")
+                .withTimeEnd("01-01-2099 15:00")
                 .withLocation("Meeting Room")
                 .withEventDescription("Meeting for discussion")
                 .build();
@@ -75,6 +85,6 @@ public class TypicalEvents {
     }
 
     public static List<Event> getTypicalEvents() {
-        return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3, EVENT4, EVENT5));
+        return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3, EVENT4, EVENT5, EVENT6));
     }
 }

@@ -3,9 +3,11 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.EVENT1;
+import static seedu.address.testutil.TypicalEvents.EVENT5;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -121,6 +123,49 @@ public class ModelManagerTest {
     @Test
     public void isValidClient_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.isValidClient(null));
+    }
+
+
+    @Test
+    public void getEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getEventList().remove(0));
+    }
+
+    @Test
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredEventList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredEventList(null));
+    }
+
+    @Test
+    public void updateFilteredEventList_validPredicate_updatesFilteredList() {
+        // Add an event to the model
+        modelManager.addEvent(EVENT5);
+
+        // Filter the event list to show all events after today
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY);
+
+        // The filtered list should contain the added event
+        assertTrue(modelManager.getFilteredEventList().contains(EVENT5));
+    }
+
+    @Test
+    public void updateFilteredEventList_emptyPredicate_resetsFilteredList() {
+        // Add an event to the model
+        modelManager.addEvent(EVENT5);
+
+        // Filter the event list to show all events after today
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY);
+
+        // Reset the filter by passing an empty predicate
+        modelManager.updateFilteredEventList(p -> true);
+
+        // The filtered list should contain all events, including EVENT5
+        assertTrue(modelManager.getFilteredEventList().contains(EVENT5));
     }
 
     @Test

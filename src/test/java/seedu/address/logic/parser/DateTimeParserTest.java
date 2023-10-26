@@ -115,7 +115,7 @@ public class DateTimeParserTest {
     }
 
     @Test
-    public void parseDateTimeDuration_validInputTToT_returnsLocalDateTimeArray() throws ParseException {
+    public void parseDateTimeDuration_validInputTtoT_returnsLocalDateTimeArray() throws ParseException {
         LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("5pm", "6pm");
         assertEquals(17, result[0].getHour());
         assertEquals(0, result[0].getMinute());
@@ -124,7 +124,7 @@ public class DateTimeParserTest {
     }
 
     @Test
-    public void parseDateTimeDuration_validInputDTToT_returnsLocalDateTimeArray() throws ParseException {
+    public void parseDateTimeDuration_validInputDTtoT_returnsLocalDateTimeArray() throws ParseException {
         LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("26 Oct 23 5pm", "6pm");
         assertEquals(LocalDateTime.of(2023, 10, 26, 17, 0), result[0]);
         assertEquals(LocalDateTime.of(2023, 10, 26, 18, 0), result[1]);

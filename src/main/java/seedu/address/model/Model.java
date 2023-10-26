@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -27,6 +28,14 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Finance> PREDICATE_SHOW_ALL_COMMISSIONS = finance -> finance instanceof Commission;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY = event -> !(event.getTimeStart().getTime()
+            .isBefore(LocalDateTime.now()));
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -146,6 +155,10 @@ public interface Model {
      */
     ObservableList<Event> getEventList();
 
+    ObservableList<Event> getFilteredEventList();
+
+    void updateFilteredEventList(Predicate<Event> predicate);
+
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -182,4 +195,5 @@ public interface Model {
     void deleteFinance(Finance financeToDelete);
 
     ObservableList<Finance> getFinanceList();
+
 }
