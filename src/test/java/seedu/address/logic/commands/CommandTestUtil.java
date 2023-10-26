@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_DUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -123,6 +124,7 @@ public class CommandTestUtil {
     public static final String VALID_AMOUNT = "900";
     public static final String DEFAULT_DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
     public static final String DEFAULT_AMOUNT = " " + PREFIX_AMOUNT + VALID_AMOUNT;
+    public static final String DEFAULT_TIME_DUE = " " + PREFIX_TIME_DUE + "27-10-2023 01:57";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

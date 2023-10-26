@@ -23,6 +23,7 @@ public class JsonAdaptedExpenseTest {
     private static final Person VALID_CLIENT = EXPENSE_THIRTY_TO_K.getClient();
     private static final String VALID_AMOUNT = EXPENSE_THIRTY_TO_K.getAmount().toString();
     private static final String VALID_DESCRIPTION = EXPENSE_THIRTY_TO_K.getDescription().toString();
+    private static final String VALID_TIME_DUE = EXPENSE_THIRTY_TO_K.getTimeDue().toString();
 
     @Test
     public void toModelType_validExpenseDetails_returnsExpense() throws Exception {
@@ -34,7 +35,7 @@ public class JsonAdaptedExpenseTest {
     public void toModelType_invalidAmount_throwsIllegalValueException() {
         JsonAdaptedExpense expense =
                 new JsonAdaptedExpense(INVALID_AMOUNT, new JsonAdaptedPerson(VALID_CLIENT),
-                        VALID_DESCRIPTION);
+                        VALID_DESCRIPTION, VALID_TIME_DUE);
         String expectedMessage = Amount.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);
     }
@@ -43,7 +44,7 @@ public class JsonAdaptedExpenseTest {
     public void toModelType_nullAmount_throwsIllegalValueException() {
         JsonAdaptedExpense expense =
                 new JsonAdaptedExpense(null, new JsonAdaptedPerson(VALID_CLIENT),
-                        VALID_DESCRIPTION);
+                        VALID_DESCRIPTION, VALID_TIME_DUE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);
     }
@@ -52,7 +53,7 @@ public class JsonAdaptedExpenseTest {
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedExpense expense =
                 new JsonAdaptedExpense(VALID_AMOUNT, new JsonAdaptedPerson(VALID_CLIENT),
-                        INVALID_DESCRIPTION);
+                        INVALID_DESCRIPTION, VALID_TIME_DUE);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);
     }

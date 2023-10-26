@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DEFAULT_AMOUNT;
 import static seedu.address.logic.commands.CommandTestUtil.DEFAULT_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.DEFAULT_TIME_DUE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
@@ -30,7 +31,8 @@ class AddCommissionParserTest {
         Commission expectedCommission = new CommissionBuilder().build();
 
         //whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + DEFAULT_AMOUNT + CLIENT_DESC_AMY + DEFAULT_DESCRIPTION,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + DEFAULT_AMOUNT + CLIENT_DESC_AMY
+                        + DEFAULT_DESCRIPTION + DEFAULT_TIME_DUE,
                 new AddCommissionCommand(expectedCommission));
     }
     @Test
@@ -52,7 +54,7 @@ class AddCommissionParserTest {
     public void parse_optionalFieldsMissing_success() {
         // no description
         Commission expectedCommission = new CommissionBuilder().withDescription("").build();
-        assertParseSuccess(parser, DEFAULT_AMOUNT + CLIENT_DESC_AMY,
+        assertParseSuccess(parser, DEFAULT_AMOUNT + CLIENT_DESC_AMY + DEFAULT_TIME_DUE,
                 new AddCommissionCommand(expectedCommission));
     }
     @Test

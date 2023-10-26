@@ -13,6 +13,7 @@ public class Expense extends Finance {
     private Amount amount;
     private Person client;
     private Description description;
+    private TimeDue timeDue;
 
     /**
      * Constructs an Expense object with the specified amount, client, and description.
@@ -20,12 +21,14 @@ public class Expense extends Finance {
      * @param amount      The amount of the expense
      * @param client      The client or payee associated with the expense
      * @param description A description of the exoense
+     * @param timeDue     The time due of the commission.
      */
-    public Expense(Amount amount, Person client, Description description) {
+    public Expense(Amount amount, Person client, Description description, TimeDue timeDue) {
         requireAllNonNull(amount, description);
         this.amount = amount;
         this.client = client;
         this.description = description;
+        this.timeDue = timeDue;
     }
 
     /**
@@ -53,6 +56,11 @@ public class Expense extends Finance {
         return description;
     }
 
+    @Override
+    public TimeDue getTimeDue() {
+        return timeDue;
+    }
+
     /**
      * Returns true if two expenses have the same fields.
      * This is a less strict equals that is used for testing.
@@ -60,7 +68,8 @@ public class Expense extends Finance {
     public boolean haveSameFields(Expense expense) {
         return amount.equals(expense.getAmount())
                 && client.equals((expense.getClient()))
-                && description.equals(expense.getDescription());
+                && description.equals(expense.getDescription())
+                && timeDue.equals(expense.getTimeDue());
     }
 
     public void setMatchedClientInstance(Person actualClient) {
@@ -81,6 +90,7 @@ public class Expense extends Finance {
                 .add("client", client)
                 .add("amount", amount)
                 .add("description", description)
+                .add("timeDue", timeDue)
                 .toString();
     }
 }
