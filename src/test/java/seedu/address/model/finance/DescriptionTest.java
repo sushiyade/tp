@@ -16,10 +16,19 @@ public class DescriptionTest {
         // null description
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
         // invalid description
-        assertFalse(ClientName.isValidClientName("")); // empty string
-        assertFalse(ClientName.isValidClientName(" ")); // whitespace
+        assertFalse(Description.isValidDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")); // 257 characters
+
+        assertFalse(Description.isValidDescription(" ")); // whitespace
         //valid description
-        assertTrue(ClientName.isValidClientName("Test description 123")); // alphabets only
+        assertTrue(Description.isValidDescription("")); // blank
+        assertTrue(Description.isValidDescription("Test description 123")); // alphanumeric only
     }
 
     @Test

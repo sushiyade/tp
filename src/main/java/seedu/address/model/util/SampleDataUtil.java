@@ -1,8 +1,6 @@
 package seedu.address.model.util;
 
 
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.EventsBook;
 import seedu.address.model.FinancesBook;
@@ -10,10 +8,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyEventsBook;
 import seedu.address.model.ReadOnlyFinancesBook;
 import seedu.address.model.event.Event;
-import seedu.address.model.finance.Amount;
-import seedu.address.model.finance.Commission;
-import seedu.address.model.finance.Description;
-import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;

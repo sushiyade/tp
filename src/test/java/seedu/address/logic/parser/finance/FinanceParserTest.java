@@ -30,7 +30,6 @@ public class FinanceParserTest {
     @Test
     public void parseCommand_addCommission() throws Exception {
         Commission commission = new CommissionBuilder().build();
-        System.out.println(commission);
         AddCommissionCommand command =
                 (AddCommissionCommand) parser.parseCommand(FinanceUtil.getAddCommissionCommand(commission));
         assertEquals(new AddCommissionCommand(commission), command);

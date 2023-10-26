@@ -8,7 +8,6 @@ import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAdaptedPerson;
 

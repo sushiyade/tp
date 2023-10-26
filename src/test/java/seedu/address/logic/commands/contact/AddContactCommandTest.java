@@ -244,6 +244,12 @@ public class AddContactCommandTest {
         public Set<Person> getAllMatchedClients(Set<Person> clients) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person getMatchedClient(Person client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void addExpense(Expense expense) {
             throw new AssertionError("This method should not be called.");

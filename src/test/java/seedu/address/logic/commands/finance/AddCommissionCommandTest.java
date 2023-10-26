@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.TypicalFinances.COMMISSION_FROM_ALICE;
 
 import java.nio.file.Path;
@@ -18,6 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -30,11 +32,15 @@ import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.CommissionBuilder;
+import seedu.address.testutil.PersonBuilder;
+
 public class AddCommissionCommandTest {
 
     @Test
     public void execute_addSuccessful() throws Exception {
         ModelStubAcceptingCommissionAdded modelStub = new ModelStubAcceptingCommissionAdded();
+        Person validPerson = new PersonBuilder().withName(CommissionBuilder.DEFAULT_NAME).build();
+        new AddContactCommand(validPerson).execute(modelStub);
         Commission commission = new CommissionBuilder().build();
         CommandResult commandResult = new AddCommissionCommand(commission).execute(modelStub);
         assertEquals(String.format(AddCommissionCommand.MESSAGE_SUCCESS, Messages.formatFinance(commission)),
@@ -176,6 +182,11 @@ public class AddCommissionCommandTest {
         }
 
         @Override
+        public Person getMatchedClient(Person client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -260,11 +271,40 @@ public class AddCommissionCommandTest {
     }
     private class ModelStubAcceptingCommissionAdded extends ModelStub {
         final ArrayList<Commission> commissionsAdded = new ArrayList<>();
+        final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
         public void addCommission(Commission commission) {
             requireNonNull(commission);
             commissionsAdded.add(commission);
+        }
+
+        @Override
+        public boolean isValidClient(Person client) {
+            requireAllNonNull(client);
+            return personsAdded.stream().anyMatch(client::isSamePerson);
+        }
+
+        @Override
+        public void addPerson(Person person) {
+            requireNonNull(person);
+            personsAdded.add(person);
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public Person getMatchedClient(Person client) {
+            for (Person p : personsAdded) {
+                if (p.equals(client)) {
+                    return p;
+                }
+            }
+            return null;
         }
 
         @Override

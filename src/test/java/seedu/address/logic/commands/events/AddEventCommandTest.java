@@ -276,6 +276,11 @@ public class AddEventCommandTest {
         }
 
         @Override
+        public Person getMatchedClient(Person client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }

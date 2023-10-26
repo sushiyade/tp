@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Description;
-
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAdaptedPerson;
 
 
 public class JsonAdaptedCommissionTest {
@@ -19,14 +20,14 @@ public class JsonAdaptedCommissionTest {
     private static final String INVALID_AMOUNT = TEXT_MORE_THAN_256;
     private static final String INVALID_DESCRIPTION = TEXT_MORE_THAN_256;
 
-    private static final String VALID_CLIENT_NAME = COMMISSION_FROM_ALICE.getClientName().toString();
+    private static final Person VALID_CLIENT = COMMISSION_FROM_ALICE.getClient();
     private static final String VALID_AMOUNT = COMMISSION_FROM_ALICE.getAmount().toString();
     private static final String VALID_DESCRIPTION = COMMISSION_FROM_ALICE.getDescription().toString();
 
     @Test
     public void toModelType_invalidAmount_throwsIllegalValueException() {
         JsonAdaptedCommission commission =
-                new JsonAdaptedCommission(INVALID_AMOUNT, VALID_CLIENT_NAME,
+                new JsonAdaptedCommission(INVALID_AMOUNT, new JsonAdaptedPerson(VALID_CLIENT),
                         VALID_DESCRIPTION);
         String expectedMessage = Amount.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, commission::toModelType);
@@ -35,25 +36,16 @@ public class JsonAdaptedCommissionTest {
     @Test
     public void toModelType_nullAmount_throwsIllegalValueException() {
         JsonAdaptedCommission commission =
-                new JsonAdaptedCommission(null, VALID_CLIENT_NAME,
+                new JsonAdaptedCommission(null, new JsonAdaptedPerson(VALID_CLIENT),
                         VALID_DESCRIPTION);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, commission::toModelType);
     }
 
     @Test
-    public void toModelType_nullClientName_throwsIllegalValueException() {
-        JsonAdaptedCommission commission =
-                new JsonAdaptedCommission(VALID_AMOUNT, null,
-                        VALID_DESCRIPTION);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientName.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, commission::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedCommission commission =
-                new JsonAdaptedCommission(VALID_AMOUNT, VALID_CLIENT_NAME,
+                new JsonAdaptedCommission(VALID_AMOUNT, new JsonAdaptedPerson(VALID_CLIENT),
                         INVALID_DESCRIPTION);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, commission::toModelType);

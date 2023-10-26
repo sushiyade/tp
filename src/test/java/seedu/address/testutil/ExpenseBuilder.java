@@ -15,7 +15,7 @@ import seedu.address.model.person.TelegramName;
  * A utility class to help with building Expense objects.
  */
 public class ExpenseBuilder {
-    public static final String DEFAULT_AMOUNT = "$900";
+    public static final String DEFAULT_AMOUNT = "900";
     public static final String DEFAULT_DESCRIPTION = "Test Description";
     public static final String DEFAULT_NAME = "Amy Bee";
     private Person client;
