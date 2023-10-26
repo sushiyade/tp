@@ -530,7 +530,7 @@ public class DateTimeParser {
 
     private static LocalDateTime parseFiveElements(String[] tokenisedString) throws ParseException {
         LocalTime time = parseTwoElementsTime(StringUtil.concatStringArrayWithSpace(tokenisedString, 3, 4));
-        LocalDate date = parseTwoElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
+        LocalDate date = parseThreeElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
         if (date == null || time == null) {
             throw new ParseException(INVALID_DATETIME_FORMAT);
         } else {
