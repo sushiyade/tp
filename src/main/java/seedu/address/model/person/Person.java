@@ -119,5 +119,16 @@ public class Person {
                 .add("telegramName", telegramName)
                 .toString();
     }
+    /**
+     * Creates and returns a dummy Person object with the specified client name.
+     * This method is useful for generating placeholder data with a given name.
+     *
+     * @param clientName The name of the client for whom the dummy Person object is created.
+     * @return A dummy Person object with the provided client name and default values for other fields.
+     */
+    public static Person makeDummyWithName(String clientName) {
+        return new Person(new Name(clientName), new Phone("00000"), new Email("filler@email.com"),
+                new Address(""), new Company(""), new TelegramName(""));
+    }
 
 }

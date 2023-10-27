@@ -78,7 +78,6 @@ public class FinancesBook implements ReadOnlyFinancesBook {
         return finances.asUnmodifiableObservableList();
     }
 
-
     //// util methods
 
     @Override
@@ -88,20 +87,20 @@ public class FinancesBook implements ReadOnlyFinancesBook {
                 .toString();
     }
 
-    //@Override
-    //public boolean equals(Object other) {
-    //    if (other == this) {
-    //        return true;
-    //    }
-    //
-    //    // instanceof handles nulls
-    //    if (!(other instanceof FinancesBook)) {
-    //        return false;
-    //    }
-    //
-    //    FinancesBook otherFinancesBook = (FinancesBook) other;
-    //    return finances.equals(otherFinancesBook.finances);
-    //}
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FinancesBook)) {
+            return false;
+        }
+
+        FinancesBook otherFinancesBook = (FinancesBook) other;
+        return finances.equals(otherFinancesBook.finances);
+    }
 
     @Override
     public int hashCode() {

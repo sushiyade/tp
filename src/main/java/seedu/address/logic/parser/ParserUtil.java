@@ -227,8 +227,7 @@ public class ParserUtil {
         if (!Name.isValidName(clientName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Person(new Name(clientName), new Phone("00000"), new Email("filler@email.com"),
-                new Address(""), new Company(""), new TelegramName(""));
+        return Person.makeDummyWithName(clientName);
     }
 
     /**
