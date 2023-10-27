@@ -348,13 +348,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  |          user          | delete an old C/E                               | remove entries that I no longer need                      |
 | `* * *`  |          user          | view all my saved C/E                           | have an overview of all my C/E                            |
 |  `* *`   |          user          | filter by type (C/E)                            |                                                           |
-|  `* *`   | user with many clients | tag clients to C/E                              | see which client is involved in a particular C/E          |
-|  `* *`   | financially savvy user | add time due for C/E                            | know when to expect cash inflow/outflow                   |
-|  `* *`   | user with many clients | filter by tagged client                         |                                                           |
-|  `* *`   | financially savvy user | filter by a given day/month's C/E               |                                                           |
-|  `* *`   | user with many clients | get a summary of total C/E by tagged client     | know how valuable a client is                             |
-|  `* *`   | financially savvy user | get a summary of total C/E in a given day/month | get an idea of my financial situation for the time period |
 |  `* *`   |          user          | edit a saved C/E                                | change any details that are wrong or have changed         |
+|  `* *`   | user with many clients | tag clients to C/E                              | see which client is involved in a particular C/E          |
+|  `* *`   | user with many clients | filter by tagged client                         |                                                           |
+|  `* *`   | user with many clients | get a summary of total C/E by tagged client     | know how valuable a client is                             |
+|  `* *`   | financially savvy user | add time due for C/E                            | know when to expect cash inflow/outflow                   |
+|  `* *`   | financially savvy user | filter by a given day/month's C/E               |                                                           |
+|  `* *`   | financially savvy user | get a summary of total C/E in a given day/month | get an idea of my financial situation for the time period |
 
 
 *{More to be added}*
