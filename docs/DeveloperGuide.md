@@ -340,21 +340,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### For Finance Management
 
-> This covers for both commission and expense. We will refer to both as C/E.
+> This covers both commission and expense. We will refer to both as C/E.
 
-| Priority |     As a …​      | I want to …​                                           | So that I can…​                                   |
-|:--------:|:----------------:|--------------------------------------------------------|---------------------------------------------------|
-| `* * *`  |       user       | add a new C/E                                          |                                                   |
-| `* * *`  |       user       | delete an old C/E                                      | remove entries that I no longer need              |
-| `* * *`  |       user       | view all my saved C/E                                  | have an overview of all my C/E                    |
-|  `* *`   |       user       | see a summary of past months C/E                       | know what I get a summary of my finances          |
-|  `* *`   |       user       | edit a saved C/E                                       | change any details that are wrong or have changed |
-|  `* *`   | experienced user | tag clients to C/E                                     | see which client is involved in a particular C/E  |
-|  `* *`   |       user       | see expected months income                             | plan my finances for the month                    |
-|   `*`    |  organised user  | generate an financial report (for a given time period) | keep track of my monetary flow                    |
-
-
-*{More to be added}*
+| Priority |        As a …​         | I want to …​                                    | So that I can…​                                           |
+|:--------:|:----------------------:|-------------------------------------------------|-----------------------------------------------------------|
+| `* * *`  |          user          | add a new C/E                                   |                                                           |
+| `* * *`  |          user          | delete an old C/E                               | remove entries that I no longer need                      |
+| `* * *`  |          user          | view all my saved C/E                           | have an overview of all my C/E                            |
+|  `* *`   |          user          | filter by type (C/E)                            |                                                           |
+|  `* *`   |          user          | edit a saved C/E                                | change any details that are wrong or have changed         |
+|  `* *`   | user with many clients | tag clients to C/E                              | see which client is involved in a particular C/E          |
+|  `* *`   | user with many clients | filter by tagged client                         |                                                           |
+|  `* *`   | user with many clients | get a summary of total C/E by tagged client     | know how valuable a client is                             |
+|  `* *`   | financially savvy user | add time due for C/E                            | know when to expect cash inflow/outflow                   |
+|  `* *`   | financially savvy user | filter by a given day/month's C/E               |                                                           |
+|  `* *`   | financially savvy user | get a summary of total C/E in a given day/month | get an idea of my financial situation for the time period |
 
 ### Use cases
 
@@ -364,9 +364,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests for help
-2. FreelanceBuddy shows a pop-up with a link to the user guide
-3. User copies the URL and references the user guide
+1. User requests for help.
+2. FreelanceBuddy shows a pop-up with a link to the user guide.
+3. User copies the URL and references the user guide.
 
    Use case ends.
 
@@ -376,21 +376,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. FreelanceBuddy shows the current tab user is on
-2. User requests to switch to another tab (that is not the current one)
-3. FreelanceBuddy switches to the specified tab by the user
-4. FreelanceBuddy shows the desired tab
+1. FreelanceBuddy shows the current tab user is on.
+2. User requests to switch to another tab (that is not the current one).
+3. FreelanceBuddy switches to the specified tab by the user.
+4. FreelanceBuddy shows the desired tab.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The user inputs an invalid syntax
-    * 2a1. FreelanceBuddy shows an error message
+* 2a. The user inputs an invalid syntax.
+    * 2a1. FreelanceBuddy shows an error message.
 
       Use case resumes at step 1.
   
-* 2b. User decides to stay on the current tab
+* 2b. User decides to stay on the current tab.
 
     User case resumes at step 4.
 
@@ -400,15 +400,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a new contact with details
-2. FreelanceBuddy creates a new contact and shows it within the list
+1. User requests to add a new contact with details.
+2. FreelanceBuddy creates a new contact and shows it within the list.
 
    Use case ends.
 
 **Extensions**
   
-* 1a. The user inputs invalid syntax
-    * 1a1. FreelanceBuddy shows an error message
+* 1a. The user inputs invalid syntax.
+    * 1a1. FreelanceBuddy shows an error message.
 
       Use case resumes at step 1. 
   
@@ -419,15 +419,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to delete specific entry in the list
-2. FreelanceBuddy deletes the entry
+1. User requests to delete specific entry in the list.
+2. FreelanceBuddy deletes the entry.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The user inputs with invalid syntax
-    * 1a1. FreelanceBuddy shows error message
+* 1a. The user inputs with invalid syntax.
+    * 1a1. FreelanceBuddy shows error message.
 
       Use case resumes at step 1. 
 
@@ -437,8 +437,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to view all Contacts
-2. FreelanceBuddy shows a list of all Contacts
+1. User requests to view all Contacts.
+2. FreelanceBuddy shows a list of all Contacts.
 
    Use case ends.
 
@@ -448,15 +448,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to find contacts using keywords
-2. FreelanceBuddy shows a list of Contacts that contains given keywords
+1. User requests to find contacts using keywords.
+2. FreelanceBuddy shows a list of Contacts that contains given keywords.
 
    Use case ends resumes at step 1.
 
 **Extensions** 
 
 * 1a. No contacts found that contains given keywords.
-  * 1a1. FreelanceBuddy shows error message
+  * 1a1. FreelanceBuddy shows error message.
 
     Use case ends.
 
@@ -466,15 +466,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a new event
+1. User requests to add a new event.
 2. FreelanceBuddy creates the Event entry and shows it within the list.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The user inputs an invalid index
-    * 1a1. FreelanceBuddy shows an error message
+* 1a. The user inputs an invalid index.
+    * 1a1. FreelanceBuddy shows an error message.
 
       Use case resumes at step 1.
 
@@ -484,15 +484,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to delete a specific entry in the list
-2. FreelanceBuddy deletes the entry
+1. User requests to delete a specific entry in the list.
+2. FreelanceBuddy deletes the entry.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The user inputs an invalid index
-    * 1a1. FreelanceBuddy shows an error message
+* 1a. The user inputs an invalid index.
+    * 1a1. FreelanceBuddy shows an error message.
 
       Use case resumes at step 1.
 
@@ -502,8 +502,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to view all events
-2. FreelanceBuddy shows a list of all events
+1. User requests to view all events.
+2. FreelanceBuddy shows a list of all events.
 
 Use case ends.
 
@@ -513,26 +513,26 @@ Use case ends.
 
 **MSS**
 
-1. User requests to view most urgent events
-2. FreelanceBuddy shows a list of most urgent events
+1. User requests to view most urgent events.
+2. FreelanceBuddy shows a list of most urgent events.
 
 Use case ends.
 
-#### Use Case: UC11 - Add a commission
+#### Use Case: UC11 - Add a finance entry
 
 **Precondition**: User is on **Finance** tab
 
 **MSS**
 
-1. User requests to add a new commission
-2. FreelanceBuddy adds the new commission to the top of the list
+1. User requests to add a new finance entry.
+2. FreelanceBuddy adds the new finance entry to the top of the list.
 
     Use case ends.
 
 **Extensions** 
 
-* 1a. The user inputs an invalid syntax
-    * 1a1. FreelanceBuddy shows an error message
+* 1a. The user inputs an invalid syntax.
+    * 1a1. FreelanceBuddy shows an error message.
 
         Use case resumes at step 1.
 
@@ -542,15 +542,15 @@ Use case ends.
 
 **MSS**
 
-1. User requests to delete a specific entry in the list
-2. FreelanceBuddy deletes the entry
+1. User requests to delete a specific entry in the list.
+2. FreelanceBuddy deletes the entry.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The user inputs an invalid index
-  * 1a1. FreelanceBuddy shows an error message
+* 1a. The user inputs an invalid index.
+  * 1a1. FreelanceBuddy shows an error message.
     
     Use case resumes at step 1.
 
@@ -560,10 +560,123 @@ Use case ends.
 
 **MSS**
 
-1. User requests to view all finance entries
-2. FreelanceBuddy shows a list of all finance entries
+1. User requests to view all finance entries.
+2. FreelanceBuddy shows a list of all finance entries.
 
 Use case ends.
+
+#### Use Case: UC14 - Filter by finance entry type
+
+**Precondition**: User is on **Finance** tab
+
+**MSS**
+
+1. User requests to filter finance entries by entry type.
+2. FreelanceBuddy shows a list of finance entries of the given type.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid entry type.
+    * 1a1. FreelanceBuddy shows an error message.
+
+      Use case resumes at step 1.
+
+#### Use Case: UC15 - Edit a finance entry
+
+**Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
+
+**MSS**
+
+1. User requests to edit a specific entry in the list.
+2. FreelanceBuddy edits the entry.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid index.
+    * 1a1. FreelanceBuddy shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The user inputs an invalid syntax.
+    * 1b1. FreelanceBuddy shows an error message.
+
+      Use case resumes at step 1.
+
+#### Use Case: UC16 - Filter finance entries by client
+
+**Precondition**: User is on **Finance** tab
+
+**MSS**
+
+1. User requests to filter finance entries by client.
+2. FreelanceBuddy shows a list of finance entries tagged to the given client.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs a client that does not exist.
+    * 1a1. FreelanceBuddy shows an error message.
+
+      Use case resumes at step 1.
+
+#### Use Case: UC17 - Get finance summary for tagged client
+
+**Precondition**: User is on **Finance** tab
+
+**MSS**
+
+1. User requests to see finance summary for a client.
+2. FreelanceBuddy shows the finance summary for the given client.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs a client that does not exist.
+    * 1a1. FreelanceBuddy shows an error message.
+
+      Use case resumes at step 1.
+
+#### Use Case: UC18 - Filter finance entries by day/month
+
+**Precondition**: User is on **Finance** tab
+
+**MSS**
+
+1. User requests to filter finance entries by day/month.
+2. FreelanceBuddy shows a list of finance entries due in the given day/month.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid syntax.
+    * 1a1. FreelanceBuddy shows an error message.
+
+      Use case resumes at step 1.
+
+#### Use Case: UC19 - Get finance summary for day/month
+
+**Precondition**: User is on **Finance** tab
+
+**MSS**
+
+1. User requests to see finance summary for a day/month.
+2. FreelanceBuddy shows the finance summary for the given day/month.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid syntax.
+    * 1a1. FreelanceBuddy shows an error message.
+
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
