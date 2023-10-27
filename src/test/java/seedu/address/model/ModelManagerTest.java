@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -207,5 +208,25 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, emptyEventsBook, emptyFinancesBook,
                 differentUserPrefs)));
+    }
+
+    @Test
+    public void constructor_withParameters_nullParameters_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ModelManager(null, null, null, null));
+    }
+
+    @Test
+    public void setAddressBook_nullAddressBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setAddressBook(null));
+    }
+
+    @Test
+    public void setEventsBook_nullEventsBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setEventsBook(null));
+    }
+
+    @Test
+    public void setFinancesBook_nullFinancesBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setFinancesBook(null));
     }
 }
