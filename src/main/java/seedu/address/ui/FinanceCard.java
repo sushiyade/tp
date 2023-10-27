@@ -23,6 +23,8 @@ public class FinanceCard extends UiPart<Region> {
     private Label client;
     @FXML
     private Label description;
+    @FXML
+    private Label timeDue;
     /**
      * Creates a {@code PersonCode} with the given {@code Finance} and index to display.
      */
@@ -31,6 +33,7 @@ public class FinanceCard extends UiPart<Region> {
         this.finance = finance;
         id.setText(displayedIndex + ". ");
         amount.setText(finance.getAmount().value);
+        timeDue.setText(finance.getTimeDue().value);
         if (finance.getClient() != null) {
             client.setText(finance.getClient().getName().fullName);
         } else {
