@@ -326,18 +326,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### For Finance Management
 
-> This covers for both commission and expense. We will refer to both as C/E.
+> This covers both commission and expense. We will refer to both as C/E.
 
-| Priority |     As a …​      | I want to …​                                           | So that I can…​                                   |
-|:--------:|:----------------:|--------------------------------------------------------|---------------------------------------------------|
-| `* * *`  |       user       | add a new C/E                                          |                                                   |
-| `* * *`  |       user       | delete an old C/E                                      | remove entries that I no longer need              |
-| `* * *`  |       user       | view all my saved C/E                                  | have an overview of all my C/E                    |
-|  `* *`   |       user       | see a summary of past months C/E                       | know what I get a summary of my finances          |
-|  `* *`   |       user       | edit a saved C/E                                       | change any details that are wrong or have changed |
-|  `* *`   | experienced user | tag clients to C/E                                     | see which client is involved in a particular C/E  |
-|  `* *`   |       user       | see expected months income                             | plan my finances for the month                    |
-|   `*`    |  organised user  | generate an financial report (for a given time period) | keep track of my monetary flow                    |
+| Priority |        As a …​         | I want to …​                                    | So that I can…​                                           |
+|:--------:|:----------------------:|-------------------------------------------------|-----------------------------------------------------------|
+| `* * *`  |          user          | add a new C/E                                   |                                                           |
+| `* * *`  |          user          | delete an old C/E                               | remove entries that I no longer need                      |
+| `* * *`  |          user          | view all my saved C/E                           | have an overview of all my C/E                            |
+|  `* *`   |          user          | filter by type (C/E)                            |                                                           |
+|  `* *`   | user with many clients | tag clients to C/E                              | see which client is involved in a particular C/E          |
+|  `* *`   | financially savvy user | add time due for C/E                            | know when to expect cash inflow/outflow                   |
+|  `* *`   | user with many clients | filter by tagged client                         |                                                           |
+|  `* *`   | financially savvy user | filter by a given day/month's C/E               |                                                           |
+|  `* *`   | user with many clients | get a summary of total C/E by tagged client     | know how valuable a client is                             |
+|  `* *`   | financially savvy user | get a summary of total C/E in a given day/month | get an idea of my financial situation for the time period |
+|  `* *`   |          user          | edit a saved C/E                                | change any details that are wrong or have changed         |
 
 
 *{More to be added}*
