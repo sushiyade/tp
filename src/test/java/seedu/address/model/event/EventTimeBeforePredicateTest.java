@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.parser.DateTimeParser.parseDateTimeInstance;
@@ -20,7 +21,7 @@ import seedu.address.testutil.EventBuilder;
 public class EventTimeBeforePredicateTest {
     @Test
     public void testConstructor_validDateTimeString_success() {
-        String eventTimeString = "01-01-2023 10:00";
+        String eventTimeString = "01-01-2024 10:00";
         LocalDateTime eventTime = null;
         try {
             eventTime = parseDateTimeInstance(eventTimeString);
@@ -40,10 +41,10 @@ public class EventTimeBeforePredicateTest {
 
     @Test
     public void testTest_eventTimeBeforePredicate_returnsTrue() {
-        Event event = new EventBuilder().withTimeStart("01-01-2023 10:00").withTimeEnd("01-01-2023 11:00").build();
+        Event event = new EventBuilder().withTimeStart("01-01-2024 10:00").withTimeEnd("01-01-2024 11:00").build();
         EventTimeBeforePredicate predicate = null;
         try {
-            predicate = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2023 11:00"));
+            predicate = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 11:00"));
         } catch (ParseException e) {
             fail();
         }
@@ -52,10 +53,10 @@ public class EventTimeBeforePredicateTest {
 
     @Test
     public void testTest_eventTimeEqualOrAfterPredicate_returnsFalse() {
-        Event event = new EventBuilder().withTimeStart("01-01-2023 10:00").withTimeEnd("01-01-2023 11:00").build();
+        Event event = new EventBuilder().withTimeStart("01-01-2024 10:00").withTimeEnd("01-01-2024 11:00").build();
         EventTimeBeforePredicate predicate = null;
         try {
-            predicate = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2023 10:00"));
+            predicate = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 10:00"));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -67,8 +68,8 @@ public class EventTimeBeforePredicateTest {
         EventTimeBeforePredicate predicate1 = null;
         EventTimeBeforePredicate predicate2 = null;
         try {
-            predicate1 = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2023 10:00"));
-            predicate2 = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2023 10:00"));
+            predicate1 = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 10:00"));
+            predicate2 = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 10:00"));
         } catch (ParseException e) {
             fail();
         }
@@ -80,8 +81,8 @@ public class EventTimeBeforePredicateTest {
         EventTimeBeforePredicate predicate1 = null;
         EventTimeBeforePredicate predicate2 = null;
         try {
-            predicate1 = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2023 10:00"));
-            predicate2 = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2023 11:00"));
+            predicate1 = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 10:00"));
+            predicate2 = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 11:00"));
         } catch (ParseException e) {
             fail();
         }
@@ -89,14 +90,53 @@ public class EventTimeBeforePredicateTest {
     }
 
     @Test
-    public void testToString_validEventTime_returnsExpectedString() {
-        EventTimeBeforePredicate predicate = null;
+    public void testEquals_sameObject_returnsTrue() {
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(LocalDateTime.now());
+        assertTrue(predicate.equals(predicate));
+    }
+
+    @Test
+    public void testEquals_nullObject_returnsFalse() {
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(LocalDateTime.now());
+        assertFalse(predicate.equals(null));
+    }
+
+    @Test
+    public void testEquals_differentClass_returnsFalse() {
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(LocalDateTime.now());
+        assertNotEquals(predicate, "NotAPredicate");
+    }
+
+    @Test
+    public void testEquals_equalEventTimeDifferentObject_returnsTrue() {
+        LocalDateTime eventTime = null;
         try {
-            predicate = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2023 10:00"));
+            eventTime = parseDateTimeInstance("01-01-2024 10:00");
         } catch (ParseException e) {
             fail();
         }
-        String expectedString = EventTimeBeforePredicate.class.getCanonicalName() + "{event time=2023-01-01T10:00}";
+        EventTimeBeforePredicate predicate1 = new EventTimeBeforePredicate(eventTime);
+        EventTimeBeforePredicate predicate2 = new EventTimeBeforePredicate(eventTime);
+        assertEquals(predicate1, predicate2);
+        assertNotSame(predicate1, predicate2);
+    }
+
+    @Test
+    public void testToString_nullEventTime_returnsExpectedString() {
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(null);
+        String expectedString = EventTimeBeforePredicate.class.getCanonicalName() + "{event time=null}";
+        assertEquals(expectedString, predicate.toString());
+    }
+
+    @Test
+    public void testToString_validEventTime_returnsExpectedString() {
+        EventTimeBeforePredicate predicate = null;
+        try {
+            predicate = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 10:00"));
+        } catch (ParseException e) {
+            fail();
+        }
+        String expectedString = EventTimeBeforePredicate.class.getCanonicalName() + "{event time=2024-01-01T10:00}";
         assertEquals(expectedString, predicate.toString());
     }
 }

@@ -208,4 +208,24 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, emptyEventsBook, emptyFinancesBook,
                 differentUserPrefs)));
     }
+
+    @Test
+    public void constructor_withNullParameters_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ModelManager(null, null, null, null));
+    }
+
+    @Test
+    public void setAddressBook_nullAddressBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setAddressBook(null));
+    }
+
+    @Test
+    public void setEventsBook_nullEventsBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setEventsBook(null));
+    }
+
+    @Test
+    public void setFinancesBook_nullFinancesBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setFinancesBook(null));
+    }
 }
