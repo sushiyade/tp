@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -211,7 +210,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void constructor_withParameters_nullParameters_throwsNullPointerException() {
+    public void constructor_withNullParameters_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new ModelManager(null, null, null, null));
     }
 
