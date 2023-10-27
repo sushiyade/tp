@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.parser.DateTimeParser.parseDateTimeInstance;
@@ -86,6 +87,45 @@ public class EventTimeBeforePredicateTest {
             fail();
         }
         assertNotEquals(predicate1, predicate2);
+    }
+
+    @Test
+    public void testEquals_sameObject_returnsTrue() {
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(LocalDateTime.now());
+        assertEquals(predicate, predicate);
+    }
+
+    @Test
+    public void testEquals_nullObject_returnsFalse() {
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(LocalDateTime.now());
+        assertNotEquals(predicate, null);
+    }
+
+    @Test
+    public void testEquals_differentClass_returnsFalse() {
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(LocalDateTime.now());
+        assertNotEquals(predicate, "NotAPredicate");
+    }
+
+    @Test
+    public void testEquals_equalEventTimeDifferentObject_returnsTrue() {
+        LocalDateTime eventTime = null;
+        try {
+            eventTime = parseDateTimeInstance("01-01-2024 10:00");
+        } catch (ParseException e) {
+            fail();
+        }
+        EventTimeBeforePredicate predicate1 = new EventTimeBeforePredicate(eventTime);
+        EventTimeBeforePredicate predicate2 = new EventTimeBeforePredicate(eventTime);
+        assertEquals(predicate1, predicate2);
+        assertNotSame(predicate1, predicate2);
+    }
+
+    @Test
+    public void testToString_nullEventTime_returnsExpectedString() {
+        EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(null);
+        String expectedString = EventTimeBeforePredicate.class.getCanonicalName() + "{event time=null}";
+        assertEquals(expectedString, predicate.toString());
     }
 
     @Test
