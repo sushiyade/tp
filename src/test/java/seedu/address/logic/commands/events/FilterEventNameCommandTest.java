@@ -8,16 +8,11 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 
 
 
 public class FilterEventNameCommandTest {
-
-    private Model model = new ModelManager();
-
     @Test
     public void equals() {
         EventNameContainsKeywordsPredicate predicate1 =

@@ -15,11 +15,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class TimeDue {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public final String value;
 
     private final LocalDateTime timeDue;
-
-    private final String value;
-
     /**
      * Constructs a {@code TimeDue}.
      *
