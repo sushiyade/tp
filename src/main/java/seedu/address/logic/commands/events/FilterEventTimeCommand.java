@@ -10,8 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.EventTimeBeforePredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case-insensitive.
+ * Finds and lists all events in address book whose start time is before the specified time.
  */
 public class FilterEventTimeCommand extends Command {
 
