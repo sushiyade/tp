@@ -92,13 +92,13 @@ public class EventTimeBeforePredicateTest {
     @Test
     public void testEquals_sameObject_returnsTrue() {
         EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(LocalDateTime.now());
-        assertEquals(predicate, predicate);
+        assertTrue(predicate.equals(predicate));
     }
 
     @Test
     public void testEquals_nullObject_returnsFalse() {
         EventTimeBeforePredicate predicate = new EventTimeBeforePredicate(LocalDateTime.now());
-        assertNotEquals(predicate, null);
+        assertFalse(predicate.equals(null));
     }
 
     @Test
