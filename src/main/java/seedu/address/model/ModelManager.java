@@ -190,7 +190,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        filteredEvents.setPredicate(PREDICATE_SHOW_ALL_EVENTS_AFTER_TODAY);
         return new SortedList<>(filteredEvents, EVENT_COMPARATOR);
     }
 

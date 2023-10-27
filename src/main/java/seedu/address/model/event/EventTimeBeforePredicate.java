@@ -14,12 +14,14 @@ public class EventTimeBeforePredicate implements Predicate<Event> {
     private final LocalDateTime eventTime;
 
     public EventTimeBeforePredicate(LocalDateTime eventTime) {
-        this.eventTime = eventTime; //change this to accept LocalDateTime instead of String?
+        this.eventTime = eventTime;
     }
 
     @Override
     public boolean test(Event event) {
-        return event.getTimeStart().getTime().isBefore(eventTime);
+        LocalDateTime eventTimeStart = event.getTimeStart().getTime();
+        LocalDateTime eventTimeEnd = event.getTimeEnd().getTime(); // check if event is after now
+        return eventTimeStart.isBefore(eventTime) && eventTimeEnd.isAfter(LocalDateTime.now());
     }
 
     @Override
