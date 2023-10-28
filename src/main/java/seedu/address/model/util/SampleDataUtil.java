@@ -51,22 +51,31 @@ public class SampleDataUtil {
     }
 
     public static Event[] getSampleEvents() {
+        Person alex = new Person(new Name("Alex Yeoh"), new Phone("87438807"),
+                new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
+                new Company("Google"), new TelegramName("@AlexYeoh"));
+        Person bernice = new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+               new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+               new Company("FAPro"),
+               new TelegramName("@BerniceYu"));
         return new Event[] {
-            new EventBuilder().withName("Meeting with Alice")
-                    .withTimeStart("23-09-2023 09:00")
-                    .withTimeEnd("23-09-2023 10:00")
+            new EventBuilder().withName("Meeting with Alex")
+                    .withTimeStart("next year 9am")
+                    .withTimeEnd("next year 10am")
+                    .withClient(alex)
                     .build(),
-            new EventBuilder().withName("Conference with Bob")
-                    .withTimeStart("24-09-2023 14:00")
-                    .withTimeEnd("24-09-2023 18:00")
+            new EventBuilder().withName("Conference with Bernice")
+                    .withTimeStart("next month 6pm")
+                    .withTimeEnd("next month 7pm")
+                    .withClient(bernice)
                     .build(),
             new EventBuilder().withName("Team Lunch")
-                    .withTimeStart("25-09-2023 12:00")
-                    .withTimeEnd("25-09-2023 13:00")
+                    .withTimeStart("next day noon")
+                    .withTimeEnd("next day 1pm")
                     .build(),
             new EventBuilder().withName("Project Presentation")
-                    .withTimeStart("26-09-2023 15:00")
-                    .withTimeEnd("26-09-2023 16:30")
+                    .withTimeStart("next week 3pm")
+                    .withTimeEnd("next week 4.30pm")
                     .build()
         };
     }
