@@ -82,7 +82,7 @@ public class EventBuilder {
      */
     public EventBuilder withTimeEnd(String timeEnd) {
         try {
-            this.timeStart = new TimeStart(DateTimeParser.parseDateTimeInstance(timeEnd));
+            this.timeEnd = new TimeEnd(DateTimeParser.parseDateTimeInstance(timeEnd));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
