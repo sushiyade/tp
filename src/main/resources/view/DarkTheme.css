@@ -1,6 +1,6 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #262436;
+    background-color: #262436; /* Used in the default.html file */
 }
 
 .label {
@@ -37,12 +37,13 @@
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
+    -fx-background-color: #262436;
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: #262436;
+    -fx-control-inner-background: #262436;
+    -fx-background-color: #262436;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -84,52 +85,51 @@
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #262436;
 }
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 2px;
+    -fx-background-color: #3B3854;
+    -fx-background-radius: 0.5em;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
-}
-
-.finance-cell .list-cell:filled:even {
-    -fx-background-color: #5f8c6e; /* New color for special cells */
-}
-
-.finance-cell .list-cell:filled:odd {
-    -fx-background-color: #2e4536; /* New color for special cells */
+    -fx-padding: 2px;
+    -fx-border-insets: 2px;
+    -fx-background-insets: 2px;
+    -fx-background-radius: 0.5em;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #A2A3CA;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #DDDEF5;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #EEEEF7;
+    -fx-background-radius: 0.5em;
+    -fx-text-fill: #674DE8;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #6F52FF;
+    -fx-border-radius: 0.5em;
     -fx-border-width: 1;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #101828;
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
@@ -141,31 +141,31 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #262436;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: #262436;
 }
 
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.result-display {
-    -fx-background-color: transparent;
+.result-display .content {
+    -fx-background-color: #D0D2F7;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #101828;
 }
 
 .result-display .label {
+    -fx-background-color: #262436;
     -fx-text-fill: black !important;
 }
 
 .status-bar .label {
+    -fx-background-color: #262436;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-padding: 4px;
@@ -173,7 +173,7 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #262436;
     -fx-border-color: derive(#1d1d1d, 25%);
     -fx-border-width: 1px;
 }
@@ -183,17 +183,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #262436;
+    -fx-border-color: #262436;
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #262436;
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #262436;
 }
 
 .context-menu .label {
@@ -201,11 +201,11 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #262436;
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -213,6 +213,10 @@
 
 .menu .left-container {
     -fx-background-color: black;
+}
+
+.menu-button:hover {
+    -fx-background-color: #544F78;
 }
 
 /*
@@ -290,11 +294,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #3B3854;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #262436;
     -fx-background-insets: 3;
 }
 
@@ -316,7 +320,7 @@
 }
 
 .tab-label {
-    -fx-text-fill: #383838;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 1.2em;
 }
@@ -324,19 +328,22 @@
 .tab .tab-label {
     -fx-alignment: BOTTOM;
 }
+
 .tab {
     -fx-background-radius: 5 5 0 0;
     -fx-background-insets: 10 1 0 1;
     -fx-padding: 10 25 0 25;
-    -fx-background-color:#6ba7bf;
+    -fx-background-color: transparent;
 }
 
 .tab:selected{
-    -fx-background-color: #93d8f5;
+    -fx-background-color: transparent;
+    -fx-border-width: 3px;
+    -fx-border-color: transparent transparent #6F52FF transparent;
 }
 
 .tab:hover {
-    -fx-background-color:#77b7d1;
+    -fx-background-color:#544F78;
 }
 
 .tab-header-background {
@@ -348,7 +355,7 @@
     -fx-faint-focus-color:transparent;
     -fx-tab-min-height: 3em;
     -fx-tab-max-height: 3em;
-    -fx-background-color: #383838;
+    -fx-background-color: #262436;
     -fx-padding: 0 -1 -1 -1;
 }
 
@@ -365,9 +372,10 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: transparent transparent #AE9DFF transparent;
+    -fx-border-radius: 0.2em;
     -fx-border-insets: 0;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
@@ -375,11 +383,6 @@
 
 #filterField, #personListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
-}
-
-#resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
 }
 
 #clients {

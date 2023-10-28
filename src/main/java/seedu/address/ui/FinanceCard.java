@@ -39,9 +39,9 @@ public class FinanceCard extends UiPart<Region> {
         description.setText(finance.getDescription().value);
         boolean isCommission = finance instanceof Commission;
         if (isCommission) {
-            cardPane.setStyle("-fx-background-color: #6c937a");
+            cardPane.setStyle("-fx-background-color: #6c937a; -fx-background-radius: 0.5em;");
         } else {
-            cardPane.setStyle("-fx-background-color: #b14e4e");
+            cardPane.setStyle("-fx-background-color: #b14e4e; -fx-background-radius: 0.5em;");
         }
     }
 }
