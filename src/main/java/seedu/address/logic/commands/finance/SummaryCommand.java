@@ -39,4 +39,18 @@ public class SummaryCommand extends Command {
         ObservableList<Finance> filteredFinances = model.getFilteredFinanceList();
         return new CommandResult(FinanceSummary.generateSummary(filteredFinances, clientName));
     }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SummaryCommand)) {
+            return false;
+        }
+
+        SummaryCommand otherSummaryCommandCommand = (SummaryCommand) other;
+        return namePredicate.equals(otherSummaryCommandCommand.namePredicate);
+    }
 }

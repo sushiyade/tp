@@ -1,6 +1,8 @@
 package seedu.address.model.finance;
 
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Finance}'s {@code Name} matches the input exactly.
  */
@@ -33,8 +35,9 @@ public class ClientNameExactMatchPredicate implements Predicate<Finance> {
         return clientName.equals(otherClientNameExactMatchPredicate.clientName);
     }
 
+
     @Override
     public String toString() {
-        return "Client: " + clientName;
+        return new ToStringBuilder(this).add("clientName", clientName).toString();
     }
 }

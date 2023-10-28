@@ -13,6 +13,7 @@ public class FinanceSummary {
     private int commissionTotal;
     private int noOfExpenses;
     private int expenseTotal;
+
     /**
      * Constructs a FinanceSummary object with the specified financial statistics.
      *
@@ -90,7 +91,7 @@ public class FinanceSummary {
         if (totalSum > 0) {
             return String.format("You have earned $%d from %s", totalSum, name);
         } else if (totalSum < 0) {
-            return String.format("You have lost $%d due to %s", totalSum, name);
+            return String.format("You have lost $%d due to %s", Math.abs(totalSum), name);
         } else {
             return "You have broken even from " + name;
         }
@@ -123,4 +124,24 @@ public class FinanceSummary {
                     noOfExpenses, expenseTotal);
         }
     }
+    public int getTotalSum() {
+        return totalSum;
+    }
+
+    public int getNoOfCommissions() {
+        return noOfCommissions;
+    }
+
+    public int getCommissionTotal() {
+        return commissionTotal;
+    }
+
+    public int getNoOfExpenses() {
+        return noOfExpenses;
+    }
+
+    public int getExpenseTotal() {
+        return expenseTotal;
+    }
+
 }
