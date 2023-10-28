@@ -18,6 +18,7 @@ import seedu.address.logic.commands.finance.DeleteFinanceCommand;
 import seedu.address.logic.commands.finance.FilterClientNameCommand;
 import seedu.address.logic.commands.finance.FilterTimeDueCommand;
 import seedu.address.logic.commands.finance.ListFinanceCommand;
+import seedu.address.logic.commands.finance.SummaryCommand;
 import seedu.address.logic.parser.ParseCommandHandlers;
 import seedu.address.logic.parser.TabCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -72,6 +73,8 @@ public class FinanceParser extends ParseCommandHandlers {
             return new FilterClientNameCommandParser().parse(arguments);
         case FilterTimeDueCommand.COMMAND_WORD:
             return new FilterTimeDueCommandParser().parse(arguments);
+        case SummaryCommand.COMMAND_WORD:
+            return new SummaryCommandParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -117,18 +117,18 @@ public class MainWindow2 extends UiPart<Stage> {
      */
     void fillInnerParts() {
         ContactsTab contactsTab = new ContactsTab(tabPane);
-        Logic contactParser = logic.setNewParser(new ContactParser());
-        contactsTab.setup(contactParser);
+        Logic contactLogic = logic.setNewParser(new ContactParser());
+        contactsTab.setup(contactLogic);
         contactsTabPlaceholder.setContent(contactsTab.getRoot());
 
         EventsTab eventsTab = new EventsTab(tabPane);
-        Logic eventParser = logic.setNewParser(new EventParser());
-        eventsTab.setup(eventParser);
+        Logic eventLogic = logic.setNewParser(new EventParser());
+        eventsTab.setup(eventLogic);
         eventsTabPlaceholder.setContent(eventsTab.getRoot());
 
         FinanceTab financeTab = new FinanceTab(tabPane);
-        Logic financeParser = logic.setNewParser(new FinanceParser());
-        financeTab.setup(financeParser);
+        Logic financeLogic = logic.setNewParser(new FinanceParser());
+        financeTab.setup(financeLogic);
         financeTabPlaceholder.setContent(financeTab.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

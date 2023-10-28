@@ -15,7 +15,10 @@ import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
 import seedu.address.logic.commands.finance.AddExpenseCommand;
 import seedu.address.logic.commands.finance.DeleteFinanceCommand;
+import seedu.address.logic.commands.finance.FilterClientNameCommand;
+import seedu.address.logic.commands.finance.FilterTimeDueCommand;
 import seedu.address.logic.commands.finance.ListFinanceCommand;
+import seedu.address.logic.commands.finance.SummaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Expense;
@@ -59,7 +62,24 @@ public class FinanceParserTest {
         assertTrue(parser.parseCommand(
                 ListFinanceCommand.COMMAND_WORD + " commission") instanceof ListFinanceCommand);
     }
+    @Test
+    public void parseCommand_filterByClientNameFinance() throws Exception {
+        assertTrue(parser.parseCommand(
+                FilterClientNameCommand.COMMAND_WORD + " Alice") instanceof FilterClientNameCommand);
+    }
 
+    @Test
+    public void parseCommand_filterByTimeDueFinance() throws Exception {
+        String args = " 01-01-2023";
+        assertTrue(parser.parseCommand(
+                FilterTimeDueCommand.COMMAND_WORD + args) instanceof FilterTimeDueCommand);
+    }
+    @Test
+    public void parseCommand_summaryFinance() throws Exception {
+        String args = " John Doe";
+        assertTrue(parser.parseCommand(
+                SummaryCommand.COMMAND_WORD + args) instanceof SummaryCommand);
+    }
     @Test
     public void parseCommand_tabCommand() throws ParseException {
         TabCommand command = (TabCommand) parser.parseCommand(
