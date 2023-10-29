@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.TimeDueBetweenPredicate;
 class FilterTimeDueCommandTest {
+
     @Test
     public void equals() {
         TimeDueBetweenPredicate predicate1 = null;

@@ -36,6 +36,14 @@ class FilterTimeDueCommandParserTest {
         assertParseFailure(parser, args, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterTimeDueCommand.MESSAGE_USAGE));
 
+        // missing start time
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_TIME_START + "now",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTimeDueCommand.MESSAGE_USAGE));
+
+        // missing start time
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_TIME_END + "tomorrow",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTimeDueCommand.MESSAGE_USAGE));
+
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_TIME_START + "now"
                 + PREFIX_TIME_END + "tomorrow", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
