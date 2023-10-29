@@ -46,7 +46,7 @@ class FilterTimeDueCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + " " + PREFIX_TIME_START + "now"
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + " " + PREFIX_TIME_START + "now "
                 + PREFIX_TIME_END + "tomorrow", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterTimeDueCommand.MESSAGE_USAGE));
     }
