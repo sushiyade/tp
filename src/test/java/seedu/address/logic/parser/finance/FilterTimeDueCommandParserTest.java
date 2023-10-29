@@ -2,8 +2,10 @@ package seedu.address.logic.parser.finance;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.DateTimeParser.parseDateTimeDuration;
 
@@ -36,11 +38,11 @@ class FilterTimeDueCommandParserTest {
     }
 
     @Test
-    public void parse_whitespaceArgs_throwsParseException() {
-        String args = "    ";
+    public void parse_nonEmptyPreamble_throwsParseException() {
         String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterTimeDueCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, () -> parser.parse(args), expectedErrorMessage);
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_TIME_START + "now"
+                + PREFIX_TIME_END + "tomorrow", expectedErrorMessage);
     }
 
 }
