@@ -1,31 +1,37 @@
 package seedu.address.logic.commands.finance;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.finance.TimeDueBeforePredicate;
+import seedu.address.model.finance.TimeDueBetweenPredicate;
 
 
 /**
- * Finds and lists all finances in FreelanceBuddy whose timeDue is before the specified time.
+ * Finds and lists all finances in FreelanceBuddy whose timeDue is between the specified start and end times.
  */
 public class FilterTimeDueCommand extends Command {
 
     public static final String COMMAND_WORD = "filter-t";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all Finances whose creation or due time"
-            + " is before "
-            + "the specified time given as input and displays them as a list with index numbers.\n"
-            + "Parameters: Time \n"
-            + "Example: " + COMMAND_WORD + " 23-11-2023";
+            + " is between "
+            + "the specified times given as input and displays them as a list with index numbers.\n"
+            + "Parameters: "
+            + PREFIX_TIME_START + "START_TIME "
+            + PREFIX_TIME_END + "END_TIME "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_TIME_START + "23-11-2023 "
+            + PREFIX_TIME_END + "29-11-2023";
 
-    private final TimeDueBeforePredicate timePredicate;
+    private final TimeDueBetweenPredicate timePredicate;
 
-    public FilterTimeDueCommand(TimeDueBeforePredicate timePredicate) {
+    public FilterTimeDueCommand(TimeDueBetweenPredicate timePredicate) {
         this.timePredicate = timePredicate;
     }
 

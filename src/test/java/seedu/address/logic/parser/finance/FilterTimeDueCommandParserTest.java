@@ -2,8 +2,10 @@ package seedu.address.logic.parser.finance;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.DateTimeParser.parseDateTimeInstance;
+import static seedu.address.logic.parser.DateTimeParser.parseDateTimeDuration;
 
 import java.time.LocalDateTime;
 
@@ -11,17 +13,18 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.finance.FilterTimeDueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.finance.TimeDueBeforePredicate;
+import seedu.address.model.finance.TimeDueBetweenPredicate;
 class FilterTimeDueCommandParserTest {
     private FilterTimeDueCommandParser parser = new FilterTimeDueCommandParser();
 
     @Test
     public void parse_validArgs_returnsFilterTimeDueCommand() throws ParseException {
-        String args = " 01-01-2023";
-        String hourMinArgs = args.trim() + " 00:00";
-        LocalDateTime dateTime = parseDateTimeInstance(hourMinArgs);
-        FilterTimeDueCommand expectedCommand = new FilterTimeDueCommand((new TimeDueBeforePredicate(dateTime)));
-        assertParseSuccess(parser, args, expectedCommand);
+        String startArg = "Jan 19";
+        String endArg = "Jan 20";
+        LocalDateTime[] timeRange = parseDateTimeDuration(startArg, endArg);
+        FilterTimeDueCommand expectedCommand = new FilterTimeDueCommand((new TimeDueBetweenPredicate(timeRange)));
+        assertParseSuccess(parser, " " + PREFIX_TIME_START + startArg + " " + PREFIX_TIME_END + endArg,
+                expectedCommand);
     }
 
     @Test
