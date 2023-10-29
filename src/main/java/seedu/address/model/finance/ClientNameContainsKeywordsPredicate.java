@@ -19,6 +19,9 @@ public class ClientNameContainsKeywordsPredicate implements Predicate<Finance> {
 
     @Override
     public boolean test(Finance finance) {
+        if (finance.getClient() == null) {
+            return false;
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(finance.getClient()
                         .getName().toString(), keyword));
