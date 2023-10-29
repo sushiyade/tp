@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.CommissionBuilder.DEFAULT_EXPENSE_TIME_DUE;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -37,7 +39,7 @@ public class ExpenseBuilder {
                 new Address(""), new Company(""), new TelegramName(""));
         this.amount = new Amount(DEFAULT_AMOUNT);
         this.description = new Description(DEFAULT_DESCRIPTION);
-        this.timeDue = new TimeDue(LocalDateTime.parse(DEFAULT_TIME_DUE, DATE_TIME_FORMATTER));
+        this.timeDue = new TimeDue(LocalDateTime.parse(DEFAULT_EXPENSE_TIME_DUE, DATE_TIME_FORMATTER));
     }
 
     /**
