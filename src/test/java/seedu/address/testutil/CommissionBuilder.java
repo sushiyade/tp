@@ -22,7 +22,8 @@ public class CommissionBuilder {
     public static final String DEFAULT_AMOUNT = "900";
     public static final String DEFAULT_DESCRIPTION = "Test Description";
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_TIME_DUE = "27-10-2023 01:57";
+    public static final String DEFAULT_COMMISSION_TIME_DUE = "27-10-2023 01:57";
+    public static final String DEFAULT_EXPENSE_TIME_DUE = "30-10-2023 01:57";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private Person client;
     private Amount amount;
@@ -37,7 +38,7 @@ public class CommissionBuilder {
                 new Address(""), new Company(""), new TelegramName(""));
         this.amount = new Amount(DEFAULT_AMOUNT);
         this.description = new Description(DEFAULT_DESCRIPTION);
-        this.timeDue = new TimeDue(LocalDateTime.parse(DEFAULT_TIME_DUE, DATE_TIME_FORMATTER));
+        this.timeDue = new TimeDue(LocalDateTime.parse(DEFAULT_COMMISSION_TIME_DUE, DATE_TIME_FORMATTER));
     }
 
     /**

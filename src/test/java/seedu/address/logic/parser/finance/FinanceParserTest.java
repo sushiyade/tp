@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -70,7 +72,7 @@ public class FinanceParserTest {
 
     @Test
     public void parseCommand_filterByTimeDueFinance() throws Exception {
-        String args = " 01-01-2023";
+        String args = " " + PREFIX_TIME_START + "01-01-2023 " + PREFIX_TIME_END + "02-01-2023";
         assertTrue(parser.parseCommand(
                 FilterTimeDueCommand.COMMAND_WORD + args) instanceof FilterTimeDueCommand);
     }
