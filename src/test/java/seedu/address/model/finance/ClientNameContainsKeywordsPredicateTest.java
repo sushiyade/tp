@@ -6,8 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +22,13 @@ class ClientNameContainsKeywordsPredicateTest {
         assertNotNull(predicate);
     }
 
+    @Test
+    public void testTest_financeClientIsNull_returnsFalse() {
+        Finance finance = new Expense(new Amount("10"), null, new Description(""), new TimeDue(LocalDateTime.now()));
+        List<String> keywords = Arrays.asList("John");
+        ClientNameContainsKeywordsPredicate predicate = new ClientNameContainsKeywordsPredicate(keywords);
+        assertFalse(predicate.test(finance));
+    }
     @Test
     public void testTest_clientNameContainsKeyword_returnsTrue() {
         Finance finance = new CommissionBuilder().withPerson("John Doe").build();
@@ -34,6 +43,14 @@ class ClientNameContainsKeywordsPredicateTest {
         List<String> keywords = Arrays.asList("Adam");
         ClientNameContainsKeywordsPredicate predicate = new ClientNameContainsKeywordsPredicate(keywords);
         assertFalse(predicate.test(finance));
+    }
+
+    @Test
+    public void testEquals_differentPredicateType_returnsFalse() {
+        List<String> keywords = Arrays.asList("keyword1", "keyword2");
+        ClientNameContainsKeywordsPredicate predicate1 = new ClientNameContainsKeywordsPredicate(keywords);
+        Predicate<Finance> predicate2 = null;
+        assertNotEquals(predicate1, predicate2);
     }
 
     @Test
