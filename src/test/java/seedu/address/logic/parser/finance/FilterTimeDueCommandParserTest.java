@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.finance;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
@@ -30,19 +29,18 @@ class FilterTimeDueCommandParserTest {
     }
 
     @Test
-    public void parse_emptyArgs_throwsParseException() {
+    public void parse_invalid_throwsParseException() {
         String args = "";
-        String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterTimeDueCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, () -> parser.parse(args), expectedErrorMessage);
-    }
 
-    @Test
-    public void parse_nonEmptyPreamble_throwsParseException() {
-        String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterTimeDueCommand.MESSAGE_USAGE);
+        // empty string
+        assertParseFailure(parser, args, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterTimeDueCommand.MESSAGE_USAGE));
+
+        // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_TIME_START + "now"
-                + PREFIX_TIME_END + "tomorrow", expectedErrorMessage);
+                + PREFIX_TIME_END + "tomorrow", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterTimeDueCommand.MESSAGE_USAGE));
+
     }
 
 }

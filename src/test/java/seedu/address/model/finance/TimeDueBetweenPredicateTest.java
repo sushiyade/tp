@@ -54,13 +54,18 @@ class TimeDueBetweenPredicateTest {
     @Test
     public void testTest_timeDueOutsidePredicate_returnsFalse() {
         Finance finance = new CommissionBuilder().withTimeDue("01-01-2024 11:00").build();
-        TimeDueBetweenPredicate predicate = null;
+        TimeDueBetweenPredicate beforeRange = null;
+        TimeDueBetweenPredicate afterRange = null;
         try {
-            predicate = new TimeDueBetweenPredicate(parseDateTimeDuration("02-01-2024 10:00", "03-01-2024 10:00"));
+            beforeRange = new TimeDueBetweenPredicate(parseDateTimeDuration("01-01-2024 08:00", "01-01-2024 09:00"));
+            afterRange = new TimeDueBetweenPredicate(parseDateTimeDuration("02-01-2024 10:00", "03-01-2024 10:00"));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        assertFalse(predicate.test(finance));
+        // before
+        assertFalse(beforeRange.test(finance));
+        // after
+        assertFalse(afterRange.test(finance));
     }
 
     @Test
@@ -82,8 +87,13 @@ class TimeDueBetweenPredicateTest {
             TimeDueBetweenPredicate predicate1 = new TimeDueBetweenPredicate(
                     parseDateTimeDuration("01-01-2024 10:00", "01-01-2024 11:00"));
             TimeDueBetweenPredicate predicate2 = new TimeDueBetweenPredicate(
-                    parseDateTimeDuration("01-01-2024 11:00", "01-01-2024 12:00"));
+                    parseDateTimeDuration("01-01-2024 10:00", "01-01-2024 12:00"));
+            TimeDueBetweenPredicate predicate3 = new TimeDueBetweenPredicate(
+                    parseDateTimeDuration("01-01-2024 09:00", "01-01-2024 11:00"));
+            // same start, different end
             assertNotEquals(predicate1, predicate2);
+            // different start, same end
+            assertNotEquals(predicate1, predicate3);
         } catch (ParseException e) {
             fail();
         }
