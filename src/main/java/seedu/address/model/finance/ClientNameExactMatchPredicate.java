@@ -18,6 +18,9 @@ public class ClientNameExactMatchPredicate implements Predicate<Finance> {
 
     @Override
     public boolean test(Finance finance) {
+        if (finance.getClient() == null) {
+            return false;
+        }
         return clientName.equals(finance.getClient().getName().toString());
     }
     @Override
