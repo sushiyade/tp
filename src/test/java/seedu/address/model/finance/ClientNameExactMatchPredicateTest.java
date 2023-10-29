@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.CommissionBuilder;
@@ -15,6 +17,14 @@ class ClientNameExactMatchPredicateTest {
         String clientName = "John Doe";
         ClientNameExactMatchPredicate predicate = new ClientNameExactMatchPredicate(clientName);
         assertNotNull(predicate);
+    }
+
+    @Test
+    public void testTest_financeClientIsNull_returnsFalse() {
+        Finance finance = new Expense(new Amount("10"), null, new Description(""), new TimeDue(LocalDateTime.now()));
+        String clientName = "John Doe";
+        ClientNameExactMatchPredicate predicate = new ClientNameExactMatchPredicate(clientName);
+        assertFalse(predicate.test(finance));
     }
 
     @Test
