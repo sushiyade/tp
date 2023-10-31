@@ -398,6 +398,64 @@ Format: `delete INDEX`
 |                                                      | `delete 150` <br>while there are less than 150 entries in the events list | <span style ='color: darkred; text-decoration: underline'>Unknown entry</span><br> The given entry must be in the event list                                  |
 
 > **RESULT:** Event `{NAME}` deleted successfully!
+ 
+#### Filtering events: Events Tab → filter `filter-n`
+
+Filters events in the **Events** tab.
+
+Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
+
+* Using partial keywords will be matched. e.g. me will match meeting
+> `mee` → 3. meeting with David
+* The search is case-insensitive. e.g. `mEe` will match `Meeting`
+> `mEe` → 4. Meeting
+* Events matching at least one keyword will be returned (i.e. OR search). e.g. meeting will return Meeting, 
+Meeting with David
+> `Teenis Meet` → 3. Meeting
+>             4. Tennis with David
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+> `Meeting Business` → 3. Business Meeting
+>             4. meeting with David
+* Only the `NAME` of the Event is searched
+
+| Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
+|:---------:|---------------------------|------------------------------------|
+| `KEYWORD` | Text up to 256 characters | #g#Meeting##<br>##3##              |
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
+|   `filter-n meeting`   |    `find aeroplane`    | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in events with 'aeroplane'      |
+|  `filter-n bUsiness`   |         `find`         | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+
+
+#### Filtering events: Events Tab → filter `filter-t`
+
+Filters events in the **Events** tab.
+
+Format: `filter-t TIMESTAMP`
+
+* Using partial keywords will be matched. e.g. me will match meeting
+> `mee` → 3. meeting with David
+* The search is case-insensitive. e.g. `mEe` will match `Meeting`
+> `mEe` → 4. Meeting
+* Events matching at least one keyword will be returned (i.e. OR search). e.g. meeting will return Meeting,
+  Meeting with David
+> `Teenis Meet` → 3. Meeting
+>             4. Tennis with David
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans 
+> `Meeting Business` → 3. Business Meeting
+>             4. meeting with David
+* Only the `NAME` of the Event is searched
+
+| Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
+|:---------:|---------------------------|------------------------------------|
+| `KEYWORD` | Text up to 256 characters | #g#Meeting##<br>##3##              |
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
+|  `filter-t next week`  |  `filter-t my phone`   | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in events with 'aeroplane'      |
+| `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -536,6 +594,8 @@ Commands that applies to ALL tabs
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add event Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                               |
+| **Filter** | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                                  |
+| **Filter** | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                               |
 
 ### Finance Tab
 
