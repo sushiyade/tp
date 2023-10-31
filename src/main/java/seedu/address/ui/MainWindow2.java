@@ -132,7 +132,8 @@ public class MainWindow2 extends UiPart<Stage> {
         financeTabPlaceholder.setContent(financeTab.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        StatusBarFooter statusBarFooter2 = new StatusBarFooter(logic.getEventsBookFilePath());
+        statusbarPlaceholder.getChildren().addAll(statusBarFooter.getRoot(), statusBarFooter2.getRoot());
     }
 
     /**

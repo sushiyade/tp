@@ -45,6 +45,16 @@ public interface Logic {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the user prefs' events book file path.
+     */
+    Path getEventsBookFilePath();
+
+    /**
+     * Returns the user prefs' finance book file path.
+     */
+    Path getFinancesBookFilePath();
+
+    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();

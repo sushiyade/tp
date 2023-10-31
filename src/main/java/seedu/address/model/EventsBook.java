@@ -73,6 +73,18 @@ public class EventsBook implements ReadOnlyEventsBook {
         events.add(event);
     }
 
+
+    /**
+     * Replaces the given event {@code target} in the list with {@code editedEvent}.
+     * {@code target} must exist in the events book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the events book.
+     */
+    public void setEvent(Event target, Event editedPerson) {
+        requireNonNull(editedPerson);
+
+        events.setEvent(target, editedPerson);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
