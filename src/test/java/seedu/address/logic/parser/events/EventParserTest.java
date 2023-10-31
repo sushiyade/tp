@@ -19,6 +19,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.events.AddEventCommand;
 import seedu.address.logic.commands.events.DeleteEventCommand;
+import seedu.address.logic.commands.events.FilterEventClientCommand;
 import seedu.address.logic.commands.events.FilterEventNameCommand;
 import seedu.address.logic.commands.events.FilterEventTimeCommand;
 import seedu.address.logic.commands.events.ListEventCommand;
@@ -28,6 +29,7 @@ import seedu.address.model.FinancesBook;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventClientContainsKeywordsPredicate;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.event.EventTimeBeforePredicate;
 import seedu.address.testutil.EventBuilder;
@@ -76,6 +78,16 @@ public class EventParserTest {
                 FilterEventNameCommand.COMMAND_WORD + " " + args);
 
         assertEquals(new FilterEventNameCommand(new EventNameContainsKeywordsPredicate(
+                Arrays.asList(args.split("\\s+")))), command);
+    }
+
+    @Test
+    public void parseCommand_filterEventClient() throws Exception {
+        String args = "keyword1 keyword2";
+        FilterEventClientCommand command = (FilterEventClientCommand) parser.parseCommand(
+                FilterEventClientCommand.COMMAND_WORD + " " + args);
+
+        assertEquals(new FilterEventClientCommand(new EventClientContainsKeywordsPredicate(
                 Arrays.asList(args.split("\\s+")))), command);
     }
 
