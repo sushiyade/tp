@@ -67,7 +67,7 @@ public class Messages {
      */
     public static String format(Event event) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(event.getName())
+        builder.append(event.getEventName())
                 .append("; Start: ")
                 .append(event.getTimeStart())
                 .append("; End: ")

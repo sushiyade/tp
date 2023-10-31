@@ -28,7 +28,7 @@ public class JsonAdaptedEventTest {
     private static final String INVALID_LOCATION = TEXT_MORE_THAN_256;
     private static final String INVALID_DESCRIPTION = TEXT_MORE_THAN_256;
 
-    private static final String VALID_NAME = EVENT5.getName().toString();
+    private static final String VALID_NAME = EVENT5.getEventName().toString();
     private static final String VALID_START_TIME = EVENT5.getTimeStart().toString();
     private static final String VALID_END_TIME = EVENT5.getTimeEnd().toString();
     private static final String VALID_LOCATION = EVENT5.getLocation().toString();

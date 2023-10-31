@@ -32,7 +32,7 @@ public class EventUtil {
      */
     public static String getEventDetails(Event event) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + event.getName().value + " ");
+        sb.append(PREFIX_NAME + event.getEventName().value + " ");
         sb.append(PREFIX_TIME_START + event.getTimeStart().getValue() + " ");
         sb.append(PREFIX_TIME_END + event.getTimeEnd().getValue() + " ");
         event.getClients().stream().forEach(

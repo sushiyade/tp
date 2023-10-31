@@ -44,7 +44,7 @@ public class EventTest {
         Event event = new Event(new EventName("Sample Event"),
                 new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
                 new Location(""), new EventDescription(""));
-        assertEquals("Sample Event", event.getName().toString());
+        assertEquals("Sample Event", event.getEventName().toString());
         assertEquals(new TimeStart(startTime), event.getTimeStart());
         assertEquals(new TimeEnd(endTime), event.getTimeEnd());
     }

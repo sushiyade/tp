@@ -614,7 +614,10 @@ public class DateTimeParser {
         }
     }
 
-    private static boolean isValidDateTimeFormat(String dateTime) {
+    /**
+     * Checks if {@code dateTime} string is a valid date time format.
+     */
+    public static boolean isValidDateTimeFormat(String dateTime) {
         try {
             parseDateTimeInstance(dateTime);
             return true;
