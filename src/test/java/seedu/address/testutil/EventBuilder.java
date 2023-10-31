@@ -1,11 +1,10 @@
 package seedu.address.testutil;
 
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
@@ -14,18 +13,15 @@ import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
 import seedu.address.model.person.Person;
 
-
-
 /**
  * A utility class to help with building Event objects.
  */
 public class EventBuilder {
     public static final String DEFAULT_NAME = "Meeting with Alice";
-    public static final String DEFAULT_TIME_START = "23-09-2023 09:00";
-    public static final String DEFAULT_TIME_END = "23-09-2023 10:00";
+    public static final String DEFAULT_TIME_START = "next year 09:00";
+    public static final String DEFAULT_TIME_END = "next year 10:00";
     public static final String DEFAULT_EVENT_DESCRIPTION = "Discussion";
     public static final String DEFAULT_LOCATION = "Conference Room";
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     private EventName eventName;
     private TimeStart timeStart;
@@ -39,8 +35,12 @@ public class EventBuilder {
      */
     public EventBuilder() {
         eventName = new EventName(DEFAULT_NAME);
-        timeStart = new TimeStart(LocalDateTime.parse(DEFAULT_TIME_START, DATE_TIME_FORMATTER));
-        timeEnd = new TimeEnd(LocalDateTime.parse(DEFAULT_TIME_END, DATE_TIME_FORMATTER));
+        try {
+            timeStart = new TimeStart(DateTimeParser.parseDateTimeInstance(DEFAULT_TIME_START));
+            timeEnd = new TimeEnd(DateTimeParser.parseDateTimeInstance(DEFAULT_TIME_END));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         eventDescription = new EventDescription(DEFAULT_EVENT_DESCRIPTION);
         location = new Location(DEFAULT_LOCATION);
     }
@@ -54,10 +54,7 @@ public class EventBuilder {
         timeEnd = eventToCopy.getTimeEnd();
         eventDescription = eventToCopy.getDescription();
         location = eventToCopy.getLocation();
-        if (!eventToCopy.getClients().isEmpty()) {
-            clients = eventToCopy.getClients();
-        }
-        //clients = eventToCopy.getClients().isEmpty() ? null : eventToCopy.getClients();
+        clients = eventToCopy.getClients().isEmpty() ? new HashSet<>() : eventToCopy.getClients();
     }
 
     /**
@@ -72,7 +69,11 @@ public class EventBuilder {
      * Sets the {@code TimeStart} of the {@code Event} that we are building.
      */
     public EventBuilder withTimeStart(String timeStart) {
-        this.timeStart = new TimeStart(LocalDateTime.parse(timeStart, DATE_TIME_FORMATTER));
+        try {
+            this.timeStart = new TimeStart(DateTimeParser.parseDateTimeInstance(timeStart));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
@@ -80,7 +81,11 @@ public class EventBuilder {
      * Sets the {@code TimeEnd} of the {@code Event} that we are building.
      */
     public EventBuilder withTimeEnd(String timeEnd) {
-        this.timeEnd = new TimeEnd(LocalDateTime.parse(timeEnd, DATE_TIME_FORMATTER));
+        try {
+            this.timeEnd = new TimeEnd(DateTimeParser.parseDateTimeInstance(timeEnd));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
@@ -103,8 +108,8 @@ public class EventBuilder {
     /**
      * Sets the {@code Person} associated with the {@code Event} that we are building.
      */
-    public EventBuilder withClient(Set<Person> clients) {
-        this.clients = clients;
+    public EventBuilder withClient(Person person) {
+        this.clients.add(person);
         return this;
     }
 

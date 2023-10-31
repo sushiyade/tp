@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 
 import java.util.Arrays;
-import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +30,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.event.EventTimeBeforePredicate;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.EventUtil;
 import seedu.address.testutil.PersonBuilder;
@@ -44,9 +42,7 @@ public class EventParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        HashSet<Person> clients = new HashSet<>();
-        clients.add(ALICE);
-        Event event = new EventBuilder().withClient(clients).build();
+        Event event = new EventBuilder().withClient(ALICE).build();
         model.addPerson(new PersonBuilder().withName("Alice").build());
         AddEventCommand command = (AddEventCommand) parser.parseCommand(EventUtil.getAddCommand(event));
 
