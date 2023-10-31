@@ -126,6 +126,7 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+
     /**
      * Returns true if an event with the same identity as {@code event} exists in the events book.
      */
@@ -135,6 +136,13 @@ public interface Model {
      * Adds the given {@code event}.
      */
     void addEvent(Event event);
+
+    /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the events book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the events book.
+     */
+    void setEvent(Event target, Event editedPerson);
 
     /**
      * Checks if client tagged exists.

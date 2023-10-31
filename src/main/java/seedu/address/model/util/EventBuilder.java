@@ -49,7 +49,7 @@ public class EventBuilder {
      * Initializes the EventBuilder with the data of {@code eventToCopy}.
      */
     public EventBuilder(Event eventToCopy) {
-        eventName = eventToCopy.getName();
+        eventName = eventToCopy.getEventName();
         timeStart = eventToCopy.getTimeStart();
         timeEnd = eventToCopy.getTimeEnd();
         eventDescription = eventToCopy.getDescription();
