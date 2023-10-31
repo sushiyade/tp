@@ -54,7 +54,7 @@ public class EventBuilder {
         timeEnd = eventToCopy.getTimeEnd();
         eventDescription = eventToCopy.getDescription();
         location = eventToCopy.getLocation();
-        clients = eventToCopy.getClients().isEmpty() ? null : eventToCopy.getClients();
+        clients = eventToCopy.getClients().isEmpty() ? new HashSet<>() : eventToCopy.getClients();
     }
 
     /**
