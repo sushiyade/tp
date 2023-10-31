@@ -456,6 +456,16 @@ Format: `filter-t TIMESTAMP`
 |  `filter-t next week`  |  `filter-t my phone`   | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in events with 'aeroplane'      |
 | `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
 
+#### Listing all events: Events Tab → `list-all`
+
+Shows a list of all events, past and future, in the **Events** tab.
+
+Format: `list-all`
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>           |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
+|       `list-all`       |        `list-a`        | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -590,12 +600,14 @@ Commands that applies to ALL tabs
 
 ### Events Tab
 
-| Action     | Format, Examples                                                                                                                                                                  |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add event Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                               |
-| **Filter** | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                                  |
-| **Filter** | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                               |
+| Action       | Format, Examples                                                                                                                                                                  |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add event Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                               |
+| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                                  |
+| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                               |
+| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                                   |
+
 
 ### Finance Tab
 
