@@ -32,7 +32,6 @@ public class FinanceCard extends UiPart<Region> {
         super(FXML);
         this.finance = finance;
         id.setText(displayedIndex + ". ");
-        amount.setText(finance.getAmount().value);
         timeDue.setText(finance.getTimeDue().value);
         if (finance.getClient() != null) {
             client.setText(finance.getClient().getName().fullName);
@@ -42,9 +41,13 @@ public class FinanceCard extends UiPart<Region> {
         description.setText(finance.getDescription().value);
         boolean isCommission = finance instanceof Commission;
         if (isCommission) {
-            cardPane.setStyle("-fx-background-color: #6c937a; -fx-background-radius: 0.5em;");
+            //cardPane.setStyle("-fx-background-color: #6c937a; -fx-background-radius: 0.5em;");
+            amount.setText("+ " + finance.getAmount().value);
+            amount.setStyle("-fx-text-fill: #18A827;");
         } else {
-            cardPane.setStyle("-fx-background-color: #b14e4e; -fx-background-radius: 0.5em;");
+            //cardPane.setStyle("-fx-background-color: #b14e4e; -fx-background-radius: 0.5em;");
+            amount.setText("- " + finance.getAmount().value);
+            amount.setStyle("-fx-text-fill: #D04127;");
         }
     }
 }

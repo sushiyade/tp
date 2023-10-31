@@ -26,7 +26,7 @@
                 </Label>
                 <Label fx:id="client" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="amount" styleClass="cell_small_label" text="\$amount" />
+            <Label fx:id="amount" text="\$amount" />
             <Label fx:id="timeDue" styleClass="cell_small_label" text="\$timeDue" />
             <Label fx:id="description" styleClass="cell_small_label" text="HELLO \$description"/>
         </VBox>
