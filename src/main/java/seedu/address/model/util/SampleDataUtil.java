@@ -105,7 +105,7 @@ public class SampleDataUtil {
                             new Company(""),
                             new TelegramName("")
                     ),
-                    new Description(""),
+                    new Description("Chatbot"),
                     new TimeDue(LocalDateTime.now())
             ),
             new Expense(

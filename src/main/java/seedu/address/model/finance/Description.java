@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
-            "Descriptions can take any values up to 256 characters";
+            "Descriptions can take any values up to 256 characters and should not be blank.";
     public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{0,256}$";
     public final String value;
     /**
@@ -17,6 +17,9 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
+        if (description.trim().equals("")) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
         this.value = description;
     }
     /**
