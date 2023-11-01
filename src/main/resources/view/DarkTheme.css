@@ -166,7 +166,8 @@
 }
 
 .result-display .scroll-pane {
-    -fx-background-color: transparent;
+    -fx-background-radius: 0.2em;
+    -fx-background-color: #3B3854;
 }
 
 .result-display .scroll-pane .viewport{
@@ -412,8 +413,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: #3B3854;
-    -fx-background-radius: 0.5em;
+    -fx-background-radius: 0em;
+    -fx-background-color: transparent;
 }
 
 
