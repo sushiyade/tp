@@ -204,6 +204,27 @@ public interface Model {
 
     void deleteFinance(Finance financeToDelete);
 
+    /**
+     * Returns true if a finance with the same identity as {@code finance} exists in the finance book.
+     */
+    boolean hasFinance(Finance toAdd);
+
     ObservableList<Finance> getFinanceList();
+
+    /**
+     * Replaces the given expense {@code target} with {@code editedExpense}.
+     * {@code target} must exist in the finance book.
+     * The expense identity of {@code editedExpense} must not be the same as
+     * another existing expense in the finance book.
+     */
+    void setExpense(Expense target, Expense editedExpense);
+
+    /**
+     * Replaces the given commission {@code target} with {@code editedCommission}.
+     * {@code target} must exist in the finance book.
+     * The commission identity of {@code editedCommission} must not be the same as
+     * another existing commission in the finance book.
+     */
+    void setCommission(Commission target, Commission editedCommission);
 
 }

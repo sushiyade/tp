@@ -6,6 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.event.Event;
+import seedu.address.model.finance.Commission;
+import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.finance.UniqueFinanceList;
 
@@ -34,6 +37,29 @@ public class FinancesBook implements ReadOnlyFinancesBook {
         this();
         resetData(toBeCopied);
     }
+
+    /**
+     * Replaces the given expense {@code target} in the list with {@code editedExpense}.
+     * {@code target} must exist in the finance book.
+     * The event identity of {@code editedExpense} must not be the same as another existing expense in the finance book.
+     */
+    public void setExpense(Expense target, Expense editedExpense) {
+        requireNonNull(editedExpense);
+
+        finances.setExpense(target, editedExpense);
+    }
+
+    /**
+     * Replaces the given commission {@code target} in the list with {@code editedCommission}.
+     * {@code target} must exist in the finance book.
+     * The event identity of {@code editedCommission} must not be the same as another existing commision in the finance book.
+     */
+    public void setCommission(Commission target, Commission editedCommission) {
+        requireNonNull(editedCommission);
+
+        finances.setCommission(target, editedCommission);
+    }
+
 
     //// list overwrite operations
 
@@ -67,6 +93,13 @@ public class FinancesBook implements ReadOnlyFinancesBook {
 
     public void addFinance(Finance finance) {
         finances.add(finance);
+    }
+    /**
+     * Returns true if a finance with the same identity as {@code finance} exists in the finance book.
+     */
+    public boolean hasFinance(Finance finance) {
+        requireNonNull(finance);
+        return finances.contains(finance);
     }
 
     public void removeFinance(Finance target) {
