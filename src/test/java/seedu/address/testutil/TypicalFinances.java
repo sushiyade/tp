@@ -16,7 +16,7 @@ public class TypicalFinances {
     public static final Commission COMMISSION_TEN_FROM_T = new CommissionBuilder()
             .withAmount("10")
             .withPerson("T")
-            .withDescription("")
+            .withDescription("Test commission")
             .build();
     public static final Commission COMMISSION_TWENTY_FROM_H = new CommissionBuilder()
             .withAmount("20")
@@ -27,7 +27,7 @@ public class TypicalFinances {
     public static final Expense EXPENSE_TWENTY_TO_G = new ExpenseBuilder()
             .withAmount("20")
             .withPerson("G")
-            .withDescription("")
+            .withDescription("Test commission")
             .build();
     public static final Expense EXPENSE_THIRTY_TO_K = new ExpenseBuilder()
             .withAmount("30")

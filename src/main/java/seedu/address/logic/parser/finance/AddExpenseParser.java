@@ -32,7 +32,7 @@ public class AddExpenseParser implements Parser<AddExpenseCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION, PREFIX_TIME_DUE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT)
+        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExpenseCommand.MESSAGE_USAGE));
         }
@@ -42,7 +42,7 @@ public class AddExpenseParser implements Parser<AddExpenseCommand> {
         if (argMultimap.getValue(PREFIX_CLIENT).isPresent()) {
             client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get());
         }
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         LocalDateTime dateTime = DateTimeParser.parseDateTimeInstance(argMultimap.getValue(PREFIX_TIME_DUE)
                 .orElse("now"));
 
