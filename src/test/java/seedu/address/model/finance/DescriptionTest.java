@@ -11,6 +11,12 @@ public class DescriptionTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Description(null));
     }
+
+    @Test
+    public void constructor_emptyString_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Description(""));
+    }
+
     @Test
     public void isValidDescription() {
         // null description
@@ -26,8 +32,9 @@ public class DescriptionTest {
                 + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")); // 257 characters
 
         assertFalse(Description.isValidDescription(" ")); // whitespace
+        assertFalse(Description.isValidDescription("")); // blank
+
         //valid description
-        assertTrue(Description.isValidDescription("")); // blank
         assertTrue(Description.isValidDescription("Test description 123")); // alphanumeric only
     }
 
