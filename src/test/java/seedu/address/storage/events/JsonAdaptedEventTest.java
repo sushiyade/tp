@@ -14,11 +14,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
-import seedu.address.model.finance.Description;
 import seedu.address.storage.JsonAdaptedPerson;
 
 public class JsonAdaptedEventTest {
@@ -113,7 +113,7 @@ public class JsonAdaptedEventTest {
         JsonAdaptedEvent event =
                 new JsonAdaptedEvent(VALID_NAME, VALID_START_TIME, VALID_END_TIME, VALID_LOCATION,
                         INVALID_DESCRIPTION, VALID_CLIENTS);
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
+        String expectedMessage = EventDescription.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 }

@@ -21,7 +21,12 @@ class ClientNameExactMatchPredicateTest {
 
     @Test
     public void testTest_financeClientIsNull_returnsFalse() {
-        Finance finance = new Expense(new Amount("10"), null, new Description(""), new TimeDue(LocalDateTime.now()));
+        Finance finance = new Expense(
+                new Amount("10"),
+                null,
+                new Description("Test"),
+                new TimeDue(LocalDateTime.now())
+        );
         String clientName = "John Doe";
         ClientNameExactMatchPredicate predicate = new ClientNameExactMatchPredicate(clientName);
         assertFalse(predicate.test(finance));

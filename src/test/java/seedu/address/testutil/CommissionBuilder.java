@@ -51,9 +51,12 @@ public class CommissionBuilder {
 
     /**
      * Sets the {@code Description} of the {@code Commission} that we are building.
+     * No changes if the description is an empty string.
      */
     public CommissionBuilder withDescription(String description) {
-        this.description = new Description(description);
+        if (!description.trim().equals("")) {
+            this.description = new Description(description);
+        }
         return this;
     }
 
