@@ -85,9 +85,16 @@ public class EditEventCommand extends Command {
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
-        Event editedEvent = null;
+        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
+        Set<Person> clients = editedEvent.getClients();
+        boolean hasValidClients = clients.stream().allMatch(model::isValidClient);
+        if (!hasValidClients) {
+            throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
+        } else {
+            Set<Person> validClients = model.getAllMatchedClients(clients);
+            editedEvent.setMatchedClientInstance(validClients);
+        }
 
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);

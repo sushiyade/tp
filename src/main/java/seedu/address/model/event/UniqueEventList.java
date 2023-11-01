@@ -10,11 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of Finances that does not allow nulls.
- *
  * Supports a minimal set of list operations.
  */
 public class UniqueEventList implements Iterable<Event> {
@@ -40,7 +38,7 @@ public class UniqueEventList implements Iterable<Event> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new EventNotFoundException();
         }
 
         if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {

@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteFinanceCommand object
  */
-public class DeleteFinanceParser implements Parser<DeleteFinanceCommand> {
+public class DeleteFinanceCommandParser implements Parser<DeleteFinanceCommand> {
     @Override
     public DeleteFinanceCommand parse(String userInput) throws ParseException {
         try {

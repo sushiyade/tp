@@ -18,6 +18,7 @@ import seedu.address.model.event.TimeStart;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.FinanceListType;
+import seedu.address.model.finance.TimeDue;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -187,6 +188,20 @@ public class ParserUtil {
             throw new ParseException(DateTimeParser.INVALID_DATETIME_FORMAT);
         }
         return new TimeEnd(trimmedTimeEnd);
+    }
+
+    /**
+     * Parses a {@code String timeDue} into an {@code TimeDue}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code timeDue} is invalid.
+     */
+    public static TimeDue parseTimeDue(String timeDue) throws ParseException {
+        String trimmedTimeDue = timeDue.trim();
+        if (!DateTimeParser.isValidDateTimeFormat(trimmedTimeDue)) {
+            throw new ParseException(DateTimeParser.INVALID_DATETIME_FORMAT);
+        }
+        return new TimeDue(trimmedTimeDue);
     }
 
     /**

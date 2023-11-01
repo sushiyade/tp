@@ -64,7 +64,7 @@ public class AddExpenseCommand extends Command {
         }
 
         AddExpenseCommand otherAddExpenseCommand = (AddExpenseCommand) other;
-        return toAdd.haveSameFields(otherAddExpenseCommand.toAdd);
+        return toAdd.isSameExpense(otherAddExpenseCommand.toAdd);
     }
     @Override
     public String toString() {

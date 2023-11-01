@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.finance.DeleteFinanceCommand;
 
 
-class DeleteFinanceParserTest {
-    private final DeleteFinanceParser parser = new DeleteFinanceParser();
+class DeleteFinanceCommandParserTest {
+    private final DeleteFinanceCommandParser parser = new DeleteFinanceCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteFinanceCommand() {

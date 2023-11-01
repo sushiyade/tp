@@ -26,7 +26,7 @@ import seedu.address.model.person.Person;
 /**
  * Parses input arguments and creates a new AddExpenseCommand object
  */
-public class AddExpenseParser implements Parser<AddExpenseCommand> {
+public class AddExpenseCommandParser implements Parser<AddExpenseCommand> {
     @Override
     public AddExpenseCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

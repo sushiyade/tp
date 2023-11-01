@@ -15,6 +15,7 @@ import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
 import seedu.address.logic.commands.finance.AddExpenseCommand;
 import seedu.address.logic.commands.finance.DeleteFinanceCommand;
+import seedu.address.logic.commands.finance.EditFinanceCommand;
 import seedu.address.logic.commands.finance.FilterClientNameCommand;
 import seedu.address.logic.commands.finance.FilterTimeDueCommand;
 import seedu.address.logic.commands.finance.ListFinanceCommand;
@@ -56,13 +57,15 @@ public class FinanceParser extends ParseCommandHandlers {
 
         switch (commandWord) {
         case AddCommissionCommand.COMMAND_WORD:
-            return new AddCommissionParser().parse(arguments);
+            return new AddCommissionCommandParser().parse(arguments);
+        case AddExpenseCommand.COMMAND_WORD:
+            return new AddExpenseCommandParser().parse(arguments);
         case DeleteFinanceCommand.COMMAND_WORD:
-            return new DeleteFinanceParser().parse(arguments);
+            return new DeleteFinanceCommandParser().parse(arguments);
         case ListFinanceCommand.COMMAND_WORD:
             return new ListFinanceParser().parse(arguments);
-        case AddExpenseCommand.COMMAND_WORD:
-            return new AddExpenseParser().parse(arguments);
+        case EditFinanceCommand.COMMAND_WORD:
+            return new EditFinanceCommandParser().parse(arguments);
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
