@@ -201,7 +201,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Deleting a contact with index: Contact Tab → `delete`
+#### Deleting a contact with index: Contacts Tab → `delete`
 
 Deletes the specified contact from the **Contacts** tab using index.
 
@@ -233,7 +233,7 @@ Format: `delete INDEX`
 > Unsuccessful deletion → The person index provided is invalid
 
 
-#### Editing a person : `edit`
+#### Editing a person : Contacts Tab → `edit`
 
 Edits an existing person in the address book.
 
@@ -251,11 +251,15 @@ Examples:
 
 
 
-### Clearing all entries : `clear`
+#### Clearing all entries : Contacts Tab → `clear`
 
-Clears all entries from the address book.
+Clears all entries from the **Finance** Tab.
 
 Format: `clear`
+
+<box type="warning" seamless>
+    This is a <b>destructive</b> command that <b>deletes all your data</b>!
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -450,7 +454,7 @@ Format: `list-all`
 
 #### Listing finances: Finance Tab -> `list`
 
-Shows a list of all finances/commissions/expenses in the **Finance Tab**.
+Shows a list of all **finances/commissions/expenses** in the **Finance** Tab.
 
 Format: `list [TYPE]`
 
@@ -490,12 +494,12 @@ Format: `add-c d/DESCRIPTION a/AMOUNT c/CLIENT [t/TIME]`
     </ul>
 </box>
 
-|   Parameter   | Format                                    | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
-|:-------------:|:------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `DESCRIPTION` | Text up to 256 characters                 | #g#This is an example description##</br>                                                                                                                          |
-|   `AMOUNT`    | Positive numbers up to two decimal points | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)## |
-|   `CLIENT`    | Text up to 256 characters                 | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                         |
-|   `[TIME]`    | Refer to accepted DateTime formats        |                                                                                                                                                                   |
+|   Parameter   | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
+|:-------------:|:-------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `DESCRIPTION` | Text up to 256 characters, cannot be empty | #g#This is an example description##</br>                                                                                                                          |
+|   `AMOUNT`    | Positive numbers up to two decimal points  | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)## |
+|   `CLIENT`    | Text up to 256 characters                  | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                         |
+|   `[TIME]`    | Refer to accepted DateTime formats         |                                                                                                                                                                   |
 
 |                #g#Positive Examples##                |                                      #r#Negative Examples##                                       | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                            |
 |:----------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -523,12 +527,12 @@ Format: `add-e d/DESCRIPTION a/AMOUNT [c/CLIENT] [t/TIME]`
     </ul>
 </box>
 
-|   Parameter   | Format                                    | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
-|:-------------:|:------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `DESCRIPTION` | Text up to 256 characters                 | #g#This is an example description##</br>                                                                                                                          |
-|   `AMOUNT`    | Positive numbers up to two decimal points | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)## |
-|  `[CLIENT]`   | Text up to 256 characters                 | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                         |
-|   `[TIME]`    | Refer to accepted DateTime formats        |                                                                                                                                                                   |
+|   Parameter   | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
+|:-------------:|:-------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `DESCRIPTION` | Text up to 256 characters, cannot be empty | #g#This is an example description##</br>                                                                                                                          |
+|   `AMOUNT`    | Positive numbers up to two decimal points  | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)## |
+|  `[CLIENT]`   | Text up to 256 characters                  | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                         |
+|   `[TIME]`    | Refer to accepted DateTime formats         |                                                                                                                                                                   |
 
 |         #g#Positive Examples##          |                                     #r#Negative Examples##                                     | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                            |
 |:---------------------------------------:|:----------------------------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -538,7 +542,7 @@ Format: `add-e d/DESCRIPTION a/AMOUNT [c/CLIENT] [t/TIME]`
 
 > **RESULT:** New expense added: `{Description}` of `{Amount}` added successfully!
 
-#### Filtering Finance Entries by Client → `filter-c`
+#### Filtering finance entries by Client → `filter-c`
 
 Filters the **finances** in the **Finance** tab by the given client.
 Finds all clients whose names contain any of the specified keywords (case-insensitive) and
@@ -558,14 +562,14 @@ Format: `filter-c KEYWORD [MORE KEYWORDS]`
 |:---------:|:--------------------------|:-----------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#John Doe##</br>#g#3##</br>      |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                    |
-|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------------------|
-|  `filter-c John Doe`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Please add a Keyword to filter with   |
-|    `filter-c JOhN`     |                        |                                                                                                                           |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                   |
+|:----------------------:|:----------------------:|--------------------------------------------------------------------------------------------------------------------------|
+|  `filter-c John Doe`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> A keyword is required for the filter |
+|    `filter-c JOhN`     |                        |                                                                                                                          |
 
 > **RESULT:** Shows the finances with client names that match the given KEYWORD(s)
 
-#### Filtering Finance Entries by Time Frame → `filter-t`
+#### Filtering finance entries by Time Frame → `filter-t`
 
 Filters the **finances** in the **Finance** tab by the given time frame.
 Finds all finances whose time due falls within the given time frame. 
@@ -617,7 +621,7 @@ Format: `summary CLIENT`
 <box type="warning" seamless>
     <ul>
         <li>
-            The client name must match the exact client name that is found in the contacts tab. </br>
+            The client name must match the exact client name that is found in the Contacts tab. </br>
             This is to prevent any ambiguity in the generated summary.
         </li>
     </ul>
@@ -629,9 +633,9 @@ Format: `summary CLIENT`
 |:---------:|:--------------------------|:----------------------------------------|
 | `CLIENT`  | Text up to 256 characters | #g#John Doe##</br>#g#3##</br>           |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                        |
-|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------|
-|   `summary John Doe`   |       `summary`        | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Missing client name       |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                           |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------------|
+|   `summary John Doe`   |       `summary`        | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Missing client name                          |
 |                        |     `summary John`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts |
 
 > **RESULT:** Returns a summary of the finances with regard to the given client
@@ -659,7 +663,7 @@ Format: `delete INDEX`
 
 | Parameter |                           Format                           |                                                                       Examples (#g#Valid##/#r#Invalid##)                                                                       |
 |:---------:|:----------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  `INDEX`  |  Positive integer within range of indices in finance list  |  Assuming that there are 10 entries</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)##  |
+|  `INDEX`  |  Positive integer within range of indices in finance list  | (Assuming that there are 10 entries)</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)## |
 
 | #g#Positive Examples## |                         #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
 |:----------------------:|:-----------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -668,6 +672,16 @@ Format: `delete INDEX`
 |                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
 
 > **RESULT:** Finance entry at `INDEX` deleted successfully!
+
+#### Clearing all entries : Finance Tab → `clear`
+
+Clears all entries from the **Finance** tab.
+
+Format: `clear`
+
+<box type="warning" seamless>
+    This is a <b>destructive</b> command that <b>deletes all your data</b>!
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
