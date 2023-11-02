@@ -46,7 +46,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramName;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
-public class EditContactParserTest {
+public class EditContactCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE);

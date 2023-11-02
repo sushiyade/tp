@@ -9,7 +9,8 @@ import java.util.Objects;
  * Represents a Person's description in the address book.
  */
 public class EventDescription {
-    public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values up to 256 characters";
+    public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values up to 256 characters"
+            + " and should not be blank.";
     public static final String VALIDATION_REGEX = "^(?!\\s)[\\s\\S]{0,256}$";
     public final String value;
     /**

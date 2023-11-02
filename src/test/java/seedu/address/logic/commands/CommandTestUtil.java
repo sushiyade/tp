@@ -23,11 +23,14 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.contacts.EditContactCommand;
+import seedu.address.logic.commands.events.EditEventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -112,8 +115,8 @@ public class CommandTestUtil {
     public static final String CLIENT_DESC_BIRTHDAY = " " + PREFIX_CLIENT + VALID_NAME_AMY;
     public static final String INVALID_EVENT_NAME_DESC = " " + PREFIX_NAME + " Meeting&";
     // ' ' not allowed to be starting character in names
-    public static final String INVALID_TIME_START_DESC = " " + PREFIX_TIME_START + "01-01-2023 14:00";
-    public static final String INVALID_TIME_END_DESC = " " + PREFIX_TIME_END + "01-01-2023 12:00";
+    public static final String INVALID_TIME_START_DESC = " " + PREFIX_TIME_START + "001-01/2023 25:00";
+    public static final String INVALID_TIME_END_DESC = " " + PREFIX_TIME_END + "001-01/2023 12:00";
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION + " Meeting Room";
     // ' ' not allowed to be starting character in location
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " Meeting for discussion";
@@ -141,6 +144,25 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withCompany(
                         VALID_COMPANY_BOB).withTelegramName(VALID_TELEGRAM_NAME_BOB)
                 .build();
+    }
+
+    public static final EditEventCommand.EditEventDescriptor DESC_BIRTHDAY;
+    public static final EditEventCommand.EditEventDescriptor DESC_MEETING;
+
+    static {
+        try {
+            DESC_BIRTHDAY = new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_BIRTHDAY)
+                    .withTimeStart(VALID_TIME_START_BIRTHDAY).withTimeEnd(VALID_TIME_END_BIRTHDAY)
+                    .withLocation(VALID_LOCATION_BIRTHDAY).withDescription(VALID_DESCRIPTION_BIRTHDAY)
+                    .build();
+
+            DESC_MEETING = new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_MEETING)
+                    .withTimeStart(VALID_TIME_START_MEETING).withTimeEnd(VALID_TIME_END_MEETING)
+                    .withLocation(VALID_LOCATION_MEETING).withDescription(VALID_DESCRIPTION_MEETING)
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

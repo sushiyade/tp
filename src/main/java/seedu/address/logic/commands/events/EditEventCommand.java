@@ -169,7 +169,7 @@ public class EditEventCommand extends Command {
         private EventName eventName;
         private TimeStart timeStart;
         private TimeEnd timeEnd;
-        private Set<Person> clients = new HashSet<>();
+        private Set<Person> clients;
         private Location location;
         private EventDescription eventDescription;
 

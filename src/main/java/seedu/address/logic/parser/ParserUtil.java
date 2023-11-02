@@ -171,7 +171,7 @@ public class ParserUtil {
     public static TimeStart parseTimeStart(String timeStart) throws ParseException {
         String trimmedTimeStart = timeStart.trim();
         if (!DateTimeParser.isValidDateTimeFormat(trimmedTimeStart)) {
-            throw new ParseException(DateTimeParser.INVALID_DATETIME_FORMAT);
+            throw new ParseException(TimeStart.MESSAGE_CONSTRAINTS);
         }
         return new TimeStart(trimmedTimeStart);
     }
@@ -185,7 +185,7 @@ public class ParserUtil {
     public static TimeEnd parseTimeEnd(String timeEnd) throws ParseException {
         String trimmedTimeEnd = timeEnd.trim();
         if (!DateTimeParser.isValidDateTimeFormat(trimmedTimeEnd)) {
-            throw new ParseException(DateTimeParser.INVALID_DATETIME_FORMAT);
+            throw new ParseException(TimeEnd.MESSAGE_CONSTRAINTS);
         }
         return new TimeEnd(trimmedTimeEnd);
     }
