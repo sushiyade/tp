@@ -19,23 +19,29 @@ import seedu.address.model.person.Person;
  * Adds an Expense to the app.
  */
 public class AddExpenseCommand extends Command {
+
     public static final String COMMAND_WORD = "add-e";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds an expense to the Finance Tab. "
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds an expense to the Finance Tab.\n"
             + "Parameters: "
-            + PREFIX_AMOUNT + "AMOUNT "
-            + PREFIX_CLIENT + "CLIENT "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_TIME_DUE + "TIME DUE "
+            + PREFIX_AMOUNT + "AMOUNT ["
+            + PREFIX_CLIENT + "CLIENT] ["
+            + PREFIX_TIME_DUE + "TIME]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_AMOUNT + "1000 "
+            + PREFIX_DESCRIPTION + "Lunch "
+            + PREFIX_AMOUNT + "50 "
             + PREFIX_CLIENT + "John Doe "
-            + PREFIX_DESCRIPTION + "Wedding photo shoot "
-            + PREFIX_TIME_DUE + "tomorrow";
+            + PREFIX_TIME_DUE + "today ";
+
     public static final String MESSAGE_SUCCESS = "New expense added: %1$s";
+
     private Expense toAdd;
+
     public AddExpenseCommand(Expense expense) {
         this.toAdd = expense;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -66,10 +72,12 @@ public class AddExpenseCommand extends Command {
         AddExpenseCommand otherAddExpenseCommand = (AddExpenseCommand) other;
         return toAdd.haveSameFields(otherAddExpenseCommand.toAdd);
     }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("toAdd", toAdd)
                 .toString();
     }
+
 }

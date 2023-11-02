@@ -21,7 +21,6 @@ public class Messages {
     public static final String MESSAGE_EVENTS_LISTED_OVERVIEW = "%1$d events listed!";
     public static final String MESSAGE_FINANCE_LISTED_OVERVIEW = "%1$d finances listed!";
 
-
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_DATE_TIME = "Invalid date-time duration! "
