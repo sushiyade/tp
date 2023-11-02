@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -119,6 +120,11 @@ public class Person {
                 .add("telegramName", telegramName)
                 .toString();
     }
+
+    public static String getAllClientNames(HashSet<Person> clients) {
+        return clients.stream().map(client -> client.getName().toString()).reduce((a, b) -> a + ", " + b).get();
+    }
+
     /**
      * Creates and returns a dummy Person object with the specified client name.
      * This method is useful for generating placeholder data with a given name.

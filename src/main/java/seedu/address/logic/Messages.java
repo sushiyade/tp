@@ -47,17 +47,17 @@ public class Messages {
      */
     public static String formatPerson(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(person.getName().fullName)
                 .append("; Phone: ")
-                .append(person.getPhone())
+                .append(person.getPhone().value)
                 .append("; Email: ")
-                .append(person.getEmail())
+                .append(person.getEmail().value)
                 .append("; Address: ")
-                .append(person.getAddress())
+                .append(person.getAddress().value)
                 .append("; Company: ")
-                .append(person.getCompany())
+                .append(person.getCompany().value)
                 .append("; TelegramName: ")
-                .append(person.getTelegramName());
+                .append(person.getTelegramName().value);
         return builder.toString();
     }
 
