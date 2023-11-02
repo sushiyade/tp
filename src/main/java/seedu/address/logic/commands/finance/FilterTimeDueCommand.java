@@ -24,7 +24,7 @@ public class FilterTimeDueCommand extends Command {
             + "the specified times given as input and displays them as a list with index numbers.\n"
             + "Parameters: "
             + PREFIX_TIME_START + "START_TIME "
-            + PREFIX_TIME_END + "END_TIME "
+            + PREFIX_TIME_END + "END_TIME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TIME_START + "23-11-2023 "
             + PREFIX_TIME_END + "29-11-2023";

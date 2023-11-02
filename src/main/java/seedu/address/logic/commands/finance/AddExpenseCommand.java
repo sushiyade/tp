@@ -22,17 +22,17 @@ public class AddExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "add-e";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds an expense to the Finance Tab. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds an expense to the Finance Tab.\n"
             + "Parameters: "
-            + PREFIX_AMOUNT + "AMOUNT "
-            + PREFIX_CLIENT + "CLIENT "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_TIME_DUE + "TIME DUE "
+            + PREFIX_AMOUNT + "AMOUNT ["
+            + PREFIX_CLIENT + "CLIENT] ["
+            + PREFIX_TIME_DUE + "TIME]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_AMOUNT + "1000 "
+            + PREFIX_DESCRIPTION + "Lunch "
+            + PREFIX_AMOUNT + "50 "
             + PREFIX_CLIENT + "John Doe "
-            + PREFIX_DESCRIPTION + "Wedding photo shoot "
-            + PREFIX_TIME_DUE + "tomorrow";
+            + PREFIX_TIME_DUE + "today ";
 
     public static final String MESSAGE_SUCCESS = "New expense added: %1$s";
 

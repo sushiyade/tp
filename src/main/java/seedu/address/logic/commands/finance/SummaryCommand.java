@@ -20,7 +20,7 @@ public class SummaryCommand extends Command {
     public static final String COMMAND_WORD = "summary";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Provides a summary of a client's "
-            + "commissions and expenses \n"
+            + "commissions and expenses\n"
             + "Parameters: CLIENT\n"
             + "Example: " + COMMAND_WORD + " John Doe";
 
