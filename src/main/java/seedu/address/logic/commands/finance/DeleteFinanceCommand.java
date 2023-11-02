@@ -16,6 +16,7 @@ import seedu.address.model.finance.Finance;
  * Deletes a Finance identified using its displayed index.
  */
 public class DeleteFinanceCommand extends Command {
+
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -23,7 +24,7 @@ public class DeleteFinanceCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_FINANCE_SUCCESS = "Deleted Entry: %1$s";
+    public static final String MESSAGE_DELETE_FINANCE_SUCCESS = "Deleted finance entry: %1$s";
 
     private final Index targetIndex;
 
@@ -61,4 +62,5 @@ public class DeleteFinanceCommand extends Command {
         DeleteFinanceCommand otherDeleteFinanceCommand = (DeleteFinanceCommand) other;
         return targetIndex.equals(otherDeleteFinanceCommand.targetIndex);
     }
+
 }

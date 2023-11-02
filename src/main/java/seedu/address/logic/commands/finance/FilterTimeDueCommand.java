@@ -13,7 +13,7 @@ import seedu.address.model.finance.TimeDueBetweenPredicate;
 
 
 /**
- * Finds and lists all finances in FreelanceBuddy whose timeDue is between the specified start and end times.
+ * Finds and lists all finances in Finance Tab whose timeDue is between the specified start and end times.
  */
 public class FilterTimeDueCommand extends Command {
 
@@ -64,4 +64,5 @@ public class FilterTimeDueCommand extends Command {
                 .add("predicate", timePredicate)
                 .toString();
     }
+
 }

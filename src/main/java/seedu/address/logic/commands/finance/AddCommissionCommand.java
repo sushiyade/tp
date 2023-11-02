@@ -19,7 +19,9 @@ import seedu.address.model.person.Person;
  * Adds a Commission to the app.
  */
 public class AddCommissionCommand extends Command {
+
     public static final String COMMAND_WORD = "add-c";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds a commission to the Finance Tab. "
             + "Parameters: "
             + PREFIX_AMOUNT + "AMOUNT "
@@ -31,11 +33,15 @@ public class AddCommissionCommand extends Command {
             + PREFIX_CLIENT + "John Doe "
             + PREFIX_DESCRIPTION + "Wedding photo shoot "
             + PREFIX_TIME_DUE + "tomorrow";
+
     public static final String MESSAGE_SUCCESS = "New commission added: %1$s";
+
     private Commission toAdd;
+
     public AddCommissionCommand(Commission commission) {
         this.toAdd = commission;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -65,10 +71,12 @@ public class AddCommissionCommand extends Command {
         AddCommissionCommand otherAddCommissionCommand = (AddCommissionCommand) other;
         return toAdd.haveSameFields(otherAddCommissionCommand.toAdd);
     }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("toAdd", toAdd)
                 .toString();
     }
+
 }

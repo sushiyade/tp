@@ -23,7 +23,9 @@ public class SummaryCommand extends Command {
             + "commissions and expenses \n"
             + "Parameters: CLIENT\n"
             + "Example: " + COMMAND_WORD + " John Doe";
+
     private final ClientNameExactMatchPredicate namePredicate;
+
     public SummaryCommand(ClientNameExactMatchPredicate namePredicate) {
         this.namePredicate = namePredicate;
     }
@@ -39,6 +41,7 @@ public class SummaryCommand extends Command {
         ObservableList<Finance> filteredFinances = model.getFilteredFinanceList();
         return new CommandResult(FinanceSummary.generateSummary(filteredFinances, clientName));
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -53,4 +56,5 @@ public class SummaryCommand extends Command {
         SummaryCommand otherSummaryCommandCommand = (SummaryCommand) other;
         return namePredicate.equals(otherSummaryCommandCommand.namePredicate);
     }
+
 }

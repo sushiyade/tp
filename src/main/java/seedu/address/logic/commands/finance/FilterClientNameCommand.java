@@ -27,8 +27,6 @@ public class FilterClientNameCommand extends Command {
         this.namePredicate = namePredicate;
     }
 
-
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -58,4 +56,5 @@ public class FilterClientNameCommand extends Command {
                 .add("predicate", namePredicate)
                 .toString();
     }
+
 }

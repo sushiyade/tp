@@ -61,4 +61,5 @@ public class ListFinanceCommand extends Command {
         ListFinanceCommand otherListFinanceCommand = (ListFinanceCommand) other;
         return type.equals(otherListFinanceCommand.type);
     }
+
 }
