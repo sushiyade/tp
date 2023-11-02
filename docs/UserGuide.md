@@ -249,8 +249,6 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears the telegram name.
 
-
-
 #### Clearing all entries : Contacts Tab → `clear`
 
 Clears all entries from the **Finance** Tab.
@@ -584,7 +582,6 @@ Format: `filter-t s/START_TIME e/END_TIME`
     </ul>
 </box>
 
-
 |           Parameter           | Format                                 | Examples (#g#Valid##/#r#Invalid##)  |
 |:-----------------------------:|:---------------------------------------|:------------------------------------|
 | `s/START_TIME` / `e/TIME_END` | Refer to the accepted DateTime formats |                                     |
@@ -595,7 +592,6 @@ Format: `filter-t s/START_TIME e/END_TIME`
 | `filter-t s/2023-10-10 e/2023-10-11` |          `filter-t`          | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Missing start and end time                       |
 
 > **RESULT:** Shows a list of finances that fall within the given time frame
-
 
 #### Generating a finance summary of a client → `summary`
 
@@ -627,8 +623,6 @@ Format: `summary CLIENT`
     </ul>
 </box>
 
-
-
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##)      |
 |:---------:|:--------------------------|:----------------------------------------|
 | `CLIENT`  | Text up to 256 characters | #g#John Doe##</br>#g#3##</br>           |
@@ -639,7 +633,6 @@ Format: `summary CLIENT`
 |                        |     `summary John`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts |
 
 > **RESULT:** Returns a summary of the finances with regard to the given client
-
 
 #### Deleting a Finance Entry: Finance Tab → `delete`
 
@@ -672,6 +665,22 @@ Format: `delete INDEX`
 |                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
 
 > **RESULT:** Finance entry at `INDEX` deleted successfully!
+
+#### Editing a person : Finance Tab → `edit`
+
+Edits an **existing finance entry** in the **Finance** tab.
+
+Format: `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]`
+
+* Edits the finance entry at the specified `INDEX`. The index refers to the index number shown in the displayed finance list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
+
+Examples:
+
+* `edit 1 d/Photoshop subscription a/300` Edits the description and amount of the 1st finance entry to be `Photoshop subscription` and `300` respectively.
+* `edit 2 a/500 c/` Given that the 2nd finance entry is an Expense, edits its amount to be `500` and clears the client name.
 
 #### Clearing all entries : Finance Tab → `clear`
 
