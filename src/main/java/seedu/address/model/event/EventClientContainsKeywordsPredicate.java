@@ -3,25 +3,27 @@ package seedu.address.model.event;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 
+
 /**
- * Tests that a {@code Event}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Event}'s {@code Clients} matches any of the keywords given.
  */
-public class EventNameContainsKeywordsPredicate implements Predicate<Event> {
+public class EventClientContainsKeywordsPredicate implements Predicate<Event> {
 
     private final List<String> keywords;
 
-    public EventNameContainsKeywordsPredicate(List<String> keywords) {
+    public EventClientContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Event event) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(event.getEventName().toString(), keyword));
+        return event.getClients().stream()
+                .anyMatch(person -> keywords.stream()
+                        .anyMatch(keyword -> person.getName().contains(keyword))
+                );
     }
 
     @Override
@@ -31,11 +33,11 @@ public class EventNameContainsKeywordsPredicate implements Predicate<Event> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EventNameContainsKeywordsPredicate)) {
+        if (!(other instanceof EventClientContainsKeywordsPredicate)) {
             return false;
         }
-        EventNameContainsKeywordsPredicate otherEventNameContainsKeywordsPredicate =
-                (EventNameContainsKeywordsPredicate) other;
+        EventClientContainsKeywordsPredicate otherEventNameContainsKeywordsPredicate =
+                (EventClientContainsKeywordsPredicate) other;
         return keywords.equals(otherEventNameContainsKeywordsPredicate.keywords);
     }
 

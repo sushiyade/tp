@@ -1,6 +1,6 @@
 package seedu.address.model.event;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 
 /**
- * Represents an Event in the address book.
+ * Represents an Event in the events book.
  * Guarantees: field values are validated, immutable.
  */
 public class Event implements Comparable<Event> {
@@ -34,8 +34,7 @@ public class Event implements Comparable<Event> {
      */
     public Event(EventName eventName, TimeStart timeStart, TimeEnd timeEnd, Set<Person> clients,
                  Location location, EventDescription eventDescription) {
-        requireNonNull(timeStart);
-        requireNonNull(timeEnd);
+        requireAllNonNull(eventName, timeStart, timeEnd);
         this.eventName = eventName;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
@@ -44,7 +43,7 @@ public class Event implements Comparable<Event> {
         this.eventDescription = eventDescription;
     }
 
-    public EventName getName() {
+    public EventName getEventName() {
         return eventName;
     }
 
@@ -68,15 +67,19 @@ public class Event implements Comparable<Event> {
         return eventDescription;
     }
 
+    /**
+     * Replace {@code clients} with set of {@code actualClients} found in the address book.
+     */
     public void setMatchedClientInstance(Set<Person> actualClients) {
         clients = actualClients;
     }
 
     /**
-     * Checks if event name is same to the other event
+     * Checks if both events have the same parameters.
+     * This defines a weaker notion of equality between two events.
      */
-    public boolean haveSameFields(Event other) {
-        boolean isSame = eventName.equals(other.getName());
+    public boolean isSameEvent(Event other) {
+        boolean isSame = eventName.equals(other.getEventName());
         isSame = isSame && timeStart.equals(other.getTimeStart());
         isSame = isSame && timeEnd.equals(other.getTimeEnd());
         isSame = isSame && clients.equals(other.getClients());
@@ -86,7 +89,7 @@ public class Event implements Comparable<Event> {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both events have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -123,10 +126,15 @@ public class Event implements Comparable<Event> {
                 .add("end", timeEnd)
                 .add("clients", clients)
                 .add("location", location)
-                .add("eventdescription", eventDescription)
+                .add("description", eventDescription)
                 .toString();
     }
 
+    /**
+     * Compares {@code Event} objects using the {@code TimeStart} parameter.
+     *
+     * @param o the object to be compared.
+     */
     @Override
     public int compareTo(Event o) {
         if (this.timeStart.isBefore(o.getTimeStart())) {

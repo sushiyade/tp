@@ -88,6 +88,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getEventsBookFilePath() {
+        return model.getEventsFilePath();
+    }
+
+    @Override
+    public Path getFinancesBookFilePath() {
+        return model.getFinanceFilePath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }

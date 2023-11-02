@@ -37,24 +37,22 @@ class AddCommissionParserTest {
     }
     @Test
     public void parse_failure() throws ParseException {
-        Commission expectedCommission = new CommissionBuilder().build();
-
-        String validExcpectedCommissionString = DEFAULT_AMOUNT + CLIENT_DESC_AMY + DEFAULT_DESCRIPTION;
+        String validExpectedCommissionString = DEFAULT_AMOUNT + CLIENT_DESC_AMY + DEFAULT_DESCRIPTION;
         // multiple clients
-        assertParseFailure(parser, CLIENT_DESC_BOB + validExcpectedCommissionString,
+        assertParseFailure(parser, CLIENT_DESC_BOB + validExpectedCommissionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CLIENT));
         // multiple amounts
-        assertParseFailure(parser, DEFAULT_AMOUNT + validExcpectedCommissionString,
+        assertParseFailure(parser, DEFAULT_AMOUNT + validExpectedCommissionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_AMOUNT));
         // multiple descriptions
-        assertParseFailure(parser, DEFAULT_DESCRIPTION + validExcpectedCommissionString,
+        assertParseFailure(parser, DEFAULT_DESCRIPTION + validExpectedCommissionString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
     }
     @Test
     public void parse_optionalFieldsMissing_success() {
         // no description
-        Commission expectedCommission = new CommissionBuilder().withDescription("").build();
-        assertParseSuccess(parser, DEFAULT_AMOUNT + CLIENT_DESC_AMY + DEFAULT_TIME_DUE,
+        Commission expectedCommission = new CommissionBuilder().build();
+        assertParseSuccess(parser, DEFAULT_AMOUNT + CLIENT_DESC_AMY + DEFAULT_TIME_DUE + DEFAULT_DESCRIPTION,
                 new AddCommissionCommand(expectedCommission));
     }
     @Test

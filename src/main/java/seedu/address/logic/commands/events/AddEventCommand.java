@@ -30,12 +30,12 @@ public class AddEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the events book. "
             + "Parameters: "
-            + PREFIX_EVENT_NAME + "EVENTNAME "
-            + PREFIX_TIME_START + "START TIME "
-            + PREFIX_TIME_END + "END TIME "
-            + PREFIX_CLIENT + "CLIENTS \n"
+            + PREFIX_EVENT_NAME + "EVENT_NAME "
+            + PREFIX_TIME_START + "START_TIME "
+            + PREFIX_TIME_END + "END_TIME "
+            + PREFIX_CLIENT + "CLIENTS "
             + PREFIX_LOCATION + "LOCATION "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + "DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT_NAME + "Discuss Deliverables with John "
             + PREFIX_TIME_START + "31-12-2024 12:30 "
@@ -89,7 +89,7 @@ public class AddEventCommand extends Command {
         }
 
         AddEventCommand otherAddCommand = (AddEventCommand) other;
-        return toAdd.haveSameFields(otherAddCommand.toAdd);
+        return toAdd.isSameEvent(otherAddCommand.toAdd);
     }
 
     @Override

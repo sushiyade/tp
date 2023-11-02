@@ -38,6 +38,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean contains(String keyword) {
+        return fullName.contains(keyword);
+    }
 
     @Override
     public String toString() {
@@ -63,5 +66,4 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }

@@ -24,7 +24,6 @@ public class Messages {
     public static final String MESSAGE_EVENTS_LISTED_OVERVIEW = "%1$d events listed!";
     public static final String MESSAGE_FINANCE_LISTED_OVERVIEW = "%1$d finances listed!";
 
-
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_DATE_TIME = "Invalid date-time duration! "
@@ -70,7 +69,7 @@ public class Messages {
      */
     public static String format(Event event) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(event.getName())
+        builder.append(event.getEventName())
                 .append("; Start: ")
                 .append(event.getTimeStart())
                 .append("; End: ")

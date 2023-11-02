@@ -24,7 +24,12 @@ class ClientNameContainsKeywordsPredicateTest {
 
     @Test
     public void testTest_financeClientIsNull_returnsFalse() {
-        Finance finance = new Expense(new Amount("10"), null, new Description(""), new TimeDue(LocalDateTime.now()));
+        Finance finance = new Expense(
+                new Amount("10"),
+                null,
+                new Description("Test"),
+                new TimeDue(LocalDateTime.now())
+        );
         List<String> keywords = Arrays.asList("John");
         ClientNameContainsKeywordsPredicate predicate = new ClientNameContainsKeywordsPredicate(keywords);
         assertFalse(predicate.test(finance));
