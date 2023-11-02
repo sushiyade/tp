@@ -88,7 +88,7 @@ public class Messages {
         builder.append("Amount: ")
                 .append(finance.getAmount())
                 .append("; Client: ")
-                .append(finance.getClient())
+                .append(finance.getClientName())
                 .append("; Description: ")
                 .append(finance.getDescription())
                 .append("; Time: ")
