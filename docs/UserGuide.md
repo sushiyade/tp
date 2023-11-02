@@ -14,6 +14,14 @@ It's your one-stop solution for managing multiple clients, tracking project stat
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Attention to full-time freelancers
+FreelanceBuddy is a powerful and efficient Command Line Interface (CLI) optimized app designed just for you!
+
+It's your one-stop solution for managing multiple clients, tracking project statuses, and staying on top of your financial reports with ease.
+If you are a freelancer who is looking to optimize your workflow, look no further! FreelanceBuddy might just be the buddy for you.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -100,6 +108,8 @@ Switch views to the specific tab
 
 Format: `tab TAB_NAME`
 
+> **RESULT:** Tab will be switched to Contacts on GUI
+
 Acceptable values for `TAB_NAME`:
 
 * `contacts`
@@ -113,8 +123,6 @@ Acceptable values for `TAB_NAME`:
 |     `tab contacts`     |     `tab contact`      | <span style ='color: darkred; text-decoration: underline;'>Unkown parameter<br>Invalid tab name</span> |
 |      `tab events`      |         `tab`          | <span style ='color: darkred; text-decoration: underline;'>Missing parameter</span>                    |
 
-> **RESULT:** Tab will be switched to Contacts on GUI
-
 --------------------------------------------------------------------------------------------------------------------
 
 ### Contact Management
@@ -127,15 +135,21 @@ Shows a list of all contacts in the **Contacts** tab.
 
 Format: `list`
 
+> **RESULT:** Listed all persons
+
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>           |
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
-|         `list`         |         `lsit`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
+|         `list`         |        `list1`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
 
 #### Adding a contact: Contacts Tab → `add`
 
 Adds a new contact into the **Contacts** tab.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]`
+
+> **RESULT:** 
+> 
+> New Person Added:`{NAME}`;`{PHONE}`;`{EMAIL}`;`{ADDRESS}`;`{COMPANY}`;`{TELEGRAM_NAME}`
 
 * <code>[a/ADDRESS]</code> should preferably be the company’s address
   <box type="warning" seamless>
@@ -166,26 +180,27 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 |                 `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name, Phone number, and Email is missing         |
 | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
 
-> **RESULT:** Contact `{NAME}` added successfully!
+#### Finding contact by <code>{NAME}</code>: Contacts Tab → `filter-n`
 
-#### Finding contact: Contacts Tab → `find`
+Shows a list of contacts whose <code>{NAME}</code> contains specific string
 
-Shows a list of contacts that contains specific string
+Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
-Format: `find KEYWORD [MORE_KEYWORDS]...`
+> **RESULT:** (Number of matched) persons listed!
 
 <box type="warning" seamless>
-* Using partial keywords will be matched. e.g. ha will match hans
-> `ha` → 3. Hans Gruber
-* The search is case-insensitive. e.g. `hAnS` will match `Hans`
-> `hAnS` → 4. Hans Gruber
-* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-> `Hans Bo` → 3. Hans Gruber
->             4. Bo Yang
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-> `Bo Hans` → 3. Hans Gruber
->             4. Bo Yang
-* Only the `NAME` of the contact is searched
+
+* The search is by the Contact's <code>{NAME}</code>
+* Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
+* The search is case-insensitive.
+> `aLeX` → 1. Alex Yeoh
+* Contacts name matching at least one keyword will be returned (i.e. OR search)
+> `Alex Roy` → 1. Alex Yeoh
+>             2. Roy Balakrishnan
+* The order of the keywords does not matter.
+> `Roy Alex` → 1. Alex Yeoh
+>             2. Roy Balakrishnan
+
 </box>
 
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
@@ -194,18 +209,56 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|      `find hans`       |      `find Alex`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with 'Alex'         |
-|     `find hAns Bo`     |         `find`         | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+|    `filter-n Alex`     |    `filter-n hans`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with 'hans'         |
+|  `filter-n aLEx rOy`   |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
 
-> **RESULT:** Shows names containing given KEYWORD(s) in Contacts tab
 
 ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+#### Finding contact by <code>{COMPANY}</code>: Contacts Tab → `filter-c`
+
+Shows a list of contacts whose <code>{COMPANY}</code> contains specific string
+
+Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
+
+> **RESULT:** (Number of matched) persons listed!
+
+<box type="warning" seamless>
+
+* The search is by the Contact's <code>{COMPANY}</code>
+* Only full keywords will be matched. e.g. <code>Goo</code> will not match with <code>Google</code>
+* The search is case-insensitive.
+> `gOoGle` → (prints all Contacts with Google as their company)
+> 
+> 1. Alex Yeoh 2. David Li 3. Irfan Ibrahim 4. Roy Balakrishnan 
+* Contacts name matching at least one keyword will be returned (i.e. OR search)
+> `FAPro NUS` → 1. Bernice Yu (FAPro)
+>             2. Charlotte Oliveiro (NUS)
+* The order of the keywords does not matter.
+> `NUS FAPro` → 1. Bernice Yu (FAPro)
+>             2. Charlotte Oliveiro (NUS)
+
+</box>
+
+| Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
+|:---------:|---------------------------|------------------------------------|
+| `KEYWORD` | Text up to 256 characters | #g#Google##<br>#g#3##              |
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
+|   `filter-c google`    |   `filter-c Twitter`   | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No company in contacts with 'Twitter'   |
+| `filter-c gOoGle nUs`  |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+
 
 #### Deleting a contact with index: Contact Tab → `delete`
 
 Deletes the specified contact from the **Contacts** tab using index.
 
 Format: `delete INDEX`
+
+> **RESULT:** 
+> 
+> Deleted Person:`{NAME}`;`{PHONE}`;`{EMAIL}`;`{ADDRESS}`;`{COMPANY}`;`{TELEGRAM_NAME}`
 
 <box type="warning" seamless>
 
@@ -222,15 +275,11 @@ Format: `delete INDEX`
 
 | #g#Positive Examples## |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                   |
 |:----------------------:|:-------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-|       `delete 1`       |         `delete`          | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name is missing                                                   |
+|       `delete 1`       |         `delete`          | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                                                  |
 |       `delete 2`       |       `delete 2000`       | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> Index is out of range, choose an index that is within the contact list |
 |       `delete 3`       | `delete -3`<br>`delete 0` | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> Choose a positive index that is within contact list                    |
 
-> **RESULT:**
-> 
-> Successful deletion → Deleted Person:`{NAME}`;`{PHONE}`;`{EMAIL}`;`{ADDRESS}`;`{COMPANY}`;`{TELEGRAM_NAME}`
-> 
-> Unsuccessful deletion → The person index provided is invalid
+
 
 
 #### Editing a person : `edit`
@@ -239,23 +288,44 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]`
 
+> **RESULT:** 
+> 
+> Edited Person:`{NAME}`;`{PHONE}`;`{EMAIL}`;`{ADDRESS}`;`{COMPANY}`;`{TELEGRAM_NAME}`
+
+
+<box type="warning" seamless>
+
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
+    * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
 
-Examples:
-
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears the telegram name.
+</box>
 
 
+|     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                   |
+|:-----------------:|----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+|     `[NAME]`      | Text up to 256 characters<br>Must be unique                                                                    | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
+| `[PHONE_NUMBER]`  | Numeric values<br>(optional "+" prefix)                                                                        | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
+|     `[EMAIL]`     | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
+|    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
+|    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
+| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
 
-### Clearing all entries : `clear`
+|                                  #g#Positive Examples##                                  |              #r#Negative Examples##              | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                  |
+|:----------------------------------------------------------------------------------------:|:------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------|
+|                              `edit 1 n/‘Chewbaca’ The 1st`                               |           `edit  n/‘Chewbaca’ The 1st`           | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                 |
+|                               `edit 2 n/Betsy Crower t/`                                 | `edit n/‘Chewbaca’ The 1st n/‘Chewbaca’ The 1st` | <span style ='color: darkred; text-decoration: underline'>Multiple Parameters</span><br> Multiple values is not allowed |
+
+
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+> **RESULT:** Address book has been cleared!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -263,21 +333,37 @@ Format: `clear`
 
 To view events tab, either click on the “events” button, or use the command tab `events` to switch tabs.
 
-#### Listing all events: Events Tab → `list`
+#### Listing all upcoming events: Events Tab → `list`
 
-Shows a list of all events in the **Events** tab.
+Shows a list of all **UPCOMING** events in the **Events** tab.
 
 Format: `list`
 
+> **RESULT:** List all upcoming events.
+
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>           |
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
-|         `list`         |         `lsit`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
+|         `list`         |        `list1`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
+
+#### Listing all events: Events Tab → `list-all`
+
+Shows a list of all events, **including past and future**, in the **Events** tab.
+
+Format: `list-all`
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>           |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
+|       `list-all`       |        `list-a`        | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
 
 #### Adding an event: Events Tab → `add`
 
 Adds a new event into the **Events** tab.
 
 Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]`
+
+> **RESULT:**
+>
+> New event added: `{NAME}`; Start: `{TIMESTART}`; End: `{TIMEEND}`; Clients: `{CLIENTS}…​`; Location: `{LOCATION}`; Description: `{DESCRIPTION}`
 
 <box type="warning" seamless>
     <ul>
@@ -311,18 +397,18 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT]…​ [l/LOCATION] [d/DESCR
 |                                 #g#Positive Examples##                                  |                              #r#Negative Examples##                               | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                                 |
 |:---------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | `add ‎ ‎s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name is missing                                                                 |
-|     `add n/Meetup s/2 hrs from now e/3 hrs from now c/Johnny Roger c/David Powell `     |  `add n/Meetup s/21022023130pm  e/21-02-2023230pm c/Johnny Roger c/David Powell`  | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> DateTime Format is incorrect <br> Refer to the accepted DateTime formats |
+|        `add n/Meetup s/2 hrs from now e/3 hrs from now c/Alex Yeoh c/Bernice Yu`        |    `add n/Meetup s/21022023130pm  e/21-02-2023230pm c/Alex Yeoh c/Bernice Yu`     | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> DateTime Format is incorrect <br> Refer to the accepted DateTime formats |
 |                    `add n/Gym s/21-02-2023 13:30 e/21-02-2023 14:30`                    |                 `add n/Gym s/21-02-2023 13:30 e/21-02-2023 12:30`                 | <span style ='color: darkred; text-decoration: underline'>Invalid date-time duration</span><br> The TIMEEND must be after the TIMESTART                                |
-
-> **RESULT:** 
-> 
-> New event added: `{NAME}`; Start: `{TIMESTART}`; End: `{TIMEEND}`; Clients: `{CLIENTS}…​`; Location: `{LOCATION}`; Description: `{DESCRIPTION}`
 
 #### Deleting an event: Events Tab → delete `delete`
 
 Deletes an existing event from the **Events** tab.
 
 Format: `delete INDEX`
+
+> **RESULT:**
+>
+> Deleted Event: `{NAME}`; Start: `{TIMESTART}`; End: `{TIMEEND}`; Clients: `{CLIENTS}…​`; Location: `{LOCATION}`; Description: `{DESCRIPTION}`
 
 <box type="warning" seamless>
     <ul>
@@ -349,29 +435,26 @@ Format: `delete INDEX`
 |                      `delete 4`                      |                               `delete one`                                | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
 |                                                      | `delete 150` <br>while there are less than 150 entries in the events list | <span style ='color: darkred; text-decoration: underline'>Unknown entry</span><br> The given entry must be in the event list                                  |
 
-> **RESULT:** 
-> 
-> Deleted Event: `{NAME}`; Start: `{TIMESTART}`; End: `{TIMEEND}`; Clients: `{CLIENTS}…​`; Location: `{LOCATION}`; Description: `{DESCRIPTION}`
-
 #### Filtering Events by Clients: Events Tab → `filter-c`
 
 Shows a list of events that contains client's names who matches `KEYWORD`.
 
 Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
+> **RESULT:** (Number of matched events) events listed!
+
 <box type="warning" seamless>
 
-* Using partial keywords will be matched. e.g. ha will match clients with hans
-> `ha` → 3. Hans Gruber
-* The search is case-insensitive. e.g. `hAnS` will match `Hans`
-> `hAnS` → 4. Hans Gruber
-* Events with any client matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return events containing both Hans Gruber and Bo Yang
-> `Hans Bo` → 3. Hans Gruber
->             4. Bo Yang
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-> `Bo Hans` → 3. Hans Gruber
->             4. Bo Yang
-* Only the `{CLIENT}…​` in the Event is searched.
+* The search is by the <code>{CLIENT}</code>, see [filter-n in Contacts Tab for more details](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-a-contact-contacts-tab-add)
+* Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
+* The search is case-insensitive.
+> `aLeX` → 1. Alex Yeoh
+* Client's name matching at least one keyword will be returned (i.e. OR search)
+> `Alex Roy` → 1. Alex Yeoh
+>             2. Roy Balakrishnan
+* The order of the keywords does not matter.
+> `Roy Alex` → 1. Alex Yeoh
+>             2. Roy Balakrishnan
 
 </box>
 
@@ -381,10 +464,9 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|    `filter-c hans`     |    `filter-c Allen`    | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No client in events with name 'Allen'   |
-|   `filter-c hAns Bo`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+|    `filter-c alex`     |    `filter-c hans`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No client in events with name 'hans'    |
+|  `filter-c aLeX rOy`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
 
-> **RESULT:** Shows Events with tagged Clients containing given KEYWORD(s) in Events tab
  
 #### Filtering events: Events Tab → filter `filter-n`
 
@@ -392,16 +474,22 @@ Filters events in the **Events** tab.
 
 Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g. `mEetinG` will match `Meeting`
-> `mEeTing` → 4. Meeting
-* Events matching at least one keyword will be returned (i.e. OR search). e.g. meeting will return Meeting, 
-Meeting with David
-> `Tennis Meeting` → 3. Meeting
->             4. Tennis with David
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-> `Meeting Business` → 3. Business Meeting
->             4. meeting with David
-* Only the `NAME` of the Event is searched
+> **RESULT:** (Number of matched events) events listed!
+
+<box type="warning" seamless>
+
+* The search is by the event <code>{NAME}</code>
+* Only full keywords will be matched. e.g. <code>Con</code> will not match with <code>Conference</code>
+* The search is case-insensitive.
+> `cOnFerEnce` → 1. Conference with Bernice
+* Client's name matching at least one keyword will be returned (i.e. OR search)
+> `Conference Meeting` → 1. Conference with Bernice
+>             2. Meeting with Alex
+* The order of the keywords does not matter.
+> `Meeting Conference` → 1. Conference with Bernice
+>             2. Meeting with Alex
+
+</box>
 
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
@@ -410,7 +498,7 @@ Meeting with David
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                        |
 |:----------------------:|:----------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------|
 |   `filter-n meeting`   |   `filter-nmeeting`    | <span style ='color: darkred; text-decoration: underline'>Unknown Command</span><br> KEYWORD should be separated with spaces                  |
-|  `filter-n bUsiness`   |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> There must be at least one KEYWORD to search with |
+| `filter-n cOnFerence`  |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> There must be at least one KEYWORD to search with |
 
 
 #### Filtering events: Events Tab → filter `filter-t`
@@ -419,6 +507,7 @@ Filters events in the **Events** tab.
 
 Format: `filter-t TIMESTAMP`
 
+> **RESULT:** (Number of matched events) events listed!
 
 * All events with <code>TIMESTART</code> before the time specified in <code>TIMESTAMP</code> will be returned. e.g. `tmr noon` will return all 
 events starting before tomorrow noon
@@ -433,16 +522,40 @@ events starting before tomorrow noon
 |  `filter-t next week`  |  `filter-t my phone`   | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format!</span><br> not acceptable datetime format |
 | `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> TIMESTAMP value is required       |
 
-#### Listing all events: Events Tab → `list-all`
+#### Editing an event : `edit`
 
-Shows a list of all events, past and future, in the **Events** tab.
+Edits an existing event in the **Events** tab.
 
-Format: `list-all`
+Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]`
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>           |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
-|       `list-all`       |        `list-a`        | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
+> **RESULT:**
+>
+> Edited Event: `{NAME}`; Start: `{TIMESTART}`; End: `{TIMEEND}`; Clients: `{CLIENTS}…​`; Location: `{LOCATION}`; Description: `{DESCRIPTION}`
 
+
+<box type="warning" seamless>
+
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
+  * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
+  
+  </box>
+
+
+|          Parameter          | Format                                      | Examples (#g#Valid##/#r#Invalid##)                                                  |
+|:---------------------------:|---------------------------------------------|-------------------------------------------------------------------------------------|
+|          `[NAME]`           | Text up to 256 characters<br>Must be unique | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                       |
+| `[TIMESTART]` / `[TIMEEND]` | Refer to the accepted DateTime formats      | #g#31-12-2024 21:30##<br>#g#tmr noon##<br>#r#next fortnight##<br>#r#01092023 1130## |
+|         `[CLIENT]`          | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                            |
+|        `[LOCATION]`         | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##            |
+|       `[DESCRIPTION]`       | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
+
+|                            #g#Positive Examples##                             |        #r#Negative Examples##         | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                                |
+|:-----------------------------------------------------------------------------:|:-------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                               `edit 1 n/Tennis`                               |       `edit s/31-09-2023 19:30`       | <span style ='color: darkred; text-decoration: underline'>Invalid start and end datetime order</span><br> Make sure that start datetime is earlier than end datetime. |
+| `edit 2 n/Meetup s/01-12-2023 2pm e/01-12-2023 3pm c/Alex Yeoh c/Bernice Yu ` | `edit c/Potato Client` | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> Client Not Found <br> Client tagged does not exist in your contacts          |
 
 --------------------------------------------------------------------------------------------------------------------
 
