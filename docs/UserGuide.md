@@ -390,38 +390,139 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 ### Finance Management
 
-#### Receiving Commission: Finance Tab → `add commission`
+#### Receiving Commission: Finance Tab → `add-c`
 
-Adds a **commission** to the **Finance** tab. The commissions will be sorted in chronological order, 
-with the most recent **commission** appearing at the top.
+Adds a **commission** to the **Finance** tab. Once added, the `AMOUNT` will be highlighted in green to indicate that
+the entry is a commission.
 
-Format: `add commission a/AMOUNT n/CLIENT [d/DESCRIPTION]`
+Format: `add-c a/AMOUNT c/CLIENT d/DESCRIPTION [t/TIME DUE]`
 
-<box type="warning" seamless>
+<box type="tip" seamless>
     <ul>
         <li>
-            The <code>a/AMOUNT</code> for a commission is to be strictly positive and is a numeric value of up to two decimal places
+            The <code>DESCRIPTION</code> is used to provide details about the commission
         </li>
         <li>
-            The <code>[d/DESCRIPTION]</code> is optional and can be used to provide details about the commission
+            The default <code>[t/TIME DUE]</code> will be the current date and time
         </li>
     </ul>
 </box>
 
 
-|        Parameter        | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                 |
-|:-----------------------:|:-------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|        `AMOUNT`         | Positive numbers up to two decimal points  | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)##  |
-|        `CLIENT`         | Text up to 256 characters                  | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                          |
-|     `[DESCRIPTION]`     | Text up to 256 characters                  | #g#This is an example eventDescription##</br>                                                                                                                           |
+|   Parameter   | Format                                    | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
+|:-------------:|:------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   `AMOUNT`    | Positive numbers up to two decimal points | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)## |
+|   `CLIENT`    | Text up to 256 characters                 | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                         |
+| `DESCRIPTION` | Text up to 256 characters                 | #g#This is an example description##</br>                                                                                                                          |
+| `[TIME DUE]`  | Refer to accepted DateTime formats        |                                                                                                                                                                   |
 
-|                     #g#Positive Examples##                     |                                #r#Negative Examples##                                | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
-|:--------------------------------------------------------------:|:------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `add commission n/Betsy Crower a/800 d/UI design for NinjaVan` |           `add commission n/Betsy Crower a/$800 d/UI design for NinjaVan`            | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>$800 is not a valid parameter, as AMOUNT only takes positive numeric values  |
-|              `add commission n/Steph Evans a/300`              |                            `add commision n/Betsy Crower`                            | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted               |
-|                                                                | `add commision a/100 n/Betsy Crower`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given client must be in the contact list                               |
+|                #g#Positive Examples##                |                                      #r#Negative Examples##                                       | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                            |
+|:----------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add-c c/John Doe a/800 d/Wedding Photoshoot t/tmr`  |                       `add-c c/John Doe a/$800 d/Wedding Photoshoot t/tmr`                        | <span style ='color: darkred; text-decoration: underline'>Invalid Parameter</span><br>$800 is not a valid parameter, as AMOUNT only takes positive numeric values |
+| `add-c c/Steph Evans a/300 d/UI design for NinjaVan` |                          `add-c c/Steph Evans d/UI design for NinjaVan`                           | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted                   |
+|                                                      | `add-c a/100 c/Betsy Crower d/Wedding Photoshoot`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts                                  |
 
-> **RESULT:** Commission from `{Client}` of `{Amount}` added successfully!
+> **RESULT:** New commission added: `{Client}` of `{Amount}` added successfully!
+
+
+#### Filtering Finance Entries by Client → `filter-c`
+
+Filters the **finances** in the **Finance** tab by the given client.
+Finds all clients whose names contain any of the specified keywords (case-insensitive) and
+displays them as a list with index numbers.
+
+Format: `filter-c KEYWORD [MORE KEYWORDS]`
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            Returns an empty list if there are no clients whose name matches the keyword.
+        </li>
+    </ul>
+</box>
+
+| Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
+|:---------:|:--------------------------|:-----------------------------------|
+| `KEYWORD` | Text up to 256 characters | #g#John Doe##</br>#g#3##</br>      |
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                    |
+|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------------------|
+|  `filter-c John Doe`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Please add a Keyword to filter with   |
+|    `filter-c JOhN`     |                        |                                                                                                                           |
+
+> **RESULT:** Shows the finances with client names that match the given KEYWORD(s)
+
+#### Filtering Finance Entries by Time Frame → `filter-t`
+
+Filters the **finances** in the **Finance** tab by the given time frame.
+Finds all finances whose time due falls within the given time frame. 
+
+Format: `filter-t s/START_TIME e/END_TIME`
+
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            Returns an empty list if there are no finances within the given time frame.
+        </li>
+    </ul>
+</box>
+
+
+|           Parameter           | Format                                 | Examples (#g#Valid##/#r#Invalid##)  |
+|:-----------------------------:|:---------------------------------------|:------------------------------------|
+| `s/START_TIME` / `e/TIME_END` | Refer to the accepted DateTime formats |                                     |
+
+|        #g#Positive Examples##        |    #r#Negative Examples##    | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                               |
+|:------------------------------------:|:----------------------------:|--------------------------------------------------------------------------------------------------------------------------------------|
+|     `filter-t s/tmr e/next week`     | `filter-t s/next week e/tmr` | <span style ='color: darkred; text-decoration: underline'>Invalid date-time duration</span><br> End time cannot be before start time |
+| `filter-t s/2023-10-10 e/2023-10-11` |          `filter-t`          | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Missing start and end time                       |
+
+> **RESULT:** Shows a list of finances that fall within the given time frame
+
+
+#### Generating a finance summary of a client → `summary`
+
+Returns a summary of the **finances** in the **Finance** tab for the given client.</br>
+
+Format: `summary CLIENT`
+
+<box type="tip" seamless>
+    The summary command provides the following details with regard to a client :
+    <ul>
+        <li>
+            Total amount earned or lost
+        </li>
+        <li>
+            Total number of commission and the amount earned from commissions 
+        </li>
+        <li>
+            Total number of expenses and the total cost from expenses
+        </li>
+    </ul>
+</box>
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            The client name must match the exact client name that is found in the contacts tab. </br>
+            This is to prevent any ambiguity in the generated summary.
+        </li>
+    </ul>
+</box>
+
+
+
+| Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##)      |
+|:---------:|:--------------------------|:----------------------------------------|
+| `CLIENT`  | Text up to 256 characters | #g#John Doe##</br>#g#3##</br>           |
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                        |
+|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------|
+|   `summary John Doe`   |       `summary`        | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Missing client name       |
+|                        |     `summary John`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts |
+
+> **RESULT:** Returns a summary of the finances with regard to the given client
 
 
 #### Deleting a Finance Entry: Finance Tab → `delete`
