@@ -39,36 +39,36 @@ public class ListFinanceCommandTest {
     @Test
     public void execute_listShowsAll_listAllShowsAllList() {
         assertCommandSuccess(new ListFinanceCommand(FinanceListType.ALL),
-                model, ListFinanceCommand.MESSAGE_SUCCESS, expectedAllModel);
+                model, ListFinanceCommand.MESSAGE_SUCCESS_FINANCES, expectedAllModel);
         assertEquals(model.getFilteredFinanceList(), expectedAllModel.getFilteredFinanceList());
     }
 
     @Test
     public void execute_listShowsAll_listExpenseShowsExpenseOnlyList() {
         assertCommandSuccess(new ListFinanceCommand(FinanceListType.EXPENSE),
-                model, ListFinanceCommand.MESSAGE_SUCCESS, expectedExpenseOnlyModel);
+                model, ListFinanceCommand.MESSAGE_SUCCESS_EXPENSES, expectedExpenseOnlyModel);
         assertEquals(model.getFilteredFinanceList(), expectedExpenseOnlyModel.getFilteredFinanceList());
     }
 
     @Test
     public void execute_listShowsAll_listCommissionShowsCommissionOnlyList() {
         assertCommandSuccess(new ListFinanceCommand(FinanceListType.COMMISSION),
-                model, ListFinanceCommand.MESSAGE_SUCCESS, expectedCommissionOnlyModel);
+                model, ListFinanceCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
         assertEquals(model.getFilteredFinanceList(), expectedCommissionOnlyModel.getFilteredFinanceList());
     }
 
     @Test
     public void execute_listShowsExpenseOrCommissionOnly_listAllShowsEverything() {
         assertCommandSuccess(new ListFinanceCommand(FinanceListType.EXPENSE),
-                model, ListFinanceCommand.MESSAGE_SUCCESS, expectedExpenseOnlyModel);
+                model, ListFinanceCommand.MESSAGE_SUCCESS_EXPENSES, expectedExpenseOnlyModel);
         assertCommandSuccess(new ListFinanceCommand(FinanceListType.ALL),
-                model, ListFinanceCommand.MESSAGE_SUCCESS, expectedExpenseOnlyModel);
+                model, ListFinanceCommand.MESSAGE_SUCCESS_FINANCES, expectedExpenseOnlyModel);
         assertEquals(model.getFilteredFinanceList(), expectedAllModel.getFilteredFinanceList());
 
         assertCommandSuccess(new ListFinanceCommand(FinanceListType.COMMISSION),
-                model, ListFinanceCommand.MESSAGE_SUCCESS, expectedCommissionOnlyModel);
+                model, ListFinanceCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
         assertCommandSuccess(new ListFinanceCommand(FinanceListType.COMMISSION),
-                model, ListFinanceCommand.MESSAGE_SUCCESS, expectedCommissionOnlyModel);
+                model, ListFinanceCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
         assertEquals(model.getFilteredFinanceList(), expectedCommissionOnlyModel.getFilteredFinanceList());
 
     }

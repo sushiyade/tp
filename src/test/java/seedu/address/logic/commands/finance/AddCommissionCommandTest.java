@@ -109,7 +109,7 @@ public class AddCommissionCommandTest {
         @Override
         public Person getMatchedClient(Person client) {
             for (Person p : personsAdded) {
-                if (p.equals(client)) {
+                if (p.isSamePerson(client)) {
                     return p;
                 }
             }
