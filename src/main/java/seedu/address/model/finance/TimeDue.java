@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Represents the time due of a finance entry in the address book.
  */
 public class TimeDue {
-
+    public static final String MESSAGE_CONSTRAINTS = DateTimeParser.INVALID_DATETIME_FORMAT;
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     public final String value;
 

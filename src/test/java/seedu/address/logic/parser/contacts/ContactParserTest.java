@@ -21,9 +21,11 @@ import seedu.address.logic.commands.contacts.ClearContactCommand;
 import seedu.address.logic.commands.contacts.DeleteContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.contacts.FilterContactCompanyCommand;
 import seedu.address.logic.commands.contacts.FilterContactNameCommand;
 import seedu.address.logic.commands.contacts.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -70,11 +72,19 @@ public class ContactParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_filterByName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FilterContactNameCommand command = (FilterContactNameCommand) parser.parseCommand(
                 FilterContactNameCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterContactNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filterByCompany() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FilterContactCompanyCommand command = (FilterContactCompanyCommand) parser.parseCommand(
+                FilterContactCompanyCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterContactCompanyCommand(new CompanyContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

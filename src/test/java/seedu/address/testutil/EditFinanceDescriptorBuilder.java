@@ -63,7 +63,7 @@ public class EditFinanceDescriptorBuilder {
     /**
      * Sets the {@code Description} of the {@code EditFinanceDescriptor} that we are building.
      */
-    public EditFinanceDescriptorBuilder withLocation(String description) {
+    public EditFinanceDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(new Description(description));
         return this;
     }

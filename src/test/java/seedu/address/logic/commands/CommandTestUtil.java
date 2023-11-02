@@ -125,9 +125,14 @@ public class CommandTestUtil {
     //-------------------------------Finance-----------------------------
     public static final String VALID_DESCRIPTION = "Test Description";
     public static final String VALID_AMOUNT = "900";
+    public static final String VALID_TIME_DUE = "27-10-2023 01:57";
     public static final String DEFAULT_DESCRIPTION = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
     public static final String DEFAULT_AMOUNT = " " + PREFIX_AMOUNT + VALID_AMOUNT;
-    public static final String DEFAULT_TIME_DUE = " " + PREFIX_TIME_DUE + "27-10-2023 01:57";
+    public static final String DEFAULT_TIME_DUE = " " + PREFIX_TIME_DUE + VALID_TIME_DUE;
+
+    public static final String INVALID_AMOUNT = " " + PREFIX_AMOUNT + "not money";
+    public static final String INVALID_TIME_DUE = " " + PREFIX_TIME_DUE + "001-01/2023 25:00";
+    public static final String INVALID_CLIENT = "i am definitely not a client";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
