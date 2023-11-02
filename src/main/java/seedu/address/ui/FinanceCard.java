@@ -32,7 +32,7 @@ public class FinanceCard extends UiPart<Region> {
         super(FXML);
         this.finance = finance;
         id.setText(displayedIndex + ". ");
-        timeDue.setText(finance.getTimeDue().value);
+        timeDue.setText(finance.getTimeDue().toString());
         if (finance.getClient() != null) {
             client.setText(finance.getClient().getName().fullName);
         } else {

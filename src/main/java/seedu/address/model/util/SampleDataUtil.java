@@ -1,10 +1,10 @@
 package seedu.address.model.util;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.EventsBook;
 import seedu.address.model.FinancesBook;
@@ -30,15 +30,23 @@ import seedu.address.model.person.TelegramName;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    private static final Person ALEX_PERSON = new Person(new Name("Alex Yeoh"),
+            new Phone("87438807"),
+            new Email("alexyeoh@example.com"),
+            new Address("Blk 30 Geylang Street 29, #06-40"),
+            new Company("Google"), new TelegramName("@AlexYeoh"));
+
+    private static final Person BERNICE_PERSON = new Person(new Name("Bernice Yu"),
+            new Phone("99272758"),
+            new Email("berniceyu@example.com"),
+            new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Company("FAPro"),
+            new TelegramName("@BerniceYu"));
+
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                new Company("Google"), new TelegramName("@AlexYeoh")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new Company("FAPro"),
-                new TelegramName("@BerniceYu")),
+            ALEX_PERSON, BERNICE_PERSON,
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address(""),
                     new Company("NUS"),
@@ -83,53 +91,36 @@ public class SampleDataUtil {
     }
 
     public static Finance[] getSampleFinances() {
-        return new Finance[] {
-            new Commission(
-                    new Amount("300"),
-                    new Person(
-                            new Name("Bob"),
-                            new Phone("00000"),
-                            new Email("filler@email.com"),
-                            new Address(""),
-                            new Company(""),
-                            new TelegramName("")
-                    ),
-                    new Description("Artwork"),
-                    new TimeDue(LocalDateTime.now())
-            ),
-            new Commission(
-                    new Amount("100"),
-                    new Person(
-                            new Name("Alice"),
-                            new Phone("00000"),
-                            new Email("filler@email.com"),
-                            new Address(""),
-                            new Company(""),
-                            new TelegramName("")
-                    ),
-                    new Description("Chatbot"),
-                    new TimeDue(LocalDateTime.now())
-            ),
-            new Expense(
-                    new Amount("1200"),
-                    new Person(
-                            new Name("Adobe"),
-                            new Phone("00000"),
-                            new Email("filler@email.com"),
-                            new Address(""),
-                            new Company(""),
-                            new TelegramName("")
-                    ),
-                    new Description("License"),
-                    new TimeDue(LocalDateTime.now())
-            ),
-            new Expense(
-                    new Amount("500"),
-                    null,
-                    new Description("Party"),
-                    new TimeDue(LocalDateTime.now())
-            )
-        };
+        try {
+            return new Finance[] {
+                new Commission(
+                        new Amount("50"),
+                        ALEX_PERSON,
+                        new Description("Artwork"),
+                        new TimeDue("next day 3pm")
+                ),
+                new Commission(
+                        new Amount("300"),
+                        BERNICE_PERSON,
+                        new Description("Chatbot"),
+                        new TimeDue("next week 3pm")
+                ),
+                new Expense(
+                        new Amount("1200"),
+                        BERNICE_PERSON,
+                        new Description("License"),
+                        new TimeDue("next month 3pm")
+                ),
+                new Expense(
+                        new Amount("500"),
+                        null,
+                        new Description("Party"),
+                        new TimeDue("next year 3pm")
+                )
+            };
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {

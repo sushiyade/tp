@@ -101,6 +101,17 @@ public class MainApp extends Application {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
             }
+
+            if (eventsBookOptional.isEmpty()) {
+                logger.info("Creating a new data file " + storage.getEventsBookFilePath()
+                        + " populated with a sample EventsBook.");
+            }
+
+            if (financesBookOptional.isEmpty()) {
+                logger.info("Creating a new data file " + storage.getFinancesBookFilePath()
+                        + " populated with a sample FinanceBook.");
+            }
+
             initialAddressData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialEventsData = eventsBookOptional.orElseGet(SampleDataUtil::getSampleEventsBook);
             initialFinancesData = financesBookOptional.orElseGet(SampleDataUtil::getSampleFinancesBook);
