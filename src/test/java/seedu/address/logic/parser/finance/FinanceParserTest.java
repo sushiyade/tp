@@ -16,6 +16,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
 import seedu.address.logic.commands.finance.AddExpenseCommand;
+import seedu.address.logic.commands.finance.ClearFinanceCommand;
 import seedu.address.logic.commands.finance.DeleteFinanceCommand;
 import seedu.address.logic.commands.finance.FilterClientNameCommand;
 import seedu.address.logic.commands.finance.FilterTimeDueCommand;
@@ -46,6 +47,12 @@ public class FinanceParserTest {
         AddExpenseCommand command =
                 (AddExpenseCommand) parser.parseCommand(FinanceUtil.getAddExpenseCommand(expense));
         assertEquals(new AddExpenseCommand(expense), command);
+    }
+
+    @Test
+    public void parseCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearFinanceCommand.COMMAND_WORD) instanceof ClearFinanceCommand);
+        assertTrue(parser.parseCommand(ClearFinanceCommand.COMMAND_WORD + " 3") instanceof ClearFinanceCommand);
     }
 
     @Test
