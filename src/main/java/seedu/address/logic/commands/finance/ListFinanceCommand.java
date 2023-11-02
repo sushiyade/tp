@@ -21,7 +21,7 @@ public class ListFinanceCommand extends Command {
 
     public static final Object MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all finances, expenses or commissions.\n"
-            + "Parameters: TYPE (expense for expenses, commission for commissions, leave blank for both)\n"
+            + "Parameters: [TYPE] (expense for expenses, commission for commissions, leave blank for both)\n"
             + "Example: " + COMMAND_WORD + " finance";
 
     private final FinanceListType type;
@@ -61,4 +61,5 @@ public class ListFinanceCommand extends Command {
         ListFinanceCommand otherListFinanceCommand = (ListFinanceCommand) other;
         return type.equals(otherListFinanceCommand.type);
     }
+
 }
