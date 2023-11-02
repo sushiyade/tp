@@ -192,7 +192,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasFinance(Finance toAdd) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Finance> getFinanceList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setExpense(Expense target, Expense editedExpense) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setCommission(Commission target, Commission editedCommission) {
         throw new AssertionError("This method should not be called.");
     }
 }

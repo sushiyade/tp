@@ -42,6 +42,16 @@ public class CommissionBuilder {
     }
 
     /**
+     * Creates a {@code CommissionBuilder} with given commission object.
+     */
+    public CommissionBuilder(Commission commission) {
+        this.client = commission.getClient();
+        this.amount = commission.getAmount();
+        this.description = commission.getDescription();
+        this.timeDue = commission.getTimeDue();
+    }
+
+    /**
      * Sets the {@code Amount} of the {@code Commission} that we are building.
      */
     public CommissionBuilder withAmount(String amount) {

@@ -69,7 +69,7 @@ public class AddCommissionCommand extends Command {
         }
 
         AddCommissionCommand otherAddCommissionCommand = (AddCommissionCommand) other;
-        return toAdd.haveSameFields(otherAddCommissionCommand.toAdd);
+        return toAdd.isSameCommission(otherAddCommissionCommand.toAdd);
     }
 
     @Override

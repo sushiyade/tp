@@ -8,28 +8,28 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.contacts.FindContactCommand;
+import seedu.address.logic.commands.contacts.FilterContactNameCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-public class FindContactCommandParserTest {
+public class FilterContactNameCommandParserTest {
 
-    private FindContactCommandParser parser = new FindContactCommandParser();
+    private FilterContactNameCommandParser parser = new FilterContactNameCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindContactCommand.MESSAGE_USAGE));
+                FilterContactNameCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindContactCommand expectedFindContactCommand =
-                new FindContactCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindContactCommand);
+        FilterContactNameCommand expectedFilterContactNameCommand =
+                new FilterContactNameCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "Alice Bob", expectedFilterContactNameCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindContactCommand);
+        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFilterContactNameCommand);
     }
 
 }

@@ -23,8 +23,8 @@ import seedu.address.model.finance.Commission;
 import seedu.address.testutil.CommissionBuilder;
 
 
-class AddCommissionParserTest {
-    private final AddCommissionParser parser = new AddCommissionParser();
+class AddCommissionCommandParserTest {
+    private final AddCommissionCommandParser parser = new AddCommissionCommandParser();
 
     @Test
     public void parse_success() throws ParseException {

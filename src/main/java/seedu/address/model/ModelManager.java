@@ -253,6 +253,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasFinance(Finance finance) {
+        requireNonNull(finance);
+        return financesBook.hasFinance(finance);
+    }
+
+    @Override
+    public void setExpense(Expense target, Expense editedExpense) {
+        requireAllNonNull(target, editedExpense);
+
+        financesBook.setExpense(target, editedExpense);
+    }
+
+    @Override
+    public void setCommission(Commission target, Commission editedCommission) {
+        requireAllNonNull(target, editedCommission);
+
+        financesBook.setCommission(target, editedCommission);
+    }
+
+
+    @Override
     public void addCommission(Commission commission) {
         financesBook.addFinance(commission);
     }

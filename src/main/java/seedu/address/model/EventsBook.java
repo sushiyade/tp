@@ -79,10 +79,10 @@ public class EventsBook implements ReadOnlyEventsBook {
      * {@code target} must exist in the events book.
      * The event identity of {@code editedEvent} must not be the same as another existing event in the events book.
      */
-    public void setEvent(Event target, Event editedPerson) {
-        requireNonNull(editedPerson);
+    public void setEvent(Event target, Event editedEvent) {
+        requireNonNull(editedEvent);
 
-        events.setEvent(target, editedPerson);
+        events.setEvent(target, editedEvent);
     }
 
     /**

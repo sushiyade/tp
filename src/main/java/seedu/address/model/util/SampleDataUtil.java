@@ -1,7 +1,9 @@
 package seedu.address.model.util;
 
-
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.EventsBook;
@@ -152,5 +154,15 @@ public class SampleDataUtil {
             sampleFb.addFinance(sampleFinance);
         }
         return sampleFb;
+    }
+
+    /**
+     * Returns a client set containing the list of strings given.
+     */
+    public static Set<Person> getClientSet(String... strings) {
+        return Arrays.stream(getSamplePersons())
+                .filter(person -> Arrays.stream(strings)
+                        .anyMatch(name -> person.getName().fullName.equalsIgnoreCase(name)))
+                .collect(Collectors.toSet());
     }
 }

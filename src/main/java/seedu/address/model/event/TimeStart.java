@@ -14,6 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class TimeStart {
 
+    public static final String MESSAGE_CONSTRAINTS = DateTimeParser.INVALID_DATETIME_FORMAT;
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     private final LocalDateTime timeStart;

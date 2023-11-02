@@ -46,7 +46,7 @@ public class ExpenseTest {
                 .withPerson("Test")
                 .build();
 
-        assertTrue(expense.haveSameFields(similarExpense));
+        assertTrue(expense.isSameExpense(similarExpense));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class ExpenseTest {
                 .withPerson("Test")
                 .build();
 
-        assertFalse(expense.haveSameFields(similarExpense));
+        assertFalse(expense.isSameExpense(similarExpense));
     }
 
     @Test
