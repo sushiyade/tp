@@ -14,7 +14,7 @@ import seedu.address.model.finance.ClientNameContainsKeywordsPredicate;
  */
 public class FilterClientNameCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter-n";
+    public static final String COMMAND_WORD = "filter-c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
