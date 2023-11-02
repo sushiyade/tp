@@ -438,13 +438,13 @@ Format: `add-c a/AMOUNT c/CLIENT d/DESCRIPTION [t/TIME DUE]`
 > **RESULT:** New commission added: `{Client}` of `{Amount}` added successfully!
 
 
-#### Filtering Finance Entries by Client Name → `filter-n`
+#### Filtering Finance Entries by Client → `filter-c`
 
-Filters the **finances** in the **Finance** tab by the given client name.
+Filters the **finances** in the **Finance** tab by the given client.
 Finds all clients whose names contain any of the specified keywords (case-insensitive) and
 displays them as a list with index numbers.
 
-Format: `filter-n KEYWORD [MORE KEYWORDS]`
+Format: `filter-c KEYWORD [MORE KEYWORDS]`
 
 <box type="warning" seamless>
     <ul>
@@ -458,10 +458,10 @@ Format: `filter-n KEYWORD [MORE KEYWORDS]`
 |:---------:|:--------------------------|:-----------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#John Doe##</br>#g#3##</br>      |
 
-| #g#Positive Examples## |                         #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                    |
-|:----------------------:|:-----------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------|
-|  `filter-n John Doe`   |                               `filter-n`                                | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Please add a Keyword to filter with   |
-|    `filter-n JOhN`     |                                                                         |                                                                                                                           |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                    |
+|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------------------|
+|  `filter-c John Doe`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Please add a Keyword to filter with   |
+|    `filter-c JOhN`     |                        |                                                                                                                           |
 
 > **RESULT:** Shows the finances with client names that match the given KEYWORD(s)
 
