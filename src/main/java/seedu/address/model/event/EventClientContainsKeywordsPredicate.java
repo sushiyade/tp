@@ -3,6 +3,7 @@ package seedu.address.model.event;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 
@@ -22,7 +23,7 @@ public class EventClientContainsKeywordsPredicate implements Predicate<Event> {
     public boolean test(Event event) {
         return event.getClients().stream()
                 .anyMatch(person -> keywords.stream()
-                        .anyMatch(keyword -> person.getName().contains(keyword))
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword))
                 );
     }
 
