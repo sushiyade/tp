@@ -43,6 +43,17 @@ public class ExpenseBuilder {
     }
 
     /**
+     * creates a {@code ExpenseBuilder} with given expense object.
+     */
+
+    public ExpenseBuilder(Expense expense) {
+        this.client = expense.getClient();
+        this.amount = expense.getAmount();
+        this.description = expense.getDescription();
+        this.timeDue = expense.getTimeDue();
+    }
+
+    /**
      * Sets the {@code Amount} of the {@code Expense} that we are building.
      */
     public ExpenseBuilder withAmount(String amount) {

@@ -121,4 +121,19 @@ public class UniqueFinanceList implements Iterable<Finance> {
 
         internalList.set(index, editedCommission);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UniqueFinanceList)) {
+            return false;
+        }
+
+        UniqueFinanceList uniqueFinanceList = (UniqueFinanceList) other;
+        return internalList.equals(uniqueFinanceList.internalList);
+    }
 }

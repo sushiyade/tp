@@ -31,7 +31,7 @@ public class Expense extends Finance {
      */
     public boolean isSameExpense(Expense expense) {
         return amount.equals(expense.getAmount())
-                && client.equals((expense.getClient()))
+                && client.isSamePerson((expense.getClient()))
                 && description.equals(expense.getDescription())
                 && timeDue.equals(expense.getTimeDue());
     }

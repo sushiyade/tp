@@ -31,7 +31,7 @@ public class Commission extends Finance {
      */
     public boolean isSameCommission(Commission commission) {
         return amount.equals(commission.getAmount())
-                && client.equals((commission.getClient()))
+                && client.isSamePerson((commission.getClient()))
                 && description.equals(commission.getDescription())
                 && timeDue.equals(commission.getTimeDue());
     }
