@@ -34,8 +34,7 @@ public class CommissionBuilder {
      * Creates a {@code CommissionBuilder} with the default details.
      */
     public CommissionBuilder() {
-        this.client = new Person(new Name(DEFAULT_NAME), new Phone("00000"), new Email("filler@email.com"),
-                new Address(""), new Company(""), new TelegramName(""));
+        this.client = Person.makeDummyWithName(DEFAULT_NAME);
         this.amount = new Amount(DEFAULT_AMOUNT);
         this.description = new Description(DEFAULT_DESCRIPTION);
         this.timeDue = new TimeDue(LocalDateTime.parse(DEFAULT_COMMISSION_TIME_DUE, DATE_TIME_FORMATTER));

@@ -17,7 +17,9 @@ public class ListFinanceCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "List all finances/expenses/commissions";
+    public static final String MESSAGE_SUCCESS_FINANCES = "Listed all finances";
+    public static final String MESSAGE_SUCCESS_EXPENSES = "Listed all expenses";
+    public static final String MESSAGE_SUCCESS_COMMISSIONS = "Listed all commissions";
 
     public static final Object MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all finances, expenses or commissions.\n"
@@ -36,15 +38,14 @@ public class ListFinanceCommand extends Command {
         switch (type) {
         case COMMISSION:
             model.updateFilteredFinanceList(PREDICATE_SHOW_ALL_COMMISSIONS);
-            break;
+            return new CommandResult(MESSAGE_SUCCESS_COMMISSIONS);
         case EXPENSE:
             model.updateFilteredFinanceList(PREDICATE_SHOW_ALL_EXPENSES);
-            break;
+            return new CommandResult(MESSAGE_SUCCESS_EXPENSES);
         default:
             model.updateFilteredFinanceList(PREDICATE_SHOW_ALL_FINANCES);
-            break;
+            return new CommandResult(MESSAGE_SUCCESS_FINANCES);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

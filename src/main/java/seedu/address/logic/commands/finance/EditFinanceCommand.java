@@ -32,21 +32,21 @@ import seedu.address.model.person.Person;
 public class EditFinanceCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the finance identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the finance entry identified "
             + "by the index number used in the displayed finance list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_CLIENT + "CLIENT] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_TIME_DUE + "TIME_DUE] \n"
+            + "[" + PREFIX_TIME_DUE + "TIME] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_AMOUNT + "300 "
-            + PREFIX_DESCRIPTION + "Photoshop subscription";
+            + PREFIX_DESCRIPTION + "Photoshop subscription "
+            + PREFIX_AMOUNT + "300";
 
     public static final String MESSAGE_EDIT_FINANCE_SUCCESS = "Edited Finance: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_FINANCE = "This finance already exists in the finance book";
+    public static final String MESSAGE_DUPLICATE_FINANCE = "This finance entry already exists in the finance book";
 
     private final Index index;
     private final EditFinanceDescriptor editFinanceDescriptor;
