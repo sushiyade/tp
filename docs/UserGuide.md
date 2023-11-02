@@ -499,8 +499,8 @@ As this section is relatively long, we have provided a mini table of content for
 - [Accepted Natural Language Time Formats](#accepted-natural-language-time-formats)
 - [Accepted Natural Language Date and Time Formats](#accepted-natural-language-date-and-time-formats)
 - [Using Date and Time Inputs Together](#using-date-and-time-inputs-to-together)
-- [Using Date-time Formats in Events and `filter-t` Method in Finance](#using-date-time-formats-in-events-and-filter-t-method-in-finance)
-- [Using Date-time Formats in Finance and `filter-t` Method in Events](#using-date-time-formats-in-finance-and-filter-t-method-in-events)
+- [Using Date-time Formats for Durations](#using-date-time-formats-for-durations)
+- [Using Date-time Formats for Instances](#using-date-time-formats-for-time-instances)
 
 
 #### Accepted Numbered Date Formats
@@ -590,7 +590,7 @@ Below is a table of accepted natural language time formats, these represent **`<
 |:-------------------------------:|---------------------------------------|----------------------------------------------------------------------------|
 |              `now`              | -                                     | Date and time of instance that the command runs                            |
 | `<number> <time_unit> from now` | `2 days from now`<br/>`1 hr from now` | Date and time from the specified timeframe of the instant the command runs |
-|   `in <number> <hour/minute>`   | `in 30 mins`<br/>`in 1 hour`           | Date and time from the specified timeframe of the instant the command runs |
+|   `in <number> <hour/minute>`   | `in 30 mins`<br/>`in 1 hour`          | Date and time from the specified timeframe of the instant the command runs |
 
 [Back to Date-time Contents](#contents-of-this-section)
 
@@ -609,18 +609,21 @@ A `<DATE> <TIME>` combination can be acheived in the following ways:
 
 [Back to Date-time Contents](#contents-of-this-section)
 
-#### Using Date-time Formats in Events and `filter-t` Method in Finance
+#### Using Date-time Formats for Durations
+
+Relevant for:
+1. Creating Events `s/TIMESTART` and `e/TIMEEND` parameters.
+2. `filter-t` method in Finance to get Finance record within specified timeframe.
 
 <box type="info" seamless>
 
 🏷 ****TO NOTE****<br>
 
-When creating events you have to specify a start `s/` and end time `/e`.
 There are several **rules** and [**assumptions**](#assumptions-using-date-time-combinations) that FreelanceBuddy date time reader makes use of that would be useful to understand to optimise your user experience.
 
 </box>
 
-##### Accepted Date-time Combinations of `s/` and `/e`
+##### Accepted Date-time Combinations of `s/` and `e/`
 
 > `<DATE>` and `<TIME>` placeholder represents the `<DATE>` and `<TIME>` formats that are shown above.
 
@@ -643,10 +646,10 @@ There are several **rules** and [**assumptions**](#assumptions-using-date-time-c
 
 ##### Assumptions when using Date-time Combinations
 
-FreelanceBuddy streamlines the input process for the `/s` and `/e` parameters. 
+FreelanceBuddy streamlines the input process for the `s/` and `e/` parameters. 
 
-For instance, in the case of same-day events, you'll only need to provide a date in the `/s` input field.
-FreelanceBuddy will intelligently use this date as both the start and end date, _eliminating the need for redundant input_ in the `/e` field.
+For instance, in the case of same-day events, you'll only need to provide a date in the `s/` input field.
+FreelanceBuddy will intelligently use this date as both the start and end date, _eliminating the need for redundant input_ in the `e/` field.
 
 This feature hopes to **enhance efficiency** and **simplify the event creation** process, creating a more **user-friendly** experience for you.
 
@@ -661,7 +664,13 @@ Here is a list of all Date-time Combination Assumptions:
 | `s/<DATE> <TIME> e/<DATE>` | End date time will be set to 23:59.<br/>**Example**: `s/1 Jan 2023 9am e/1 Jan` sets the event for 1st Jan 2023, 9am to 11:59pm.                                                                                                                                                                                         |
 | `s/<DATE> e/<DATE> <TIME>` | Start date time will be set to 00:00.<br/>**Example**: `s/1 Jan 2023 e/ 1 Jan 2023 5pm` sets the event for 1st Jan 2023, 12am to 5pm.                                                                                                                                                                                    |
 
-#### Using Date-time Formats in Finance and `filter-t` Method in Events
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Using Date-time Formats for Time Instances
+
+Relevant for:
+1. Creating Finance entries with a specified time in the `t/TIMEDUE` parameter 
+2. `filter-t` method in Events to get relevant Events that are from now to the specified time.
 
 You might want to consider the assumptions made for either `<DATE>` or `<TIME>` if either is left blank.
 
@@ -672,6 +681,8 @@ You might want to consider the assumptions made for either `<DATE>` or `<TIME>` 
 | `<DATE> <TIME>` | As specified                                     |
 |    `<DATE>`     | Time is set to 12am of the specified date        |
 |    `<TIME>`     | Date is set to next occurrence of specified time |
+
+[Back to Date-time Contents](#contents-of-this-section)
 
 --------------------------------------------------------------------------------------------------------------------
 
