@@ -201,7 +201,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Deleting a contact with index: Contact Tab → `delete`
+#### Deleting a contact with index: Contacts Tab → `delete`
 
 Deletes the specified contact from the **Contacts** tab using index.
 
@@ -233,7 +233,7 @@ Format: `delete INDEX`
 > Unsuccessful deletion → The person index provided is invalid
 
 
-#### Editing a person : `edit`
+#### Editing a person : Contacts Tab → `edit`
 
 Edits an existing person in the address book.
 
@@ -249,13 +249,15 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears the telegram name.
 
+#### Clearing all entries : Contacts Tab → `clear`
 
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
+Clears all entries from the **Finance** Tab.
 
 Format: `clear`
+
+<box type="warning" seamless>
+    This is a <b>destructive</b> command that <b>deletes all your data</b>!
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -448,31 +450,54 @@ Format: `list-all`
 
 ### Finance Management
 
-#### Receiving Commission: Finance Tab → `add-c`
+#### Listing finances: Finance Tab -> `list`
 
-Adds a **commission** to the **Finance** tab. Once added, the `AMOUNT` will be highlighted in green to indicate that
-the entry is a commission.
+Shows a list of all **finances/commissions/expenses** in the **Finance** Tab.
 
-Format: `add-c a/AMOUNT c/CLIENT d/DESCRIPTION [t/TIME DUE]`
+Format: `list [TYPE]`
 
 <box type="tip" seamless>
     <ul>
         <li>
-            The <code>DESCRIPTION</code> is used to provide details about the commission
+            When <code>commission</code> is given as the <code>TYPE</code>, only commissions are listed
         </li>
         <li>
-            The default <code>[t/TIME DUE]</code> will be the current date and time
+            When <code>expense</code> is given as the <code>TYPE</code>, only expenses are listed
+        </li>
+        <li>
+            When <code>TYPE</code> is omitted, all finance entries are listed
         </li>
     </ul>
 </box>
 
+| Parameter | Format                                                  | Examples (#g#Valid##/#r#Invalid##)                             |
+|:---------:|:--------------------------------------------------------|:---------------------------------------------------------------|
+|  `TYPE`   | Either of the following:<br/>`commission`<br/>`expense` | #g#commission##</br>#g#expense##</br>#r#com##<br/>#r#expesne## |
 
-|   Parameter   | Format                                    | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
-|:-------------:|:------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|   `AMOUNT`    | Positive numbers up to two decimal points | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)## |
-|   `CLIENT`    | Text up to 256 characters                 | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                         |
-| `DESCRIPTION` | Text up to 256 characters                 | #g#This is an example description##</br>                                                                                                                          |
-| `[TIME DUE]`  | Refer to accepted DateTime formats        |                                                                                                                                                                   |
+#### Adding a Commission: Finance Tab → `add-c`
+
+Adds a **commission** to the **Finance** tab. Once added, the `AMOUNT` will be highlighted in #g#**green**## to indicate that
+the entry is a commission.
+
+Format: `add-c d/DESCRIPTION a/AMOUNT c/CLIENT [t/TIME]`
+
+<box type="tip" seamless>
+    <ul>
+        <li>
+            The <code>DESCRIPTION</code> is used to provide details about the expense
+        </li>
+        <li>
+            The default <code>[t/TIME]</code> will be the time at which the command is entered
+        </li>
+    </ul>
+</box>
+
+|   Parameter   | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
+|:-------------:|:-------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `DESCRIPTION` | Text up to 256 characters, cannot be empty | #g#This is an example description##</br>                                                                                                                          |
+|   `AMOUNT`    | Positive numbers up to two decimal points  | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)## |
+|   `CLIENT`    | Text up to 256 characters                  | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                         |
+|   `[TIME]`    | Refer to accepted DateTime formats         |                                                                                                                                                                   |
 
 |                #g#Positive Examples##                |                                      #r#Negative Examples##                                       | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                            |
 |:----------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -480,10 +505,42 @@ Format: `add-c a/AMOUNT c/CLIENT d/DESCRIPTION [t/TIME DUE]`
 | `add-c c/Steph Evans a/300 d/UI design for NinjaVan` |                          `add-c c/Steph Evans d/UI design for NinjaVan`                           | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted                   |
 |                                                      | `add-c a/100 c/Betsy Crower d/Wedding Photoshoot`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts                                  |
 
-> **RESULT:** New commission added: `{Client}` of `{Amount}` added successfully!
+> **RESULT:** New commission added: `{Description}` of `{Amount}` added successfully!
 
+#### Adding an Expense: Finance Tab → `add-e`
 
-#### Filtering Finance Entries by Client → `filter-c`
+Adds an **expense** to the **Finance** tab. Once added, the `AMOUNT` will be highlighted in #r#**red**## to indicate that
+the entry is an expense.
+
+Format: `add-e d/DESCRIPTION a/AMOUNT [c/CLIENT] [t/TIME]`
+
+<box type="tip" seamless>
+    <ul>
+        <li>
+            The <code>DESCRIPTION</code> is used to provide details about the commission
+        </li>
+        <li>
+            The default <code>[t/TIME]</code> will be the time at which the command is entered
+        </li>
+    </ul>
+</box>
+
+|   Parameter   | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
+|:-------------:|:-------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `DESCRIPTION` | Text up to 256 characters, cannot be empty | #g#This is an example description##</br>                                                                                                                          |
+|   `AMOUNT`    | Positive numbers up to two decimal points  | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0(not a positive number)##</br>#r#556.9834 (too many decimal places)## |
+|  `[CLIENT]`   | Text up to 256 characters                  | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                         |
+|   `[TIME]`    | Refer to accepted DateTime formats         |                                                                                                                                                                   |
+
+|         #g#Positive Examples##          |                                     #r#Negative Examples##                                     | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                            |
+|:---------------------------------------:|:----------------------------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add-e c/John Doe a/200 d/Dinner t/tmr` |                            `add-e c/John Doe a/$200 d/Dinner t/tmr`                            | <span style ='color: darkred; text-decoration: underline'>Invalid Parameter</span><br>$200 is not a valid parameter, as AMOUNT only takes positive numeric values |
+|     `add-e a/100 d/Adobe Photoshop`     |                                   `add-e d/Adobe Photoshop`                                    | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted                   |
+|                                         | `add-e a/100 e/Betsy Crower d/Adobe Photoshop`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts                                  |
+
+> **RESULT:** New expense added: `{Description}` of `{Amount}` added successfully!
+
+#### Filtering finance entries by Client → `filter-c`
 
 Filters the **finances** in the **Finance** tab by the given client.
 Finds all clients whose names contain any of the specified keywords (case-insensitive) and
@@ -503,20 +560,19 @@ Format: `filter-c KEYWORD [MORE KEYWORDS]`
 |:---------:|:--------------------------|:-----------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#John Doe##</br>#g#3##</br>      |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                    |
-|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------------------|
-|  `filter-c John Doe`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Please add a Keyword to filter with   |
-|    `filter-c JOhN`     |                        |                                                                                                                           |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                   |
+|:----------------------:|:----------------------:|--------------------------------------------------------------------------------------------------------------------------|
+|  `filter-c John Doe`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> A keyword is required for the filter |
+|    `filter-c JOhN`     |                        |                                                                                                                          |
 
 > **RESULT:** Shows the finances with client names that match the given KEYWORD(s)
 
-#### Filtering Finance Entries by Time Frame → `filter-t`
+#### Filtering finance entries by Time Frame → `filter-t`
 
 Filters the **finances** in the **Finance** tab by the given time frame.
 Finds all finances whose time due falls within the given time frame. 
 
 Format: `filter-t s/START_TIME e/END_TIME`
-
 
 <box type="warning" seamless>
     <ul>
@@ -525,7 +581,6 @@ Format: `filter-t s/START_TIME e/END_TIME`
         </li>
     </ul>
 </box>
-
 
 |           Parameter           | Format                                 | Examples (#g#Valid##/#r#Invalid##)  |
 |:-----------------------------:|:---------------------------------------|:------------------------------------|
@@ -537,7 +592,6 @@ Format: `filter-t s/START_TIME e/END_TIME`
 | `filter-t s/2023-10-10 e/2023-10-11` |          `filter-t`          | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Missing start and end time                       |
 
 > **RESULT:** Shows a list of finances that fall within the given time frame
-
 
 #### Generating a finance summary of a client → `summary`
 
@@ -563,25 +617,22 @@ Format: `summary CLIENT`
 <box type="warning" seamless>
     <ul>
         <li>
-            The client name must match the exact client name that is found in the contacts tab. </br>
+            The client name must match the exact client name that is found in the Contacts tab. </br>
             This is to prevent any ambiguity in the generated summary.
         </li>
     </ul>
 </box>
 
-
-
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##)      |
 |:---------:|:--------------------------|:----------------------------------------|
 | `CLIENT`  | Text up to 256 characters | #g#John Doe##</br>#g#3##</br>           |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                        |
-|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------|
-|   `summary John Doe`   |       `summary`        | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Missing client name       |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                           |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------------|
+|   `summary John Doe`   |       `summary`        | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> Missing client name                          |
 |                        |     `summary John`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts |
 
 > **RESULT:** Returns a summary of the finances with regard to the given client
-
 
 #### Deleting a Finance Entry: Finance Tab → `delete`
 
@@ -605,7 +656,7 @@ Format: `delete INDEX`
 
 | Parameter |                           Format                           |                                                                       Examples (#g#Valid##/#r#Invalid##)                                                                       |
 |:---------:|:----------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  `INDEX`  |  Positive integer within range of indices in finance list  |  Assuming that there are 10 entries</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)##  |
+|  `INDEX`  |  Positive integer within range of indices in finance list  | (Assuming that there are 10 entries)</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)## |
 
 | #g#Positive Examples## |                         #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                                        |
 |:----------------------:|:-----------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -614,6 +665,32 @@ Format: `delete INDEX`
 |                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
 
 > **RESULT:** Finance entry at `INDEX` deleted successfully!
+
+#### Editing a person : Finance Tab → `edit`
+
+Edits an **existing finance entry** in the **Finance** tab.
+
+Format: `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]`
+
+* Edits the finance entry at the specified `INDEX`. The index refers to the index number shown in the displayed finance list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
+
+Examples:
+
+* `edit 1 d/Photoshop subscription a/300` Edits the description and amount of the 1st finance entry to be `Photoshop subscription` and `300` respectively.
+* `edit 2 a/500 c/` Given that the 2nd finance entry is an Expense, edits its amount to be `500` and clears the client name.
+
+#### Clearing all entries : Finance Tab → `clear`
+
+Clears all entries from the **Finance** tab.
+
+Format: `clear`
+
+<box type="warning" seamless>
+    This is a <b>destructive</b> command that <b>deletes all your data</b>!
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
