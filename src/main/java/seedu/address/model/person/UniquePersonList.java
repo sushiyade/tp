@@ -112,7 +112,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     public Person getMatchedClient(Person client) {
         for (Person person : internalList) {
-            if (client.getName().equals(person.getName())) {
+            if (client.isSamePerson(person)) {
                 return person;
             }
         }

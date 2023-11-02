@@ -1,6 +1,7 @@
 package seedu.address.model.finance;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -51,6 +52,14 @@ public abstract class Finance {
 
     public void setMatchedClientInstance(Person actualClient) {
         client = actualClient;
+    }
+    /**
+     * Get the Name of the client in the finance entry.
+     *
+     * @return The name of the client in the finance entry.
+     */
+    public Name getClientName() {
+        return this.client.getName();
     }
 
     /**
