@@ -76,11 +76,11 @@ public class Messages {
                 .append("; End: ")
                 .append(event.getTimeEnd())
                 .append("; Clients: ")
-                .append(getAllClientNames((HashSet<Person>) event.getClients()))
+                .append(event.getClients())
                 .append("; Location: ")
-                .append(event.getLocation().value)
+                .append(event.getLocation())
                 .append("; Description: ")
-                .append(event.getDescription().value);
+                .append(event.getDescription());
         return builder.toString();
     }
 
