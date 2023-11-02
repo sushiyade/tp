@@ -15,7 +15,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.contacts.FindContactCommand;
+import seedu.address.logic.commands.contacts.FilterContactNameCommand;
 import seedu.address.model.EventsBook;
 import seedu.address.model.FinancesBook;
 import seedu.address.model.Model;
@@ -26,7 +26,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindContactCommandTest {
+public class FilterContactNameCommandTest {
     private Model model = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(),
             new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(),
@@ -39,14 +39,14 @@ public class FindContactCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindContactCommand findFirstCommand = new FindContactCommand(firstPredicate);
-        FindContactCommand findSecondCommand = new FindContactCommand(secondPredicate);
+        FilterContactNameCommand findFirstCommand = new FilterContactNameCommand(firstPredicate);
+        FilterContactNameCommand findSecondCommand = new FilterContactNameCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindContactCommand findFirstCommandCopy = new FindContactCommand(firstPredicate);
+        FilterContactNameCommand findFirstCommandCopy = new FilterContactNameCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -63,7 +63,7 @@ public class FindContactCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindContactCommand command = new FindContactCommand(predicate);
+        FilterContactNameCommand command = new FilterContactNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -73,7 +73,7 @@ public class FindContactCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindContactCommand command = new FindContactCommand(predicate);
+        FilterContactNameCommand command = new FilterContactNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
@@ -82,9 +82,9 @@ public class FindContactCommandTest {
     @Test
     public void toStringMethod() {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindContactCommand findContactCommand = new FindContactCommand(predicate);
-        String expected = FindContactCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertEquals(expected, findContactCommand.toString());
+        FilterContactNameCommand filterContactNameCommand = new FilterContactNameCommand(predicate);
+        String expected = FilterContactNameCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        assertEquals(expected, filterContactNameCommand.toString());
     }
 
     /**

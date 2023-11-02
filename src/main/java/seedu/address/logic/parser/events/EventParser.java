@@ -82,7 +82,7 @@ public class EventParser extends ParseCommandHandlers {
         // return new ClearContactCommand();
 
         // NOT IMPLEMENTED YET
-        //case FindContactCommand.COMMAND_WORD:
+        //case FilterContactNameCommand.COMMAND_WORD:
         //    return new FindEventCommandParser().parse(arguments);
 
         case ListEventCommand.COMMAND_WORD:

@@ -21,7 +21,7 @@ import seedu.address.logic.commands.contacts.ClearContactCommand;
 import seedu.address.logic.commands.contacts.DeleteContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.contacts.FindContactCommand;
+import seedu.address.logic.commands.contacts.FilterContactNameCommand;
 import seedu.address.logic.commands.contacts.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -72,9 +72,9 @@ public class ContactParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindContactCommand command = (FindContactCommand) parser.parseCommand(
-                FindContactCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindContactCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FilterContactNameCommand command = (FilterContactNameCommand) parser.parseCommand(
+                FilterContactNameCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterContactNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
