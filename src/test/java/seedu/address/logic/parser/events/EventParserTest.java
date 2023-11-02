@@ -18,6 +18,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.events.AddEventCommand;
+import seedu.address.logic.commands.events.ClearEventsCommand;
 import seedu.address.logic.commands.events.DeleteEventCommand;
 import seedu.address.logic.commands.events.FilterEventClientCommand;
 import seedu.address.logic.commands.events.FilterEventNameCommand;
@@ -51,7 +52,11 @@ public class EventParserTest {
         assertEquals(new AddEventCommand(event).execute(model), command.execute(model));
     }
 
-    /* TODO IMPLEMENT CLEAR TEST WHEN IMPLEMENTED*/
+    @Test
+    public void parseCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearEventsCommand.COMMAND_WORD) instanceof ClearEventsCommand);
+        assertTrue(parser.parseCommand(ClearEventsCommand.COMMAND_WORD + " 3") instanceof ClearEventsCommand);
+    }
 
     @Test
     public void parseCommand_delete() throws Exception {
