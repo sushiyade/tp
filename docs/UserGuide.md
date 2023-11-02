@@ -409,8 +409,8 @@ Meeting with David
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|   `filter-n meeting`   |    `find aeroplane`    | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in events with 'aeroplane'      |
-|  `filter-n bUsiness`   |         `find`         | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+|   `filter-n meeting`   |  `filter-n aeroplane`  | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in events with 'aeroplane'      |
+|  `filter-n bUsiness`   |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
 
 
 #### Filtering events: Events Tab → filter `filter-t`
