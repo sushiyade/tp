@@ -336,10 +336,6 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION
             The <code>TIMESTART</code> and <code>TIMEEND</code> refer to starting and ending times of the event respectively. 
         </li>
         <li>
-            <code>TIMESTART</code> and <code>TIMEEND</code> must be given in the format of <code>dd-mm-yyyy HH:mm</code> 
-            (e.g 23-09-2023 16:40), <b>preceding zeros must be included for date</b>.
-        </li>
-        <li>
             Note that each contact can have:
             <ul>
               <li>Multiple <code>[c/CLIENT]</code> (e.g c/David c/Richard c/Anna)</li>
@@ -350,19 +346,19 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION
     </ul>
 </box>
 
-|        Parameter        | Format                                      | Examples (#g#Valid##/#r#Invalid##)                                                          |
-|:-----------------------:|---------------------------------------------|---------------------------------------------------------------------------------------------|
-|         `NAME`          | Text up to 256 characters<br>Must be unique | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                               |
-| `TIMESTART` / `TIMEEND` | DateTime Format <br>(dd-mm-yyyy HH:mm)      | #g#31-12-2024 21:30##<br>#g#01-09-2023 11:30##<br>#r#1-9-2023 11:30##<br>#r#01092023 1130## |
-|       `[CLIENT]`        | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                                    |
-|      `[LOCATION]`       | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##                    |
-|     `[DESCRIPTION]`     | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                             |
+|        Parameter        | Format                                      | Examples (#g#Valid##/#r#Invalid##)                                                  |
+|:-----------------------:|---------------------------------------------|-------------------------------------------------------------------------------------|
+|         `NAME`          | Text up to 256 characters<br>Must be unique | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                       |
+| `TIMESTART` / `TIMEEND` | Refer to the accepted DateTime formats      | #g#31-12-2024 21:30##<br>#g#tmr noon##<br>#r#next fortnight##<br>#r#01092023 1130## |
+|       `[CLIENT]`        | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                            |
+|      `[LOCATION]`       | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##            |
+|     `[DESCRIPTION]`     | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
 
-|                                   #g#Positive Examples##                                    |                                  #r#Negative Examples##                                  | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                           |
-|:-------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| `add event Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | `add event  ‎ ‎s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name is missing                                           |
-|   `add event Meetup s/21-02-2023 11:30 e/21-02-2023 14:30 c/Johnny Roger c/David Powell `   | `add event Meetup s/21-02-2023 1130pm e/21-02-2023 230pm c/Johnny Roger c/David Powell`  | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> DateTime Format is incorrect <br> Follow: (dd-mm-yyyy HH:mm) |
-|                    `add event Gym s/21-02-2023 13:30 e/21-02-2023 14:30`                    |                  `add event Gym s/21-02-2023 13:30 e/21-02-2023 12:30`                   | <span style ='color: darkred; text-decoration: underline'>Illegal Time Sequence</span><br> The TIMEEND must be after the TIMESTART               |
+|                                 #g#Positive Examples##                                  |                               #r#Negative Examples##                                | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                |
+|:---------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------|
+| `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |  `add‎ ‎s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080`   | <span style ='color: darkred; text-decoration: underline'>Invalid commnad format!</span><br> Name is missing                          |
+|     `add n/Meetup s/1 hr from now e/2 hrs from now c/Johnny Roger c/David Powell `      | `add n/Meetup s/21-02-2023 1130pm e/21-02-2023 230pm c/Johnny Roger c/David Powell` | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format!</span><br> DateTime Format is incorrect <br>      |
+|                    `add n/Gym s/21-02-2023 13:30 e/21-02-2023 14:30`                    |                `add event Gym s/21-02-2023 13:30 e/21-02-2023 12:30`                | <span style ='color: darkred; text-decoration: underline'>Invalid date-time duration!</span><br> End time cannot be before start time |
 
 > **RESULT:** `{NAME}` Event added successfully!
 
@@ -405,13 +401,11 @@ Filters events in the **Events** tab.
 
 Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
-* Using partial keywords will be matched. e.g. me will match meeting
-> `mee` → 3. meeting with David
-* The search is case-insensitive. e.g. `mEe` will match `Meeting`
-> `mEe` → 4. Meeting
+* The search is case-insensitive. e.g. `mEetinG` will match `Meeting`
+> `mEeTing` → 4. Meeting
 * Events matching at least one keyword will be returned (i.e. OR search). e.g. meeting will return Meeting, 
 Meeting with David
-> `Teenis Meet` → 3. Meeting
+> `Tennis Meeting` → 3. Meeting
 >             4. Tennis with David
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 > `Meeting Business` → 3. Business Meeting
@@ -434,27 +428,19 @@ Filters events in the **Events** tab.
 
 Format: `filter-t TIMESTAMP`
 
-* Using partial keywords will be matched. e.g. me will match meeting
-> `mee` → 3. meeting with David
-* The search is case-insensitive. e.g. `mEe` will match `Meeting`
-> `mEe` → 4. Meeting
-* Events matching at least one keyword will be returned (i.e. OR search). e.g. meeting will return Meeting,
-  Meeting with David
-> `Teenis Meet` → 3. Meeting
->             4. Tennis with David
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans 
-> `Meeting Business` → 3. Business Meeting
->             4. meeting with David
-* Only the `NAME` of the Event is searched
 
-| Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
-|:---------:|---------------------------|------------------------------------|
-| `KEYWORD` | Text up to 256 characters | #g#Meeting##<br>##3##              |
+* All events with <code>TIMESTART</code> before the time specified will be returned. e.g. `tmr noon` will return all 
+events starting before tomorrow noon
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|  `filter-t next week`  |  `filter-t my phone`   | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in events with 'aeroplane'      |
-| `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+
+|  Parameter  | Format                                 | Examples (#g#Valid##/#r#Invalid##)           |
+|:-----------:|----------------------------------------|----------------------------------------------|
+| `TIMESTAMP` | Refer to the accepted DateTime formats | #g#tmr noon##<br>##3##<br>#r#01092023 1130## |
+
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                        |
+|:----------------------:|:----------------------:|-------------------------------------------------------------------------------------------------------------------------------|
+|  `filter-t next week`  |  `filter-t my phone`   | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format!</span><br> not acceptable datetime format |
+| `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Invalid command format!                |
 
 #### Listing all events: Events Tab → `list-all`
 

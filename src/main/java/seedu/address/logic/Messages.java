@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,6 +9,8 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.model.event.Event;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
+
+import static seedu.address.model.person.Person.getAllClientNames;
 
 /**
  * Container for user visible messages.
@@ -48,17 +51,17 @@ public class Messages {
      */
     public static String formatPerson(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(person.getName().fullName)
                 .append("; Phone: ")
-                .append(person.getPhone())
+                .append(person.getPhone().value)
                 .append("; Email: ")
-                .append(person.getEmail())
+                .append(person.getEmail().value)
                 .append("; Address: ")
-                .append(person.getAddress())
+                .append(person.getAddress().value)
                 .append("; Company: ")
-                .append(person.getCompany())
+                .append(person.getCompany().value)
                 .append("; TelegramName: ")
-                .append(person.getTelegramName());
+                .append(person.getTelegramName().value);
         return builder.toString();
     }
 
@@ -73,11 +76,11 @@ public class Messages {
                 .append("; End: ")
                 .append(event.getTimeEnd())
                 .append("; Clients: ")
-                .append(event.getClients())
+                .append(getAllClientNames((HashSet<Person>) event.getClients()))
                 .append("; Location: ")
-                .append(event.getLocation())
+                .append(event.getLocation().value)
                 .append("; Description: ")
-                .append(event.getDescription());
+                .append(event.getDescription().value);
         return builder.toString();
     }
 
