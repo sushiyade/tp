@@ -54,6 +54,9 @@ public class ExpenseBuilder {
      * Sets the {@code Description} of the {@code Expense} that we are building.
      */
     public ExpenseBuilder withDescription(String description) {
+        if (!description.trim().equals("")) {
+            this.description = new Description(description);
+        }
         this.description = new Description(description);
         return this;
     }

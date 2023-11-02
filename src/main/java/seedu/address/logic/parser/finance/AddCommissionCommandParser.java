@@ -32,14 +32,14 @@ public class AddCommissionCommandParser implements Parser<AddCommissionCommand> 
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION, PREFIX_TIME_DUE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CLIENT)
+        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommissionCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_AMOUNT, PREFIX_CLIENT, PREFIX_DESCRIPTION);
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Person client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         LocalDateTime dateTime = DateTimeParser.parseDateTimeInstance(argMultimap.getValue(PREFIX_TIME_DUE)
                 .orElse("now"));
 

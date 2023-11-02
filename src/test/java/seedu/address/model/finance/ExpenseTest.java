@@ -31,7 +31,7 @@ public class ExpenseTest {
 
     @Test
     public void getDescription_returnsCorrectDescription() {
-        assertEquals(EXPENSE_TWENTY_TO_G.getDescription(), new Description(""));
+        assertEquals(EXPENSE_TWENTY_TO_G.getDescription(), new Description("Test commission"));
         assertEquals(EXPENSE_THIRTY_TO_K.getDescription(), new Description("Extra"));
     }
 
@@ -40,11 +40,11 @@ public class ExpenseTest {
         Expense expense = new ExpenseBuilder()
                 .withAmount("2103")
                 .withPerson("Test")
-                .withDescription("").build();
+                .build();
         Expense similarExpense = new ExpenseBuilder()
                 .withAmount("2103")
                 .withPerson("Test")
-                .withDescription("").build();
+                .build();
 
         assertTrue(expense.isSameExpense(similarExpense));
     }
@@ -54,11 +54,11 @@ public class ExpenseTest {
         Expense expense = new ExpenseBuilder()
                 .withAmount("2103")
                 .withPerson("Not test")
-                .withDescription("").build();
+                .build();
         Expense similarExpense = new ExpenseBuilder()
                 .withAmount("2103")
                 .withPerson("Test")
-                .withDescription("").build();
+                .build();
 
         assertFalse(expense.isSameExpense(similarExpense));
     }

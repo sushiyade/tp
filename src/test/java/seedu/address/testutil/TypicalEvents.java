@@ -16,6 +16,7 @@ public class TypicalEvents {
 
     static {
         EVENT1 = new EventBuilder().withName("Meeting with Alice")
+                .withClient(new PersonBuilder().withName("Alice").build())
                 .withTimeStart("23-09-2023 09:00")
                 .withTimeEnd("23-09-2023 10:00")
                 .build();

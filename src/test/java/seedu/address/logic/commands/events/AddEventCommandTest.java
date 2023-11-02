@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalEvents.EVENT1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -40,9 +39,7 @@ public class AddEventCommandTest {
         Person validPerson = new PersonBuilder().withName("Daniel").build();
         new AddContactCommand(validPerson).execute(modelStub);
 
-        Set<Person> validClients = new HashSet<>();
-        validClients.add(new PersonBuilder().withName("Daniel").build());
-        Event validEvent = new EventBuilder().withClient(validClients).build();
+        Event validEvent = new EventBuilder().withClient(new PersonBuilder().withName("Daniel").build()).build();
         CommandResult commandResult = new AddEventCommand(validEvent).execute(modelStub);
 
         assertEquals(String.format(AddEventCommand.MESSAGE_SUCCESS, Messages.format(validEvent)),
@@ -56,10 +53,7 @@ public class AddEventCommandTest {
         Person validPerson = new PersonBuilder().build();
         new AddContactCommand(validPerson).execute(modelStub);
 
-        Person invalidPerson = new PersonBuilder().withName("Daniel").build();
-        Set<Person> inValidClients = new HashSet<>();
-        inValidClients.add(invalidPerson);
-        Event validEvent = new EventBuilder().withClient(inValidClients).build();
+        Event validEvent = new EventBuilder().withClient(new PersonBuilder().withName("Daniel").build()).build();
         AddEventCommand addEventCommand = new AddEventCommand(validEvent);
 
         assertThrows(CommandException.class, Messages.MESSAGE_CLIENT_DOES_NOT_EXIST, () ->
