@@ -1050,35 +1050,42 @@ You might want to consider the assumptions made for either `<DATE>` or `<TIME>` 
 ### General 
 Commands that applies to ALL tabs
 
-| Action   | Format, Examples                         |
-|----------|------------------------------------------|
-| **Tab**  | `tab TAB_NAME` <br> e.g., `tab contacts` |
-| **List** | `list`                                   |
-| **Help** | `help`                                   |
+| Action    | Format, Examples                         |
+|-----------|------------------------------------------|
+| **Tab**   | `tab TAB_NAME` <br> e.g., `tab contacts` |
+| **List**  | `list`                                   |
+| **Help**  | `help`                                   |
+| **Clear** | `clear`                                  |
 
 ### Contacts Tab
 
-| Action                      | Format, Examples                                                                                                                                    |
-|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com` |
-| **Find**                    | `find KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find Annie Bob`                                                                                        |
-| **Delete using index(es)**  | `delete INDEX [MORE_INDEX]…​` <br> e.g., `delete 1 2 3`                                                                                             |
-| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                       |
+| Action                      | Format, Examples                                                                                                                                         |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`      |
+| **Find**                    | `find KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find Annie Bob`                                                                                             |
+| **Delete using index**      | `delete INDEX` <br> e.g., `delete 1`                                                                                                                     |
+| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                            |
 
 ### Events Tab
 
-| Action       | Format, Examples                                                                                                                                                                  |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add event Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                               |
-| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                                  |
-| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                               |
-| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                                   |
+| Action       | Format, Examples                                                                                                                                                            |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         |
+| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                            |
+| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                         |
+| **Filter**   | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                |
+| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                             |
 
 
 ### Finance Tab
 
-| Action     | Format, Examples                                                                                                               |
-|------------|--------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add commission a/AMOUNT n/CLIENT [d/DESCRIPTION]` <br> e.g., `add commission n/Betsy Crower a/800 d/UI design for NinjaVan`   |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
+| Action      | Format, Examples                                                                                                                |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
+| **Add**     | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
+| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                             |
+| **Filter**  | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
+| **Filter**  | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
+| **Summary** | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
+| **List**    | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
