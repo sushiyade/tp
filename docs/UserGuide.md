@@ -658,7 +658,7 @@ displays them as a list with index numbers.
 
 Format: `filter-c KEYWORD [MORE KEYWORDS]`
 
-<box type="warning" seamless>
+<box type="tip" seamless>
     <ul>
         <li>
             Returns an empty list if there are no clients whose name matches the keyword.
@@ -812,21 +812,22 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+AddressBook, EventsBook, and FinanceBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+The following data are saved automatically as a JSON file. Advanced users are welcome to update data directly by editing that data file.
+- AddressBook: `[JAR file location]/data/addressbook.json`
+- EventsBook: `[JAR file location]/data/eventsbook.json`
+- FinanceBook: `[JAR file location]/data/financebook.json`
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.
+If your changes to the data file makes its format invalid, AddressBook, EventsBook and FinanceBook will discard all data and start with an empty data file at the next run (i.e. one corrupted file can wipe out the other files as well).  Hence, it is recommended to take a backup of the files before editing them.
+
 </box>
 
-<!-- ### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._-->
 
 --------------------------------------------------------------------------------------------------------------------
 
