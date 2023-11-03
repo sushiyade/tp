@@ -212,9 +212,6 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 |    `filter-n Alex`     |    `filter-n hans`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with 'hans'         |
 |  `filter-n aLEx rOy`   |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
 
-
-![result for 'find alex david'](images/findAlexDavidResult.png)
-
 #### Finding contact by <code>{COMPANY}</code>: Contacts Tab → `filter-c`
 
 Shows a list of contacts whose <code>{COMPANY}</code> contains specific string
