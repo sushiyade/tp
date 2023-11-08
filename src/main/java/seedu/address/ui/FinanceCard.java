@@ -33,11 +33,7 @@ public class FinanceCard extends UiPart<Region> {
         this.finance = finance;
         id.setText(displayedIndex + ". ");
         timeDue.setText(finance.getTimeDue().toString());
-        if (finance.getClient() != null) {
-            client.setText(finance.getClient().getName().fullName);
-        } else {
-            client.setText("No client");
-        }
+        client.setText(finance.getClientName().fullName);
         description.setText(finance.getDescription().value);
         boolean isCommission = finance instanceof Commission;
         if (isCommission) {
