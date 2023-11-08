@@ -617,7 +617,7 @@ Format: `add-c d/DESCRIPTION a/AMOUNT c/CLIENT [t/TIME]`
 | `add-c c/Steph Evans a/300 d/UI design for NinjaVan` |                          `add-c c/Steph Evans d/UI design for NinjaVan`                           | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted                   |
 |                                                      | `add-c a/100 c/Betsy Crower d/Wedding Photoshoot`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts                                  |
 
-> **RESULT:** New commission added: `{Description}` of `{Amount}` added successfully!
+> **RESULT:** New commission added: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}` 
 
 #### Adding an Expense: Finance Tab → `add-e`
 
@@ -650,7 +650,7 @@ Format: `add-e d/DESCRIPTION a/AMOUNT [c/CLIENT] [t/TIME]`
 |     `add-e a/100 d/Adobe Photoshop`     |                                   `add-e d/Adobe Photoshop`                                    | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted                   |
 |                                         | `add-e a/100 e/Betsy Crower d/Adobe Photoshop`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts                                  |
 
-> **RESULT:** New expense added: `{Description}` of `{Amount}` added successfully!
+> **RESULT:** New expense added: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
 
 #### Filtering finance entries by Client → `filter-c`
 
@@ -776,7 +776,7 @@ Format: `delete INDEX`
 |      `delete 200`      |                              `delete one`                               | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
 |                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
 
-> **RESULT:** Finance entry at `INDEX` deleted successfully!
+> **RESULT:** Deleted finance entry: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
 
 #### Editing a person : Finance Tab → `edit`
 
