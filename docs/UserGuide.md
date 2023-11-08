@@ -176,7 +176,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 
 |                                  #g#Positive Examples##                                  |                                        #r#Negative Examples##                                        | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                  |
 |:----------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
-|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                |                               `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name is missing                                  |
+|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                |                               `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> Name is missing                             |
 |                 `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name, Phone number, and Email is missing         |
 | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
 
@@ -332,6 +332,8 @@ Format: `clear`
 
 To view events tab, either click on the “events” button, or use the command tab `events` to switch tabs.
 
+By default, only **upcoming** events will be shown. To view all events, use the command `list-all` to view all events.
+
 #### Listing all upcoming events: Events Tab → `list`
 
 Shows a list of all **UPCOMING** events in the **Events** tab.
@@ -469,7 +471,7 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
  
 #### Filtering events: Events Tab → filter `filter-n`
 
-Filters events in the **Events** tab.
+Filters events by their name in the **Events** tab.
 
 Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
@@ -481,7 +483,7 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 * Only full keywords will be matched. e.g. <code>Con</code> will not match with <code>Conference</code>
 * The search is case-insensitive.
 > `cOnFerEnce` → 1. Conference with Bernice
-* Client's name matching at least one keyword will be returned (i.e. OR search)
+* Event's name matching at least one keyword will be returned (i.e. OR search)
 > `Conference Meeting` → 1. Conference with Bernice
 >             2. Meeting with Alex
 * The order of the keywords does not matter.
@@ -502,7 +504,7 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 #### Filtering events: Events Tab → filter `filter-t`
 
-Filters events in the **Events** tab.
+Filters events by time in the **Events** tab.
 
 Format: `filter-t TIMESTAMP`
 
@@ -1069,14 +1071,14 @@ Commands that applies to ALL tabs
 
 ### Events Tab
 
-| Action       | Format, Examples                                                                                                                                                            |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         |
-| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                            |
-| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                         |
-| **Filter**   | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                |
-| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                             |
+| Action       | Format, Examples                                                                                                                                                              |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
+| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
+| **Filter**   | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
+| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                               |
 
 
 ### Finance Tab
