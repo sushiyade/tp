@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
@@ -58,6 +59,14 @@ public class Event implements Comparable<Event> {
     public Set<Person> getClients() {
         return Collections.unmodifiableSet(clients); // Return a copy of the client list
     }
+
+    public String getClientNames() {
+        return clients.stream()
+                .map(Person::getName)
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
+    }
+
 
     public Location getLocation() {
         return location;

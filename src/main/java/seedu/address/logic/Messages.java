@@ -72,7 +72,7 @@ public class Messages {
                 .append("; End: ")
                 .append(event.getTimeEnd())
                 .append("; Clients: ")
-                .append(event.getClients())
+                .append(event.getClientNames())
                 .append("; Location: ")
                 .append(event.getLocation())
                 .append("; Description: ")
