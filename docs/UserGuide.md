@@ -49,9 +49,9 @@ If you are a freelancer who is looking to optimize your workflow, look no furthe
 6. At the top you should see a command box with the text "_Enter command here..._". This is where you type your commands and press Enter to execute. e.g. typing **`help`** and pressing Enter will open the general help window.<br>
    Some example commands you can try:
 
-   * `tab finance` : switches tab to the Finance tab.
+   * `tab finance` : Switches tab to the Finance tab.
 
-   * `help` : shows help opens up the general help window. 
+   * `help` : Shows help opens up the general help window. 
    
    * `list` : Lists all relevant information in the respective tabs.
 
@@ -165,20 +165,20 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
     </ul>
 </box>
 
-|     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                   |
-|:-----------------:|----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-|      `NAME`       | Text up to 256 characters<br>Must be unique                                                                    | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
-|  `PHONE_NUMBER`   | Numeric values<br>(optional "+" prefix)                                                                        | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
+|     Parameter     | Format                                                                                                        | Examples (#g#Valid##/#r#Invalid##)                                                                   |
+|:-----------------:|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+|      `NAME`       | Text up to 256 characters<br>Must be unique                                                                   | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
+|  `PHONE_NUMBER`   | Numeric values<br>(optional "+" prefix)                                                                       | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
 |      `EMAIL`      | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
-|    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
-|    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
-| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
+|    `[ADDRESS]`    | Text up to 256 characters                                                                                     | #g#5 Science Park Dr, Singapore 118265##                                                             |
+|    `[COMPANY]`    | Text up to 256 characters                                                                                     | #g#Shopee##<br>#g#Sh0p33##                                                                           |
+| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                        | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
 
-|                                  #g#Positive Examples##                                  |                                        #r#Negative Examples##                                        | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                  |
-|:----------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
-|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                |                               `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name is missing                                  |
-|                 `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name, Phone number, and Email is missing         |
-| `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
+|                                  #g#Positive Examples##                                   |                                        #r#Negative Examples##                                         | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                  |
+|:-----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
+|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                 |                                `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> Name is missing                             |
+|                  `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                 `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name, Phone number, and Email is missing         |
+| `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
 
 #### Finding contact by <code>{NAME}</code>: Contacts Tab → `filter-n`
 
@@ -332,6 +332,8 @@ Format: `clear`
 
 To view events tab, either click on the “events” button, or use the command tab `events` to switch tabs.
 
+By default, only **upcoming** events will be shown. To view all events, use the command `list-all` to view all events.
+
 #### Listing all upcoming events: Events Tab → `list`
 
 Shows a list of all **UPCOMING** events in the **Events** tab.
@@ -469,7 +471,7 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
  
 #### Filtering events: Events Tab → filter `filter-n`
 
-Filters events in the **Events** tab.
+Filters events by their name in the **Events** tab.
 
 Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
@@ -481,7 +483,7 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 * Only full keywords will be matched. e.g. <code>Con</code> will not match with <code>Conference</code>
 * The search is case-insensitive.
 > `cOnFerEnce` → 1. Conference with Bernice
-* Client's name matching at least one keyword will be returned (i.e. OR search)
+* Event's name matching at least one keyword will be returned (i.e. OR search)
 > `Conference Meeting` → 1. Conference with Bernice
 >             2. Meeting with Alex
 * The order of the keywords does not matter.
@@ -502,7 +504,7 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 #### Filtering events: Events Tab → filter `filter-t`
 
-Filters events in the **Events** tab.
+Filters events by time in the **Events** tab.
 
 Format: `filter-t TIMESTAMP`
 
@@ -615,7 +617,7 @@ Format: `add-c d/DESCRIPTION a/AMOUNT c/CLIENT [t/TIME]`
 | `add-c c/Steph Evans a/300 d/UI design for NinjaVan` |                          `add-c c/Steph Evans d/UI design for NinjaVan`                           | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted                   |
 |                                                      | `add-c a/100 c/Betsy Crower d/Wedding Photoshoot`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts                                  |
 
-> **RESULT:** New commission added: `{Description}` of `{Amount}` added successfully!
+> **RESULT:** New commission added: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}` 
 
 #### Adding an Expense: Finance Tab → `add-e`
 
@@ -648,7 +650,7 @@ Format: `add-e d/DESCRIPTION a/AMOUNT [c/CLIENT] [t/TIME]`
 |     `add-e a/100 d/Adobe Photoshop`     |                                   `add-e d/Adobe Photoshop`                                    | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> The AMOUNT parameter is mandatory and should not be omitted                   |
 |                                         | `add-e a/100 e/Betsy Crower d/Adobe Photoshop`<br/>*(Betsy Crower is not in the contact list)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Client tagged does not exist in your contacts                                  |
 
-> **RESULT:** New expense added: `{Description}` of `{Amount}` added successfully!
+> **RESULT:** New expense added: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
 
 #### Filtering finance entries by Client → `filter-c`
 
@@ -774,7 +776,7 @@ Format: `delete INDEX`
 |      `delete 200`      |                              `delete one`                               | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
 |                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
 
-> **RESULT:** Finance entry at `INDEX` deleted successfully!
+> **RESULT:** Deleted finance entry: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
 
 #### Editing a person : Finance Tab → `edit`
 
@@ -1069,14 +1071,14 @@ Commands that applies to ALL tabs
 
 ### Events Tab
 
-| Action       | Format, Examples                                                                                                                                                            |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         |
-| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                            |
-| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                         |
-| **Filter**   | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                |
-| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                             |
+| Action       | Format, Examples                                                                                                                                                              |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
+| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
+| **Filter**   | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
+| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                               |
 
 
 ### Finance Tab

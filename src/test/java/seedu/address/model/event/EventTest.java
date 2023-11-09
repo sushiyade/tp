@@ -13,6 +13,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class EventTest {
@@ -81,6 +82,20 @@ public class EventTest {
                 new TimeStart(startTime), new TimeEnd(endTime), new HashSet<>(),
                 new Location(""), new EventDescription(""));
         assertFalse(event1.equals(event3));
+    }
+
+    @Test
+    public void equals_clients() {
+        // Test with same event name, start time and end time
+        Event event1 = new EventBuilder().withClient(ALICE).build();
+        Event event2 = new EventBuilder().withClient(new PersonBuilder().withName("Alice Pauline").build()).build();
+        assertTrue(event1.equals(event2));
+
+        Event event3 = new EventBuilder().withClient(new PersonBuilder().withName("Alice").build()).build();
+        Event event4 = new EventBuilder().withClient(new PersonBuilder().withName("Alice").build())
+                .withClient(ALICE).build();
+        assertFalse(event1.equals(event3));
+        assertFalse(event1.equals(event4));
     }
 
 }

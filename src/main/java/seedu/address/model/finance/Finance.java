@@ -59,6 +59,9 @@ public abstract class Finance {
      * @return The name of the client in the finance entry.
      */
     public Name getClientName() {
+        if (this.client == null) {
+            return new Name("No client");
+        }
         return this.client.getName();
     }
 
