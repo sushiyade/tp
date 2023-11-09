@@ -48,7 +48,7 @@ public class EditFinanceCommandParser implements Parser<EditFinanceCommand> {
             editFinanceDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
         if (argMultimap.getValue(PREFIX_CLIENT).isPresent()) {
-            editFinanceDescriptor.setClient(ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get()));
+            editFinanceDescriptor.setClient(ParserUtil.parseClientForEdit(argMultimap.getValue(PREFIX_CLIENT).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editFinanceDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION)

@@ -51,7 +51,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT_NAME, PREFIX_TIME_START, PREFIX_TIME_END,
-                PREFIX_CLIENT, PREFIX_LOCATION, PREFIX_DESCRIPTION);
+                PREFIX_LOCATION, PREFIX_DESCRIPTION);
 
         EditEventDescriptor editEventDescriptor = new EditEventDescriptor();
 

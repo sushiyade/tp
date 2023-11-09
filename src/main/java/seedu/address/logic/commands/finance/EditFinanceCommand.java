@@ -73,14 +73,7 @@ public class EditFinanceCommand extends Command {
         }
 
         Finance financeToEdit = lastShownList.get(index.getZeroBased());
-        Finance editedFinance = createEditedFinance(financeToEdit, editFinanceDescriptor);
-
-        Person client = editedFinance.getClient();
-
-        if (!model.isValidClient(client)) {
-            throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
-        }
-        editedFinance.setMatchedClientInstance(model.getMatchedClient(client));
+        Finance editedFinance = createEditedFinance(financeToEdit, editFinanceDescriptor, model);
 
         if (!financeToEdit.isSameFinance(editedFinance) && model.hasFinance(editedFinance)) {
             throw new CommandException(MESSAGE_DUPLICATE_FINANCE);
@@ -101,12 +94,22 @@ public class EditFinanceCommand extends Command {
      * Creates and returns a {@code Finance} with the details of {@code financeToEdit}
      * edited with {@code editFinanceDescriptor}.
      */
-    private static Finance createEditedFinance(Finance financeToEdit, EditFinanceDescriptor editFinanceDescriptor)
-            throws CommandException {
+    private static Finance createEditedFinance(Finance financeToEdit, EditFinanceDescriptor editFinanceDescriptor,
+                                               Model model) throws CommandException {
         assert financeToEdit != null;
 
         Amount updatedAmount = editFinanceDescriptor.getAmount().orElse(financeToEdit.getAmount());
-        Person updatedClient = editFinanceDescriptor.getClient().orElse(financeToEdit.getClient());
+
+
+        Person updatedClient;
+
+        if (editFinanceDescriptor.isClientChanged) {
+            Person client = editFinanceDescriptor.client;
+            updatedClient = getValidClient(client, model);
+        } else {
+            updatedClient = financeToEdit.getClient();
+        }
+
         Description updatedDescription = editFinanceDescriptor.getDescription().orElse(financeToEdit.getDescription());
         TimeDue updatedTimeDue = editFinanceDescriptor.getTimeDue().orElse(financeToEdit.getTimeDue());
 
@@ -116,6 +119,18 @@ public class EditFinanceCommand extends Command {
             return new Commission(updatedAmount, updatedClient, updatedDescription, updatedTimeDue);
         }
     }
+
+    private static Person getValidClient(Person client, Model model) throws CommandException {
+        if (client == null) {
+            return null;
+        }
+        if (!model.isValidClient(client)) {
+            throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
+        }
+        return model.getMatchedClient(client);
+    }
+
+
 
     @Override
     public boolean equals(Object other) {
@@ -150,6 +165,7 @@ public class EditFinanceCommand extends Command {
         private Person client;
         private Description description;
         private TimeDue timeDue;
+        private boolean isClientChanged = false;
 
         public EditFinanceDescriptor() {}
 
@@ -167,7 +183,7 @@ public class EditFinanceCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(amount, client, description, timeDue);
+            return CollectionUtil.isAnyNonNull(amount, description, timeDue) || isClientChanged;
         }
 
         public void setAmount(Amount amount) {
@@ -179,6 +195,7 @@ public class EditFinanceCommand extends Command {
         }
 
         public void setClient(Person client) {
+            isClientChanged = true;
             this.client = client;
         }
         public Optional<Person> getClient() {

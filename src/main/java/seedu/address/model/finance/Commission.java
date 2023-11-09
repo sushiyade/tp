@@ -18,7 +18,7 @@ public class Commission extends Finance {
      * @param timeDue     The time due of the commission.
      */
     public Commission(Amount amount, Person client, Description description, TimeDue timeDue) {
-        requireAllNonNull(amount, client, description);
+        requireAllNonNull(amount, description);
         this.amount = amount;
         this.client = client;
         this.description = description;
@@ -30,8 +30,15 @@ public class Commission extends Finance {
      * This defines a weaker notion of equality between two commissions.
      */
     public boolean isSameCommission(Commission commission) {
+        boolean isSameClient;
+        if (client == null) {
+            isSameClient = commission.getClient() == null;
+        } else {
+            isSameClient = client.equals(commission.getClient());
+        }
+
         return amount.equals(commission.getAmount())
-                && client.isSamePerson((commission.getClient()))
+                && isSameClient
                 && description.equals(commission.getDescription())
                 && timeDue.equals(commission.getTimeDue());
     }
