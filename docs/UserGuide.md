@@ -78,6 +78,59 @@ For more commands such as edit and filter commands, as well as detailed instruct
 
 ### Features
 
+FreelanceBuddy is made up of **three main systems**. It has:
+- A contact management system
+- A finance tracker
+- A scheduling system for events, tasks and meetings.
+
+#### Contacts
+A contact in FreelanceBuddy represents a **client, or a representative of a company** that is using your services.
+Each contact contains the following information:
+
+| Type of information | Description                                                                                                                                                                                                                                                        | Required? |
+|:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
+|        Email        | The client's email.                                                                                                                                                                                                                                                | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
+|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
+
+#### Finance
+A finance entry in FreelanceBuddy could be either a **Commission** or an **Expense**. These are from the perspective of your personal finances.
+
+A **commission** represents a **payment made by a client to you**, while an **expense** represents some **cost incurred on either personal spending or on your projects**.
+
+For instance, if you received $200 from a client for making a chatbot, that's a **commission**.
+
+If you spent $80 on a Photoshop subscription for your client's project, that's an **expense**.
+
+Both **commissions** and **expenses** are considered finance entries so they are on the same list, but you can filter them using commands such as `list commission` or `list expense`!
+Each finance entry contains the following information:
+
+| Type of information | Description                                                                                                                                                                                                                                                        | Required? |
+|:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
+|        Email        | The client's email.                                                                                                                                                                                                                                                | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
+|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
+
+#### Contacts
+A contact in FreelanceBuddy represents a **client, or a representative of a company** that is using your services.
+Each contact contains the following information:
+
+| Type of information | Description                                                                                                                                                                                                                                                        | Required? |
+|:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
+|        Email        | The client's email.                                                                                                                                                                                                                                                | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
+|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands
