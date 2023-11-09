@@ -514,9 +514,9 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the <code>{CLIENT}</code>, see [filter-n in Contacts Tab for more details](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-a-contact-contacts-tab-add)
 * Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
-* The search is case-insensitive.
 > `aLeX` → 1. Alex Yeoh
 * Client's name matching at least one keyword will be returned (i.e. OR search)
 > `Alex Roy` → 1. Alex Yeoh
@@ -547,9 +547,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the event <code>{NAME}</code>
 * Only full keywords will be matched. e.g. <code>Con</code> will not match with <code>Conference</code>
-* The search is case-insensitive.
 > `cOnFerEnce` → 1. Conference with Bernice
 * Event's name matching at least one keyword will be returned (i.e. OR search)
 > `Conference Meeting` → 1. Conference with Bernice
