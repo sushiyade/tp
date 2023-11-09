@@ -258,9 +258,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the Contact's <code>{NAME}</code>
 * Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
-* The search is case-insensitive.
 > `aLeX` → 1. Alex Yeoh
 * Contacts name matching at least one keyword will be returned (i.e. OR search)
 > `Alex Roy` → 1. Alex Yeoh
@@ -290,9 +290,9 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive. 
 * The search is by the Contact's <code>{COMPANY}</code>
 * Only full keywords will be matched. e.g. <code>Goo</code> will not match with <code>Google</code>
-* The search is case-insensitive.
 > `gOoGle` → (prints all Contacts with Google as their company)
 > 
 > 1. Alex Yeoh 2. David Li 3. Irfan Ibrahim 4. Roy Balakrishnan 
