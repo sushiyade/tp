@@ -96,6 +96,8 @@ Each contact contains the following information:
 |       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
 |    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
 
+You can check out commands related to Contacts [here](#contact-management). A summary of Contact Tab commands can also be found [here](#contacts-tab).
+
 #### Finance
 A finance entry in FreelanceBuddy could be either a **Commission** or an **Expense**. These are from the perspective of your personal finances.
 
@@ -108,14 +110,14 @@ If you spent $80 on a Photoshop subscription for your client's project, that's a
 Both **commissions** and **expenses** are considered finance entries so they are on the same list, but you can filter them using commands such as `list commission` or `list expense`!
 Each finance entry contains the following information:
 
-| Type of information | Description                                                                                                                                                                                                                                                        | Required? |
-|:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
-|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
-|        Email        | The client's email.                                                                                                                                                                                                                                                | Yes       |
-|       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
-|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
-|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
+| Type of information | Description                                                                                                                                                                                                                                                             | Required? |
+|:-------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>Tip: If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                              | Yes       |
+|        Email        | The client's email.                                                                                                                                                                                                                                                     | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                                   | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                                  | No        |
+|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                         | No        |
 
 #### Contacts
 A contact in FreelanceBuddy represents a **client, or a representative of a company** that is using your services.
