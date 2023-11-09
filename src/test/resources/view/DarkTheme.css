@@ -313,9 +313,6 @@
     -fx-font-size: 1.2em;
 }
 
-.tab .tab-label {
-    -fx-alignment: BOTTOM;
-}
 .tab {
     -fx-background-radius: 5 5 0 0;
     -fx-background-insets: 10 1 0 1;
