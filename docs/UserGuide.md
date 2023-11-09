@@ -6,68 +6,136 @@
 
 # FreelanceBuddy User Guide
 
-Welcome to the FreelanceBuddy, a **powerful and efficient Command Line Interface (CLI) optimised app designed for passionate freelancers** like you.
-It's your one-stop solution for managing multiple clients, tracking project statuses, and staying on top of your financial reports effortlessly.
+## Getting Started
+
+<html><span style="font-size:32px">Attention, full-time freelancers!</span></html>
+
+**FreelanceBuddy** is a **powerful and efficient Command Line Interface (CLI)** optimized app designed **just for you**!
+
+It's your **one-stop solution** for managing multiple clients, tracking project statuses, and staying on top of your financial reports with ease.
+If you are a freelancer who is looking to optimize your workflow, look no further! FreelanceBuddy might just be the buddy for you.
+
+Are you a new user? Check out our [Quick Start](#quick-start) guide to get started!
+
+Not sure how each feature works? Take a look at the [Features](#features) section!
+
+Or perhaps you're an advanced user! You can find out how each command works [here](#commands).
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Attention to full-time freelancers
-FreelanceBuddy is a powerful and efficient Command Line Interface (CLI) optimized app designed just for you!
+### Quick Start
 
-It's your one-stop solution for managing multiple clients, tracking project statuses, and staying on top of your financial reports with ease.
-If you are a freelancer who is looking to optimize your workflow, look no further! FreelanceBuddy might just be the buddy for you.
+1. Ensure you have Java `11` or above installed on your computer. Not sure how to do that? Check out the instructions [here](https://www.java.com/en/download/help/version_manual.html).
 
---------------------------------------------------------------------------------------------------------------------
+2. Download the latest `FreelanceBuddy.jar` from our [releases page](https://github.com/AY2324S1-CS2103T-W09-2/tp/releases/).
 
-## Quick start
+3. Copy the file to the folder you want to use as the _home folder_ for your app. This is where all the saved and configuration data will be stored!
 
-1. Ensure you have Java `11` or above installed in your Computer.
+4. On a command terminal, `cd` into the _home folder_ you chose earlier, and enter the `java -jar FreelanceBuddy.jar` command to run the application.
 
-2. Download the latest `FreelanceBuddy.jar` from [here](https://github.com/AY2324S1-CS2103T-W09-2/tp/releases/).
+    The FreelanceBuddy GUI should appear in a few seconds, as shown below.
 
-3. Copy the file to the folder you want to use as the _home folder_ for your app.
-
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FreelanceBuddy.jar` command to run the application.<br>
-
-   A GUI similar to the below should appear in a few seconds. 
-
-> Note how the app already contains some sample data.
+    > The app comes with some sample data when you first run it!
 
    ![Ui](images/Ui.png)
 
-5. Upon successful start up you should see 3 tabs:
-   * **Contacts** (Landing tab)
-     * List of contacts
+5. Upon successful launch, you should see 3 **tabs**:
+   * **Contacts** (This tab is open by default)
    * **Finance**
-     * List of finances (both commission and expenses)
    * **Events**
-       * List of events
 
-6. At the top you should see a command box with the text "_Enter command here..._". This is where you type your commands and press Enter to execute. e.g. typing **`help`** and pressing Enter will open the general help window.<br>
-   Some example commands you can try:
+    To find out what each tab does, check out our [Features](#features) section!
 
-   * `tab finance` : Switches tab to the Finance tab.
+6. At the top, there is a **command box** with the text "_Enter command here..._". This is where you type your commands. After typing each command, press Enter to execute it.
 
-   * `help` : Shows help opens up the general help window. 
-   
-   * `list` : Lists all relevant information in the respective tabs.
+7. For certain commands, there may be a message indicating the success or failure of that command displayed in the **console**, located right under the command box.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the contact list shown in the Contacts Tab with the specified phone number and email address.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+Now that you've got FreelanceBuddy set up, here are some **example commands** to get you started!
 
-   * `clear` : Deletes all entires in the respective tabs.
+   * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the contact list with phone number `98765432` and email `johnd@example.com`.
+
+   * `delete 3` : Deletes the 3rd contact shown in the contact list.
+
+   * `filter-n John` : Filters all the contacts named `John`. You should see only the contact that you just added above!
+
+   * `list` : Lists all the contacts in the contact list.
+
+   * `tab finance` : Switches the displayed tab to the Finance tab.
+
+   * `add-c d/Chatbot c/John Doe a/200` : Adds a `200` dollar commission from `John Doe` with the description `Chatbot`.
+
+   * `list commission` : Lists only commissions in the finance list. One of them should be the commission you just added!
 
    * `exit` : Exits the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+For more commands such as edit and filter commands, as well as detailed instructions on how to use each of them, check out the [Commands](#commands) section below!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+### Features
+
+FreelanceBuddy is made up of **three main systems**. It has:
+- A contact management system
+- A finance tracker
+- A scheduling system for events, tasks and meetings.
+
+#### Contacts
+A contact in FreelanceBuddy represents a **client, or a representative of a company** that is using your services.
+Each contact contains the following information:
+
+| Type of information | Description                                                                                                                                                                                                                                                        | Required? |
+|:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
+|        Email        | The client's email.                                                                                                                                                                                                                                                | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
+|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
+
+You can check out commands related to Contacts [here](#contact-management). A summary of Contact Tab commands can also be found [here](#contacts-tab).
+
+#### Finance
+A finance entry in FreelanceBuddy could be either a **Commission** or an **Expense**. These are from the perspective of your personal finances.
+
+A **commission** represents a **payment made by a client to you**, while an **expense** represents some **cost incurred on either personal spending or on your projects**.
+
+For instance, if you received $200 from a client for making a chatbot, that's a **commission**.
+
+If you spent $80 on a Photoshop subscription for your client's project, that's an **expense**.
+
+Both **commissions** and **expenses** are considered finance entries so they are on the same list, but you can filter them using commands such as `list commission` or `list expense`!
+Each finance entry contains the following information:
+
+| Type of information | Description                                                                                                                                                                                                                                                             | Required? |
+|:-------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>Tip: If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                              | Yes       |
+|        Email        | The client's email.                                                                                                                                                                                                                                                     | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                                   | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                                  | No        |
+|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                         | No        |
+
+#### Contacts
+A contact in FreelanceBuddy represents a **client, or a representative of a company** that is using your services.
+Each contact contains the following information:
+
+| Type of information | Description                                                                                                                                                                                                                                                        | Required? |
+|:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
+|        Email        | The client's email.                                                                                                                                                                                                                                                | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
+|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Commands
 
 <box type="info" seamless>
 
