@@ -5,7 +5,11 @@ title: "Ito Tetsushi's Project Portfolio Page"
 
 ### Project: FreelanceBuddy
 
-**Overview:** To be added
+**Overview:** FreelanceBuddy is a **powerful and efficient Command Line Interface (CLI)
+optimised app designed for freelancers**.
+It's a one-stop solution for freelancers, helping them manage multiple clients, track project statuses,
+and stay on top of their financial reports.
+
 
 Given below are my contributions to the project.
 
