@@ -8,12 +8,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.DateTimeParser.parseDateTimeDuration;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.finance.FilterTimeDueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Duration;
 import seedu.address.model.finance.TimeDueBetweenPredicate;
 class FilterTimeDueCommandParserTest {
     private FilterTimeDueCommandParser parser = new FilterTimeDueCommandParser();
@@ -22,8 +21,8 @@ class FilterTimeDueCommandParserTest {
     public void parse_validArgs_returnsFilterTimeDueCommand() throws ParseException {
         String startArg = "Jan 19";
         String endArg = "Jan 20";
-        LocalDateTime[] timeRange = parseDateTimeDuration(startArg, endArg);
-        FilterTimeDueCommand expectedCommand = new FilterTimeDueCommand((new TimeDueBetweenPredicate(timeRange)));
+        Duration duration = parseDateTimeDuration(startArg, endArg);
+        FilterTimeDueCommand expectedCommand = new FilterTimeDueCommand((new TimeDueBetweenPredicate(duration)));
         assertParseSuccess(parser, " " + PREFIX_TIME_START + startArg + " " + PREFIX_TIME_END + endArg,
                 expectedCommand);
     }

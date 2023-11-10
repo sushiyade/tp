@@ -24,8 +24,6 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
-import seedu.address.model.event.TimeEnd;
-import seedu.address.model.event.TimeStart;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -45,8 +43,7 @@ public class AddEventCommandParserTest {
     @Test
     public void parse_duplicateInvalidFormat_failure() throws ParseException {
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
-                new TimeStart(VALID_TIME_START_MEETING),
-                new TimeEnd(VALID_TIME_END_MEETING),
+                DateTimeParser.parseDateTimeDuration(VALID_TIME_START_MEETING, VALID_TIME_END_MEETING),
                 Set.of(new PersonBuilder().build()),
                 new Location(VALID_LOCATION_MEETING),
                 new EventDescription(VALID_DESCRIPTION_MEETING));
@@ -153,8 +150,7 @@ public class AddEventCommandParserTest {
                 new Address(""), new Company(""), new TelegramName(""));
 
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
-                new TimeStart(VALID_TIME_START_MEETING),
-                new TimeEnd(VALID_TIME_END_MEETING),
+                DateTimeParser.parseDateTimeDuration(VALID_TIME_START_MEETING, VALID_TIME_END_MEETING),
                 Set.of(dummyBob),
                 new Location(VALID_LOCATION_MEETING),
                 new EventDescription(VALID_DESCRIPTION_MEETING));
@@ -175,8 +171,7 @@ public class AddEventCommandParserTest {
         expectedClientList.add(dummyBob);
 
         Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_MEETING),
-                new TimeStart(VALID_TIME_START_MEETING),
-                new TimeEnd(VALID_TIME_END_MEETING),
+                DateTimeParser.parseDateTimeDuration(VALID_TIME_START_MEETING, VALID_TIME_END_MEETING),
                 expectedClientList,
                 new Location(VALID_LOCATION_MEETING),
                 new EventDescription(VALID_DESCRIPTION_MEETING));

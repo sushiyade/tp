@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.testutil.EventBuilder;
 
@@ -17,14 +18,24 @@ public class EventListTest {
     @Test
     public void contains_eventNotInList_returnsFalse() {
         UniqueEventList eventList = new UniqueEventList();
-        Event event = new EventBuilder().withName("Event 1").build();
+        Event event = null;
+        try {
+            event = new EventBuilder().withName("Event 1").build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         assertFalse(eventList.contains(event));
     }
 
     @Test
     public void contains_eventInList_returnsTrue() {
         UniqueEventList eventList = new UniqueEventList();
-        Event event = new EventBuilder().withName("Event 1").build();
+        Event event = null;
+        try {
+            event = new EventBuilder().withName("Event 1").build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         eventList.add(event);
         assertTrue(eventList.contains(event));
     }
@@ -32,18 +43,23 @@ public class EventListTest {
     @Test
     public void add_validEvent_returnsTrue() {
         UniqueEventList eventList = new UniqueEventList();
-        Event event = new EventBuilder().withName("Event 1").build();
+        Event event = null;
+        try {
+            event = new EventBuilder().withName("Event 1").build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         eventList.add(event);
     }
     @Test
-    public void remove_eventNotInList_returnsFalse() {
+    public void remove_eventNotInList_returnsFalse() throws ParseException {
         UniqueEventList eventList = new UniqueEventList();
         Event event = new EventBuilder().withName("Event 1").build();
         assertThrows(EventNotFoundException.class, () -> eventList.remove(event));
     }
 
     @Test
-    public void remove_eventInList_returnsFalse() {
+    public void remove_eventInList_returnsFalse() throws ParseException {
         UniqueEventList eventList = new UniqueEventList();
         Event event = new EventBuilder().withName("Event 1").build();
         eventList.add(event);
@@ -52,7 +68,7 @@ public class EventListTest {
     }
 
     @Test
-    public void setEvents_validReplacement_success() {
+    public void setEvents_validReplacement_success() throws ParseException {
         // Arrange
         UniqueEventList originalList = new UniqueEventList();
         Event event1 = new EventBuilder().build();
@@ -75,7 +91,12 @@ public class EventListTest {
     public void setEvents_nullReplacement_throwsNullPointerException() {
         // Arrange
         UniqueEventList originalList = new UniqueEventList();
-        Event event1 = new EventBuilder().build();
+        Event event1 = null;
+        try {
+            event1 = new EventBuilder().build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         originalList.add(event1);
 
         // Act and Assert
@@ -86,7 +107,12 @@ public class EventListTest {
     public void setEvents_emptyReplacement_success() {
         // Arrange
         UniqueEventList originalList = new UniqueEventList();
-        Event event1 = new EventBuilder().build();
+        Event event1 = null;
+        try {
+            event1 = new EventBuilder().build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         originalList.add(event1);
 
         UniqueEventList replacementList = new UniqueEventList(); // Empty list
@@ -99,7 +125,7 @@ public class EventListTest {
     }
 
     @Test
-    public void iterator() {
+    public void iterator() throws ParseException {
         UniqueEventList eventList = new UniqueEventList();
         Event event1 = new EventBuilder().withName("Event 1").build();
         Event event2 = new EventBuilder().withName("Event 2").build();
@@ -128,7 +154,7 @@ public class EventListTest {
     }
 
     @Test
-    public void equals_differentInternalLists_false() {
+    public void equals_differentInternalLists_false() throws ParseException {
         // Arrange
         UniqueEventList list1 = new UniqueEventList();
         UniqueEventList list2 = new UniqueEventList();
@@ -140,7 +166,7 @@ public class EventListTest {
     }
 
     @Test
-    public void equals_sameInternalLists_true() {
+    public void equals_sameInternalLists_true() throws ParseException {
         // Arrange
         UniqueEventList list1 = new UniqueEventList();
         UniqueEventList list2 = new UniqueEventList();
@@ -162,7 +188,7 @@ public class EventListTest {
     }
 
     @Test
-    public void toString_nonEmptyList_returnsFormattedString() {
+    public void toString_nonEmptyList_returnsFormattedString() throws ParseException {
         // Arrange
         UniqueEventList list = new UniqueEventList();
         Event event1 = new EventBuilder().withName("Meeting").build();

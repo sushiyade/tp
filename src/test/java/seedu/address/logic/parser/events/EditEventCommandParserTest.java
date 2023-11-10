@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.EVENT_NAME_DESC_BIRTH
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_END_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_START_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_BIRTHDAY;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_END_DESC_BIRTHDAY;
@@ -32,8 +31,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
-import seedu.address.model.event.TimeEnd;
-import seedu.address.model.event.TimeStart;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 
 public class EditEventCommandParserTest {
@@ -73,8 +70,6 @@ public class EditEventCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_EVENT_NAME_DESC + createMoreThanAllowedString(),
                 EventName.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_TIME_START_DESC, TimeStart.MESSAGE_CONSTRAINTS); // invalid time start
-        assertParseFailure(parser, "1" + INVALID_TIME_END_DESC, TimeEnd.MESSAGE_CONSTRAINTS); // invalid time end
         assertParseFailure(parser, "1" + INVALID_LOCATION_DESC + createMoreThanAllowedString(),
                 Location.MESSAGE_CONSTRAINTS); // invalid location
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC + createMoreThanAllowedString(),

@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Duration;
 
 
 /**
@@ -55,6 +56,10 @@ public class TimeDue {
 
     public LocalDateTime stringToTime(String timeString) throws ParseException {
         return DateTimeParser.parseDateTimeInstance(timeString);
+    }
+
+    public boolean isWithin(Duration duration) {
+        return duration.hasTime(timeDue);
     }
 
     public boolean isBefore(TimeDue time) {

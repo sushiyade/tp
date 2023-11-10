@@ -62,6 +62,14 @@ public class TimeEnd {
         return DateTimeParser.parseDateTimeInstance(timeString);
     }
 
+    public boolean isAfter(TimeStart timeStart) {
+        return timeEnd.isAfter(timeStart.getTime());
+    }
+
+    public boolean isAfterNow() {
+        return timeEnd.isAfter(LocalDateTime.now());
+    }
+
     @Override
     public String toString() {
         return timeEnd.format(DATE_TIME_FORMATTER);

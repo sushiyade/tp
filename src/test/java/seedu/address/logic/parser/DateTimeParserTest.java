@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
@@ -11,6 +12,9 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Duration;
+import seedu.address.model.event.TimeEnd;
+import seedu.address.model.event.TimeStart;
 
 public class DateTimeParserTest {
 
@@ -105,33 +109,38 @@ public class DateTimeParserTest {
     }
 
     @Test
-    public void parseDateTimeDuration_validInputDtToDt_returnsLocalDateTimeArray() throws ParseException {
-        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("2023-10-26 12:00", "2023-10-26 14:00");
-        assertEquals(LocalDateTime.of(2023, 10, 26, 12, 0), result[0]);
-        assertEquals(LocalDateTime.of(2023, 10, 26, 14, 00), result[1]);
+    public void parseDateTimeDuration_validInputDtToDt_returnsDuration() throws ParseException {
+        Duration duration = DateTimeParser.parseDateTimeDuration("2023-10-26 12:00", "2023-10-26 14:00");
+        TimeStart ts = new TimeStart(LocalDateTime.of(2023, 10, 26, 12, 0));
+        TimeEnd te = new TimeEnd(LocalDateTime.of(2023, 10, 26, 14, 00));
+        assertEquals(ts.getValue(), duration.getTimeStartValue());
+        assertEquals(te.getValue(), duration.getTimeEndValue());
     }
 
     @Test
-    public void parseDateTimeDuration_validInputDToD_returnsLocalDateTimeArray() throws ParseException {
-        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("26 Oct 23", "27 Oct");
-        assertEquals(LocalDateTime.of(2023, 10, 26, 0, 0), result[0]);
-        assertEquals(LocalDateTime.of(2023, 10, 27, 23, 59), result[1]);
+    public void parseDateTimeDuration_validInputDToD_returnsDuration() throws ParseException {
+        Duration duration = DateTimeParser.parseDateTimeDuration("26 Oct 23", "27 Oct");
+        TimeStart ts = new TimeStart(LocalDateTime.of(2023, 10, 26, 0, 0));
+        TimeEnd te = new TimeEnd(LocalDateTime.of(2023, 10, 27, 23, 59));
+        assertEquals(ts.getValue(), duration.getTimeStartValue());
+        assertEquals(te.getValue(), duration.getTimeEndValue());
     }
 
     @Test
-    public void parseDateTimeDuration_validInputTtoT_returnsLocalDateTimeArray() throws ParseException {
-        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("5pm", "6 pm");
-        assertEquals(17, result[0].getHour());
-        assertEquals(0, result[0].getMinute());
-        assertEquals(18, result[1].getHour());
-        assertEquals(0, result[1].getMinute());
+    public void parseDateTimeDuration_validInputTtoT_returnsDuration() throws ParseException {
+        Duration duration = DateTimeParser.parseDateTimeDuration("5pm", "6 pm");
+        assertNotNull(duration);
+        assertTrue(duration.getTimeStartValue().contains("17:00"));
+        assertTrue(duration.getTimeEndValue().contains("18:00"));
     }
 
     @Test
     public void parseDateTimeDuration_validInputDTtoT_returnsLocalDateTimeArray() throws ParseException {
-        LocalDateTime[] result = DateTimeParser.parseDateTimeDuration("26 Oct 23 5pm", "6pm");
-        assertEquals(LocalDateTime.of(2023, 10, 26, 17, 0), result[0]);
-        assertEquals(LocalDateTime.of(2023, 10, 26, 18, 0), result[1]);
+        Duration duration = DateTimeParser.parseDateTimeDuration("26 Oct 23 5pm", "6pm");
+        TimeStart ts = new TimeStart(LocalDateTime.of(2023, 10, 26, 17, 0));
+        TimeEnd te = new TimeEnd(LocalDateTime.of(2023, 10, 26, 18, 0));
+        assertEquals(ts.getValue(), duration.getTimeStartValue());
+        assertEquals(te.getValue(), duration.getTimeEndValue());
     }
 
     @Test

@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.testutil.EventBuilder;
@@ -24,7 +25,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void constructor_copyEventsBook_success() {
+    public void constructor_copyEventsBook_success() throws ParseException {
         EventsBook originalEventsBook = new EventsBook();
         Event event = new EventBuilder().withName("Event 1").build();
         originalEventsBook.addEvent(event);
@@ -34,7 +35,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void setEvents_validEventsList_success() {
+    public void setEvents_validEventsList_success() throws ParseException {
         EventsBook eventsBook = new EventsBook();
         List<Event> events = new ArrayList<>();
         events.add(new EventBuilder().withName("Event 1").build());
@@ -43,7 +44,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void resetData_validEventsBook_success() {
+    public void resetData_validEventsBook_success() throws ParseException {
         EventsBook eventsBook = new EventsBook();
         EventsBook newData = new EventsBook();
         newData.addEvent(new EventBuilder().withName("Event 1").build());
@@ -53,7 +54,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void hasEvent_eventInEventsBook_returnsTrue() {
+    public void hasEvent_eventInEventsBook_returnsTrue() throws ParseException {
         EventsBook eventsBook = new EventsBook();
         Event event = new EventBuilder().withName("Event 1").build();
         eventsBook.addEvent(event);
@@ -62,7 +63,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void hasEvent_eventNotInEventsBook_returnsFalse() {
+    public void hasEvent_eventNotInEventsBook_returnsFalse() throws ParseException {
         EventsBook eventsBook = new EventsBook();
         Event event = new EventBuilder().withName("Event 1").build();
 
@@ -70,7 +71,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void addEvent_eventNotInEventsBook_success() {
+    public void addEvent_eventNotInEventsBook_success() throws ParseException {
         EventsBook eventsBook = new EventsBook();
         Event event = new EventBuilder().withName("Event 1").build();
 
@@ -79,7 +80,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void removeEvent_eventInEventsBook_success() {
+    public void removeEvent_eventInEventsBook_success() throws ParseException {
         EventsBook eventsBook = new EventsBook();
         Event event = new EventBuilder().withName("Event 1").build();
         eventsBook.addEvent(event);
@@ -89,7 +90,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void removeEvent_eventNotInEventsBook_throwsException() {
+    public void removeEvent_eventNotInEventsBook_throwsException() throws ParseException {
         EventsBook eventsBook = new EventsBook();
         Event event = new EventBuilder().withName("Event 1").build();
 
@@ -97,7 +98,7 @@ public class EventsBookTest {
     }
 
     @Test
-    public void equals() {
+    public void equals() throws ParseException {
         EventsBook eventsBook1 = new EventsBook();
         eventsBook1.addEvent(new EventBuilder().withName("Event 1").build());
         EventsBook eventsBook2 = new EventsBook();

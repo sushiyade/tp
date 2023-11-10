@@ -18,6 +18,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ModelStub;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -53,7 +54,12 @@ public class AddEventCommandTest {
         Person validPerson = new PersonBuilder().build();
         new AddContactCommand(validPerson).execute(modelStub);
 
-        Event validEvent = new EventBuilder().withClient(new PersonBuilder().withName("Daniel").build()).build();
+        Event validEvent = null;
+        try {
+            validEvent = new EventBuilder().withClient(new PersonBuilder().withName("Daniel").build()).build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         AddEventCommand addEventCommand = new AddEventCommand(validEvent);
 
         assertThrows(CommandException.class, Messages.MESSAGE_CLIENT_DOES_NOT_EXIST, () ->
@@ -62,8 +68,14 @@ public class AddEventCommandTest {
 
     @Test
     public void equals() {
-        Event a = new EventBuilder().withName("a").build();
-        Event b = new EventBuilder().withName("b").build();
+        Event a = null;
+        Event b = null;
+        try {
+            a = new EventBuilder().withName("a").build();
+            b = new EventBuilder().withName("b").build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         AddEventCommand addACommand = new AddEventCommand(a);
         AddEventCommand addBCommand = new AddEventCommand(b);
 

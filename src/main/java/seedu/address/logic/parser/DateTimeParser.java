@@ -13,6 +13,9 @@ import java.util.Locale;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Duration;
+import seedu.address.model.event.TimeEnd;
+import seedu.address.model.event.TimeStart;
 
 /**
  * Implements class that handles parsing of time input.
@@ -22,9 +25,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DateTimeParser {
     public static final String INVALID_DATETIME_FORMAT = "Invalid date-time format!";
-    private static final LocalTime MIDNIGHT = LocalTime.of(0, 0);
-    private static final String INVALID_DATETIME_DURATION = "Invalid date-time duration! "
+    public static final String INVALID_DATETIME_DURATION = "Invalid date-time duration! "
             + "End time cannot be before start time";
+    private static final LocalTime MIDNIGHT = LocalTime.of(0, 0);
     private static final String INVALID_COMBINATION = "Invalid combination of start and end time";
 
     private static LocalDate getToday() {
@@ -544,7 +547,7 @@ public class DateTimeParser {
      * @param endInput end of the event by user.
      * @throws ParseException for invalid date-time formats or invalid durations.
      */
-    public static LocalDateTime[] parseDateTimeDuration(String startInput, String endInput)
+    public static Duration parseDateTimeDuration(String startInput, String endInput)
             throws ParseException {
         startInput = startInput.trim();
         endInput = endInput.trim();
@@ -556,27 +559,28 @@ public class DateTimeParser {
             throw new ParseException(INVALID_COMBINATION);
         }
 
-        LocalDateTime[] result = new LocalDateTime[2];
+        TimeStart timeStart;
+        TimeEnd timeEnd;
 
         if (isValidDateFormat(startInput) && isValidDateFormat(endInput)) {
-            result[0] = parseDateTimeInstance(startInput);
-            result[1] = parseDateTimeInstance(endInput).with(MIDNIGHT.minusMinutes(1));
+            timeStart = new TimeStart(parseDateTimeInstance(startInput));
+            timeEnd = new TimeEnd(parseDateTimeInstance(endInput).with(MIDNIGHT.minusMinutes(1)));
         } else if (isValidTimeFormat(startInput) && isValidTimeFormat(endInput)) {
-            result[1] = parseDateTimeInstance(endInput);
-            result[0] = parseDateTimeInstance(startInput).with(result[1].toLocalDate());
+            timeEnd = new TimeEnd(parseDateTimeInstance(endInput));
+            timeStart = new TimeStart(parseDateTimeInstance(startInput).with(timeEnd.getTime().toLocalDate()));
         } else if (isValidTimeFormat(endInput)) {
-            result[0] = parseDateTimeInstance(startInput);
-            result[1] = parseDateTimeInstance(endInput).with(result[0].toLocalDate());
+            timeStart = new TimeStart(parseDateTimeInstance(startInput));
+            timeEnd = new TimeEnd(parseDateTimeInstance(endInput).with(timeStart.getTime().toLocalDate()));
         } else if (isValidDateFormat(endInput)) {
-            result[0] = parseDateTimeInstance(startInput);
-            result[1] = parseDateTimeInstance(endInput).with(MIDNIGHT.minusMinutes(1));
+            timeStart = new TimeStart(parseDateTimeInstance(startInput));
+            timeEnd = new TimeEnd(parseDateTimeInstance(endInput).with(MIDNIGHT.minusMinutes(1)));
         } else {
-            result[0] = parseDateTimeInstance(startInput);
-            result[1] = parseDateTimeInstance(endInput);
+            timeStart = new TimeStart(parseDateTimeInstance(startInput));
+            timeEnd = new TimeEnd(parseDateTimeInstance(endInput));
         }
 
-        if (result[1].isAfter(result[0])) {
-            return result;
+        if (timeEnd.isAfter(timeStart)) {
+            return new Duration(timeStart, timeEnd);
         } else {
             throw new ParseException(INVALID_DATETIME_DURATION);
         }

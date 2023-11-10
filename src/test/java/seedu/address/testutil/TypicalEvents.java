@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EventsBook;
 import seedu.address.model.event.Event;
 
@@ -15,60 +16,78 @@ public class TypicalEvents {
     public static final Event EVENT1;
 
     static {
-        EVENT1 = new EventBuilder().withName("Meeting with Alice")
-                .withClient(new PersonBuilder().withName("Alice").build())
-                .withTimeStart("23-09-2023 09:00")
-                .withTimeEnd("23-09-2023 10:00")
-                .build();
+        try {
+            EVENT1 = new EventBuilder().withName("Meeting with Alice")
+                    .withClient(new PersonBuilder().withName("Alice").build())
+                    .withDuration("23-09-2023 09:00", "23-09-2023 10:00")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static final Event EVENT2;
 
     static {
-        EVENT2 = new EventBuilder().withName("Conference with Bob")
-                    .withTimeStart("24-09-2023 14:00")
-                    .withTimeEnd("24-09-2023 18:00")
-                    .build();
+        try {
+            EVENT2 = new EventBuilder().withName("Conference with Bob")
+                        .withDuration("24-09-2023 14:00", "24-09-2023 18:00")
+                        .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Manually added
     public static final Event EVENT3;
 
     static {
-        EVENT3 = new EventBuilder().withName("Team Lunch")
-                .withTimeStart("25-09-2023 12:00")
-                .withTimeEnd("25-09-2023 13:00")
-                .build();
+        try {
+            EVENT3 = new EventBuilder().withName("Team Lunch")
+                    .withDuration("25-09-2023 12:00", "25-09-2023 13:00")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Manually added - Event's details found in {@code CommandTestUtil}
     public static final Event EVENT4;
 
     static {
-        EVENT4 = new EventBuilder().withName("Project Presentation")
-                .withTimeStart("26-09-2023 15:00")
-                .withTimeEnd("26-09-2023 16:30")
-                .build();
+        try {
+            EVENT4 = new EventBuilder().withName("Project Presentation")
+                    .withDuration("26-09-2023 15:00", "26-09-2023 16:30")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static final Event EVENT5;
     static {
-        EVENT5 = new EventBuilder().withName("Meeting")
-                .withTimeStart("01-01-2024 14:00")
-                .withTimeEnd("01-01-2024 15:00")
-                .withLocation("Meeting Room")
-                .withEventDescription("Meeting for discussion")
-                .build();
+        try {
+            EVENT5 = new EventBuilder().withName("Meeting")
+                    .withDuration("01-01-2024 14:00", "01-01-2024 15:00")
+                    .withLocation("Meeting Room")
+                    .withEventDescription("Meeting for discussion")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static final Event EVENT6;
     static {
-        EVENT6 = new EventBuilder().withName("Meeting")
-                .withTimeStart("01-01-2099 14:00")
-                .withTimeEnd("01-01-2099 15:00")
-                .withLocation("Meeting Room")
-                .withEventDescription("Meeting for discussion")
-                .build();
+        try {
+            EVENT6 = new EventBuilder().withName("Meeting")
+                    .withDuration("01-01-2099 14:00", "01-01-2099 15:00")
+                    .withLocation("Meeting Room")
+                    .withEventDescription("Meeting for discussion")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private TypicalEvents() {} // prevents instantiation

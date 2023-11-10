@@ -59,10 +59,10 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             editEventDescriptor.setEventName(ParserUtil.parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_TIME_START).isPresent()) {
-            editEventDescriptor.setTimeStart(ParserUtil.parseTimeStart(argMultimap.getValue(PREFIX_TIME_START).get()));
+            editEventDescriptor.setStartInput(argMultimap.getValue(PREFIX_TIME_START).get());
         }
         if (argMultimap.getValue(PREFIX_TIME_END).isPresent()) {
-            editEventDescriptor.setTimeEnd(ParserUtil.parseTimeEnd(argMultimap.getValue(PREFIX_TIME_END).get()));
+            editEventDescriptor.setEndInput(argMultimap.getValue(PREFIX_TIME_END).get());
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editEventDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));

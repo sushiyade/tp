@@ -40,8 +40,8 @@ public class EventTimeBeforePredicateTest {
     }
 
     @Test
-    public void testTest_eventTimeBeforePredicate_returnsTrue() {
-        Event event = new EventBuilder().withTimeStart("01-01-2024 10:00").withTimeEnd("01-01-2024 11:00").build();
+    public void testTest_eventTimeBeforePredicate_returnsTrue() throws ParseException {
+        Event event = new EventBuilder().withDuration("01-01-2024 10:00", "01-01-2024 11:00").build();
         EventTimeBeforePredicate predicate = null;
         try {
             predicate = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 11:00"));
@@ -52,8 +52,8 @@ public class EventTimeBeforePredicateTest {
     }
 
     @Test
-    public void testTest_eventTimeEqualOrAfterPredicate_returnsFalse() {
-        Event event = new EventBuilder().withTimeStart("01-01-2024 10:00").withTimeEnd("01-01-2024 11:00").build();
+    public void testTest_eventTimeEqualOrAfterPredicate_returnsFalse() throws ParseException {
+        Event event = new EventBuilder().withDuration("01-01-2024 10:00", "01-01-2024 11:00").build();
         EventTimeBeforePredicate predicate = null;
         try {
             predicate = new EventTimeBeforePredicate(parseDateTimeInstance("01-01-2024 10:00"));

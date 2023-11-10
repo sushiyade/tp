@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.Duration;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
@@ -55,8 +56,8 @@ public class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         eventName = source.getEventName().value;
-        timeStart = source.getTimeStart().getValue();
-        timeEnd = source.getTimeEnd().getValue();
+        timeStart = source.getDuration().getTimeStartValue();
+        timeEnd = source.getDuration().getTimeEndValue();
         location = source.getLocation().value;
         eventDescription = source.getDescription().value;
         clients.addAll(source.getClients().stream()
@@ -104,9 +105,7 @@ public class JsonAdaptedEvent {
 
         final EventName modelEventName = new EventName(eventName);
 
-        final TimeStart modelTimeStart = new TimeStart(timeStart);
-
-        final TimeEnd modelTimeEnd = new TimeEnd(timeEnd);
+        final Duration modelDuration = new Duration(new TimeStart(timeStart), new TimeEnd(timeEnd));
 
         final Location modelLocation = new Location(location);
 
@@ -114,7 +113,7 @@ public class JsonAdaptedEvent {
 
         final Set<Person> modelClients = new HashSet<>(eventClients);
 
-        return new Event(modelEventName, modelTimeStart, modelTimeEnd, modelClients, modelLocation,
+        return new Event(modelEventName, modelDuration, modelClients, modelLocation,
                 modelEventDescription);
     }
 }

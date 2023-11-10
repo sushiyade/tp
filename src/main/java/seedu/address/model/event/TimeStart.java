@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
- * Represents the start time of an event in the address book.
+ * Represents the start time of a duration in the events book.
  */
 public class TimeStart {
 

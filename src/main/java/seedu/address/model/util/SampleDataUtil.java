@@ -68,26 +68,26 @@ public class SampleDataUtil {
                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                new Company("FAPro"),
                new TelegramName("@BerniceYu"));
-        return new Event[] {
-            new EventBuilder().withName("Meeting with Alex")
-                    .withTimeStart("next year 9am")
-                    .withTimeEnd("next year 10am")
-                    .withClient(alex)
-                    .build(),
-            new EventBuilder().withName("Conference with Bernice")
-                    .withTimeStart("next month 6pm")
-                    .withTimeEnd("next month 7pm")
-                    .withClient(bernice)
-                    .build(),
-            new EventBuilder().withName("Team Lunch")
-                    .withTimeStart("next day noon")
-                    .withTimeEnd("next day 1pm")
-                    .build(),
-            new EventBuilder().withName("Project Presentation")
-                    .withTimeStart("next week 3pm")
-                    .withTimeEnd("next week 4.30pm")
-                    .build()
-        };
+        try {
+            return new Event[]{
+                    new EventBuilder().withName("Meeting with Alex")
+                            .withDuration("next year 9", "next year 10am")
+                            .withClient(alex)
+                            .build(),
+                    new EventBuilder().withName("Conference with Bernice")
+                            .withDuration("next month 6pm", "next month 7pm")
+                            .withClient(bernice)
+                            .build(),
+                    new EventBuilder().withName("Team Lunch")
+                            .withDuration("next day noon", "next day 1pm")
+                            .build(),
+                    new EventBuilder().withName("Project Presentation")
+                            .withDuration("next week 3pm", "next week 4.30pm")
+                            .build()
+            };
+        } catch (ParseException e) {
+            throw new RuntimeException();
+        }
     }
 
     public static Finance[] getSampleFinances() {

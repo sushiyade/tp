@@ -19,9 +19,7 @@ public class EventTimeBeforePredicate implements Predicate<Event> {
 
     @Override
     public boolean test(Event event) {
-        LocalDateTime eventTimeStart = event.getTimeStart().getTime();
-        LocalDateTime eventTimeEnd = event.getTimeEnd().getTime(); // check if event is after now
-        return eventTimeStart.isBefore(eventTime) && eventTimeEnd.isAfter(LocalDateTime.now());
+        return event.getDuration().hasStartTimeBefore(eventTime);
     }
 
     @Override

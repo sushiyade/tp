@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Duration;
+import seedu.address.model.event.TimeEnd;
+import seedu.address.model.event.TimeStart;
 import seedu.address.testutil.CommissionBuilder;
 class TimeDueBetweenPredicateTest {
 
@@ -22,13 +25,13 @@ class TimeDueBetweenPredicateTest {
     public void testConstructor_validDateTimeStrings_success() {
         String startTimeString = "01-01-2024 10:00";
         String endTimeString = "02-01-2024 10:00";
-        LocalDateTime[] timeRange = null;
+        Duration duration = null;
         try {
-            timeRange = parseDateTimeDuration(startTimeString, endTimeString);
+            duration = parseDateTimeDuration(startTimeString, endTimeString);
         } catch (ParseException e) {
             fail();
         }
-        TimeDueBetweenPredicate predicate = new TimeDueBetweenPredicate(timeRange);
+        TimeDueBetweenPredicate predicate = new TimeDueBetweenPredicate(duration);
         assertNotNull(predicate);
     }
 
@@ -101,38 +104,50 @@ class TimeDueBetweenPredicateTest {
 
     @Test
     public void testEquals_sameObject_returnsTrue() {
-        TimeDueBetweenPredicate predicate = new TimeDueBetweenPredicate(
-                new LocalDateTime[] {LocalDateTime.now(), LocalDateTime.now()}
-        );
+        TimeDueBetweenPredicate predicate = null;
+        try {
+            predicate = new TimeDueBetweenPredicate(
+                    new Duration(new TimeStart(LocalDateTime.now()), new TimeEnd(LocalDateTime.now())));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         assertTrue(predicate.equals(predicate));
     }
 
     @Test
     public void testEquals_nullObject_returnsFalse() {
-        TimeDueBetweenPredicate predicate = new TimeDueBetweenPredicate(
-                new LocalDateTime[] {LocalDateTime.now(), LocalDateTime.now()}
-        );
+        TimeDueBetweenPredicate predicate = null;
+        try {
+            predicate = new TimeDueBetweenPredicate(
+                    new Duration(new TimeStart(LocalDateTime.now()), new TimeEnd(LocalDateTime.now())));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         assertFalse(predicate.equals(null));
     }
 
     @Test
     public void testEquals_differentClass_returnsFalse() {
-        TimeDueBetweenPredicate predicate = new TimeDueBetweenPredicate(
-                new LocalDateTime[] {LocalDateTime.now(), LocalDateTime.now()}
-        );
+        TimeDueBetweenPredicate predicate = null;
+        try {
+            predicate = new TimeDueBetweenPredicate(
+                    new Duration(new TimeStart(LocalDateTime.now()), new TimeEnd(LocalDateTime.now())));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         assertNotEquals("NotAPredicate", predicate);
     }
 
     @Test
     public void testEquals_equalTimeRangeDifferentObject_returnsTrue() {
-        LocalDateTime[] timeRange = null;
+        Duration duration = null;
         try {
-            timeRange = parseDateTimeDuration("01-01-2024 10:00", "01-01-2024 11:00");
+            duration = parseDateTimeDuration("01-01-2024 10:00", "01-01-2024 11:00");
         } catch (ParseException e) {
             fail();
         }
-        TimeDueBetweenPredicate predicate1 = new TimeDueBetweenPredicate(timeRange);
-        TimeDueBetweenPredicate predicate2 = new TimeDueBetweenPredicate(timeRange);
+        TimeDueBetweenPredicate predicate1 = new TimeDueBetweenPredicate(duration);
+        TimeDueBetweenPredicate predicate2 = new TimeDueBetweenPredicate(duration);
         assertEquals(predicate1, predicate2);
         assertNotSame(predicate1, predicate2);
     }
@@ -146,8 +161,7 @@ class TimeDueBetweenPredicateTest {
             fail();
         }
         String expectedString = TimeDueBetweenPredicate.class.getCanonicalName()
-                + "{timeStart=2024-01-01T10:00,"
-                + " timeEnd=2024-01-01T11:00}";
+                + "{timeStart=01-01-2024 10:00, timeEnd=01-01-2024 11:00}";
         assertEquals(expectedString, predicate.toString());
     }
 

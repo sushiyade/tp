@@ -62,15 +62,15 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code event} for display to the user.
+     * Formats the {@code Event} for display to the user.
      */
     public static String format(Event event) {
         final StringBuilder builder = new StringBuilder();
         builder.append(event.getEventName())
                 .append("; Start: ")
-                .append(event.getTimeStart())
+                .append(event.getDuration().getTimeStartValue())
                 .append("; End: ")
-                .append(event.getTimeEnd())
+                .append(event.getDuration().getTimeEndValue())
                 .append("; Clients: ")
                 .append(event.getClientNames())
                 .append("; Location: ")

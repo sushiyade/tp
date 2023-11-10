@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.EventBuilder;
 
 public class EventNameContainsKeywordsPredicateTest {
@@ -23,7 +24,7 @@ public class EventNameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void testTest_eventNameContainsKeyword_returnsTrue() {
+    public void testTest_eventNameContainsKeyword_returnsTrue() throws ParseException {
         Event event = new EventBuilder().withName("Event with keyword1").build();
         List<String> keywords = Arrays.asList("keyword1");
         EventNameContainsKeywordsPredicate predicate = new EventNameContainsKeywordsPredicate(keywords);
@@ -31,7 +32,7 @@ public class EventNameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void testTest_eventNameDoesNotContainKeyword_returnsFalse() {
+    public void testTest_eventNameDoesNotContainKeyword_returnsFalse() throws ParseException {
         Event event = new EventBuilder().withName("Event without keyword").build();
         List<String> keywords = Arrays.asList("keyword1");
         EventNameContainsKeywordsPredicate predicate = new EventNameContainsKeywordsPredicate(keywords);

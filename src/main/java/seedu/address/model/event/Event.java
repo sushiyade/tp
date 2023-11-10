@@ -18,8 +18,7 @@ import seedu.address.model.person.Person;
 public class Event implements Comparable<Event> {
 
     private final EventName eventName;
-    private final TimeStart timeStart;
-    private final TimeEnd timeEnd;
+    private final Duration duration;
     private Set<Person> clients = new HashSet<>();
     private final Location location;
     private final EventDescription eventDescription;
@@ -27,18 +26,16 @@ public class Event implements Comparable<Event> {
     /**
      * Constructs an {@code Event}.
      * @param eventName A valid name.
-     * @param timeStart A valid start time.
-     * @param timeEnd A valid end time after start time.
+     * @param duration A valid duration with start and end
      * @param clients An optional list of clients.
      * @param location An optional location.
      * @param eventDescription An optional description.
      */
-    public Event(EventName eventName, TimeStart timeStart, TimeEnd timeEnd, Set<Person> clients,
-                 Location location, EventDescription eventDescription) {
-        requireAllNonNull(eventName, timeStart, timeEnd);
+    public Event(EventName eventName, Duration duration, Set<Person> clients, Location location,
+                 EventDescription eventDescription) {
+        requireAllNonNull(eventName, duration);
         this.eventName = eventName;
-        this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
+        this.duration = duration;
         this.clients.addAll(clients);
         this.location = location;
         this.eventDescription = eventDescription;
@@ -48,12 +45,8 @@ public class Event implements Comparable<Event> {
         return eventName;
     }
 
-    public TimeStart getTimeStart() {
-        return timeStart;
-    }
-
-    public TimeEnd getTimeEnd() {
-        return timeEnd;
+    public Duration getDuration() {
+        return duration;
     }
 
     public Set<Person> getClients() {
@@ -89,12 +82,15 @@ public class Event implements Comparable<Event> {
      */
     public boolean isSameEvent(Event other) {
         boolean isSame = eventName.equals(other.getEventName());
-        isSame = isSame && timeStart.equals(other.getTimeStart());
-        isSame = isSame && timeEnd.equals(other.getTimeEnd());
+        isSame = isSame && duration.equals(other.getDuration());
         isSame = isSame && clients.equals(other.getClients());
         isSame = isSame && location.equals(other.getLocation());
         isSame = isSame && eventDescription.equals(other.getDescription());
         return isSame;
+    }
+
+    public boolean isAfterToday() {
+        return duration.isAfterNow();
     }
 
     /**
@@ -114,8 +110,7 @@ public class Event implements Comparable<Event> {
 
         Event otherEvent = (Event) other;
         return eventName.equals(otherEvent.eventName)
-                && timeStart.equals(otherEvent.timeStart)
-                && timeEnd.equals(otherEvent.timeEnd)
+                && duration.equals(otherEvent.duration)
                 && clients.equals(otherEvent.clients)
                 && location.equals(otherEvent.location)
                 && eventDescription.equals(otherEvent.eventDescription);
@@ -124,15 +119,14 @@ public class Event implements Comparable<Event> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(eventName, timeStart, timeEnd, clients, location, eventDescription);
+        return Objects.hash(eventName, duration, clients, location, eventDescription);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", eventName)
-                .add("start", timeStart)
-                .add("end", timeEnd)
+                .add("duration", duration)
                 .add("clients", clients)
                 .add("location", location)
                 .add("description", eventDescription)
@@ -140,18 +134,12 @@ public class Event implements Comparable<Event> {
     }
 
     /**
-     * Compares {@code Event} objects using the {@code TimeStart} parameter.
+     * Compares {@code Event} objects using the {@code Duration} parameter.
      *
-     * @param o the object to be compared.
+     * @param other the object to be compared.
      */
     @Override
-    public int compareTo(Event o) {
-        if (this.timeStart.isBefore(o.getTimeStart())) {
-            return -1;
-        } else if (o.getTimeStart().isBefore(this.timeStart)) {
-            return 1;
-        } else {
-            return 0;
-        }
+    public int compareTo(Event other) {
+        return duration.compareTo(other.duration);
     }
 }
