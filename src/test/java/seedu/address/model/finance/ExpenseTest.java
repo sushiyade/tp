@@ -36,7 +36,7 @@ public class ExpenseTest {
     }
 
     @Test
-    public void haveSameFields_sameFieldsReturnTrue() {
+    public void isSameExpense_sameFieldsReturnTrue() {
         Expense expense = new ExpenseBuilder()
                 .withAmount("2103")
                 .withPerson("Test")
@@ -50,7 +50,23 @@ public class ExpenseTest {
     }
 
     @Test
-    public void haveSameFields_differentFieldsReturnFalse() {
+    public void isSameExpense_bothClientsNull_returnsTrue() {
+        Expense expense = new ExpenseBuilder()
+                .withAmount("2103")
+                .withPerson("Test")
+                .withPerson(null)
+                .build();
+        Expense similarExpense = new ExpenseBuilder()
+                .withAmount("2103")
+                .withPerson("Test")
+                .withPerson(null)
+                .build();
+
+        assertTrue(expense.isSameExpense(similarExpense));
+    }
+
+    @Test
+    public void isSameExpense_differentFieldsReturnFalse() {
         Expense expense = new ExpenseBuilder()
                 .withAmount("2103")
                 .withPerson("Not test")

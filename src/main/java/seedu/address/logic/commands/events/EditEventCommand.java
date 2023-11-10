@@ -85,16 +85,7 @@ public class EditEventCommand extends Command {
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
-        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
-
-        Set<Person> clients = editedEvent.getClients();
-        boolean hasValidClients = clients.stream().allMatch(model::isValidClient);
-        if (!hasValidClients) {
-            throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
-        } else {
-            Set<Person> validClients = model.getAllMatchedClients(clients);
-            editedEvent.setMatchedClientInstance(validClients);
-        }
+        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor, model);
 
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
@@ -109,7 +100,7 @@ public class EditEventCommand extends Command {
      * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor, Model model)
             throws CommandException {
         assert eventToEdit != null;
 
@@ -125,6 +116,12 @@ public class EditEventCommand extends Command {
         }
         TimeStart updatedTimeStart = new TimeStart(duration[0]);
         TimeEnd updatedTimeEnd = new TimeEnd(duration[1]);
+
+        if (editEventDescriptor.getClients().isPresent()) {
+            Set<Person> clients = editEventDescriptor.getClients().get();
+            editEventDescriptor.setClients(getValidClients(clients, model));
+        }
+
         Set<Person> updateClients = editEventDescriptor.getClients().orElse(eventToEdit.getClients());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         EventDescription updatedEventDescription = editEventDescriptor.getEventDescription()
@@ -132,6 +129,16 @@ public class EditEventCommand extends Command {
 
         return new Event(updatedEventName, updatedTimeStart, updatedTimeEnd, updateClients, updatedLocation,
                 updatedEventDescription);
+    }
+
+    private static Set<Person> getValidClients(Set<Person> clients, Model model) throws CommandException {
+        if (!clients.isEmpty()) {
+            boolean hasValidClients = clients.stream().allMatch(model::isValidClient);
+            if (!hasValidClients) {
+                throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
+            }
+        }
+        return model.getAllMatchedClients(clients);
     }
 
     @Override

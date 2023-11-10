@@ -30,8 +30,15 @@ public class Expense extends Finance {
      * This is a less strict equals that is used for testing.
      */
     public boolean isSameExpense(Expense expense) {
+        boolean isSameClient;
+        if (client == null) {
+            isSameClient = expense.getClient() == null;
+        } else {
+            isSameClient = client.equals(expense.getClient());
+        }
+
         return amount.equals(expense.getAmount())
-                && client.isSamePerson((expense.getClient()))
+                && isSameClient
                 && description.equals(expense.getDescription())
                 && timeDue.equals(expense.getTimeDue());
     }
