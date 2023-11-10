@@ -165,7 +165,9 @@ You can check out commands related to Events [here](#events-management). A summa
 
 </box>
 
-### Viewing help: `help`
+### General Commands
+
+#### Viewing help: `help`
 
 Shows a message explaining how to access the help page. This command is available for all tabs, each tab (except the dashboard) will show the help message specifically for the tab itself.
 
@@ -175,7 +177,7 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Switching tabs → `tab`
+#### Switching tabs → `tab`
 
 Switch views to the specific tab
 
@@ -195,6 +197,12 @@ Acceptable values for `TAB_NAME`:
 |:----------------------:|:----------------------:|--------------------------------------------------------------------------------------------------------|
 |     `tab contacts`     |     `tab contact`      | <span style ='color: darkred; text-decoration: underline;'>Unkown parameter<br>Invalid tab name</span> |
 |      `tab events`      |         `tab`          | <span style ='color: darkred; text-decoration: underline;'>Missing parameter</span>                    |
+
+#### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -401,7 +409,7 @@ Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Events Management
+### Event Management
 
 To view events tab, either click on the “events” button, or use the command tab `events` to switch tabs.
 
@@ -880,11 +888,7 @@ Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
+## Data Storage
 
 ### Saving the data
 
@@ -904,8 +908,70 @@ If your changes to the data file makes its format invalid, AddressBook, EventsBo
 
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+### General
+Commands that applies to ALL tabs
+
+| Action    | Format, Examples                         |
+|-----------|------------------------------------------|
+| **Tab**   | `tab TAB_NAME` <br> e.g., `tab contacts` |
+| **List**  | `list`                                   |
+| **Help**  | `help`                                   |
+| **Clear** | `clear`                                  |
+
+### Contacts Tab
+
+| Action                      | Format, Examples                                                                                                                                    |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com` |
+| **Edit**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br/> e.g., `edit 2 n/Betsy Crower t/` 	                 |
+| **Filter by name**          | `filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`                                                                                 |
+| **Filter by company**       | `filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`                                                                                   |
+| **Delete using index**      | `delete INDEX` <br> e.g., `delete 1`                                                                                                                |
+| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                       |
+
+### Events Tab
+
+| Action                    | Format, Examples                                                                                                                                                              |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                   | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Edit**                  | `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]` <br/> e.g., `edit 1 n/Tennis` 	                                                     |
+| **Filter by event name**  | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
+| **Filter by time**        | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
+| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
+| **List All**              | `list-all`<br> e.g., `list-all`                                                                                                                                               |
+
+
+### Finance Tab
+
+| Action                    | Format, Examples                                                                                                                |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| **Add commission**        | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
+| **Add expense**           | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
+| **Edit**                  | `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]` <br/> e.g., `edit 1 d/Photoshop subscription a/300`                 |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                             |
+| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
+| **Filter by time**        | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
+| **Summary**               | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
+| **List**                  | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?</br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FreelanceBuddy home folder.</br>
+
+**Q**: My GUI seems to be appearing off-screen, why does this happen and how do I fix this?</br>
+**A**: This problem occurs after you have moved the application to a secondary screen when using multiple screens, and then switched to using only the primary screen. To fix this, simply delete the `preferences.json` file created by the application before running the application again.</br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Resources
 
 ### Accepted Date-time Formats
 
@@ -1069,7 +1135,7 @@ There are several **rules** and [**assumptions**](#assumptions-using-date-time-c
 
 ##### Assumptions when using Date-time Combinations
 
-FreelanceBuddy streamlines the input process for the `s/` and `e/` parameters. 
+FreelanceBuddy streamlines the input process for the `s/` and `e/` parameters.
 
 For instance, in the case of same-day events, you'll only need to provide a date in the `s/` input field.
 FreelanceBuddy will intelligently use this date as both the start and end date, _eliminating the need for redundant input_ in the `e/` field.
@@ -1092,7 +1158,7 @@ Here is a list of all Date-time Combination Assumptions:
 #### Using Date-time Formats for Time Instances
 
 Relevant for:
-1. Creating Finance entries with a specified time in the `t/TIMEDUE` parameter 
+1. Creating Finance entries with a specified time in the `t/TIMEDUE` parameter
 2. `filter-t` method in Events to get relevant Events that are from now to the specified time.
 
 You might want to consider the assumptions made for either `<DATE>` or `<TIME>` if either is left blank.
@@ -1106,64 +1172,3 @@ You might want to consider the assumptions made for either `<DATE>` or `<TIME>` 
 |    `<TIME>`     | Date is set to next occurrence of specified time |
 
 [Back to Date-time Contents](#contents-of-this-section)
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?</br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FreelanceBuddy home folder.</br>
-
-**Q**: My GUI seems to be appearing off-screen, why does this happen and how do I fix this?</br>
-**A**: This problem occurs after you have moved the application to a secondary screen when using multiple screens, and then switched to using only the primary screen. To fix this, simply delete the `preferences.json` file created by the application before running the application again.</br>
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-### General 
-Commands that applies to ALL tabs
-
-| Action    | Format, Examples                         |
-|-----------|------------------------------------------|
-| **Tab**   | `tab TAB_NAME` <br> e.g., `tab contacts` |
-| **List**  | `list`                                   |
-| **Help**  | `help`                                   |
-| **Clear** | `clear`                                  |
-
-### Contacts Tab
-
-| Action                      | Format, Examples                                                                                                                                    |
-|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com` |
-| **Edit**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br/> e.g., `edit 2 n/Betsy Crower t/` 	                 |
-| **Filter by name**          | `filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`                                                                                 |
-| **Filter by company**       | `filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`                                                                                   |
-| **Delete using index**      | `delete INDEX` <br> e.g., `delete 1`                                                                                                                |
-| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                       |
-
-### Events Tab
-
-| Action                    | Format, Examples                                                                                                                                                              |
-|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                   | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
-| **Edit**                  | `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]` <br/> e.g., `edit 1 n/Tennis` 	                                                     |
-| **Filter by event name**  | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
-| **Filter by time**        | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
-| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
-| **List All**              | `list-all`<br> e.g., `list-all`                                                                                                                                               |
-
-
-### Finance Tab
-
-| Action                    | Format, Examples                                                                                                                |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| **Add commission**        | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
-| **Add expense**           | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
-| **Edit**                  | `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]` <br/> e.g., `edit 1 d/Photoshop subscription a/300`                 |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                             |
-| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
-| **Filter by time**        | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
-| **Summary**               | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
-| **List**                  | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
