@@ -111,7 +111,9 @@ public class Event implements Comparable<Event> {
         Event otherEvent = (Event) other;
         return eventName.equals(otherEvent.eventName)
                 && duration.equals(otherEvent.duration)
-                && clients.equals(otherEvent.clients)
+                && clients.stream().allMatch(client -> otherEvent.clients.stream().anyMatch(
+                        otherClient -> client.isSamePerson(otherClient)))
+                && clients.size() == otherEvent.clients.size()
                 && location.equals(otherEvent.location)
                 && eventDescription.equals(otherEvent.eventDescription);
     }

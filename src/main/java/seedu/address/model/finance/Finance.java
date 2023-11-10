@@ -70,9 +70,16 @@ public abstract class Finance {
      * This is a less strict equals that is used for testing.
      */
     public boolean isSameFinance(Finance finance) {
+        boolean isSameClient;
+        if (client == null) {
+            isSameClient = finance.getClient() == null;
+        } else {
+            isSameClient = client.equals(finance.getClient());
+        }
+
         return this.getClass().equals(finance.getClass())
                 && amount.equals(finance.getAmount())
-                && client.equals((finance.getClient()))
+                && isSameClient
                 && description.equals(finance.getDescription())
                 && timeDue.equals(finance.getTimeDue());
     }

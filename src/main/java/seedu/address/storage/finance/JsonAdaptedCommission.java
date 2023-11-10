@@ -42,7 +42,8 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
      */
     public JsonAdaptedCommission(Commission source) {
         amount = source.getAmount().value;
-        client = new JsonAdaptedPerson(source.getClient());
+        Person sourceClient = source.getClient();
+        client = sourceClient == null ? null : new JsonAdaptedPerson(sourceClient);
         description = source.getDescription().value;
         timeDue = source.getTimeDue().getValue();
     }
@@ -73,7 +74,7 @@ public class JsonAdaptedCommission extends JsonAdaptedFinance {
 
         final Amount modelAmount = new Amount(amount);
 
-        final Person modelClient = client.toModelType();
+        final Person modelClient = client == null ? null : client.toModelType();
 
         final Description modelDescription = new Description(description);
 

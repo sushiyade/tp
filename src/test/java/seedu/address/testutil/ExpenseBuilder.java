@@ -76,6 +76,9 @@ public class ExpenseBuilder {
      * Sets the {@code Person} of the {@code Expense} that we are building.
      */
     public ExpenseBuilder withPerson(String clientName) {
+        if (clientName == null) {
+            return this;
+        }
         this.client = new Person(new Name(clientName), new Phone("00000"), new Email("filler@email.com"),
                 new Address(""), new Company(""), new TelegramName(""));
         return this;
