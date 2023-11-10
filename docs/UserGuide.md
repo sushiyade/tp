@@ -778,7 +778,7 @@ Format: `delete INDEX`
 
 > **RESULT:** Finance entry at `INDEX` deleted successfully!
 
-#### Editing a person : Finance Tab → `edit`
+#### Editing a finance : Finance Tab → `edit`
 
 Edits an **existing finance entry** in the **Finance** tab.
 
