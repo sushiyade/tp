@@ -46,7 +46,7 @@ Or perhaps you're an advanced user! You can find out how each command works [her
    ![Ui](images/Ui.png)
 
 5. Upon successful launch, you should see 3 **tabs**:
-   * **Contacts** (This tab is open by default)
+   * **Contacts** (This tab is opened by default)
    * **Finance**
    * **Events**
 
@@ -803,7 +803,7 @@ Format: `summary CLIENT`
 <box type="warning" seamless>
     <ul>
         <li>
-            The client name must match the exact client name that is found in the Contacts tab. </br>
+            The client name must match the exact client name (case-sensitive) that is found in the Contacts tab. </br>
             This is to prevent any ambiguity in the generated summary.
         </li>
     </ul>
@@ -1111,14 +1111,11 @@ You might want to consider the assumptions made for either `<DATE>` or `<TIME>` 
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FreelanceBuddy home folder.
+**Q**: How do I transfer my data to another Computer?</br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FreelanceBuddy home folder.</br>
 
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+**Q**: My GUI seems to be appearing off-screen, why does this happen and how do I fix this?</br>
+**A**: This problem occurs after you have moved the application to a secondary screen when using multiple screens, and then switched to using only the primary screen. To fix this, simply delete the `preferences.json` file created by the application before running the application again.</br>
 
 --------------------------------------------------------------------------------------------------------------------
 
