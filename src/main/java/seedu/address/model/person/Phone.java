@@ -11,7 +11,9 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 5 digits long";
+            "Phone number entered is of invalid format. Phone number needs to be a valid international "
+                    + "phone number format with or without the country code.\n"
+                    + "For example: +555 555-5555";
     public static final String VALIDATION_REGEX = "^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?"
             + "\\d{1,4}[-.\\s]?\\d{1,9}$";
 

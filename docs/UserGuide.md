@@ -6,68 +6,141 @@
 
 # FreelanceBuddy User Guide
 
-Welcome to the FreelanceBuddy, a **powerful and efficient Command Line Interface (CLI) optimised app designed for passionate freelancers** like you.
-It's your one-stop solution for managing multiple clients, tracking project statuses, and staying on top of your financial reports effortlessly.
+## Getting Started
+
+<html><span style="font-size:32px">Attention, full-time freelancers!</span></html>
+
+**FreelanceBuddy** is a **powerful and efficient Command Line Interface (CLI)** optimized app designed **just for you**!
+
+It's your **one-stop solution** for managing multiple clients, tracking project statuses, and staying on top of your financial reports with ease.
+If you are a freelancer who is looking to optimize your workflow, look no further! FreelanceBuddy might just be the buddy for you.
+
+Are you a new user? Check out our [Quick Start](#quick-start) guide to get started!
+
+Not sure how each feature works? Take a look at the [Features](#features) section!
+
+Or perhaps you're an advanced user! You can find out how each command works [here](#commands).
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Attention to full-time freelancers
-FreelanceBuddy is a powerful and efficient Command Line Interface (CLI) optimized app designed just for you!
+### Quick Start
 
-It's your one-stop solution for managing multiple clients, tracking project statuses, and staying on top of your financial reports with ease.
-If you are a freelancer who is looking to optimize your workflow, look no further! FreelanceBuddy might just be the buddy for you.
+1. Ensure you have Java `11` or above installed on your computer. Not sure how to do that? Check out the instructions [here](https://www.java.com/en/download/help/version_manual.html).
 
---------------------------------------------------------------------------------------------------------------------
+2. Download the latest `FreelanceBuddy.jar` from our [releases page](https://github.com/AY2324S1-CS2103T-W09-2/tp/releases/).
 
-## Quick start
+3. Copy the file to the folder you want to use as the _home folder_ for your app. This is where all the saved and configuration data will be stored!
 
-1. Ensure you have Java `11` or above installed in your Computer.
+4. On a command terminal, `cd` into the _home folder_ you chose earlier, and enter the following command to run the application:
 
-2. Download the latest `FreelanceBuddy.jar` from [here](https://github.com/AY2324S1-CS2103T-W09-2/tp/releases/).
+   `java -jar FreelanceBuddy.jar`
+   
 
-3. Copy the file to the folder you want to use as the _home folder_ for your app.
+   The FreelanceBuddy GUI should appear in a few seconds, as shown below.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FreelanceBuddy.jar` command to run the application.<br>
-
-   A GUI similar to the below should appear in a few seconds. 
-
-> Note how the app already contains some sample data.
+   > The app comes with some sample data when you first run it!
 
    ![Ui](images/Ui.png)
 
-5. Upon successful start up you should see 3 tabs:
-   * **Contacts** (Landing tab)
-     * List of contacts
+5. Upon successful launch, you should see 3 **tabs**:
+   * **Contacts** (This tab is opened by default)
    * **Finance**
-     * List of finances (both commission and expenses)
    * **Events**
-       * List of events
 
-6. At the top you should see a command box with the text "_Enter command here..._". This is where you type your commands and press Enter to execute. e.g. typing **`help`** and pressing Enter will open the general help window.<br>
-   Some example commands you can try:
+    To find out what each tab does, check out our [Features](#features) section!
 
-   * `tab finance` : switches tab to the Finance tab.
+6. At the top, there is a **command box** with the text "_Enter command here..._". This is where you type your commands. After typing each command, press Enter to execute it.
 
-   * `help` : shows help opens up the general help window. 
-   
-   * `list` : Lists all relevant information in the respective tabs.
+7. For certain commands, there may be a message indicating the success or failure of that command displayed in the **console**, located right under the command box.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the contact list shown in the Contacts Tab with the specified phone number and email address.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+Now that you've got FreelanceBuddy set up, here are some **example commands** to get you started!
 
-   * `clear` : Deletes all entires in the respective tabs.
+   * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the contact list with phone number `98765432` and email `johnd@example.com`.
+
+   * `delete 3` : Deletes the 3rd contact shown in the contact list.
+
+   * `filter-n John` : Filters all the contacts named `John`. You should see only the contact that you just added above!
+
+   * `list` : Lists all the contacts in the contact list.
+
+   * `tab finance` : Switches the displayed tab to the Finance tab.
+
+   * `add-c d/Chatbot c/John Doe a/200` : Adds a `200` dollar commission from `John Doe` with the description `Chatbot`.
+
+   * `list commission` : Lists only commissions in the finance list. One of them should be the commission you just added!
 
    * `exit` : Exits the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+For more commands such as edit and filter commands, as well as detailed instructions on how to use each of them, check out the [Commands](#commands) section below!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+### Features
+
+FreelanceBuddy is made up of **three main systems**. It has:
+- A contact management system
+- A finance tracker
+- An event scheduling system for events, tasks and meetings.
+
+The following sections describe the data stored in FreelanceBuddy.
+
+#### Contact Management System
+A contact in FreelanceBuddy represents a **client, or a representative of a company** that is using your services.
+Each contact contains the following information:
+
+| Type of information | Description                                                                                                                                                                                                                                                        | Required? |
+|:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
+|        Email        | The client's email. FreelanceBuddy checks if it is a valid email address!                                                                                                                                                                                          | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
+|    Telegram Name    | The client's Telegram username. FreelanceBuddy checks if it is a valid Telegram name!                                                                                                                                                                              | No        |
+
+You can check out commands related to Contacts [here](#contact-management). A summary of Contacts Tab commands can also be found [here](#contacts-tab).
+
+#### Finance Tracker
+A finance entry in FreelanceBuddy could be either a **Commission** or an **Expense**. These are from the perspective of your personal finances.
+
+A **commission** represents a **payment made by a client to you**, while an **expense** represents some **cost incurred on either personal spending or on your projects**.
+
+For instance, if you received $200 from a client for making a chatbot, that's a **commission**.
+
+If you spent $80 on a Photoshop subscription for your client's project, that's an **expense**.
+
+Both **commissions** and **expenses** are considered finance entries so they are on the same list, but you can filter them using commands such as `list commission` or `list expense`!
+Each finance entry contains the following information:
+
+| Type of information | Description                                                                                                                                                                                                                                                                                       | Required? |
+|:-------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|     Description     | A description of the finance entry. Different entries may have the same description, so beware of duplicates!                                                                                                                                                                                     | Yes       |
+|     Client Name     | The client associated with the finance entry, if any.<br>**Required for commissions** only, as every commission must come from some client!<br>**Client must exist in your contact list at the time of creation!**<br>This is not checked after creation, so make sure your contacts are correct! | Yes/No    |
+|       Amount        | Amount of money associated with the entry, in dollars ($).                                                                                                                                                                                                                                        | Yes       |
+|      Time Due       | The time by which the finance entry should be settled. By default, this is the creation time.                                                                                                                                                                                                     | No        |
+
+You can check out commands related to Finance [here](#finance-management). A summary of Finance Tab commands can also be found [here](#finance-tab).
+
+#### Event Scheduling System
+TO BE UPDATED
+
+| Type of information | Description                                                                                                                                                                                                                                                        | Required? |
+|:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
+|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
+|        Email        | The client's email.                                                                                                                                                                                                                                                | Yes       |
+|       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
+|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
+|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
+
+You can check out commands related to Events [here](#events-management). A summary of Events Tab commands can also be found [here](#events-tab).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Commands
 
 <box type="info" seamless>
 
@@ -165,20 +238,20 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
     </ul>
 </box>
 
-|     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                   |
-|:-----------------:|----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-|      `NAME`       | Text up to 256 characters<br>Must be unique                                                                    | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
-|  `PHONE_NUMBER`   | Numeric values<br>(optional "+" prefix)                                                                        | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
+|     Parameter     | Format                                                                                                        | Examples (#g#Valid##/#r#Invalid##)                                                                   |
+|:-----------------:|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+|      `NAME`       | Text up to 256 characters<br>Must be unique                                                                   | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
+|  `PHONE_NUMBER`   | Numeric values<br>(optional "+" prefix)                                                                       | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
 |      `EMAIL`      | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
-|    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
-|    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
-| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
+|    `[ADDRESS]`    | Text up to 256 characters                                                                                     | #g#5 Science Park Dr, Singapore 118265##                                                             |
+|    `[COMPANY]`    | Text up to 256 characters                                                                                     | #g#Shopee##<br>#g#Sh0p33##                                                                           |
+| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                        | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
 
-|                                  #g#Positive Examples##                                  |                                        #r#Negative Examples##                                        | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                  |
-|:----------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
-|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                |                               `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> Name is missing                             |
-|                 `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name, Phone number, and Email is missing         |
-| `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
+|                                  #g#Positive Examples##                                   |                                        #r#Negative Examples##                                         | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                  |
+|:-----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
+|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                 |                                `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> Name is missing                             |
+|                  `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                 `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name, Phone number, and Email is missing         |
+| `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
 
 #### Finding contact by <code>{NAME}</code>: Contacts Tab → `filter-n`
 
@@ -190,9 +263,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the Contact's <code>{NAME}</code>
 * Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
-* The search is case-insensitive.
 > `aLeX` → 1. Alex Yeoh
 * Contacts name matching at least one keyword will be returned (i.e. OR search)
 > `Alex Roy` → 1. Alex Yeoh
@@ -207,10 +280,10 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Hans##<br>#g#3##                |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|    `filter-n Alex`     |    `filter-n hans`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with 'hans'         |
-|  `filter-n aLEx rOy`   |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                 |
+|:----------------------:|:----------------------:|------------------------------------------------------------------------------------------------------------------------|
+|    `filter-n Alex`     |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Please add a KEYWORD to search with |
+|  `filter-n aLEx rOy`   |                        |                                                                                                                        |
 
 #### Finding contact by <code>{COMPANY}</code>: Contacts Tab → `filter-c`
 
@@ -222,9 +295,9 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive. 
 * The search is by the Contact's <code>{COMPANY}</code>
 * Only full keywords will be matched. e.g. <code>Goo</code> will not match with <code>Google</code>
-* The search is case-insensitive.
 > `gOoGle` → (prints all Contacts with Google as their company)
 > 
 > 1. Alex Yeoh 2. David Li 3. Irfan Ibrahim 4. Roy Balakrishnan 
@@ -241,10 +314,10 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Google##<br>#g#3##              |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|   `filter-c google`    |   `filter-c Twitter`   | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No company in contacts with 'Twitter'   |
-| `filter-c gOoGle nUs`  |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                 |
+|:----------------------:|:----------------------:|------------------------------------------------------------------------------------------------------------------------|
+|   `filter-c google`    |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Please add a KEYWORD to search with |
+| `filter-c gOoGle nUs`  |                        |                                                                                                                        |
 
 
 #### Deleting a contact with index: Contacts Tab → `delete`
@@ -316,7 +389,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] 
 
 #### Clearing all entries : Contacts Tab → `clear`
 
-Clears all entries from the **Finance** Tab.
+Clears all entries from the **Contacts** Tab.
 
 Format: `clear`
 
@@ -446,9 +519,9 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the <code>{CLIENT}</code>, see [filter-n in Contacts Tab for more details](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-a-contact-contacts-tab-add)
 * Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
-* The search is case-insensitive.
 > `aLeX` → 1. Alex Yeoh
 * Client's name matching at least one keyword will be returned (i.e. OR search)
 > `Alex Roy` → 1. Alex Yeoh
@@ -479,9 +552,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the event <code>{NAME}</code>
 * Only full keywords will be matched. e.g. <code>Con</code> will not match with <code>Conference</code>
-* The search is case-insensitive.
 > `cOnFerEnce` → 1. Conference with Bernice
 * Event's name matching at least one keyword will be returned (i.e. OR search)
 > `Conference Meeting` → 1. Conference with Bernice
@@ -535,11 +608,12 @@ Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCAT
 
 
 <box type="warning" seamless>
-
+* For `{CLIENT}`, the name **MUST EXIST** in your Contacts. Note that this is case-sensitive.
+  * Refer to [the filter-n command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#finding-contact-by-name-contacts-tab-filter-n) within the Contacts tab to search whether the contact exists. 
 * Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
+* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `d/`.
   * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
   
   </box>
@@ -729,7 +803,7 @@ Format: `summary CLIENT`
 <box type="warning" seamless>
     <ul>
         <li>
-            The client name must match the exact client name that is found in the Contacts tab. </br>
+            The client name must match the exact client name (case-sensitive) that is found in the Contacts tab. </br>
             This is to prevent any ambiguity in the generated summary.
         </li>
     </ul>
@@ -778,7 +852,7 @@ Format: `delete INDEX`
 
 > **RESULT:** Deleted finance entry: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
 
-#### Editing a person : Finance Tab → `edit`
+#### Editing a finance : Finance Tab → `edit`
 
 Edits an **existing finance entry** in the **Finance** tab.
 
@@ -1037,14 +1111,11 @@ You might want to consider the assumptions made for either `<DATE>` or `<TIME>` 
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FreelanceBuddy home folder.
+**Q**: How do I transfer my data to another Computer?</br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FreelanceBuddy home folder.</br>
 
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+**Q**: My GUI seems to be appearing off-screen, why does this happen and how do I fix this?</br>
+**A**: This problem occurs after you have moved the application to a secondary screen when using multiple screens, and then switched to using only the primary screen. To fix this, simply delete the `preferences.json` file created by the application before running the application again.</br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1062,33 +1133,37 @@ Commands that applies to ALL tabs
 
 ### Contacts Tab
 
-| Action                      | Format, Examples                                                                                                                                         |
-|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`      |
-| **Find**                    | `find KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find Annie Bob`                                                                                             |
-| **Delete using index**      | `delete INDEX` <br> e.g., `delete 1`                                                                                                                     |
-| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                            |
+| Action                      | Format, Examples                                                                                                                                    |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com` |
+| **Edit**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br/> e.g., `edit 2 n/Betsy Crower t/` 	                 |
+| **Filter by name**          | `filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`                                                                                 |
+| **Filter by company**       | `filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`                                                                                   |
+| **Delete using index**      | `delete INDEX` <br> e.g., `delete 1`                                                                                                                |
+| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                       |
 
 ### Events Tab
 
-| Action       | Format, Examples                                                                                                                                                              |
-|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
-| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
-| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
-| **Filter**   | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
-| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                               |
+| Action                    | Format, Examples                                                                                                                                                              |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                   | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Edit**                  | `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]` <br/> e.g., `edit 1 n/Tennis` 	                                                     |
+| **Filter by event name**  | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
+| **Filter by time**        | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
+| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
+| **List All**              | `list-all`<br> e.g., `list-all`                                                                                                                                               |
 
 
 ### Finance Tab
 
-| Action      | Format, Examples                                                                                                                |
-|-------------|---------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
-| **Add**     | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
-| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                             |
-| **Filter**  | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
-| **Filter**  | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
-| **Summary** | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
-| **List**    | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
+| Action                    | Format, Examples                                                                                                                |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| **Add commission**        | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
+| **Add expense**           | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
+| **Edit**                  | `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]` <br/> e.g., `edit 1 d/Photoshop subscription a/300`                 |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                             |
+| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
+| **Filter by time**        | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
+| **Summary**               | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
+| **List**                  | `list [TYPE]`<br> e.g., `list commission`                                                                                       |

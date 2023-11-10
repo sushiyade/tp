@@ -56,7 +56,7 @@ public class ParserUtil {
     public static String parseTab(String tab) throws ParseException {
         String trimmedTab = tab.trim();
         String[] validTabs = {"contacts", "finance", "events"};
-        if (Arrays.stream(validTabs).anyMatch(x -> x.equals(trimmedTab))) {
+        if (Arrays.asList(validTabs).contains(trimmedTab)) {
             return trimmedTab;
         } else {
             throw new ParseException(MESSAGE_INVALID_TAB_NAME);
@@ -269,10 +269,27 @@ public class ParserUtil {
     public static Person parseClient(String clientName) throws ParseException {
         requireNonNull(clientName);
         String trimmedClientName = clientName.trim();
-        if (!Name.isValidName(clientName)) {
+        if (!Name.isValidName(trimmedClientName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return Person.makeDummyWithName(clientName);
+        return Person.makeDummyWithName(trimmedClientName);
+    }
+
+    /**
+     * Similar to parseClient method, but returns null if client name is empty.
+     * Reason: Edit command has different parsing requirements for client than the add command.
+     *
+     * @throws ParseException if the given {@code clientName} is invalid.
+     */
+    public static Person parseClientForEdit(String clientName) throws ParseException {
+        requireNonNull(clientName);
+        String trimmedClientName = clientName.trim();
+        if (trimmedClientName.isEmpty()) {
+            return null;
+        } else if (!Name.isValidName(trimmedClientName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return Person.makeDummyWithName(trimmedClientName);
     }
 
     /**

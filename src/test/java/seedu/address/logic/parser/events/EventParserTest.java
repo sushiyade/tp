@@ -35,7 +35,6 @@ import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.event.EventTimeBeforePredicate;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.EventUtil;
-import seedu.address.testutil.PersonBuilder;
 
 public class EventParserTest {
 
@@ -46,10 +45,11 @@ public class EventParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Event event = new EventBuilder().withClient(ALICE).build();
-        model.addPerson(new PersonBuilder().withName("Alice").build());
         AddEventCommand command = (AddEventCommand) parser.parseCommand(EventUtil.getAddCommand(event));
+        ModelManager expectedModel = new ModelManager(getTypicalPersonsBook(), new EventsBook(), new FinancesBook(),
+                new UserPrefs());
 
-        assertEquals(new AddEventCommand(event).execute(model), command.execute(model));
+        assertEquals(new AddEventCommand(event).execute(model), command.execute(expectedModel));
     }
 
     @Test
@@ -103,8 +103,6 @@ public class EventParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
-
-    /* TODO IMPLEMENT FIND TEST WHEN IMPLEMENTED */
 
     @Test
     public void parseCommand_help() throws Exception {
