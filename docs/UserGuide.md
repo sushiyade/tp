@@ -258,9 +258,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the Contact's <code>{NAME}</code>
 * Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
-* The search is case-insensitive.
 > `aLeX` → 1. Alex Yeoh
 * Contacts name matching at least one keyword will be returned (i.e. OR search)
 > `Alex Roy` → 1. Alex Yeoh
@@ -275,10 +275,10 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Hans##<br>#g#3##                |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|    `filter-n Alex`     |    `filter-n hans`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No name in contacts with 'hans'         |
-|  `filter-n aLEx rOy`   |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                 |
+|:----------------------:|:----------------------:|------------------------------------------------------------------------------------------------------------------------|
+|    `filter-n Alex`     |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Please add a KEYWORD to search with |
+|  `filter-n aLEx rOy`   |                        |                                                                                                                        |
 
 #### Finding contact by <code>{COMPANY}</code>: Contacts Tab → `filter-c`
 
@@ -290,9 +290,9 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive. 
 * The search is by the Contact's <code>{COMPANY}</code>
 * Only full keywords will be matched. e.g. <code>Goo</code> will not match with <code>Google</code>
-* The search is case-insensitive.
 > `gOoGle` → (prints all Contacts with Google as their company)
 > 
 > 1. Alex Yeoh 2. David Li 3. Irfan Ibrahim 4. Roy Balakrishnan 
@@ -309,10 +309,10 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Google##<br>#g#3##              |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                     |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------|
-|   `filter-c google`    |   `filter-c Twitter`   | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> No company in contacts with 'Twitter'   |
-| `filter-c gOoGle nUs`  |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a KEYWORD to search with |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                 |
+|:----------------------:|:----------------------:|------------------------------------------------------------------------------------------------------------------------|
+|   `filter-c google`    |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Please add a KEYWORD to search with |
+| `filter-c gOoGle nUs`  |                        |                                                                                                                        |
 
 
 #### Deleting a contact with index: Contacts Tab → `delete`
@@ -384,7 +384,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] 
 
 #### Clearing all entries : Contacts Tab → `clear`
 
-Clears all entries from the **Finance** Tab.
+Clears all entries from the **Contacts** Tab.
 
 Format: `clear`
 
@@ -514,9 +514,9 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the <code>{CLIENT}</code>, see [filter-n in Contacts Tab for more details](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-a-contact-contacts-tab-add)
 * Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
-* The search is case-insensitive.
 > `aLeX` → 1. Alex Yeoh
 * Client's name matching at least one keyword will be returned (i.e. OR search)
 > `Alex Roy` → 1. Alex Yeoh
@@ -547,9 +547,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 <box type="warning" seamless>
 
+* The search is case-insensitive.
 * The search is by the event <code>{NAME}</code>
 * Only full keywords will be matched. e.g. <code>Con</code> will not match with <code>Conference</code>
-* The search is case-insensitive.
 > `cOnFerEnce` → 1. Conference with Bernice
 * Event's name matching at least one keyword will be returned (i.e. OR search)
 > `Conference Meeting` → 1. Conference with Bernice
@@ -603,11 +603,12 @@ Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCAT
 
 
 <box type="warning" seamless>
-
+* For `{CLIENT}`, the name **MUST EXIST** in your Contacts. Note that this is case-sensitive.
+  * Refer to [the filter-n command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#finding-contact-by-name-contacts-tab-filter-n) within the Contacts tab to search whether the contact exists. 
 * Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
+* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `d/`.
   * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
   
   </box>
@@ -1130,33 +1131,37 @@ Commands that applies to ALL tabs
 
 ### Contacts Tab
 
-| Action                      | Format, Examples                                                                                                                                         |
-|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`      |
-| **Find**                    | `find KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find Annie Bob`                                                                                             |
-| **Delete using index**      | `delete INDEX` <br> e.g., `delete 1`                                                                                                                     |
-| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                            |
+| Action                      | Format, Examples                                                                                                                                    |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com` |
+| **Edit**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br/> e.g., `edit 2 n/Betsy Crower t/` 	                 |
+| **Filter by name**          | `filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`                                                                                 |
+| **Filter by company**       | `filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`                                                                                   |
+| **Delete using index**      | `delete INDEX` <br> e.g., `delete 1`                                                                                                                |
+| **Delete using keyword(s)** | `delete KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `delete hAns Bo`                                                                                       |
 
 ### Events Tab
 
-| Action       | Format, Examples                                                                                                                                                              |
-|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
-| **Filter**   | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
-| **Filter**   | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
-| **Filter**   | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
-| **List All** | `list-all`<br> e.g., `list-all`                                                                                                                                               |
+| Action                    | Format, Examples                                                                                                                                                              |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                   | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Edit**                  | `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]` <br/> e.g., `edit 1 n/Tennis` 	                                                     |
+| **Filter by event name**  | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
+| **Filter by time**        | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
+| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
+| **List All**              | `list-all`<br> e.g., `list-all`                                                                                                                                               |
 
 
 ### Finance Tab
 
-| Action      | Format, Examples                                                                                                                |
-|-------------|---------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
-| **Add**     | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
-| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                             |
-| **Filter**  | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
-| **Filter**  | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
-| **Summary** | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
-| **List**    | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
+| Action                    | Format, Examples                                                                                                                |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| **Add commission**        | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
+| **Add expense**           | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
+| **Edit**                  | `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]` <br/> e.g., `edit 1 d/Photoshop subscription a/300`                 |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                             |
+| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
+| **Filter by time**        | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
+| **Summary**               | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
+| **List**                  | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
