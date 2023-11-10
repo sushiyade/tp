@@ -852,7 +852,7 @@ Format: `delete INDEX`
 
 > **RESULT:** Deleted finance entry: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
 
-#### Editing a person : Finance Tab → `edit`
+#### Editing a finance : Finance Tab → `edit`
 
 Edits an **existing finance entry** in the **Finance** tab.
 
