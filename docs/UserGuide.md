@@ -34,11 +34,14 @@ Or perhaps you're an advanced user! You can find out how each command works [her
 
 3. Copy the file to the folder you want to use as the _home folder_ for your app. This is where all the saved and configuration data will be stored!
 
-4. On a command terminal, `cd` into the _home folder_ you chose earlier, and enter the `java -jar FreelanceBuddy.jar` command to run the application.
+4. On a command terminal, `cd` into the _home folder_ you chose earlier, and enter the following command to run the application:
 
-    The FreelanceBuddy GUI should appear in a few seconds, as shown below.
+   `java -jar FreelanceBuddy.jar`
+   
 
-    > The app comes with some sample data when you first run it!
+   The FreelanceBuddy GUI should appear in a few seconds, as shown below.
+
+   > The app comes with some sample data when you first run it!
 
    ![Ui](images/Ui.png)
 
@@ -81,9 +84,11 @@ For more commands such as edit and filter commands, as well as detailed instruct
 FreelanceBuddy is made up of **three main systems**. It has:
 - A contact management system
 - A finance tracker
-- A scheduling system for events, tasks and meetings.
+- An event scheduling system for events, tasks and meetings.
 
-#### Contacts
+The following sections describe the data stored in FreelanceBuddy.
+
+#### Contact Management System
 A contact in FreelanceBuddy represents a **client, or a representative of a company** that is using your services.
 Each contact contains the following information:
 
@@ -91,14 +96,14 @@ Each contact contains the following information:
 |:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
 |        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
 |    Phone Number     | The client's phone number.                                                                                                                                                                                                                                         | Yes       |
-|        Email        | The client's email.                                                                                                                                                                                                                                                | Yes       |
+|        Email        | The client's email. FreelanceBuddy checks if it is a valid email address!                                                                                                                                                                                          | Yes       |
 |       Address       | The client's address.                                                                                                                                                                                                                                              | No        |
 |       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
-|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
+|    Telegram Name    | The client's Telegram username. FreelanceBuddy checks if it is a valid Telegram name!                                                                                                                                                                              | No        |
 
-You can check out commands related to Contacts [here](#contact-management). A summary of Contact Tab commands can also be found [here](#contacts-tab).
+You can check out commands related to Contacts [here](#contact-management). A summary of Contacts Tab commands can also be found [here](#contacts-tab).
 
-#### Finance
+#### Finance Tracker
 A finance entry in FreelanceBuddy could be either a **Commission** or an **Expense**. These are from the perspective of your personal finances.
 
 A **commission** represents a **payment made by a client to you**, while an **expense** represents some **cost incurred on either personal spending or on your projects**.
@@ -110,18 +115,17 @@ If you spent $80 on a Photoshop subscription for your client's project, that's a
 Both **commissions** and **expenses** are considered finance entries so they are on the same list, but you can filter them using commands such as `list commission` or `list expense`!
 Each finance entry contains the following information:
 
-| Type of information | Description                                                                                                                                                                                                                                                             | Required? |
-|:-------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-|        Name         | The name of the client.<br>This name can take up to 256 characters and is case-sensitive, meaning `John Doe` and `John doe` are two different people.<br>Tip: If you have two clients of the same name, you might want to be creative and add some details to the name! | Yes       |
-|    Phone Number     | The client's phone number.                                                                                                                                                                                                                                              | Yes       |
-|        Email        | The client's email.                                                                                                                                                                                                                                                     | Yes       |
-|       Address       | The client's address.                                                                                                                                                                                                                                                   | No        |
-|       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                                  | No        |
-|    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                         | No        |
+| Type of information | Description                                                                                                                                                                                                                                                                                       | Required? |
+|:-------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+|     Description     | A description of the finance entry. Different entries may have the same description, so beware of duplicates!                                                                                                                                                                                     | Yes       |
+|     Client Name     | The client associated with the finance entry, if any.<br>**Required for commissions** only, as every commission must come from some client!<br>**Client must exist in your contact list at the time of creation!**<br>This is not checked after creation, so make sure your contacts are correct! | Yes/No    |
+|       Amount        | Amount of money associated with the entry, in dollars ($).                                                                                                                                                                                                                                        | Yes       |
+|      Time Due       | The time by which the finance entry should be settled. By default, this is the creation time.                                                                                                                                                                                                     | No        |
 
-#### Contacts
-A contact in FreelanceBuddy represents a **client, or a representative of a company** that is using your services.
-Each contact contains the following information:
+You can check out commands related to Finance [here](#finance-management). A summary of Finance Tab commands can also be found [here](#finance-tab).
+
+#### Event Scheduling System
+TO BE UPDATED
 
 | Type of information | Description                                                                                                                                                                                                                                                        | Required? |
 |:-------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
@@ -132,6 +136,7 @@ Each contact contains the following information:
 |       Company       | The company that the client belongs to, or represents.                                                                                                                                                                                                             | No        |
 |    Telegram Name    | The client's telegram username.                                                                                                                                                                                                                                    | No        |
 
+You can check out commands related to Events [here](#events-management). A summary of Events Tab commands can also be found [here](#events-tab).
 
 --------------------------------------------------------------------------------------------------------------------
 
