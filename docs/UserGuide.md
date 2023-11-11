@@ -231,7 +231,9 @@ Format: `exit`
 
 To view contacts tab, either click on the “contacts” button, or use the command tab `contacts` to switch tabs.
 
-This is a mini table of contents for general commands to help you navigate this section quickly. Click on the commands or description to jump to the desired section!
+This is a mini table of contents for general commands to help you navigate this section quickly.
+
+*Click on the commands or description to jump to the desired section!*
 
 |                                  Command                                   | Brief Description                                                                           |
 |:--------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------|
@@ -460,6 +462,25 @@ Format: `clear`
 
 ### Finance Management
 
+To view finance tab, either click on the “finance” button, or use the command `tab finance` to switch tabs.
+
+This is a mini table of contents for general commands to help you navigate this section quickly.
+
+*Click on the commands or description to jump to the desired section!*
+
+|                                   Command                                   | Brief Description                                                                                       |
+|:---------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------|
+|                [`list`](#listing-finances-finance-tab-list)                 | [View finance](#listing-finances-finance-tab-list)                                                      |
+|              [`add-c`](#adding-a-commission-finance-tab-add-c)              | [Add a new commission](#adding-a-commission-finance-tab-add-c)                                          |
+|               [`add-e`](#adding-an-expense-finance-tab-add-e)               | [Add a new expense](#adding-an-expense-finance-tab-add-e)                                               |
+|          [`delete`](#deleting-a-finance-entry-finance-tab-delete)           | [Delete an existing finance entry](#deleting-a-finance-entry-finance-tab-delete) 	                      |
+|   [`filter-c`](#filtering-finance-entries-by-client-finance-tab-filter-c)   | [Filter finance by client](#filtering-finance-entries-by-client-finance-tab-filter-c)                   |
+| [`filter-t`](#filtering-finance-entries-by-time-frame-finance-tab-filter-t) | [Filter finance by time frame](#filtering-finance-entries-by-time-frame-finance-tab-filter-t)           |
+| [`summary`](#generating-a-finance-summary-of-a-client-finance-tab-summary)  | [Summarise finance relating to a client](#generating-a-finance-summary-of-a-client-finance-tab-summary) |
+|                [`edit`](#editing-a-finance-finance-tab-edit)                | [Edit an existing finance entry](#editing-a-finance-finance-tab-edit)                                   |
+|             [`clear`](#clearing-all-entries-finance-tab-clear)              | [Clear all finance entries](#clearing-all-entries-finance-tab-clear)                                    |
+
+
 #### Listing finances: Finance Tab -> `list`
 
 Shows a list of all **finances/commissions/expenses** in the **Finance** Tab.
@@ -483,6 +504,8 @@ Format: `list [TYPE]`
 | Parameter | Format                                                  | Examples (#g#Valid##/#r#Invalid##)                             |
 |:---------:|:--------------------------------------------------------|:---------------------------------------------------------------|
 |  `TYPE`   | Either of the following:<br/>`commission`<br/>`expense` | #g#commission##</br>#g#expense##</br>#r#com##<br/>#r#expesne## |
+
+[Back to Finance Management](#finance-management)
 
 #### Adding a Commission: Finance Tab → `add-c`
 
@@ -517,6 +540,8 @@ Format: `add-c d/DESCRIPTION a/AMOUNT c/CLIENT [t/TIME]`
 
 > **RESULT:** New commission added: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}` 
 
+[Back to Finance Management](#finance-management)
+
 #### Adding an Expense: Finance Tab → `add-e`
 
 Adds an **expense** to the **Finance** tab. Once added, the `AMOUNT` will be highlighted in #r#**red**## to indicate that
@@ -550,7 +575,9 @@ Format: `add-e d/DESCRIPTION a/AMOUNT [c/CLIENT] [t/TIME]`
 
 > **RESULT:** New expense added: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
 
-#### Filtering finance entries by Client → `filter-c`
+[Back to Finance Management](#finance-management)
+
+#### Filtering finance entries by `{CLIENT}`: Finance Tab → `filter-c`
 
 Filters the **finances** in the **Finance** tab by the given client.
 Finds all clients whose names contain any of the specified keywords (case-insensitive) and
@@ -577,7 +604,9 @@ Format: `filter-c KEYWORD [MORE KEYWORDS]`
 
 > **RESULT:** Shows the finances with client names that match the given KEYWORD(s)
 
-#### Filtering finance entries by Time Frame → `filter-t`
+[Back to Finance Management](#finance-management)
+
+#### Filtering finance entries by `{TIME FRAME}`: Finance Tab → `filter-t`
 
 Filters the **finances** in the **Finance** tab by the given time frame.
 Finds all finances whose time due falls within the given time frame. 
@@ -603,7 +632,9 @@ Format: `filter-t s/START_TIME e/END_TIME`
 
 > **RESULT:** Shows a list of finances that fall within the given time frame
 
-#### Generating a finance summary of a client → `summary`
+[Back to Finance Management](#finance-management)
+
+#### Generating a finance summary of a client: Finance Tab → `summary`
 
 Returns a summary of the **finances** in the **Finance** tab for the given client.</br>
 
@@ -644,6 +675,8 @@ Format: `summary CLIENT`
 
 > **RESULT:** Returns a summary of the finances with regard to the given client
 
+[Back to Finance Management](#finance-management)
+
 #### Deleting a Finance Entry: Finance Tab → `delete`
 
 Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab.
@@ -676,6 +709,8 @@ Format: `delete INDEX`
 
 > **RESULT:** Deleted finance entry: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
 
+[Back to Finance Management](#finance-management)
+
 #### Editing a finance : Finance Tab → `edit`
 
 Edits an **existing finance entry** in the **Finance** tab.
@@ -692,6 +727,8 @@ Examples:
 * `edit 1 d/Photoshop subscription a/300` Edits the description and amount of the 1st finance entry to be `Photoshop subscription` and `300` respectively.
 * `edit 2 a/500 c/` Given that the 2nd finance entry is an Expense, edits its amount to be `500` and clears the client name.
 
+[Back to Finance Management](#finance-management)
+
 #### Clearing all entries : Finance Tab → `clear`
 
 Clears all entries from the **Finance** tab.
@@ -702,15 +739,34 @@ Format: `clear`
     This is a <b>destructive</b> command that <b>deletes all your data</b>!
 </box>
 
+[Back to Finance Management](#finance-management)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Events Management
 
 To view events tab, either click on the “events” button, or use the command tab `events` to switch tabs.
 
-By default, only **upcoming** events will be shown. To view all events, use the command `list-all` to view all events.
+By default, only **future** events will be shown. To view all events, use the command `list-all` to view all events.
 
-#### Listing all upcoming events: Events Tab → `list`
+This is a mini table of contents for general commands to help you navigate this section quickly.
+
+*Click on the commands or description to jump to the desired section!*
+
+|                            Command                             | Brief Description                                                     |
+|:--------------------------------------------------------------:|-----------------------------------------------------------------------|
+|      [`list`](#listing-all-future-events-events-tab-list)      | [Show all future events](#listing-all-future-events-events-tab-list)  |
+|     [`list-all`](#listing-all-events-events-tab-list-all)      | [Show all events](#listing-all-events-events-tab-list-all)            |
+|            [`add`](#adding-an-event-events-tab-add)            | [Add a new event](#adding-an-event-events-tab-add)                    |
+|        [`delete`](#deleting-an-event-events-tab-delete)        | [Delete an existing event](#deleting-an-event-events-tab-delete) 	    |
+| [`filter-c`](#filtering-events-by-clients-events-tab-filter-c) | [Filter events by client](#filtering-events-by-clients-events-tab-filter-c) |
+|  [`filter-n`](#filtering-events-by-name-events-tab-filter-n)   | [Filter events by name](#filtering-events-by-name-events-tab-filter-n) |
+|  [`filter-t`](#filtering-events-by-time-events-tab-filter-t)   | [Filter events by time](#filtering-events-by-time-events-tab-filter-t) |
+|          [`edit`](#editing-an-event-events-tab-edit)           | [Edit an existing event](#editing-an-event-events-tab-edit)           |
+|       [`clear`](#clearing-all-entries-events-tab-clear)        | [Clear all events](#clearing-all-entries-events-tab-clear)            |
+
+
+#### Listing all future events: Events Tab → `list`
 
 Shows a list of all **UPCOMING** events in the **Events** tab.
 
@@ -722,6 +778,8 @@ Format: `list`
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
 |         `list`         |        `list1`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
 
+[Back to Events Management](#events-management)
+
 #### Listing all events: Events Tab → `list-all`
 
 Shows a list of all events, **including past and future**, in the **Events** tab.
@@ -731,6 +789,9 @@ Format: `list-all`
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>           |
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
 |       `list-all`       |        `list-a`        | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
+
+[Back to Events Management](#events-management)
+
 
 #### Adding an event: Events Tab → `add`
 
@@ -781,7 +842,9 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT]…​ [l/LOCATION] [d/DESCR
 |        `add n/Meetup s/2 hrs from now e/3 hrs from now c/Alex Yeoh c/Bernice Yu`        |    `add n/Meetup s/21022023130pm  e/21-02-2023230pm c/Alex Yeoh c/Bernice Yu`     | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> DateTime Format is incorrect <br> Refer to the accepted DateTime formats |
 |                    `add n/Gym s/21-02-2023 13:30 e/21-02-2023 14:30`                    |                 `add n/Gym s/21-02-2023 13:30 e/21-02-2023 12:30`                 | <span style ='color: darkred; text-decoration: underline'>Invalid date-time duration</span><br> The TIMEEND must be after the TIMESTART                                |
 
-#### Deleting an event: Events Tab → delete `delete`
+[Back to Events Management](#events-management)
+
+#### Deleting an event: Events Tab → `delete`
 
 Deletes an existing event from the **Events** tab.
 
@@ -816,7 +879,9 @@ Format: `delete INDEX`
 |                      `delete 4`                      |                               `delete one`                                | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
 |                                                      | `delete 150` <br>while there are less than 150 entries in the events list | <span style ='color: darkred; text-decoration: underline'>Unknown entry</span><br> The given entry must be in the event list                                  |
 
-#### Filtering Events by Clients: Events Tab → `filter-c`
+[Back to Events Management](#events-management)
+
+#### Filtering events by `{CLIENTS}`: Events Tab → `filter-c`
 
 Shows a list of events that contains client's names who matches `KEYWORD`.
 
@@ -849,7 +914,7 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 |  `filter-c aLeX rOy`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a <code>KEYWORD</code> to search with      |
 
 
-#### Filtering events: Events Tab → filter `filter-n`
+#### Filtering events by `{NAME}`: Events Tab → `filter-n`
 
 Filters events by their name in the **Events** tab.
 
@@ -882,7 +947,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 | `filter-n cOnFerence`  |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> There must be at least one <code>KEYWORD</code> to search with |
 
 
-#### Filtering events: Events Tab → filter `filter-t`
+[Back to Events Management](#events-management)
+
+#### Filtering events by `{TIME}`: Events Tab → `filter-t`
 
 Filters events by time in the **Events** tab.
 
@@ -903,7 +970,9 @@ Format: `filter-t TIMESTAMP`
 |  `filter-t next week`  |  `filter-t my phone`   | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format!</span><br> not acceptable datetime format |
 | `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> TIMESTAMP value is required       |
 
-#### Editing an event : `edit`
+[Back to Events Management](#events-management)
+
+#### Editing an event: Events tab → `edit`
 
 Edits an existing event in the **Events** tab.
 
@@ -915,6 +984,7 @@ Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCAT
 
 
 <box type="warning" seamless>
+
 * For `{CLIENT}`, the name **MUST EXIST** in your Contacts. Note that this is case-sensitive.
   * Refer to [the filter-n command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#finding-contact-by-name-contacts-tab-filter-n) within the Contacts tab to search whether the contact exists. 
 * Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list. The index **must be a positive integer** 1, 2, 3, …​
@@ -938,6 +1008,20 @@ Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCAT
 |:-----------------------------------------------------------------------------:|:-------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |                               `edit 1 n/Tennis`                               | `edit s/31-09-2023 19:30` | <span style ='color: darkred; text-decoration: underline'>Invalid start and end datetime order</span><br> Make sure that start datetime is earlier than end datetime. |
 | `edit 2 n/Meetup s/01-12-2023 2pm e/01-12-2023 3pm c/Alex Yeoh c/Bernice Yu ` |  `edit c/Potato Client`   | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> Client Not Found <br> Client tagged does not exist in your contacts     |
+
+[Back to Events Management](#events-management)
+
+#### Clearing all entries : Events Tab → `clear`
+
+Clears all entries from the **Events** tab.
+
+Format: `clear`
+
+<box type="warning" seamless>
+    This is a <b>destructive</b> command that <b>deletes all your data</b>!
+</box>
+
+[Back to Events Management](#events-management)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1012,6 +1096,7 @@ Commands that applies to ALL tabs
 | **Filter by event name**  | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
 | **Filter by time**        | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
 | **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
+| **List**                  | `list`<br> e.g., `list`                                                                                                                                                       |
 | **List All**              | `list-all`<br> e.g., `list-all`                                                                                                                                               |
 | **Clears Events Book**    | `clear`                                                                                                                                                                       |
 
