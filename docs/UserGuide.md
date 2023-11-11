@@ -1058,10 +1058,15 @@ The following data are saved automatically as a JSON file. Advanced users are we
 - FinanceBook: `[JAR file location]/data/financebook.json`
 
 <box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook, EventsBook and FinanceBook will discard all data and start with an empty data file at the next run (i.e. one corrupted file can wipe out the other files as well).  Hence, it is recommended to take a backup of the files before editing them.
-
+<ul>
+  <li>
+    <b>Caution:</b>
+    If your changes to the data file makes its format invalid, AddressBook, EventsBook and FinanceBook will discard all data and start with an empty data file at the next run (i.e. one corrupted file can wipe out the other files as well).  Hence, it is recommended to take a backup of the files before editing them.
+  </li>
+  <li>
+    FreelanceBuddy currently does not support client validation on loading data files. If you change client details on the FinanceBook and EventsBook, they may not correspond to client details on AddressBook!
+  </li>
+</ul>
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1102,7 +1107,7 @@ Commands that applies to ALL tabs
 | **Filter by time**        | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
 | **Summary**               | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
 | **List**                  | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
-| **Clears Finance Book**   | `clear`                                                                                                                                             |
+| **Clears Finance Book**   | `clear`                                                                                                                         |
 
 
 ### Events Tab
