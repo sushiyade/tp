@@ -453,6 +453,14 @@ Format: `add-c d/DESCRIPTION a/AMOUNT c/CLIENT [t/TIME]`
     </ul>
 </box>
 
+<box type="warning" seamless>
+    <ul>
+        <li>
+            The client name must match the exact client name (case-sensitive) that is found in the Contacts tab. </br>
+        </li>
+    </ul>
+</box>
+
 |   Parameter   | Format                                     | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                |
 |:-------------:|:-------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `DESCRIPTION` | Text up to 256 characters, cannot be empty | #g#This is an example description##</br>                                                                                                                          |
@@ -482,6 +490,14 @@ Format: `add-e d/DESCRIPTION a/AMOUNT [c/CLIENT] [t/TIME]`
         </li>
         <li>
             The default <code>[t/TIME]</code> will be the time at which the command is entered
+        </li>
+    </ul>
+</box>
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            The client name, if provided, must match the exact client name (case-sensitive) that is found in the Contacts tab. </br>
         </li>
     </ul>
 </box>
@@ -704,12 +720,15 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT]…​ [l/LOCATION] [d/DESCR
             <code>TIMESTART</code> and <code>TIMEEND</code> format should follow the <a href="https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-formats">Accepted Date-time Formats</a>
         </li>
         <li>
-            Note that each contact can have:
+            Note that each event can have:
             <ul>
               <li>Multiple <code>[c/CLIENT]…​</code> (e.g <code>c/David c/Richard c/Anna</code>) or none</li>
               <li>At most one <code>[l/LOCATION]</code></li>
               <li>At most one <code>[d/DESCRIPTION]</code></li>
              </ul>
+        </li>
+        <li>
+            The client name must match the exact client name (case-sensitive) that is found in the Contacts tab.
         </li>
     </ul>
 </box>
