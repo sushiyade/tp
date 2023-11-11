@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.util.ToStringBuilder;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.tab.Tab.FINANCE_PARAMETER;
+
+import seedu.address.commons.core.tab.Tab;
 import seedu.address.model.Model;
 
 /**
@@ -11,33 +14,23 @@ public class TabCommand extends Command {
     public static final String COMMAND_WORD = "tab";
 
     public static final String MESSAGE_USAGE = "I only accept the following tabs: contacts, events, finance \n"
-            + "Example: " + COMMAND_WORD + " finance";
+            + "Example: " + COMMAND_WORD + " " + FINANCE_PARAMETER;
 
-    public static final String MESSAGE_TAB_ACKNOWLEDGEMENT = "Changing tabs too... %1$s";
 
-    private final String tabName;
+    private final Tab tab;
 
-    public TabCommand(String tabName) {
-        this.tabName = tabName;
+    /**
+     * @param tab that user wants to switch to
+     */
+    public TabCommand(Tab tab) {
+        requireNonNull(tab);
+        this.tab = tab;
     }
 
     @Override
     public CommandResult execute(Model model) {
-        Integer tabIndex;
-        switch(tabName) {
-        case "contacts":
-            tabIndex = 0;
-            break;
-        case "finance":
-            tabIndex = 1;
-            break;
-        case "events":
-            tabIndex = 2;
-            break;
-        default: // should not reach here
-            tabIndex = null;
-        }
-        return new CommandResult("", false, tabIndex, false);
+        requireNonNull(model);
+        return new CommandResult("", false, tab.getZeroBasedTabIndex(), false);
     }
     @Override
     public boolean equals(Object other) {
@@ -51,13 +44,6 @@ public class TabCommand extends Command {
         }
 
         TabCommand otherTabCommand = (TabCommand) other;
-        return tabName.equals(otherTabCommand.tabName);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("tabName", tabName)
-                .toString();
+        return tab.equals(otherTabCommand.tab);
     }
 }

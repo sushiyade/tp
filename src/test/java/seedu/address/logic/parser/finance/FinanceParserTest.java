@@ -2,6 +2,7 @@ package seedu.address.logic.parser.finance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.tab.Tab.FINANCE_PARAMETER;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
@@ -11,6 +12,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.tab.Tab;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
@@ -92,8 +94,8 @@ public class FinanceParserTest {
     @Test
     public void parseCommand_tabCommand() throws ParseException {
         TabCommand command = (TabCommand) parser.parseCommand(
-                TabCommand.COMMAND_WORD + " finance");
-        assertEquals(new TabCommand("finance"), command);
+                TabCommand.COMMAND_WORD + " " + FINANCE_PARAMETER);
+        assertEquals(new TabCommand(Tab.fromParameter(FINANCE_PARAMETER)), command);
     }
 
     @Test

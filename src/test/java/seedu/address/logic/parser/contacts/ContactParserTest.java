@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.tab.Tab;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
@@ -103,7 +104,7 @@ public class ContactParserTest {
     public void parseCommand_tabCommand() throws ParseException {
         TabCommand command = (TabCommand) parser.parseCommand(
                 TabCommand.COMMAND_WORD + " finance");
-        assertEquals(new TabCommand("finance"), command);
+        assertEquals(new TabCommand(Tab.fromParameter("finance")), command);
     }
 
     @Test

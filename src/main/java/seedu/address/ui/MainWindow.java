@@ -28,6 +28,7 @@ import seedu.address.ui.tab.FinanceTab;
  */
 public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
+    private static final String HELP_LINK = "https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -71,7 +72,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(HELP_LINK);
     }
 
     public Stage getPrimaryStage() {

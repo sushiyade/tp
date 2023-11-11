@@ -172,19 +172,30 @@ You can check out commands related to Events [here](#events-management). A summa
 
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### General Commands
 
-This is a mini table of contents for general commands to help you navigate this section quickly. Click on the commands or description to jump to the desired section!
+These general commands apply to **any** tab. 
 
-|               Command               | Brief Description                                               |
-|:-----------------------------------:|-----------------------------------------------------------------|
-|    [`help`](#viewing-help-help)     | [Opens help window with link to User Guide](#viewing-help-help) |
-|    [`tab`](#switching-tabs-tab)     | [Navigate between tabs](#switching-tabs-tab)                    |
-| [`exit`](#exiting-the-program-exit) | [Exits the program](#exiting-the-program-exit)                  |
+This is a mini table of contents for general commands to help you navigate this section quickly.
 
-#### Viewing help: `help`
+*Click on the commands or description to jump to the desired section!*
 
-Shows a message explaining how to access the help page. This command is available for all tabs, each tab (except the dashboard) will show the help message specifically for the tab itself.
+|               Command               | Brief Description                                                                                                       |
+|:-----------------------------------:|-------------------------------------------------------------------------------------------------------------------------|
+|    [`help`](#viewing-help-help)     | [Opens help window with link to specific section of User Guide (depending on which tab you are in)](#viewing-help-help) |
+|    [`tab`](#switching-tabs-tab)     | [Navigate between tabs](#switching-tabs-tab)                                                                            |
+|   [`clear`](#clearing-data-clear)   | [Clears all data (only for the tab that you are in)](#clearing-data-clear)                                              |
+| [`exit`](#exiting-the-program-exit) | [Exits the program](#exiting-the-program-exit)                                                                          |
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Viewing help → `help`
+
+Shows a message explaining how to access the help page. This command is available for all tabs, each tab will show the help link specifically for the tab itself.
+
+If you are eager to read our full user guide, within our app, press F1 on your keyboard to get the link, so you can read it from the start.
 
 ![dashboard help message](images/helpMessage.png)
 
@@ -192,17 +203,17 @@ Format: `help`
 
 [Back to General Commands](#general-commands)
 
---------------------------------------------------------------------------------------------------------------------
+
 
 #### Switching tabs → `tab`
 
-Switch views to the specific tab
+Switch views to the specific tab.
 
 Format: `tab TAB_NAME`
 
-> **RESULT:** Tab will be switched to Contacts on GUI
+> **RESULT:** Tab will be switched to {Contacts, Finance, Events} on GUI
 
-Acceptable values for `TAB_NAME`:
+Acceptable values for `TAB_NAME` (note that it is case-sensitive):
 
 * `contacts`
 
@@ -217,7 +228,25 @@ Acceptable values for `TAB_NAME`:
 
 [Back to General Commands](#general-commands)
 
-#### Exiting the program : `exit`
+
+
+#### Clearing data → `clear`
+
+Clears all entries within the tab that you are in, this also includes the data stored in your hard drive.
+
+Format: `clear`
+
+> **RESULT:** {Address/Events/Finance} book has been cleared!
+
+<box type="warning" seamless>
+    This is a <b>destructive</b> command that <b>deletes all your data</b>!
+</box>
+
+[Back to General Commands](#general-commands)
+
+
+
+#### Exiting the program → `exit`
 
 Exits the program.
 
@@ -229,7 +258,7 @@ Format: `exit`
 
 ### Contacts Management
 
-To view contacts tab, either click on the “contacts” button, or use the command tab `contacts` to switch tabs.
+To view contacts tab, either click on the “contacts” button, or use the command `tab contacts` to switch tabs.
 
 This is a mini table of contents for general commands to help you navigate this section quickly.
 
@@ -246,6 +275,7 @@ This is a mini table of contents for general commands to help you navigate this 
 |            [`clear`](#clearing-all-entries-contacts-tab-clear)             | [Clear all contatcs](#clearing-all-entries-contacts-tab-clear)                              |
 
 
+
 #### Listing all contact: Contacts Tab → `list`
 
 Shows a list of all contacts in the **Contacts** tab.
@@ -253,10 +283,6 @@ Shows a list of all contacts in the **Contacts** tab.
 Format: `list`
 
 > **RESULT:** Listed all persons
-
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>           |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
-|         `list`         |        `list1`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
 
 [Back to Contacts Management](#contacts-management)
 
@@ -441,20 +467,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] 
 |:----------------------------------------------------------------------------------------:|:------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------|
 |                              `edit 1 n/‘Chewbaca’ The 1st`                               |           `edit  n/‘Chewbaca’ The 1st`           | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                 |
 |                               `edit 2 n/Betsy Crower t/`                                 | `edit n/‘Chewbaca’ The 1st n/‘Chewbaca’ The 1st` | <span style ='color: darkred; text-decoration: underline'>Multiple Parameters</span><br> Multiple values is not allowed |
-
-[Back to Contacts Management](#contacts-management)
-
-#### Clearing all entries : Contacts Tab → `clear`
-
-Clears all entries from the **Contacts** Tab.
-
-Format: `clear`
-
-> **RESULT:** Address book has been cleared!
-
-<box type="warning" seamless>
-    This is a <b>destructive</b> command that <b>deletes all your data</b>!
-</box>
 
 [Back to Contacts Management](#contacts-management)
 
