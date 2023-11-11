@@ -1139,6 +1139,9 @@ Commands that applies to ALL tabs
 **Q**: My GUI seems to be appearing off-screen, why does this happen and how do I fix this?</br>
 **A**: This problem occurs after you have moved the application to a secondary screen when using multiple screens, and then switched to using only the primary screen. To fix this, simply delete the `preferences.json` file created by the application before running the application again.</br>
 
+**Q**: Why is it that after I update or delete a contact, the changes are not displayed on the Finance or Event tabs?
+**A**: FreelanceBuddy currently does not support propagation of changes from Contact Tab to the other tabs. Moreover, there is often a need for users to keep track of old transactions or appointments with clients that may not exist anymore, or exist as a different entity in the database.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Resources
@@ -1148,7 +1151,7 @@ Commands that applies to ALL tabs
 For the CLI experience to be optimised, FreelanceBuddy accepts a **variety of date-time formats** so that you can type in your date-time inputs **quickly** and **without hassle**.
 Pick and choose any of your preferred format at your convenience.
 
-#### Contents of this section:
+#### Contents of this section
 
 As this section is relatively long, we have provided a mini table of content for quick navigation.
 
