@@ -107,7 +107,7 @@ class TimeDueBetweenPredicateTest {
         TimeDueBetweenPredicate predicate = null;
         try {
             predicate = new TimeDueBetweenPredicate(
-                    new Duration(new TimeStart(LocalDateTime.now()), new TimeEnd(LocalDateTime.now())));
+                    new Duration(new TimeStart("now"), new TimeEnd("in 1 min")));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -119,7 +119,7 @@ class TimeDueBetweenPredicateTest {
         TimeDueBetweenPredicate predicate = null;
         try {
             predicate = new TimeDueBetweenPredicate(
-                    new Duration(new TimeStart(LocalDateTime.now()), new TimeEnd(LocalDateTime.now())));
+                    new Duration(new TimeStart("now"), new TimeEnd("in 1 min")));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -131,7 +131,7 @@ class TimeDueBetweenPredicateTest {
         TimeDueBetweenPredicate predicate = null;
         try {
             predicate = new TimeDueBetweenPredicate(
-                    new Duration(new TimeStart(LocalDateTime.now()), new TimeEnd(LocalDateTime.now())));
+                    new Duration(new TimeStart("now"), new TimeEnd("in 1 min")));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
