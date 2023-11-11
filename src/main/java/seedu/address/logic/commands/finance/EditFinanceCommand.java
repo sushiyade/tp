@@ -105,7 +105,14 @@ public class EditFinanceCommand extends Command {
 
         if (editFinanceDescriptor.isClientChanged) {
             Person client = editFinanceDescriptor.client;
+
+            // Unable to edit commission with a null client, since commission should always contain a client
+            if (client == null && financeToEdit instanceof Commission) {
+                throw new CommandException(Messages.MESSAGE_UNABLE_TO_EDIT_CLIENT);
+            }
+
             updatedClient = getValidClient(client, model);
+
         } else {
             updatedClient = financeToEdit.getClient();
         }

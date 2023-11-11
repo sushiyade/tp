@@ -10,7 +10,7 @@ public class TabCommand extends Command {
 
     public static final String COMMAND_WORD = "tab";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": changes the tab to the specified tab "
+    public static final String MESSAGE_USAGE = "I only accept the following tabs: contacts, events, finance \n"
             + "Example: " + COMMAND_WORD + " finance";
 
     public static final String MESSAGE_TAB_ACKNOWLEDGEMENT = "Changing tabs too... %1$s";

@@ -35,6 +35,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     public static final String MESSAGE_INVALID_TAB_NAME = "Tab name is not a valid tab name. ";
+    public static final String MESSAGE_MISSING_TAB_NAME = "Tab name is missing. ";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -56,6 +57,9 @@ public class ParserUtil {
     public static String parseTab(String tab) throws ParseException {
         String trimmedTab = tab.trim();
         String[] validTabs = {"contacts", "finance", "events"};
+        if (trimmedTab.length() == 1) {
+            throw new ParseException(MESSAGE_MISSING_TAB_NAME);
+        }
         if (Arrays.asList(validTabs).contains(trimmedTab)) {
             return trimmedTab;
         } else {

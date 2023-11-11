@@ -22,7 +22,8 @@ public class TabCommandParser implements Parser<TabCommand> {
             return new TabCommand(validTab);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TabCommand.MESSAGE_USAGE), pe);
+                    String.format(pe.getMessage(), TabCommand.MESSAGE_TAB_ACKNOWLEDGEMENT), pe);
+                    //String.format(MESSAGE_INVALID_COMMAND_FORMAT, TabCommand.MESSAGE_USAGE), pe);
         }
     }
 

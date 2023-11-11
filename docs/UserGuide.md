@@ -79,7 +79,7 @@ For more commands such as edit and filter commands, as well as detailed instruct
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Features
+### #m#Features#
 
 FreelanceBuddy is made up of **three main systems**. It has:
 - A contact management system
@@ -193,10 +193,10 @@ Acceptable values for `TAB_NAME`:
 
 * `finance`
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                 |
-|:----------------------:|:----------------------:|--------------------------------------------------------------------------------------------------------|
-|     `tab contacts`     |     `tab contact`      | <span style ='color: darkred; text-decoration: underline;'>Unkown parameter<br>Invalid tab name</span> |
-|      `tab events`      |         `tab`          | <span style ='color: darkred; text-decoration: underline;'>Missing parameter</span>                    |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                        |
+|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------|
+|     `tab contacts`     |     `tab contact`      | <span style ='color: darkred; text-decoration: underline;'>Huh? What tab is this?</span><br/>Invalid tab name |
+|      `tab events`      |         `tab`          | <span style ='color: darkred; text-decoration: underline;'>Missing parameter</span>                           |
 
 #### Exiting the program : `exit`
 
@@ -218,9 +218,6 @@ Format: `list`
 
 > **RESULT:** Listed all persons
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>           |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------|
-|         `list`         |        `list1`         | <span style ='color: darkred; text-decoration: underline'>Invalid command</span> |
 
 #### Adding a contact: Contacts Tab → `add`
 
@@ -255,11 +252,11 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 |    `[COMPANY]`    | Text up to 256 characters                                                                                     | #g#Shopee##<br>#g#Sh0p33##                                                                           |
 | `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                        | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
 
-|                                  #g#Positive Examples##                                   |                                        #r#Negative Examples##                                         | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                                  |
-|:-----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
-|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                 |                                `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> Name is missing                             |
-|                  `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                 `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name, Phone number, and Email is missing         |
-| `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
+|                                  #g#Positive Examples##                                   |                                        #r#Negative Examples##                                         | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                             |
+|:-----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------|
+|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                 |                                `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Missing Parameter(s)</span><br> Name is missing                          |
+|                  `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                 `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter(s)</span><br> Name, Phone number, and Email is missing |
+| `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds` | <span style ='color: darkred; text-decoration: underline'>Multiple Values Specified</span><br> At most one company name is allowed |
 
 #### Finding contact by <code>{NAME}</code>: Contacts Tab → `filter-n`
 
@@ -288,10 +285,10 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Hans##<br>#g#3##                |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                 |
-|:----------------------:|:----------------------:|------------------------------------------------------------------------------------------------------------------------|
-|    `filter-n Alex`     |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Please add a KEYWORD to search with |
-|  `filter-n aLEx rOy`   |                        |                                                                                                                        |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Error Message</span>                                                          |
+|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------------------------------|
+|    `filter-n Alex`     |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> Please add a KEYWORD to search with |
+|  `filter-n aLEx rOy`   |                        |                                                                                                                                 |
 
 #### Finding contact by <code>{COMPANY}</code>: Contacts Tab → `filter-c`
 
