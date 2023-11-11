@@ -19,6 +19,7 @@ public class Tab {
     public static final int NUM_OF_TABS = 3;
 
     private final int zeroBasedTabIndex;
+    private final String tabParameter;
 
     /**
      * Tab can only be created by calling {@link Tab#fromZeroBased(int)} or
@@ -30,10 +31,11 @@ public class Tab {
         }
 
         this.zeroBasedTabIndex = zeroBasedTabIndex;
+        tabParameter = getParameterFromIndex(zeroBasedTabIndex);
     }
 
-    public String getTabCommand() {
-        return getParameterFromIndex(zeroBasedTabIndex);
+    public String getTabParameter() {
+        return tabParameter;
     }
     public int getZeroBasedTabIndex() {
         return zeroBasedTabIndex;
