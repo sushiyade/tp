@@ -12,13 +12,14 @@ import seedu.address.model.event.EventClientContainsKeywordsPredicate;
 
 
 /**
- * Parses input arguments and creates a new FilterEventClientCommand object
+ * Parses input arguments and creates a new FilterEventClientCommand object.
  */
 public class FilterEventClientCommandParser implements Parser<FilterEventClientCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterEventClientCommand
      * and returns a FilterEventClientCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterEventClientCommand parse(String args) throws ParseException {

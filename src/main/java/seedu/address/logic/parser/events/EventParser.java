@@ -19,13 +19,11 @@ import seedu.address.logic.commands.events.EditEventCommand;
 import seedu.address.logic.commands.events.FilterEventClientCommand;
 import seedu.address.logic.commands.events.FilterEventNameCommand;
 import seedu.address.logic.commands.events.FilterEventTimeCommand;
-import seedu.address.logic.commands.events.ListAllEventCommand;
-import seedu.address.logic.commands.events.ListEventCommand;
+import seedu.address.logic.commands.events.ListAllEventsCommand;
+import seedu.address.logic.commands.events.ListEventsCommand;
 import seedu.address.logic.parser.ParseCommandHandlers;
 import seedu.address.logic.parser.TabCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-
 
 /**
  * Parses user input.
@@ -64,9 +62,8 @@ public class EventParser extends ParseCommandHandlers {
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
 
-        //NOT IMPLEMENTED YET
-        //case EditContactCommand.COMMAND_WORD:
-        //return new EditEventParser().parse(arguments);
+        case EditEventCommand.COMMAND_WORD:
+            return new EditEventCommandParser().parse(arguments);
 
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
@@ -77,20 +74,17 @@ public class EventParser extends ParseCommandHandlers {
         case FilterEventTimeCommand.COMMAND_WORD:
             return new FilterEventTimeCommandParser().parse(arguments);
 
-        case EditEventCommand.COMMAND_WORD:
-            return new EditEventCommandParser().parse(arguments);
-
         case ClearEventsCommand.COMMAND_WORD:
             return new ClearEventsCommand();
 
         case FilterEventClientCommand.COMMAND_WORD:
             return new FilterEventClientCommandParser().parse(arguments);
 
-        case ListAllEventCommand.COMMAND_WORD:
-            return new ListAllEventCommand();
+        case ListAllEventsCommand.COMMAND_WORD:
+            return new ListAllEventsCommand();
 
-        case ListEventCommand.COMMAND_WORD:
-            return new ListEventCommand();
+        case ListEventsCommand.COMMAND_WORD:
+            return new ListEventsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

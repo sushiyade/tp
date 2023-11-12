@@ -20,7 +20,7 @@ public class TabCommand extends Command {
     private final Tab tab;
 
     /**
-     * @param tab that user wants to switch to
+     * Creates a TabCommand to switch to specified {@code Tab}
      */
     public TabCommand(Tab tab) {
         requireNonNull(tab);
@@ -30,8 +30,11 @@ public class TabCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        // Returns empty feedback to user as it will immediately switch to a different tab,
+        // so the message won't be shown to the user regardless
         return new CommandResult("", false, tab.getZeroBasedTabIndex(), false);
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

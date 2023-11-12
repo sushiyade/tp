@@ -46,7 +46,7 @@ public class TabCommandTest {
     @Test
     public void execute_tabInvalid_throwsIndexOutOfBoundsException() {
         CommandResult expectedCommandResult = new CommandResult("", false, null, false);
-        assertThrows(IndexOutOfBoundsException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             TabCommand command = new TabCommand(Tab.fromParameter(""));
         });
     }

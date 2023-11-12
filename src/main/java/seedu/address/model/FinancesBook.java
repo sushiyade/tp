@@ -12,7 +12,8 @@ import seedu.address.model.finance.Finance;
 import seedu.address.model.finance.UniqueFinanceList;
 
 /**
- * This class implements the finance book in the application
+ * Wraps all data at the finance-book level
+ * Duplicates are not allowed (by .isSameFinance / .isSameCommission / .isSameExpense comparison)
  */
 public class FinancesBook implements ReadOnlyFinancesBook {
     private final UniqueFinanceList finances;
@@ -103,7 +104,7 @@ public class FinancesBook implements ReadOnlyFinancesBook {
         return finances.asUnmodifiableObservableList();
     }
 
-    // util methods
+    //// util methods
 
     @Override
     public String toString() {

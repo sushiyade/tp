@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.events;
 
 import java.util.logging.Logger;
 
@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.ui.UiPart;
 
 /**
  * This class implements the EventList Panel in the Ui

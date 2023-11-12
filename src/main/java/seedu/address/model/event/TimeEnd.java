@@ -9,7 +9,7 @@ import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Represents the end time of an event in the address book.
+ * Represents the end time of an event in the events book.
  * Guarantees: immutable;
  */
 public class TimeEnd {

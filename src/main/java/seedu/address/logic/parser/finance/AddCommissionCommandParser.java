@@ -24,7 +24,7 @@ import seedu.address.model.finance.TimeDue;
 import seedu.address.model.person.Person;
 
 /**
- * Parses input arguments and creates a new AddCommissionCommand object
+ * Parses input arguments and creates a new AddCommissionCommand object.
  */
 public class AddCommissionCommandParser implements Parser<AddCommissionCommand> {
     @Override

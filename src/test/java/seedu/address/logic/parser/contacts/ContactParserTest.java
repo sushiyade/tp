@@ -18,13 +18,13 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.contacts.AddContactCommand;
-import seedu.address.logic.commands.contacts.ClearContactCommand;
+import seedu.address.logic.commands.contacts.ClearContactsCommand;
 import seedu.address.logic.commands.contacts.DeleteContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.contacts.FilterContactCompanyCommand;
 import seedu.address.logic.commands.contacts.FilterContactNameCommand;
-import seedu.address.logic.commands.contacts.ListContactCommand;
+import seedu.address.logic.commands.contacts.ListContactsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -46,8 +46,8 @@ public class ContactParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearContactCommand.COMMAND_WORD) instanceof ClearContactCommand);
-        assertTrue(parser.parseCommand(ClearContactCommand.COMMAND_WORD + " 3") instanceof ClearContactCommand);
+        assertTrue(parser.parseCommand(ClearContactsCommand.COMMAND_WORD) instanceof ClearContactsCommand);
+        assertTrue(parser.parseCommand(ClearContactsCommand.COMMAND_WORD + " 3") instanceof ClearContactsCommand);
     }
 
     @Test
@@ -96,8 +96,8 @@ public class ContactParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD) instanceof ListContactCommand);
-        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
+        assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD) instanceof ListContactsCommand);
+        assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD + " 3") instanceof ListContactsCommand);
     }
 
     @Test

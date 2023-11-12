@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all events in events book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FilterEventNameCommand extends Command {
@@ -56,7 +56,7 @@ public class FilterEventNameCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", namePredicate)
+                .add("namePredicate", namePredicate)
                 .toString();
     }
 }

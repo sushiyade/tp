@@ -19,10 +19,8 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
-
-
 /**
- * Adds a person to the address book.
+ * Adds an event to the events book.
  */
 public class AddEventCommand extends Command {
 
@@ -33,14 +31,14 @@ public class AddEventCommand extends Command {
             + PREFIX_EVENT_NAME + "EVENT_NAME "
             + PREFIX_TIME_START + "START_TIME "
             + PREFIX_TIME_END + "END_TIME "
-            + PREFIX_CLIENT + "CLIENTS "
-            + PREFIX_LOCATION + "LOCATION "
-            + PREFIX_DESCRIPTION + "DESCRIPTION \n"
+            + "[" + PREFIX_CLIENT + "CLIENTS]... "
+            + "[" + PREFIX_LOCATION + "LOCATION] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT_NAME + "Discuss Deliverables with John "
             + PREFIX_TIME_START + "31-12-2024 12:30 "
             + PREFIX_TIME_END + "31-12-2024 14:30 "
-            + PREFIX_CLIENT + "John "
+            + PREFIX_CLIENT + "John Doe "
             + PREFIX_LOCATION + "FreelanceBuddy HQ "
             + PREFIX_DESCRIPTION + "Settle product development deliverables for next phase";
 
@@ -64,7 +62,21 @@ public class AddEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        Set<Person> clients = toAdd.getClients();
+        Set<Person> toBeAddedClients = toAdd.getClients();
+        setValidClients(toBeAddedClients, model);
+
+        model.addEvent(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+    }
+
+    /**
+     * Checks and sets {@code clients} to the {@code toAdd} event if they exist in the events book
+     * from {@code Model}.
+     */
+    private void setValidClients(Set<Person> clients, Model model) throws CommandException {
+        requireNonNull(clients);
+        requireNonNull(model);
+
         boolean hasValidClients = clients.stream().allMatch(model::isValidClient);
         if (!hasValidClients) {
             throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
@@ -72,9 +84,6 @@ public class AddEventCommand extends Command {
             Set<Person> validClients = model.getAllMatchedClients(clients);
             toAdd.setMatchedClientInstance(validClients);
         }
-
-        model.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override

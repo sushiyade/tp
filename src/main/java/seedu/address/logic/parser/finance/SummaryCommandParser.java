@@ -7,7 +7,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.ClientNameExactMatchPredicate;
 /**
- * Parses input arguments and creates a new SummaryCommand object
+ * Parses input arguments and creates a new SummaryCommand object.
  */
 public class SummaryCommandParser implements Parser<SummaryCommand> {
     @Override

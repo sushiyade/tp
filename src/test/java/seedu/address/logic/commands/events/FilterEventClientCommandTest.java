@@ -81,7 +81,7 @@ public class FilterEventClientCommandTest {
         EventClientContainsKeywordsPredicate predicate =
                 new EventClientContainsKeywordsPredicate(Arrays.asList("meeting"));
         FilterEventClientCommand command = new FilterEventClientCommand(predicate);
-        String expected = FilterEventClientCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        String expected = FilterEventClientCommand.class.getCanonicalName() + "{clientPredicate=" + predicate + "}";
         assertEquals(expected, command.toString());
     }
 

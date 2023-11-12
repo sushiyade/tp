@@ -6,7 +6,7 @@ import java.util.Objects;
 
 
 /**
- * Represents a Person's description in the address book.
+ * Represents a Event's description in the events book.
  */
 public class EventDescription {
     public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values up to 256 characters"

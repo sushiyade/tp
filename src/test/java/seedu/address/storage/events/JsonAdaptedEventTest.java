@@ -19,7 +19,7 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
-import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.storage.address.JsonAdaptedPerson;
 
 public class JsonAdaptedEventTest {
     private static final String TEXT_MORE_THAN_256 = createMoreThanAllowedString();

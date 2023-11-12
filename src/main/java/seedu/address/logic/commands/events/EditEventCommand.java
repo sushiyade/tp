@@ -44,11 +44,12 @@ public class EditEventCommand extends Command {
             + "[" + PREFIX_EVENT_NAME + "EVENT_NAME] "
             + "[" + PREFIX_TIME_START + "START_TIME] "
             + "[" + PREFIX_TIME_END + "END_TIME] "
-            + "[" + PREFIX_CLIENT + "CLIENTS] "
+            + "[" + PREFIX_CLIENT + "CLIENTS]... "
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EVENT_NAME + "Zoom meeting with Citadel "
+            + PREFIX_TIME_START + "31-12-2024 15:00"
             + PREFIX_TIME_END + "31-12-2024 18:00";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
@@ -99,37 +100,64 @@ public class EditEventCommand extends Command {
             throws CommandException {
         assert eventToEdit != null;
 
-        EventName updatedEventName = editEventDescriptor.getEventName().orElse(eventToEdit.getEventName());
+        setValidClients(editEventDescriptor, model);
 
-        Duration updatedDuration;
-        try {
-            String timeStart = editEventDescriptor.getTimeStart().orElse(null);
-            String timeEnd = editEventDescriptor.getTimeEnd().orElse(null);
-            updatedDuration = Duration.updateDuration(eventToEdit.getDuration(), timeStart, timeEnd);
-        } catch (ParseException e) {
-            throw new CommandException(e.getMessage());
-        }
-        if (editEventDescriptor.getClients().isPresent()) {
-            Set<Person> clients = editEventDescriptor.getClients().get();
-            editEventDescriptor.setClients(getValidClients(clients, model));
-        }
-        Set<Person> updateClients = editEventDescriptor.getClients().orElse(eventToEdit.getClients());
+        EventName updatedEventName = editEventDescriptor.getEventName().orElse(eventToEdit.getEventName());
+        Duration updatedDuration = getUpdatedDuration(editEventDescriptor, eventToEdit);
+        Set<Person> updatedClients = editEventDescriptor.getClients().orElse(eventToEdit.getClients());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         EventDescription updatedEventDescription = editEventDescriptor.getEventDescription()
                 .orElse(eventToEdit.getDescription());
 
-        return new Event(updatedEventName, updatedDuration, updateClients, updatedLocation,
+        return new Event(updatedEventName, updatedDuration, updatedClients, updatedLocation,
                 updatedEventDescription);
     }
 
-    private static Set<Person> getValidClients(Set<Person> clients, Model model) throws CommandException {
-        if (!clients.isEmpty()) {
-            boolean hasValidClients = clients.stream().allMatch(model::isValidClient);
-            if (!hasValidClients) {
-                throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
-            }
+    /**
+     * Gets updated duration based on the old start and end date times from {@code eventToEdit}
+     * and new start and end date times from {@code editEventDescriptor}
+     */
+    private static Duration getUpdatedDuration(EditEventDescriptor editEventDescriptor, Event eventToEdit)
+            throws CommandException {
+        String timeStartString = editEventDescriptor.timeStartString;
+        String timeEndString = editEventDescriptor.timeEndString;
+
+        Duration updatedDuration;
+        try {
+            updatedDuration = Duration.updateDuration(eventToEdit.getDuration(), timeStartString, timeEndString);
+        } catch (ParseException e) {
+            throw new CommandException(e.getMessage());
         }
-        return model.getAllMatchedClients(clients);
+
+        return updatedDuration;
+    }
+
+
+    /**
+     * Checks and sets clients to the {@code editEventDescriptor} if they exist in the events book
+     * from {@code Model}.
+     */
+    private static void setValidClients(EditEventDescriptor editEventDescriptor, Model model) throws CommandException {
+        requireNonNull(editEventDescriptor);
+        requireNonNull(model);
+
+        if (editEventDescriptor.getClients().isEmpty()) {
+            editEventDescriptor.setClients(null);
+        }
+
+        Set<Person> toBeEditedClients = editEventDescriptor.getClients().get();
+
+        if (toBeEditedClients.isEmpty()) {
+            editEventDescriptor.setClients(null);
+        }
+
+        boolean hasValidClients = toBeEditedClients.stream().allMatch(model::isValidClient);
+        if (!hasValidClients) {
+            throw new CommandException(Messages.MESSAGE_CLIENT_DOES_NOT_EXIST);
+        }
+
+        Set<Person> validClients = model.getAllMatchedClients(toBeEditedClients);
+        editEventDescriptor.setClients(validClients);
     }
 
     @Override
@@ -165,8 +193,8 @@ public class EditEventCommand extends Command {
      */
     public static class EditEventDescriptor {
         private EventName eventName;
-        private String startInput;
-        private String endInput;
+        private String timeStartString;
+        private String timeEndString;
         private Set<Person> clients;
         private Location location;
         private EventDescription eventDescription;
@@ -179,8 +207,8 @@ public class EditEventCommand extends Command {
          */
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setEventName(toCopy.eventName);
-            setStartInput(toCopy.startInput);
-            setEndInput(toCopy.endInput);
+            setTimeStartString(toCopy.timeStartString);
+            setTimeEndString(toCopy.timeEndString);
             setClients(toCopy.clients);
             setLocation(toCopy.location);
             setEventDescription(toCopy.eventDescription);
@@ -190,7 +218,8 @@ public class EditEventCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(eventName, startInput, endInput, clients, location, eventDescription);
+            return CollectionUtil.isAnyNonNull(eventName, timeStartString, timeEndString, clients, location,
+                    eventDescription);
         }
 
         public void setEventName(EventName eventName) {
@@ -201,20 +230,20 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(eventName);
         }
 
-        public void setStartInput(String startInput) {
-            this.startInput = startInput;
+        public void setTimeStartString(String timeStartString) {
+            this.timeStartString = timeStartString;
         }
 
-        public Optional<String> getTimeStart() {
-            return Optional.ofNullable(startInput);
+        public Optional<String> getTimeStartString() {
+            return Optional.ofNullable(timeStartString);
         }
 
-        public void setEndInput(String endInput) {
-            this.endInput = endInput;
+        public void setTimeEndString(String timeEndString) {
+            this.timeEndString = timeEndString;
         }
 
-        public Optional<String> getTimeEnd() {
-            return Optional.ofNullable(endInput);
+        public Optional<String> getTimeEndString() {
+            return Optional.ofNullable(timeEndString);
         }
 
         public void setLocation(Location location) {
@@ -263,8 +292,8 @@ public class EditEventCommand extends Command {
 
             EditEventDescriptor otherEditEventDescriptor = (EditEventDescriptor) other;
             return Objects.equals(eventName, otherEditEventDescriptor.eventName)
-                    && Objects.equals(startInput, otherEditEventDescriptor.startInput)
-                    && Objects.equals(endInput, otherEditEventDescriptor.endInput)
+                    && Objects.equals(timeStartString, otherEditEventDescriptor.timeStartString)
+                    && Objects.equals(timeEndString, otherEditEventDescriptor.timeEndString)
                     && Objects.equals(clients, otherEditEventDescriptor.clients)
                     && Objects.equals(location, otherEditEventDescriptor.location)
                     && Objects.equals(eventDescription, otherEditEventDescriptor.eventDescription);
@@ -274,8 +303,8 @@ public class EditEventCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("eventName", eventName)
-                    .add("startInput", startInput)
-                    .add("endInput", endInput)
+                    .add("timeStartString", timeStartString)
+                    .add("timeEndString", timeEndString)
                     .add("clients", clients)
                     .add("location", location)
                     .add("eventDescription", eventDescription)

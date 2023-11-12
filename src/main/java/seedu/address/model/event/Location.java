@@ -6,7 +6,7 @@ import java.util.Objects;
 
 
 /**
- * Represents a Event's location in the address book.
+ * Represents a Event's location in the events book.
  */
 public class Location {
 

@@ -9,7 +9,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteFinanceCommand object
+ * Parses input arguments and creates a new DeleteFinanceCommand object.
  */
 public class DeleteFinanceCommandParser implements Parser<DeleteFinanceCommand> {
     @Override

@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalFinances.getTypicalFinancesBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.contacts.ClearContactCommand;
+import seedu.address.logic.commands.contacts.ClearContactsCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.EventsBook;
 import seedu.address.model.Model;
@@ -88,7 +88,7 @@ public class ListFinancesCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearContactCommand()));
+        assertFalse(standardCommand.equals(new ClearContactsCommand()));
 
         // different list type -> returns false
         assertFalse(standardCommand.equals(new ListFinancesCommand(FinanceListType.EXPENSE)));

@@ -25,13 +25,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 
 /**
- * Parse input arguments and creates a new EditEventCommand object
+ * Parses input arguments and creates a new EditEventCommand object.
  */
 public class EditEventCommandParser implements Parser<EditEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditEventCommand
      * and returns an EditEventCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
@@ -59,10 +60,10 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             editEventDescriptor.setEventName(ParserUtil.parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_TIME_START).isPresent()) {
-            editEventDescriptor.setStartInput(argMultimap.getValue(PREFIX_TIME_START).get());
+            editEventDescriptor.setTimeStartString(argMultimap.getValue(PREFIX_TIME_START).get());
         }
         if (argMultimap.getValue(PREFIX_TIME_END).isPresent()) {
-            editEventDescriptor.setEndInput(argMultimap.getValue(PREFIX_TIME_END).get());
+            editEventDescriptor.setTimeEndString(argMultimap.getValue(PREFIX_TIME_END).get());
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editEventDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));

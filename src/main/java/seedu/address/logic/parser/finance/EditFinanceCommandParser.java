@@ -17,12 +17,13 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parse input arguments and creates a new EditFinanceCommand object
+ * Parses input arguments and creates a new EditFinanceCommand object.
  */
 public class EditFinanceCommandParser implements Parser<EditFinanceCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditEventCommand
      * and returns an EditEventCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

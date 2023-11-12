@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 
 
 /**
- * Clears the event book.
+ * Clears the events book.
  */
 public class ClearEventsCommand extends Command {
 

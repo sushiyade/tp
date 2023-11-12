@@ -15,7 +15,7 @@ import seedu.address.model.event.Event;
 
 
 /**
- * Deletes a event identified using it's displayed index from the address book.
+ * Deletes an event identified using it's displayed index from the events book.
  */
 public class DeleteEventCommand extends Command {
 

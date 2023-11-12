@@ -9,7 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 
 
 /**
- * Tests that a {@code Event}'s {@code Clients} matches any of the keywords given.
+ * Tests that a {@code Event}'s clients' names matches any of the keywords given.
  */
 public class EventClientContainsKeywordsPredicate implements Predicate<Event> {
 
