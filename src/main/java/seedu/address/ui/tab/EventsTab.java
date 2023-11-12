@@ -115,8 +115,6 @@ public class EventsTab extends UiPart<Region> {
             helpWindow.focus();
         }
     }
-
-    // TODO: Implement better exit handling within tabs.
     private void handleExit() {
         System.exit(0);
     }
