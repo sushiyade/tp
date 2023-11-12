@@ -191,7 +191,6 @@ public class UniquePersonListTest {
 
     @Test
     public void iterator() {
-        System.out.println(uniquePersonList);
         uniquePersonList.add(ALICE);
         uniquePersonList.add(AMY);
         Iterator<Person> iterator = uniquePersonList.iterator();
