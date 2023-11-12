@@ -22,7 +22,8 @@ import seedu.address.ui.UiPart;
  */
 public class FinanceTab extends UiPart<Region> {
     private static final String FXML = "FinanceTab.fxml";
-
+    private static final String HELP_LINK = "https://ay2324s1-cs2103t-w09-2.github.io/tp/"
+            + "UserGuide.html#finance-management";
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Logic logic;
 
@@ -48,7 +49,7 @@ public class FinanceTab extends UiPart<Region> {
      */
     public FinanceTab(TabPane tabPane) {
         super(FXML);
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(HELP_LINK);
         this.tabPane = tabPane;
     }
 

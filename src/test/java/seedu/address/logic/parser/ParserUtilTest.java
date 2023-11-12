@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.commons.core.tab.Tab.CONTACT_PARAMETER;
+import static seedu.address.commons.core.tab.Tab.EVENTS_PARAMETER;
+import static seedu.address.commons.core.tab.Tab.FINANCE_PARAMETER;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -13,6 +16,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.tab.Tab;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
@@ -85,16 +89,16 @@ public class ParserUtilTest {
 
     @Test
     public void parseTab_validInput_success() throws ParseException {
-        assertEquals("contacts", ParserUtil.parseTab("contacts"));
-        assertEquals("finance", ParserUtil.parseTab("finance"));
-        assertEquals("events", ParserUtil.parseTab("events"));
+        assertEquals(Tab.fromParameter(CONTACT_PARAMETER), ParserUtil.parseTab(CONTACT_PARAMETER));
+        assertEquals(Tab.fromParameter(FINANCE_PARAMETER), ParserUtil.parseTab(FINANCE_PARAMETER));
+        assertEquals(Tab.fromParameter(EVENTS_PARAMETER), ParserUtil.parseTab(EVENTS_PARAMETER));
     }
 
     @Test
     public void parseTab_validInputWithWhitespace_success() throws ParseException {
-        assertEquals("contacts", ParserUtil.parseTab("  contacts  "));
-        assertEquals("finance", ParserUtil.parseTab("  finance  "));
-        assertEquals("events", ParserUtil.parseTab("  events  "));
+        assertEquals(Tab.fromParameter(CONTACT_PARAMETER), ParserUtil.parseTab("  " + CONTACT_PARAMETER + "  "));
+        assertEquals(Tab.fromParameter(FINANCE_PARAMETER), ParserUtil.parseTab("  " + FINANCE_PARAMETER + "  "));
+        assertEquals(Tab.fromParameter(EVENTS_PARAMETER), ParserUtil.parseTab("  " + EVENTS_PARAMETER + "  "));
     }
 
     @Test
