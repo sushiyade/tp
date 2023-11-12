@@ -29,6 +29,7 @@
 * [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
   * [Getting Started]({{ baseUrl }}/UserGuide.html#getting-started)
     * [Quick Start <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#quick-start)
+    * [Navigating this user guide <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#quick-start)
     * [Features <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#features)
   * [Commands]({{ baseUrl }}/UserGuide.html#commands)
     * [General Commands <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#general-commands)
