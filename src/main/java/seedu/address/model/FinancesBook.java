@@ -83,14 +83,6 @@ public class FinancesBook implements ReadOnlyFinancesBook {
 
     // finance-level methods
 
-    /**
-     * Returns true if a finance with the same identity as {@code finance} exists in the finances book.
-     */
-    //public boolean hasFinance(Finance finance) {
-    //    requireNonNull(finance);
-    //    return finances.contains(finance);
-    //}
-
     public void addFinance(Finance finance) {
         finances.add(finance);
     }
@@ -111,7 +103,7 @@ public class FinancesBook implements ReadOnlyFinancesBook {
         return finances.asUnmodifiableObservableList();
     }
 
-    //// util methods
+    // util methods
 
     @Override
     public String toString() {

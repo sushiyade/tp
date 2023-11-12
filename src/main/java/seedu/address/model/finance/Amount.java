@@ -10,13 +10,12 @@ public class Amount {
             "Amounts should be strictly positive and up to 2dp";
     public final String value;
     /**
-     * Constructs a Description object with the specified description value.
+     * Constructs an Amount object with the specified amount value.
      *
-     * @param amount The description value to be associated with this object.
+     * @param amount The amount value to be associated with this object.
      */
     public Amount(String amount) {
         requireNonNull(amount);
-        //checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
         this.value = amount;
     }
 

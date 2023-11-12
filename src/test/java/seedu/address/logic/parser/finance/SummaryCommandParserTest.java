@@ -13,7 +13,7 @@ class SummaryCommandParserTest {
     private SummaryCommandParser parser = new SummaryCommandParser();
 
     @Test
-    public void parse_validArgs_returnsFilterClientNameCommand() throws ParseException {
+    public void parse_validArgs_returnsSummaryCommand() throws ParseException {
         String args = "Alice";
         SummaryCommand expectedCommand = new SummaryCommand(
                 new ClientNameExactMatchPredicate(args));

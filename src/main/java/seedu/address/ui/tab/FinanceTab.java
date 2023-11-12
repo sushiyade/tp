@@ -68,11 +68,6 @@ public class FinanceTab extends UiPart<Region> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
-
-    public FinanceListPanel getFinanceListPanel() {
-        return financeListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *

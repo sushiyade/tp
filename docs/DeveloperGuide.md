@@ -266,10 +266,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Filtering Lists
 
-_{Explain here how the data archiving feature will be implemented}_
+In FreelanceBuddy, we have multiple commands that make use of a `Predicate` to filter the lists. </br>
+(e.g. `filter-c`, `filter-t`, `summary`...) 
 
+In this example, we will use the `summary` command from the finance tab to demonstrate how FreelanceBuddy 
+uses a `Predicate` to update a `FilteredList` in the `Model`. 
+
+Given below is an example usage scenario and how the command behaves at each step.
+
+**Step 1.** We assume that the finance tab is already populated with finances from multiple clients. The user now wants to 
+generate a summary report for the client `John Doe`. He enters the command `summary John Doe` into the command line. 
+
+**Step 2.** A `ClientNameExactMatchPredicate` is created with the argument `"John Doe"`. This predicate will be used to
+filter the `financeList` later on.
+
+<puml src="diagrams/SummarySequenceDiagram1.puml" alt="SummarySequenceDiagram1" />
+
+<box type="info" seamless>
+
+**Note:** The activation bar of the LogicManager continues to the next diagram.
+
+</box>
+
+**Step 3.** `SummaryCommand` is then executed by the `LogicManager`. The model updates the `financeList` with the given
+`namePredicate` (i.e. `ClientNameExactMatchPredicate("John Doe")`). The `filteredFinances` list is then fetched from the model.
+
+**Step 4.** With the `filteredFinances`, we then call the static `FinanceSummary#generateSummary` method to create a summary
+report. The method returns the summary as a string which is then passed as an argument into the `CommandResult` constructor.
+
+<puml src="diagrams/SummarySequenceDiagram2.puml" alt="SummarySequenceDiagram2" />
+
+<box type="info" seamless>
+
+**Note:** The activation bar of the LogicManager continues from the previous diagram.
+
+</box>
+
+**Step 5.** The summary report is then displayed in the status box. The list of finances displayed in the finance tab will
+also update to only show finances related to the given client. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -326,6 +362,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |   `*`    |  long-term user  | be able to manage client notes          | keep important notes about clients for future references            |
 |   `*`    |       user       | create invoices with client details     | save time with manual inputting of client details                   |
 
+#### For Finance Management
+
+> This covers both commission and expense. We will refer to both as C/E.
+
+| Priority |        As a …​         | I want to …​                                    | So that I can…​                                              |
+|:--------:|:----------------------:|-------------------------------------------------|--------------------------------------------------------------|
+| `* * *`  |          user          | add a new C/E                                   |                                                              |
+| `* * *`  |          user          | delete an old C/E                               | remove entries that I no longer need                         |
+| `* * *`  |          user          | view all my saved C/E                           | have an overview of all my C/E                               |
+|  `* *`   |          user          | filter by C/E                                   |                                                              |
+|  `* *`   |          user          | edit a saved C/E                                | change any details that are wrong or have changed            |
+|  `* *`   | user with many clients | tag clients to C/E                              | see which client is involved in a particular C/E             |
+|  `* *`   | user with many clients | filter by tagged client                         |                                                              |
+|  `* *`   | user with many clients | get a summary of total C/E by tagged client     | know how valuable a client is                                |
+|  `* *`   | financially savvy user | add time due for C/E                            | know when to expect cash inflow/outflow                      |
+|  `* *`   | financially savvy user | filter by a timeframe                           | know what C/E i received in that given timeframe             |
+|  `* *`   | financially savvy user | get a summary of total C/E in a given day/month | get an idea of my financial situation for the time period    |
 
 #### For Events Management
 
@@ -340,23 +393,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |   `*`    |  forgetful user  | set recurring reminders for events | be alerted to task that I might forget                   |
 |   `*`    |       user       | add location of events             | know where this event is taking place                    |
 
-#### For Finance Management
-
-> This covers both commission and expense. We will refer to both as C/E.
-
-| Priority |        As a …​         | I want to …​                                    | So that I can…​                                           |
-|:--------:|:----------------------:|-------------------------------------------------|-----------------------------------------------------------|
-| `* * *`  |          user          | add a new C/E                                   |                                                           |
-| `* * *`  |          user          | delete an old C/E                               | remove entries that I no longer need                      |
-| `* * *`  |          user          | view all my saved C/E                           | have an overview of all my C/E                            |
-|  `* *`   |          user          | filter by type (C/E)                            |                                                           |
-|  `* *`   |          user          | edit a saved C/E                                | change any details that are wrong or have changed         |
-|  `* *`   | user with many clients | tag clients to C/E                              | see which client is involved in a particular C/E          |
-|  `* *`   | user with many clients | filter by tagged client                         |                                                           |
-|  `* *`   | user with many clients | get a summary of total C/E by tagged client     | know how valuable a client is                             |
-|  `* *`   | financially savvy user | add time due for C/E                            | know when to expect cash inflow/outflow                   |
-|  `* *`   | financially savvy user | filter by a given day/month's C/E               |                                                           |
-|  `* *`   | financially savvy user | get a summary of total C/E in a given day/month | get an idea of my financial situation for the time period |
 
 ### Use cases
 
@@ -644,32 +680,14 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC18 - Filter finance entries by day/month
+#### Use Case: UC18 - Filter finance entries by a timeframe
 
 **Precondition**: User is on **Finance** tab
 
 **MSS**
 
-1. User requests to filter finance entries by day/month.
-2. FreelanceBuddy shows a list of finance entries due in the given day/month.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The user inputs an invalid syntax.
-    * 1a1. FreelanceBuddy shows an error message.
-
-      Use case resumes at step 1.
-
-#### Use Case: UC19 - Get finance summary for day/month
-
-**Precondition**: User is on **Finance** tab
-
-**MSS**
-
-1. User requests to see finance summary for a day/month.
-2. FreelanceBuddy shows the finance summary for the given day/month.
+1. User requests to filter finance entries by a timeframe.
+2. FreelanceBuddy shows a list of finance entries for the given timeframe.
 
    Use case ends.
 
@@ -725,6 +743,28 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+
+### Adding a commission
+
+1. Adding a new commission into FreelanceBuddy
+
+    1. Prerequisites: Navigate to the finance tab. There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
+
+    1. Test case: `add-c a/900 c/John Doe d/ChatBot commission t/next week`<br>
+       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be a week from the current time.
+
+    1. Test case (no time input): `add-c a/50 c/John Doe d/ChatBot commission`<br>
+       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be the current time.
+
+    1. Test case (Amy Smith is not in the contacts): `add-c a/50 c/Amy Smith`<br>
+       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+
+    1. Test case: `add-c a/50 c/John Doe`<br>
+       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+   
+    1. Other incorrect delete commands to try: `add-c a/50 c/John Doe`, `add-c a/-50 c/John Doe d/ChatBot commission`,<br>
+       Expected: Similar to previous.
 
 ### Deleting a person
 

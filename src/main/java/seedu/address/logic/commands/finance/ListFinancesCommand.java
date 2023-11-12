@@ -13,7 +13,7 @@ import seedu.address.model.finance.FinanceListType;
 /**
  * Lists all Finances to the user.
  */
-public class ListFinanceCommand extends Command {
+public class ListFinancesCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
@@ -28,7 +28,7 @@ public class ListFinanceCommand extends Command {
 
     private final FinanceListType type;
 
-    public ListFinanceCommand(FinanceListType type) {
+    public ListFinancesCommand(FinanceListType type) {
         this.type = type;
     }
 
@@ -55,12 +55,12 @@ public class ListFinanceCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ListFinanceCommand)) {
+        if (!(other instanceof ListFinancesCommand)) {
             return false;
         }
 
-        ListFinanceCommand otherListFinanceCommand = (ListFinanceCommand) other;
-        return type.equals(otherListFinanceCommand.type);
+        ListFinancesCommand otherListFinancesCommand = (ListFinancesCommand) other;
+        return type.equals(otherListFinancesCommand.type);
     }
 
 }

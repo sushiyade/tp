@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.finance.ListFinanceCommand;
+import seedu.address.logic.commands.finance.ListFinancesCommand;
 import seedu.address.model.finance.FinanceListType;
 
 class ListFinanceParserTest {
@@ -14,9 +14,9 @@ class ListFinanceParserTest {
 
     @Test
     public void parse_validArgs_returnsListFinanceCommand() {
-        ListFinanceCommand expectedListAllFinanceCommand = new ListFinanceCommand(FinanceListType.ALL);
-        ListFinanceCommand expectedListExpenseFinanceCommand = new ListFinanceCommand(FinanceListType.EXPENSE);
-        ListFinanceCommand expectedListCommissionFinanceCommand = new ListFinanceCommand(FinanceListType.COMMISSION);
+        ListFinancesCommand expectedListAllFinanceCommand = new ListFinancesCommand(FinanceListType.ALL);
+        ListFinancesCommand expectedListExpenseFinanceCommand = new ListFinancesCommand(FinanceListType.EXPENSE);
+        ListFinancesCommand expectedListCommissionFinanceCommand = new ListFinancesCommand(FinanceListType.COMMISSION);
 
         assertParseSuccess(parser, "       ", expectedListAllFinanceCommand);
         assertParseSuccess(parser, "expense", expectedListExpenseFinanceCommand);
@@ -26,7 +26,7 @@ class ListFinanceParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "fail",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListFinanceCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListFinancesCommand.MESSAGE_USAGE));
     }
 
 }

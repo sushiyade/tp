@@ -26,8 +26,11 @@ public class Expense extends Finance {
     }
 
     /**
-     * Returns true if two expenses have the same fields.
-     * This is a less strict equals that is used for testing.
+     * Checks if both expenses have the same parameters.
+     * This defines a weaker notion of equality between two expenses.
+     *
+     * @param expense The expense to compare with.
+     * @return {@code true} if the expenses are equivalent, {@code false} otherwise.
      */
     public boolean isSameExpense(Expense expense) {
         boolean isSameClient;
