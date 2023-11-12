@@ -23,6 +23,9 @@ import seedu.address.ui.UiPart;
 public class ContactsTab extends UiPart<Region> {
     private static final String FXML = "ContactsTab.fxml";
 
+    private static final String HELP_LINK = "https://ay2324s1-cs2103t-w09-2.github.io/tp/"
+            + "UserGuide.html#contacts-management";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Logic logic;
@@ -49,7 +52,7 @@ public class ContactsTab extends UiPart<Region> {
      */
     public ContactsTab(TabPane tabPane) {
         super(FXML);
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(HELP_LINK);
         this.tabPane = tabPane;
     }
 

@@ -2,12 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.tab.Tab;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventDescription;
@@ -37,8 +37,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_TAB_NAME = "Tab name is not a valid tab name. ";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -50,17 +51,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code tab} and returns it if valid. Leading and trailing whitespaces will be trimmed.
+     * Parses {@code tab} into an {@code Tab} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the specified tab name is invalid.
      */
-    public static String parseTab(String tab) throws ParseException {
-        String trimmedTab = tab.trim();
-        String[] validTabs = {"contacts", "finance", "events"};
-        if (Arrays.asList(validTabs).contains(trimmedTab)) {
-            return trimmedTab;
-        } else {
+    public static Tab parseTab(String tabParameter) throws ParseException {
+        String trimmedTabParameter = tabParameter.trim();
+        if (!Tab.isValidTabParameter(trimmedTabParameter)) {
             throw new ParseException(MESSAGE_INVALID_TAB_NAME);
         }
+
+        return Tab.fromParameter(trimmedTabParameter);
     }
 
     /**
@@ -327,5 +329,16 @@ public class ParserUtil {
             throw new ParseException("Allowed values: expense, commission, <blank>");
         }
 
+    }
+
+    /**
+     * Checks if special parameter exists. Special parameters are parameters that does not have a parameter in front.
+     *
+     * @param text
+     * @return
+     */
+    public static boolean haveSpecialParameter(String text) {
+
+        return true;
     }
 }
