@@ -331,7 +331,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
             </ul>
         <li>Check the validity of your new contact! If a client is updated or deleted after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab but not the Finance or Event tabs.</li>
     </ul>
-</box>
+  </box>
 
 |     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                    |
 |:-----------------:|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
@@ -380,7 +380,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] 
 |     `[EMAIL]`     | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
 |    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
 |    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
-| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
+| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#@destiny_30##<br>#r#@destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##  |
 
 |    #g#Positive Examples##     |              #r#Negative Examples##              | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                               |
 |:-----------------------------:|:------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------|
@@ -906,7 +906,7 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT]…​ [l/LOCATION] [d/DESCR
 | `TIMESTART` / `TIMEEND` | Refer to the accepted DateTime formats      | #g#31-12-2024 21:30##<br>#g#tmr noon##<br>#r#next fortnight##<br>#r#01092023 1130## |
 |       `[CLIENT]`        | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                            |
 |      `[LOCATION]`       | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##            |
-|     `[DESCRIPTION]`     | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
+|     `[DESCRIPTION]`     | Text up to 256 characters                   | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
 
 |                                 #g#Positive Examples##                                  |                              #r#Negative Examples##                               | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                              |
 |:---------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -946,7 +946,7 @@ Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCAT
 | `[TIMESTART]` / `[TIMEEND]` | Refer to the accepted DateTime formats      | #g#31-12-2024 21:30##<br>#g#tmr noon##<br>#r#next fortnight##<br>#r#01092023 1130## |
 |         `[CLIENT]`          | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                            |
 |        `[LOCATION]`         | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##            |
-|       `[DESCRIPTION]`       | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
+|       `[DESCRIPTION]`       | Text up to 256 characters                   | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
 
 |                            #g#Positive Examples##                             |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                             |
 |:-----------------------------------------------------------------------------:|:-------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1051,7 +1051,7 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
-| `KEYWORD` | Text up to 256 characters | #g#Meeting##<br>##3##              |
+| `KEYWORD` | Text up to 256 characters | #g#Meeting##<br>#g#3##             |
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                  |
 |:----------------------:|:----------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1073,9 +1073,9 @@ Format: `filter-t TIMESTAMP`
   events starting before tomorrow noon
 
 
-|  Parameter  | Format                                 | Examples (#g#Valid##/#r#Invalid##)           |
-|:-----------:|----------------------------------------|----------------------------------------------|
-| `TIMESTAMP` | Refer to the accepted DateTime formats | #g#tmr noon##<br>##3##<br>#r#01092023 1130## |
+|  Parameter  | Format                                 | Examples (#g#Valid##/#r#Invalid##)            |
+|:-----------:|----------------------------------------|-----------------------------------------------|
+| `TIMESTAMP` | Refer to the accepted DateTime formats | #g#tmr noon##<br>#r#3##<br>#r#01092023 1130## |
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                     |
 |:----------------------:|:----------------------:|-------------------------------------------------------------------------------------------------------------------------------|
@@ -1083,7 +1083,6 @@ Format: `filter-t TIMESTAMP`
 | `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> TIMESTAMP value is required       |
 
 [Back to Events Management](#events-management)
-
 
 #### Clearing all entries : Events Tab → `clear`
 
