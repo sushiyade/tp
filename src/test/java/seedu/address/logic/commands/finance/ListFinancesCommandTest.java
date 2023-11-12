@@ -19,7 +19,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.finance.FinanceListType;
 
-public class ListFinanceCommandTest {
+public class ListFinancesCommandTest {
     private Model model;
     private Model expectedAllModel;
     private Model expectedExpenseOnlyModel;
@@ -38,47 +38,47 @@ public class ListFinanceCommandTest {
 
     @Test
     public void execute_listShowsAll_listAllShowsAllList() {
-        assertCommandSuccess(new ListFinanceCommand(FinanceListType.ALL),
-                model, ListFinanceCommand.MESSAGE_SUCCESS_FINANCES, expectedAllModel);
+        assertCommandSuccess(new ListFinancesCommand(FinanceListType.ALL),
+                model, ListFinancesCommand.MESSAGE_SUCCESS_FINANCES, expectedAllModel);
         assertEquals(model.getFilteredFinanceList(), expectedAllModel.getFilteredFinanceList());
     }
 
     @Test
     public void execute_listShowsAll_listExpenseShowsExpenseOnlyList() {
-        assertCommandSuccess(new ListFinanceCommand(FinanceListType.EXPENSE),
-                model, ListFinanceCommand.MESSAGE_SUCCESS_EXPENSES, expectedExpenseOnlyModel);
+        assertCommandSuccess(new ListFinancesCommand(FinanceListType.EXPENSE),
+                model, ListFinancesCommand.MESSAGE_SUCCESS_EXPENSES, expectedExpenseOnlyModel);
         assertEquals(model.getFilteredFinanceList(), expectedExpenseOnlyModel.getFilteredFinanceList());
     }
 
     @Test
     public void execute_listShowsAll_listCommissionShowsCommissionOnlyList() {
-        assertCommandSuccess(new ListFinanceCommand(FinanceListType.COMMISSION),
-                model, ListFinanceCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
+        assertCommandSuccess(new ListFinancesCommand(FinanceListType.COMMISSION),
+                model, ListFinancesCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
         assertEquals(model.getFilteredFinanceList(), expectedCommissionOnlyModel.getFilteredFinanceList());
     }
 
     @Test
     public void execute_listShowsExpenseOrCommissionOnly_listAllShowsEverything() {
-        assertCommandSuccess(new ListFinanceCommand(FinanceListType.EXPENSE),
-                model, ListFinanceCommand.MESSAGE_SUCCESS_EXPENSES, expectedExpenseOnlyModel);
-        assertCommandSuccess(new ListFinanceCommand(FinanceListType.ALL),
-                model, ListFinanceCommand.MESSAGE_SUCCESS_FINANCES, expectedExpenseOnlyModel);
+        assertCommandSuccess(new ListFinancesCommand(FinanceListType.EXPENSE),
+                model, ListFinancesCommand.MESSAGE_SUCCESS_EXPENSES, expectedExpenseOnlyModel);
+        assertCommandSuccess(new ListFinancesCommand(FinanceListType.ALL),
+                model, ListFinancesCommand.MESSAGE_SUCCESS_FINANCES, expectedExpenseOnlyModel);
         assertEquals(model.getFilteredFinanceList(), expectedAllModel.getFilteredFinanceList());
 
-        assertCommandSuccess(new ListFinanceCommand(FinanceListType.COMMISSION),
-                model, ListFinanceCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
-        assertCommandSuccess(new ListFinanceCommand(FinanceListType.COMMISSION),
-                model, ListFinanceCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
+        assertCommandSuccess(new ListFinancesCommand(FinanceListType.COMMISSION),
+                model, ListFinancesCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
+        assertCommandSuccess(new ListFinancesCommand(FinanceListType.COMMISSION),
+                model, ListFinancesCommand.MESSAGE_SUCCESS_COMMISSIONS, expectedCommissionOnlyModel);
         assertEquals(model.getFilteredFinanceList(), expectedCommissionOnlyModel.getFilteredFinanceList());
 
     }
 
     @Test
     public void equals() {
-        final ListFinanceCommand standardCommand = new ListFinanceCommand(FinanceListType.ALL);
+        final ListFinancesCommand standardCommand = new ListFinancesCommand(FinanceListType.ALL);
 
         // same list type -> returns true
-        ListFinanceCommand listAllFinanceCommand = new ListFinanceCommand(FinanceListType.ALL);
+        ListFinancesCommand listAllFinanceCommand = new ListFinancesCommand(FinanceListType.ALL);
         assertTrue(standardCommand.equals(listAllFinanceCommand));
 
         // same object -> returns true
@@ -91,7 +91,7 @@ public class ListFinanceCommandTest {
         assertFalse(standardCommand.equals(new ClearContactCommand()));
 
         // different list type -> returns false
-        assertFalse(standardCommand.equals(new ListFinanceCommand(FinanceListType.EXPENSE)));
+        assertFalse(standardCommand.equals(new ListFinancesCommand(FinanceListType.EXPENSE)));
     }
 
 }

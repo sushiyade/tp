@@ -14,10 +14,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.Commission;
 import seedu.address.testutil.CommissionBuilder;
@@ -49,10 +52,11 @@ class AddCommissionCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
     }
     @Test
-    public void parse_optionalFieldsMissing_success() {
-        // no description
-        Commission expectedCommission = new CommissionBuilder().build();
-        assertParseSuccess(parser, DEFAULT_AMOUNT + CLIENT_DESC_AMY + DEFAULT_TIME_DUE + DEFAULT_DESCRIPTION,
+    public void parse_optionalFieldsMissing_success() throws ParseException {
+        // no timeDue
+        LocalDateTime now = DateTimeParser.parseDateTimeInstance("now");
+        Commission expectedCommission = new CommissionBuilder().withTimeDue(now).build();
+        assertParseSuccess(parser, DEFAULT_AMOUNT + CLIENT_DESC_AMY + DEFAULT_DESCRIPTION,
                 new AddCommissionCommand(expectedCommission));
     }
     @Test

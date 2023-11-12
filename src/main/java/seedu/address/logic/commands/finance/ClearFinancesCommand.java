@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 /**
  * Clears the finance book.
  */
-public class ClearFinanceCommand extends Command {
+public class ClearFinancesCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Finances book has been cleared!";

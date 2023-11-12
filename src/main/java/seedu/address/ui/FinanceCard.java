@@ -26,7 +26,7 @@ public class FinanceCard extends UiPart<Region> {
     @FXML
     private Label timeDue;
     /**
-     * Creates a {@code PersonCode} with the given {@code Finance} and index to display.
+     * Creates a {@code FinanceCode} with the given {@code Finance} and index to display.
      */
     public FinanceCard(Finance finance, int displayedIndex) {
         super(FXML);
@@ -37,11 +37,9 @@ public class FinanceCard extends UiPart<Region> {
         description.setText(finance.getDescription().value);
         boolean isCommission = finance instanceof Commission;
         if (isCommission) {
-            //cardPane.setStyle("-fx-background-color: #6c937a; -fx-background-radius: 0.5em;");
             amount.setText("+ " + finance.getAmount().value);
             amount.setStyle("-fx-text-fill: #18A827;");
         } else {
-            //cardPane.setStyle("-fx-background-color: #b14e4e; -fx-background-radius: 0.5em;");
             amount.setText("- " + finance.getAmount().value);
             amount.setStyle("-fx-text-fill: #D04127;");
         }

@@ -14,14 +14,14 @@ import seedu.address.model.UserPrefs;
 
 
 
-public class ClearFinanceCommandTest {
+public class ClearFinancesCommandTest {
 
     @Test
     public void execute_emptyFinanceBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearFinanceCommand(), model, ClearFinanceCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearFinancesCommand(), model, ClearFinancesCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class ClearFinanceCommandTest {
                 new UserPrefs());
         expectedModel.setFinancesBook(new FinancesBook());
 
-        assertCommandSuccess(new ClearFinanceCommand(), model, ClearFinanceCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearFinancesCommand(), model, ClearFinancesCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

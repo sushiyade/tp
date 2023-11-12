@@ -31,11 +31,15 @@ public class AddCommissionCommandTest {
     public void execute_addSuccessful() throws Exception {
         ModelStubAcceptingCommissionAdded modelStub = new ModelStubAcceptingCommissionAdded();
         Person validPerson = new PersonBuilder().withName(CommissionBuilder.DEFAULT_NAME).build();
+        // Add a new person into the model
         new AddContactCommand(validPerson).execute(modelStub);
+        // Add a commission for that person
         Commission commission = new CommissionBuilder().build();
         CommandResult commandResult = new AddCommissionCommand(commission).execute(modelStub);
+        // Assert that the correct command result is returned
         assertEquals(String.format(AddCommissionCommand.MESSAGE_SUCCESS, Messages.formatFinance(commission)),
                 commandResult.getFeedbackToUser());
+        // Assert that the commission has been added correctly
         assertEquals(Arrays.asList(commission), modelStub.commissionsAdded);
     }
 

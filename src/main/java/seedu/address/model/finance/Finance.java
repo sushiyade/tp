@@ -54,9 +54,10 @@ public abstract class Finance {
         client = actualClient;
     }
     /**
-     * Get the Name of the client in the finance entry.
+     * Retrieves the name of the client associated with this finance entry.
+     * If no client is associated, a default name "No client" is returned.
      *
-     * @return The name of the client in the finance entry.
+     * @return The name of the client in the finance entry, or "No client" if no client is present.
      */
     public Name getClientName() {
         if (this.client == null) {
@@ -66,8 +67,11 @@ public abstract class Finance {
     }
 
     /**
-     * Returns true if two finances have the same fields and type.
-     * This is a less strict equals that is used for testing.
+     * Checks if both finances have the same parameters.
+     * This defines a weaker notion of equality between two finances.
+     *
+     * @param finance The finance to compare with.
+     * @return {@code true} if the finances are equivalent, {@code false} otherwise.
      */
     public boolean isSameFinance(Finance finance) {
         boolean isSameClient;

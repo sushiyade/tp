@@ -29,16 +29,17 @@ public class SummaryCommandTest {
 
     @Test
     public void testExecute_summarySuccessful() throws CommandException {
+        // Populate the model with finances for Alice Pauline
         Commission commission = new CommissionBuilder().withPerson("Alice Pauline").withAmount("200").build();
         Expense expense = new ExpenseBuilder().withPerson("Alice Pauline").withAmount("100").build();
         model.addCommission(commission);
         model.addExpense(expense);
-        model.updateFilteredFinanceList(new ClientNameExactMatchPredicate("Alice Pauline"));
         SummaryCommand summaryCommand = new SummaryCommand(new ClientNameExactMatchPredicate("Alice Pauline"));
         CommandResult commandResult = summaryCommand.execute(model);
-        assertEquals("You have earned $100 from Alice Pauline\n"
-                + "There were 1 commissions for a total of $200.\n"
-                + "There were 1 expenses for a total of $100.", commandResult.getFeedbackToUser());
+        String expectedSuccessMessage = "You have earned $100 from Alice Pauline\n"
+                                + "There were 1 commissions for a total of $200.\n"
+                                + "There were 1 expenses for a total of $100.";
+        assertEquals(expectedSuccessMessage, commandResult.getFeedbackToUser());
     }
 
     @Test

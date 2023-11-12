@@ -39,8 +39,9 @@ public class FilterTimeDueCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredFinanceList(timePredicate);
+        int listSize = model.getFilteredFinanceList().size();
         return new CommandResult(
-                String.format(Messages.MESSAGE_FINANCE_LISTED_OVERVIEW, model.getFilteredFinanceList().size()));
+                String.format(Messages.MESSAGE_FINANCE_LISTED_OVERVIEW, listSize));
     }
 
     @Override
