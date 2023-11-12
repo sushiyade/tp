@@ -23,6 +23,7 @@ public class EditFinanceCommandParser implements Parser<EditFinanceCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditEventCommand
      * and returns an EditEventCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
