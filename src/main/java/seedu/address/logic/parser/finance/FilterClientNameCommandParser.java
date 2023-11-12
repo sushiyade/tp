@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.ClientNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FilterClientNameCommand object
+ * Parses input arguments and creates a new FilterClientNameCommand object.
  */
 public class FilterClientNameCommandParser implements Parser<FilterClientNameCommand> {
 

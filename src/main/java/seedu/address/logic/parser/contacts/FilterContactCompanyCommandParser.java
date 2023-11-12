@@ -10,13 +10,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FilterContactCompanyCommand object
+ * Parses input arguments and creates a new FilterContactCompanyCommand object.
  */
 public class FilterContactCompanyCommandParser implements Parser<FilterContactCompanyCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterContactCompanyCommand
      * and returns a FilterContactCompanyCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterContactCompanyCommand parse(String args) throws ParseException {

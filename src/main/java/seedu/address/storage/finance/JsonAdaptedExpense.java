@@ -10,7 +10,7 @@ import seedu.address.model.finance.Expense;
 import seedu.address.model.finance.Finance;
 import seedu.address.model.finance.TimeDue;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.storage.address.JsonAdaptedPerson;
 
 /**
  * Jackson-friendly version of {@link Expense}.

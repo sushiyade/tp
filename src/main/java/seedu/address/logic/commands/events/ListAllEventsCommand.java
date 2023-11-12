@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Lists all events in the address book to the user.
  */
-public class ListAllEventCommand extends Command {
+public class ListAllEventsCommand extends Command {
 
     public static final String COMMAND_WORD = "list-all";
 

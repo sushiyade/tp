@@ -25,7 +25,7 @@ import seedu.address.logic.commands.events.DeleteEventCommand;
 import seedu.address.logic.commands.events.FilterEventClientCommand;
 import seedu.address.logic.commands.events.FilterEventNameCommand;
 import seedu.address.logic.commands.events.FilterEventTimeCommand;
-import seedu.address.logic.commands.events.ListEventCommand;
+import seedu.address.logic.commands.events.ListEventsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EventsBook;
 import seedu.address.model.FinancesBook;
@@ -112,8 +112,8 @@ public class EventParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListEventCommand.COMMAND_WORD) instanceof ListEventCommand);
-        assertTrue(parser.parseCommand(ListEventCommand.COMMAND_WORD + " 3") instanceof ListEventCommand);
+        assertTrue(parser.parseCommand(ListEventsCommand.COMMAND_WORD) instanceof ListEventsCommand);
+        assertTrue(parser.parseCommand(ListEventsCommand.COMMAND_WORD + " 3") instanceof ListEventsCommand);
     }
 
     @Test

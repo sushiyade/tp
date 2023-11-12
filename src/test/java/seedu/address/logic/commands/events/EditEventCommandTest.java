@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.contacts.ClearContactCommand;
+import seedu.address.logic.commands.contacts.ClearContactsCommand;
 import seedu.address.logic.commands.events.EditEventCommand.EditEventDescriptor;
 
 /**
@@ -34,7 +34,7 @@ public class EditEventCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearContactCommand()));
+        assertFalse(standardCommand.equals(new ClearContactsCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditEventCommand(INDEX_SECOND_EVENT, DESC_BIRTHDAY)));

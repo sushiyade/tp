@@ -10,7 +10,8 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 
 /**
- * This class implements the event book in the application
+ * Wraps all data at the events-book level
+ * Duplicates are not allowed (by .isSameEvent comparison)
  */
 public class EventsBook implements ReadOnlyEventsBook {
     private final UniqueEventList events;

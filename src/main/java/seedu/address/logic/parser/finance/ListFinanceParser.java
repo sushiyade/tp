@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.FinanceListType;
 
 /**
- * Parses input arguments and creates a new ListFinancesCommand object
+ * Parses input arguments and creates a new ListFinancesCommand object.
  */
 public class ListFinanceParser implements Parser<ListFinancesCommand> {
     @Override

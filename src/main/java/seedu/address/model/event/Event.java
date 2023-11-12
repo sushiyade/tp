@@ -25,6 +25,7 @@ public class Event implements Comparable<Event> {
 
     /**
      * Constructs an {@code Event}.
+     *
      * @param eventName A valid name.
      * @param duration A valid duration with start and end
      * @param clients An optional list of clients.

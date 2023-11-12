@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Description;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.storage.address.JsonAdaptedPerson;
 
 public class JsonAdaptedExpenseTest {
     private static final String TEXT_MORE_THAN_256 = createMoreThanAllowedString();

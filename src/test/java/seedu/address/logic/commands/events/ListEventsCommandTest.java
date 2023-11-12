@@ -13,9 +13,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListAllCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListAllEventCommandTest {
+public class ListEventsCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -28,13 +28,13 @@ public class ListAllEventCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListAllEventCommand(), model, ListAllEventCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListEventsCommand(), model, ListEventsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
+    public void execute_listIsFiltered_showsUpcomingEvents() {
         // TO IMPLEMENT WITH EDIT
         // showPersonAtIndex(model, INDEX_FIRST_EVENT);
-        assertCommandSuccess(new ListAllEventCommand(), model, ListAllEventCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListEventsCommand(), model, ListEventsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

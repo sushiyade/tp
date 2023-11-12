@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Lists all upcoming events in the address book to the user.
  */
-public class ListEventCommand extends Command {
+public class ListEventsCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 

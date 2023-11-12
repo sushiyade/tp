@@ -13,12 +13,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.contacts.AddContactCommand;
-import seedu.address.logic.commands.contacts.ClearContactCommand;
+import seedu.address.logic.commands.contacts.ClearContactsCommand;
 import seedu.address.logic.commands.contacts.DeleteContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand;
 import seedu.address.logic.commands.contacts.FilterContactCompanyCommand;
 import seedu.address.logic.commands.contacts.FilterContactNameCommand;
-import seedu.address.logic.commands.contacts.ListContactCommand;
+import seedu.address.logic.commands.contacts.ListContactsCommand;
 import seedu.address.logic.parser.ParseCommandHandlers;
 import seedu.address.logic.parser.TabCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -66,8 +66,8 @@ public class ContactParser extends ParseCommandHandlers {
         case DeleteContactCommand.COMMAND_WORD:
             return new DeleteContactCommandParser().parse(arguments);
 
-        case ClearContactCommand.COMMAND_WORD:
-            return new ClearContactCommand();
+        case ClearContactsCommand.COMMAND_WORD:
+            return new ClearContactsCommand();
 
         case FilterContactNameCommand.COMMAND_WORD:
             return new FilterContactNameCommandParser().parse(arguments);
@@ -75,8 +75,8 @@ public class ContactParser extends ParseCommandHandlers {
         case FilterContactCompanyCommand.COMMAND_WORD:
             return new FilterContactCompanyCommandParser().parse(arguments);
 
-        case ListContactCommand.COMMAND_WORD:
-            return new ListContactCommand();
+        case ListContactsCommand.COMMAND_WORD:
+            return new ListContactsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

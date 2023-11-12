@@ -21,7 +21,7 @@ import seedu.address.model.finance.Finance;
 import seedu.address.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of all address, events, and finance books data.
  */
 public class ModelManager implements Model {
     public static final EventComparator EVENT_COMPARATOR = new EventComparator();
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, eventsBook, financeBook, and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyEventsBook eventsBook,
                         ReadOnlyFinancesBook financesBook, ReadOnlyUserPrefs userPrefs) {

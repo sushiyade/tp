@@ -17,7 +17,7 @@ import seedu.address.model.event.Duration;
 import seedu.address.model.finance.TimeDueBetweenPredicate;
 
 /**
- * Parses input arguments and creates a new FilterTimeDueCommand object
+ * Parses input arguments and creates a new FilterTimeDueCommand object.
  */
 public class FilterTimeDueCommandParser implements Parser<FilterTimeDueCommand> {
     /**

@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.finance;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -6,6 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.finance.Commission;
 import seedu.address.model.finance.Finance;
+import seedu.address.ui.UiPart;
 
 /**
  * A UI component that displays information of a {@code Finance}.

@@ -12,10 +12,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.CommandBox;
-import seedu.address.ui.EventListPanel;
 import seedu.address.ui.HelpWindow;
 import seedu.address.ui.ResultDisplay;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.events.EventListPanel;
 
 /**
  * The Events Tab.
@@ -71,10 +71,6 @@ public class EventsTab extends UiPart<Region> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
-
-    public EventListPanel getEventListPanel() {
-        return eventListPanel;
     }
 
     /**

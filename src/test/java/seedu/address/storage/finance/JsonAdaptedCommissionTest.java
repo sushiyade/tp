@@ -14,7 +14,7 @@ import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.TimeDue;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.storage.address.JsonAdaptedPerson;
 
 
 public class JsonAdaptedCommissionTest {

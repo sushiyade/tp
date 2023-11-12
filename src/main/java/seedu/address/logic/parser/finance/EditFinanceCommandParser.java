@@ -17,7 +17,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parse input arguments and creates a new EditFinanceCommand object
+ * Parses input arguments and creates a new EditFinanceCommand object.
  */
 public class EditFinanceCommandParser implements Parser<EditFinanceCommand> {
     /**

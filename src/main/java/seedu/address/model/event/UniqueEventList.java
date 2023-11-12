@@ -12,7 +12,7 @@ import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
- * A list of Finances that does not allow nulls.
+ * A list of Events that does not allow nulls.
  * Supports a minimal set of list operations.
  */
 public class UniqueEventList implements Iterable<Event> {

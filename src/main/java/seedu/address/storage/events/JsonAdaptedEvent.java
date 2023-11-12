@@ -18,7 +18,7 @@ import seedu.address.model.event.Location;
 import seedu.address.model.event.TimeEnd;
 import seedu.address.model.event.TimeStart;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.storage.address.JsonAdaptedPerson;
 
 /**
  * Jackson-friendly version of {@link Event}.

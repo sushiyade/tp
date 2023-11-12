@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.contacts.ClearContactCommand;
+import seedu.address.logic.commands.contacts.ClearContactsCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.EventsBook;
 import seedu.address.model.Model;
@@ -62,7 +62,7 @@ public class DeleteFinanceCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearContactCommand()));
+        assertFalse(standardCommand.equals(new ClearContactsCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new DeleteFinanceCommand(INDEX_SECOND)));

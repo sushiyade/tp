@@ -9,9 +9,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.event.EventClientContainsKeywordsPredicate;
 
-
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all events in events book whose clients' name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FilterEventClientCommand extends Command {
@@ -21,7 +20,7 @@ public class FilterEventClientCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events who are tagged with "
             + "the specified client (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " meeting";
+            + "Example: " + COMMAND_WORD + " Alex Yeoh";
 
     private final EventClientContainsKeywordsPredicate clientPredicate;
 
@@ -57,7 +56,7 @@ public class FilterEventClientCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", clientPredicate)
+                .add("clientPredicate", clientPredicate)
                 .toString();
     }
 }
