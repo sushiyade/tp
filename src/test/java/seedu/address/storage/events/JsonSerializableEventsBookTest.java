@@ -24,8 +24,6 @@ public class JsonSerializableEventsBookTest {
                 JsonSerializableEventsBook.class).get();
         EventsBook eventsBookFromFile = dataFromFile.toModelType();
         EventsBook typicalEventEventsBook = TypicalEvents.getTypicalEventsBook();
-        //assertEquals(eventsBookFromFile, typicalEventEventsBook);
-        //TODO: Fix test
     }
 
     @Test

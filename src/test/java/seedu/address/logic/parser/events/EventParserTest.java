@@ -96,8 +96,6 @@ public class EventParserTest {
                 Arrays.asList(args.split("\\s+")))), command);
     }
 
-    /* TODO IMPLEMENT EDIT TEST WHEN IMPLEMENTED */
-
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);

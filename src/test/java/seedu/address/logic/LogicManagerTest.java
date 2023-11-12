@@ -180,7 +180,6 @@ public class LogicManagerTest {
             }
         };
 
-        // TODO: Add @Override below
         JsonEventsBookStorage eventsStorage = new JsonEventsBookStorage(prefPath) {
             public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
                     throws IOException {
