@@ -330,15 +330,4 @@ public class ParserUtil {
         }
 
     }
-
-    /**
-     * Checks if special parameter exists. Special parameters are parameters that does not have a parameter in front.
-     *
-     * @param text
-     * @return
-     */
-    public static boolean haveSpecialParameter(String text) {
-
-        return true;
-    }
 }

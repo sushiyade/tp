@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_TAB_NAME;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.tab.Tab;
 import seedu.address.logic.commands.TabCommand;
@@ -27,7 +27,7 @@ public class TabCommandParser implements Parser<TabCommand> {
         try {
             tab = ParserUtil.parseTab(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_TAB_NAME, TabCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TabCommand.MESSAGE_USAGE), pe);
         }
 
         return new TabCommand(tab);
