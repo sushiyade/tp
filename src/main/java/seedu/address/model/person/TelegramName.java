@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TelegramName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Telegram names should follow Telegram constraints, and it should not be blank";
+            "Telegram names should follow Telegram constraints";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = ".*\\B@(?=\\w{5,32}\\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*"; //change regex
+    public static final String VALIDATION_REGEX = ".*\\B@(?=\\w{5,32}\\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*";
 
     public final String value;
 
