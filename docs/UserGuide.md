@@ -15,11 +15,11 @@
 It's your **one-stop solution** for managing multiple clients, tracking project statuses, and staying on top of your financial reports with ease.
 If you are a freelancer who is looking to optimize your workflow, look no further! FreelanceBuddy might just be the buddy for you.
 
-Are you a new user? Check out our [Quick Start](#quick-start) guide to get started!
+**NEW USER?** Check out our [Quick Start](#quick-start) guide or see what [Features](#features) our application has!
 
-Not sure how each feature works? Take a look at the [Features](#features) section!
+**NEED HELP?** Take a look at the [Commands](#commands) section!
 
-Or perhaps you're an advanced user! You can find out how each command works [here](#commands).
+**ADVANCED USER?** Jump ahead to the [Command Summary](#command-summary) to get an overview of all the commands!
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -28,9 +28,11 @@ Or perhaps you're an advanced user! You can find out how each command works [her
 
 ### Quick Start
 
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
 1. Ensure you have Java `11` or above installed on your computer. Not sure how to do that? Check out the instructions [here](https://www.java.com/en/download/help/version_manual.html).
 
-2. Download the latest `FreelanceBuddy.jar` from our [releases page](https://github.com/AY2324S1-CS2103T-W09-2/tp/releases/).
+2. Download the latest `FreelanceBuddy.jar` from our [releases page](https://github.com/AY2324S1-CS2103T-W09-2/tp/releases/). 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your app. This is where all the saved and configuration data will be stored!
 
@@ -79,7 +81,41 @@ For more commands such as edit and filter commands, as well as detailed instruct
 
 --------------------------------------------------------------------------------------------------------------------
 
+### How to Use FreelanceBuddy's User Guide
+
+FreelanceBuddy User Guide is built to be user-friendly for all levels of users using either the website or the PDF version.
+
+#### For Website Users
+
+Use the site and page navigation menu on the sides to jump quickly to sections of your interest.
+
+#### For PDF Users
+
+Use the Table of Contents on the first page to jump quickly to the different sections of your interests
+
+#### Conventions Used
+
+* <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span> <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+  : Sections for beginners or new users.
+
+* <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span> <span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
+  : Sections for advanced or experienced users.
+
+#### Format of Longer Sections
+
+* We have included a mini table of contents to help you navigate each section quickly. An example is shown below:
+
+  ![miniToc](images/miniToc.png =500x)
+* You can click on the command or the brief description to quickly jump to that sub-section.
+* Each sub-section includes a "Back to ..." link for you to jump back up to the table of contents where you can continue exploring from there.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
 ### Features
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
 FreelanceBuddy is made up of **three main systems**. It has:
 - A contact management system
@@ -149,6 +185,8 @@ You can check out commands related to Events [here](#events-management). A summa
 
 ## Commands
 
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
@@ -174,7 +212,11 @@ You can check out commands related to Events [here](#events-management). A summa
 
 ### General Commands
 
-This is a mini table of contents for general commands to help you navigate this section quickly. Click on the commands or description to jump to the desired section!
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+This is a mini table of contents for general commands to help you navigate this section quickly.
+
+*Click on the commands or description to jump to the desired section!*
 
 |               Command               | Brief Description                                               |
 |:-----------------------------------:|-----------------------------------------------------------------|
@@ -182,7 +224,7 @@ This is a mini table of contents for general commands to help you navigate this 
 |    [`tab`](#switching-tabs-tab)     | [Navigate between tabs](#switching-tabs-tab)                    |
 | [`exit`](#exiting-the-program-exit) | [Exits the program](#exiting-the-program-exit)                  |
 
-#### Viewing help: `help`
+#### Viewing help → `help`
 
 Shows a message explaining how to access the help page. This command is available for all tabs, each tab (except the dashboard) will show the help message specifically for the tab itself.
 
@@ -217,7 +259,7 @@ Acceptable values for `TAB_NAME`:
 
 [Back to General Commands](#general-commands)
 
-#### Exiting the program : `exit`
+#### Exiting the program → `exit`
 
 Exits the program.
 
@@ -228,6 +270,8 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ### Contacts Management
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
 To view contacts tab, either click on the “contacts” button, or use the command tab `contacts` to switch tabs.
 
@@ -465,6 +509,8 @@ Format: `clear`
 --------------------------------------------------------------------------------------------------------------------
 
 ### Finance Management
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
 To view finance tab, either click on the “finance” button, or use the command `tab finance` to switch tabs.
 
@@ -765,6 +811,8 @@ Format: `clear`
 
 ### Events Management
 
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
 To view events tab, either click on the “events” button, or use the command tab `events` to switch tabs.
 
 By default, only **future** events will be shown. To view all events, use the command `list-all` to view all events.
@@ -1052,9 +1100,13 @@ Format: `clear`
 
 ### Saving the data
 
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
 AddressBook, EventsBook, and FinanceBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
+
+<span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
 
 The following data are saved automatically as a JSON file. Advanced users are welcome to update data directly by editing that data file.
 - AddressBook: `[JAR file location]/data/addressbook.json`
@@ -1075,7 +1127,271 @@ The following data are saved automatically as a JSON file. Advanced users are we
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Accepted Date-time Formats
+
+For the CLI experience to be optimised, FreelanceBuddy accepts a **variety of date-time formats** so that you can type in your date-time inputs **quickly** and **without hassle**.
+Pick and choose any of your preferred format at your convenience.
+
+#### Contents of this section
+
+As this section is relatively long, we have provided a mini table of content for quick navigation.
+
+- [Accepted Numbered Date Formats](#accepted-numbered-date-formats)
+- [Accepted Natural Language Date Formats](#accepted-natural-language-date-formats)
+- [Accepted Numbered Time Formats](#accepted-numbered-time-formats)
+- [Accepted Natural Language Time Formats](#accepted-natural-language-time-formats)
+- [Accepted Natural Language Date and Time Formats](#accepted-natural-language-date-and-time-formats)
+- [Using Date and Time Inputs Together](#using-date-and-time-inputs-to-together)
+- [Using Date-time Formats for Durations](#using-date-time-formats-for-durations)
+- [Using Date-time Formats for Instances](#using-date-time-formats-for-time-instances)
+- [Editing `TIMESTART` `TIMEEND` in Events](#editing-timestart-timeend-in-events)
+
+
+#### Accepted Numbered Date Formats
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+Below is a table of accepted numbered date formats, these represent `<DATE>` only.
+
+|    Format    | Examples                   | Remarks            |
+|:------------:|----------------------------|--------------------|
+|  `d/M/yyyy`  | `1/1/2023`, `01/12/2023`   |                    |
+|  `d-M-yyyy`  | `1-1-2023`, `01-12-2023`   |                    |
+|   `d/M/yy`   | `1/1/23`, `01/12/12`       |                    |
+|   `d-M-yy`   | `1-1-23`, `01-12-12`       |                    |
+| `MMM d yyyy` | `Jan 1 2023`, `jan 1 2023` | Not case sensitive |
+|  `MMM d yy`  | `Jan 1 23`, `jan 1 23`     | Not case sensitive |
+| `d MMM yyyy` | `1 Jan 2023`, `1 jan 2023` | Not case sensitive |
+|  `d MMM yy`  | `Jan 1 2023`, `1 jan 23`   | Not case sensitive |
+|  `yyyy/M/d`  | `2023/1/1`, `2023/12/01`   |                    |
+|   `yy/M/d`   | `23/1/1`, `23/12/01`       |                    |
+|  `yyyy-M-d`  | `2023-1-1`, `2023-12-01`   |                    |
+|   `yy-M-d`   | `23-1-1`, `23-12-01`       |                    |
+|    `d/M`     | `1/1`, `01/12`             |                    |
+|    `d-M`     | `1-1`, `01-12`             |                    |
+|   `MMM d`    | `Jan 1`, `jan 1`           | Not case sensitive |
+|   `d MMM`    | `1 Jan`, `jan 1`           | Not case sensitive |
+
+> 🏷 ****TO NOTE**** inputs without year will be assumed to be the current year.
+
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Accepted Natural Language Date Formats
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+Below is a table of accepted natural language date formats, these represent `<DATE>` only.
+
+> **Note:** all inputs are not case-sensitive.
+
+|               Format                | Examples                      | Remarks                                                                                                     |
+|:-----------------------------------:|-------------------------------|-------------------------------------------------------------------------------------------------------------|
+|          `today`<br/>`tdy`          | -                             | Date of the current date                                                                                    |
+|        `tomorrow`<br/>`tmr`         | -                             | Date of the next day with reference to current date                                                         |
+|        `yesterday`<br/>`ytd`        | -                             | Date of the previous day with reference to current date                                                     |
+|    `next <day/week/month/year>`     | `next day`                    | Date of the next specified timeframe with reference to current date                                         |
+|         `next <DayOfWeek>`          | `next Mon`,<br/>`next Sunday` | Date of the next occurrence of the day of week specified<br/>Day of the week can be short-form (3 letters). |
+| `in <number> <day/week/month/year>` | `in 5 days`,<br/>`in 1 week`  | Date of next specified timeframe with reference to current date                                             |
+
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Accepted Numbered Time Formats
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+Below is a table of accepted numbered time formats, these represent `<TIME>` only.
+
+> 🏷 ****TO NOTE**** all inputs are not case-sensitive.
+
+|  Format  | Examples             | Remarks            |
+|:--------:|----------------------|--------------------|
+|  `HHmm`  | `1800`, `0600`       |                    |
+| `HH:mm`  | `18:00`, `06:00`     |                    |
+| `HH.mm`  | `18.00`, `06.00`     |                    |
+|  `h a`   | `6 pm`, `6 PM`       |                    |
+|   `ha`   | `6pm`, `6PM`         |                    |
+| `h:mm a` | `6:00 PM`, `6:00 am` | Not case sensitive |
+| `h:mma`  | `6:00pm`, `6:00AM`   | Not case sensitive |
+| `h.mm a` | `6.00 pm`, `6.00 AM` | Not case sensitive |
+| `h.mma`  | `6.00PM`, `6.00am`   | Not case sensitive |
+
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Accepted Natural Language Time Formats
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+Below is a table of accepted natural language time formats, these represent `<TIME>` only.
+
+|   Format   | Examples | Remarks |
+|:----------:|----------|---------|
+|   `noon`   | -        | 12:00   |
+| `midnight` | -        | 00:00   |
+
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Accepted Natural Language Date and Time Formats
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+Below is a table of accepted natural language time formats, these represent **`<DATE>` AND `<TIME>`**!
+
+> **Note for all inputs,**
+> * they are not case-sensitive
+> * they represent both a date and time
+
+|             Format              | Examples                              | Remarks                                                                    |
+|:-------------------------------:|---------------------------------------|----------------------------------------------------------------------------|
+|              `now`              | -                                     | Date and time of instance that the command runs                            |
+| `<number> <time_unit> from now` | `2 days from now`<br/>`1 hr from now` | Date and time from the specified timeframe of the instant the command runs |
+|   `in <number> <hour/minute>`   | `in 30 mins`<br/>`in 1 hour`          | Date and time from the specified timeframe of the instant the command runs |
+
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Using Date and Time Inputs to Together
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+In most cases, you may use date-only or time-only inputs, otherwise you may wish to combine the two.
+
+A `<DATE> <TIME>` combination can be acheived in the following ways:
+
+| Method                                                        |                                 Example                                 |
+|---------------------------------------------------------------|:-----------------------------------------------------------------------:|
+| Using  `<DATE> <TIME>` inputs                                 |              `now`<br/>`5 mins from now`<br/>`in 2 hours`               |
+| Combining any valid<br/>`<DATE>` and `<TIME>` inputs together | `1-1-23 18:00`<br/>`1 Jan 23 18:00`<br/>`tmr 6pm`<br/>`next Sunday 6pm` |
+
+> 🏷 ****TO NOTE**** `<DATE>` must **always** come before `<TIME>`
+
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Using Date-time Formats for Durations
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+Relevant for:
+1. Creating Events `s/TIMESTART` and `e/TIMEEND` parameters.
+2. `filter-t` method in Finance to get Finance record within specified timeframe.
+
+<box type="info" seamless>
+
+🏷 ****TO NOTE****<br>
+
+There are several **rules** and [**assumptions**](#assumptions-using-date-time-combinations) that FreelanceBuddy date time reader makes use of that would be useful to understand to optimise your user experience.
+
+</box>
+
+##### Accepted Date-time Combinations of `s/` and `e/`
+
+> `<DATE>` and `<TIME>` placeholder represents the `<DATE>` and `<TIME>` formats that are shown above.
+
+|      `s/`       |      `e/`       |
+|:---------------:|:---------------:|
+| `<DATE> <TIME>` | `<DATE> <TIME>` |
+| `<DATE> <TIME>` |    `<TIME>`     |
+|    `<DATE>`     |    `<DATE>`     |
+|    `<TIME>`     |    `<TIME>`     |
+|    `<TIME>`     | `<DATE> <TIME>` |
+| `<DATE> <TIME>` |    `<DATE>`     |
+|    `<DATE>`     | `<DATE> <TIME>` |
+
+> <span class="badge rounded-pill bg-success">Beginner</span> In general, just use a `s/` and `e/` combination that makes sense to you. A format that will always work is to **state your date and times explicitly** such as, `1 Jan 2023 17:00`.
+
+**General Rules**:
+
+1. You cannot start from a `<DATE>` to `<TIME>` or vice versa.
+1. Following the assumptions, `e/` cannnot be earlier than `s/`.
+
+##### Assumptions when using Date-time Combinations
+
+<span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
+
+FreelanceBuddy streamlines the input process for the `s/` and `e/` parameters.
+
+For instance, in the case of same-day events, you'll only need to provide a date in the `s/` input field.
+FreelanceBuddy will intelligently use this date as both the start and end date, _eliminating the need for redundant input_ in the `e/` field.
+
+This feature hopes to **enhance efficiency** and **simplify the event creation** process, creating a more **user-friendly** experience for you.
+
+Here is a list of all Date-time Combination Assumptions:
+
+|           Input            | Assumptions                                                                                                                                                                                                                                                                                                              |
+|:--------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `s/<DATE> <TIME> e/<TIME>` | End date will be taken from the start date input. Start time must be before end time.<br/>**Example**: `s/tmr 6pm e/8pm` sets the event for tomorrow, 6-8pm.                                                                                                                                                             |
+|    `s/<DATE> e/<DATE>`     | Time of start date will be set to 00:00, while end date will be set to 23:59.<br/>**Example**: `s/1 Jan 23 e/1 Jan 23` sets the event from 1st Jan 2023, 12am to 11:59pm                                                                                                                                                 |
+|    `s/<TIME> e/<TIME>`     | Date of both start and end time will be set to the next occurrence of such a duration.<br/>**Example**: (Assume current time is 12pm)<br/>`s/9am e/10am` sets the event date to the next day as this duration has passed.<br/>`s/10am e/5pm` sets the event date to the current day as this duration has not yet passed. |
+| `s/<TIME> e/<DATE> <TIME>` | Start date will be set to the date of the next occurrence of the specified time.<br/>**Example**: (Assume current time is 12pm)<br/>`s/9am e/tmr 10am` sets the event for tomorrow, 9-10am.<br/>`s/5pm e/tmr 5am` sets the event from today, 5pm to tomorrow 5am.                                                        |
+| `s/<DATE> <TIME> e/<DATE>` | End date time will be set to 23:59.<br/>**Example**: `s/1 Jan 2023 9am e/1 Jan` sets the event for 1st Jan 2023, 9am to 11:59pm.                                                                                                                                                                                         |
+| `s/<DATE> e/<DATE> <TIME>` | Start date time will be set to 00:00.<br/>**Example**: `s/1 Jan 2023 e/ 1 Jan 2023 5pm` sets the event for 1st Jan 2023, 12am to 5pm.                                                                                                                                                                                    |
+
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Using Date-time Formats for Time Instances
+
+<span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
+
+Relevant for:
+1. Creating Finance entries with a specified time in the `t/TIMEDUE` parameter
+2. `filter-t` method in Events to get relevant Events that are from now to the specified time.
+
+You might want to consider the assumptions made for either `<DATE>` or `<TIME>` if either is left blank.
+
+##### Assumptions when using Date-time Instance
+
+|      Input      | Assumptions                                      |
+|:---------------:|--------------------------------------------------|
+| `<DATE> <TIME>` | As specified                                     |
+|    `<DATE>`     | Time is set to 12am of the specified date        |
+|    `<TIME>`     | Date is set to next occurrence of specified time |
+
+[Back to Date-time Contents](#contents-of-this-section)
+
+#### Editing `TIMESTART` `TIMEEND` in Events
+
+<span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
+
+**Context**
+
+When editing events' `TIMESTART` `TIMEEND` you may encounter the issue where keying in a valid `<DATE> <TIME>` is blocked.
+
+An example (Assume current date is 12-11-2023 and the time is 5pm):
+
+![editError](images/editTimeError.png =800x)
+
+Even if the start time *appears* to be before the stored end time. 
+
+**Problem**
+
+1. **Reason for such an error message** is because the `s/` input is assumed to be for the next day. Hence, it tells you that your duration is an invalid duration.
+2. **Potentially dangerous** if event has an end time that is after the determined date-time input. The edit will be allowed and the event might have an invalid start time unintentionally.
+
+The problem extends beyond this specific example and can happen when modifying `TIMEEND` only as well.
+
+**Solution**
+
+To understand why this happens we have to understand how FreelanceBuddy handles modification of `TIME` values in events.
+
+When modifying only one input, FreelanceBuddy will assume the other unmodified value to be the `<DATE> <TIME>` as shown by the UI. For the example above, the modified `TIMESTART` `TIMEEND` input is read as such:
+
+```
+s/<modified_TIME> e/<modified_DATE> <unmodified_TIME>
+```
+
+Using the [Date-time Combinations Assumptions](#assumptions-when-using-date-time-combinations) the `TIMESTART` will be determined to be for 13-11-2023 3pm. Hence, FreelanceBuddy blocks the modification.
+
+Hence, it is important to understand that when modifying either `TIMESTART` or `TIMEEND`, the new input will be parsed with other unmodified `<DATE> <TIME>` value, with the assumptions described [here](#assumptions-when-using-date-time-combinations)
+
+****A GOOD PRACTICE :white_check_mark:****
+
+Modify `TIMESTART` and `TIMEEND` inputs together! If you understood how to use date-time Formats for Duration when [adding events or filtering finance inputs by timeframe](#using-date-time-formats-for-durations), it works the same way when modifying both inputs together for an event.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
+
+<span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
+
+A quick overview of all the commands and their formats.
 
 ### General
 Commands that applies to ALL tabs
@@ -1141,207 +1457,3 @@ Commands that applies to ALL tabs
 
 **Q**: Why is it that after I update or delete a contact, the changes are not displayed on the Finance or Event tabs?
 **A**: FreelanceBuddy currently does not support propagation of changes from Contact Tab to the other tabs. Moreover, there is often a need for users to keep track of old transactions or appointments with clients that may not exist anymore, or exist as a different entity in the database.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Resources
-
-### Accepted Date-time Formats
-
-For the CLI experience to be optimised, FreelanceBuddy accepts a **variety of date-time formats** so that you can type in your date-time inputs **quickly** and **without hassle**.
-Pick and choose any of your preferred format at your convenience.
-
-#### Contents of this section
-
-As this section is relatively long, we have provided a mini table of content for quick navigation.
-
-- [Accepted Numbered Date Formats](#accepted-numbered-date-formats)
-- [Accepted Natural Language Date Formats](#accepted-natural-language-date-formats)
-- [Accepted Numbered Time Formats](#accepted-numbered-time-formats)
-- [Accepted Natural Language Time Formats](#accepted-natural-language-time-formats)
-- [Accepted Natural Language Date and Time Formats](#accepted-natural-language-date-and-time-formats)
-- [Using Date and Time Inputs Together](#using-date-and-time-inputs-to-together)
-- [Using Date-time Formats for Durations](#using-date-time-formats-for-durations)
-- [Using Date-time Formats for Instances](#using-date-time-formats-for-time-instances)
-
-
-#### Accepted Numbered Date Formats
-
-Below is a table of accepted numbered date formats, these represent `<DATE>` only.
-
-|    Format    | Examples                   | Remarks            |
-|:------------:|----------------------------|--------------------|
-|  `d/M/yyyy`  | `1/1/2023`, `01/12/2023`   |                    |
-|  `d-M-yyyy`  | `1-1-2023`, `01-12-2023`   |                    |
-|   `d/M/yy`   | `1/1/23`, `01/12/12`       |                    |
-|   `d-M-yy`   | `1-1-23`, `01-12-12`       |                    |
-| `MMM d yyyy` | `Jan 1 2023`, `jan 1 2023` | Not case sensitive |
-|  `MMM d yy`  | `Jan 1 23`, `jan 1 23`     | Not case sensitive |
-| `d MMM yyyy` | `1 Jan 2023`, `1 jan 2023` | Not case sensitive |
-|  `d MMM yy`  | `Jan 1 2023`, `1 jan 23`   | Not case sensitive |
-|  `yyyy/M/d`  | `2023/1/1`, `2023/12/01`   |                    |
-|   `yy/M/d`   | `23/1/1`, `23/12/01`       |                    |
-|  `yyyy-M-d`  | `2023-1-1`, `2023-12-01`   |                    |
-|   `yy-M-d`   | `23-1-1`, `23-12-01`       |                    |
-|    `d/M`     | `1/1`, `01/12`             |                    |
-|    `d-M`     | `1-1`, `01-12`             |                    |
-|   `MMM d`    | `Jan 1`, `jan 1`           | Not case sensitive |
-|   `d MMM`    | `1 Jan`, `jan 1`           | Not case sensitive |
-
-> 🏷 ****TO NOTE**** inputs without year will be assumed to be the current year.
-
-[Back to Date-time Contents](#contents-of-this-section)
-
-#### Accepted Natural Language Date Formats
-
-Below is a table of accepted natural language date formats, these represent `<DATE>` only.
-
-> **Note:** all inputs are not case-sensitive.
-
-|               Format                | Examples                      | Remarks                                                                                                     |
-|:-----------------------------------:|-------------------------------|-------------------------------------------------------------------------------------------------------------|
-|          `today`<br/>`tdy`          | -                             | Date of the current date                                                                                    |
-|        `tomorrow`<br/>`tmr`         | -                             | Date of the next day with reference to current date                                                         |
-|        `yesterday`<br/>`ytd`        | -                             | Date of the previous day with reference to current date                                                     |
-|    `next <day/week/month/year>`     | `next day`                    | Date of the next specified timeframe with reference to current date                                         |
-|         `next <DayOfWeek>`          | `next Mon`,<br/>`next Sunday` | Date of the next occurrence of the day of week specified<br/>Day of the week can be short-form (3 letters). |
-| `in <number> <day/week/month/year>` | `in 5 days`,<br/>`in 1 week`  | Date of next specified timeframe with reference to current date                                             |
-
-[Back to Date-time Contents](#contents-of-this-section)
-
-#### Accepted Numbered Time Formats
-
-Below is a table of accepted numbered time formats, these represent `<TIME>` only.
-
-> 🏷 ****TO NOTE**** all inputs are not case-sensitive.
-
-|  Format  | Examples             | Remarks            |
-|:--------:|----------------------|--------------------|
-|  `HHmm`  | `1800`, `0600`       |                    |
-| `HH:mm`  | `18:00`, `06:00`     |                    |
-| `HH.mm`  | `18.00`, `06.00`     |                    |
-|  `h a`   | `6 pm`, `6 PM`       |                    |
-|   `ha`   | `6pm`, `6PM`         |                    |
-| `h:mm a` | `6:00 PM`, `6:00 am` | Not case sensitive |
-| `h:mma`  | `6:00pm`, `6:00AM`   | Not case sensitive |
-| `h.mm a` | `6.00 pm`, `6.00 AM` | Not case sensitive |
-| `h.mma`  | `6.00PM`, `6.00am`   | Not case sensitive |
-
-[Back to Date-time Contents](#contents-of-this-section)
-
-#### Accepted Natural Language Time Formats
-
-Below is a table of accepted natural language time formats, these represent `<TIME>` only.
-
-|   Format   | Examples | Remarks |
-|:----------:|----------|---------|
-|   `noon`   | -        | 12:00   |
-| `midnight` | -        | 00:00   |
-
-[Back to Date-time Contents](#contents-of-this-section)
-
-#### Accepted Natural Language Date and Time Formats
-
-Below is a table of accepted natural language time formats, these represent **`<DATE>` AND `<TIME>`**!
-
-> **Note for all inputs,**
-> * they are not case-sensitive
-> * they represent both a date and time
-
-|             Format              | Examples                              | Remarks                                                                    |
-|:-------------------------------:|---------------------------------------|----------------------------------------------------------------------------|
-|              `now`              | -                                     | Date and time of instance that the command runs                            |
-| `<number> <time_unit> from now` | `2 days from now`<br/>`1 hr from now` | Date and time from the specified timeframe of the instant the command runs |
-|   `in <number> <hour/minute>`   | `in 30 mins`<br/>`in 1 hour`          | Date and time from the specified timeframe of the instant the command runs |
-
-[Back to Date-time Contents](#contents-of-this-section)
-
-#### Using Date and Time Inputs to Together
-
-In most cases, you may use date-only or time-only inputs, otherwise you may wish to combine the two.
-
-A `<DATE> <TIME>` combination can be acheived in the following ways:
-
-| Method                                                        |                                 Example                                 |
-|---------------------------------------------------------------|:-----------------------------------------------------------------------:|
-| Using  `<DATE> <TIME>` inputs                                 |              `now`<br/>`5 mins from now`<br/>`in 2 hours`               |
-| Combining any valid<br/>`<DATE>` and `<TIME>` inputs together | `1-1-23 18:00`<br/>`1 Jan 23 18:00`<br/>`tmr 6pm`<br/>`next Sunday 6pm` |
-
-> 🏷 ****TO NOTE**** `<DATE>` must **always** come before `<TIME>`
-
-[Back to Date-time Contents](#contents-of-this-section)
-
-#### Using Date-time Formats for Durations
-
-Relevant for:
-1. Creating Events `s/TIMESTART` and `e/TIMEEND` parameters.
-2. `filter-t` method in Finance to get Finance record within specified timeframe.
-
-<box type="info" seamless>
-
-🏷 ****TO NOTE****<br>
-
-There are several **rules** and [**assumptions**](#assumptions-using-date-time-combinations) that FreelanceBuddy date time reader makes use of that would be useful to understand to optimise your user experience.
-
-</box>
-
-##### Accepted Date-time Combinations of `s/` and `e/`
-
-> `<DATE>` and `<TIME>` placeholder represents the `<DATE>` and `<TIME>` formats that are shown above.
-
-|      `s/`       |      `e/`       |
-|:---------------:|:---------------:|
-| `<DATE> <TIME>` | `<DATE> <TIME>` |
-| `<DATE> <TIME>` |    `<TIME>`     |
-|    `<DATE>`     |    `<DATE>`     |
-|    `<TIME>`     |    `<TIME>`     |
-|    `<TIME>`     | `<DATE> <TIME>` |
-| `<DATE> <TIME>` |    `<DATE>`     |
-|    `<DATE>`     | `<DATE> <TIME>` |
-
-> <span class="badge rounded-pill bg-success">Beginner</span> In general, just use a `s/` and `e/` combination that makes sense to you. A format that will always work is to state your date and times explicitly such as, `1 Jan 2023 17:00`.
-
-**General Rules**:
-
-1. You cannot start from a `<DATE>` to `<TIME>` or vice versa.
-1. Following the assumptions, `e/` cannnot be earlier than `s/`.
-
-##### Assumptions when using Date-time Combinations
-
-FreelanceBuddy streamlines the input process for the `s/` and `e/` parameters.
-
-For instance, in the case of same-day events, you'll only need to provide a date in the `s/` input field.
-FreelanceBuddy will intelligently use this date as both the start and end date, _eliminating the need for redundant input_ in the `e/` field.
-
-This feature hopes to **enhance efficiency** and **simplify the event creation** process, creating a more **user-friendly** experience for you.
-
-Here is a list of all Date-time Combination Assumptions:
-
-|           Input            | Assumptions                                                                                                                                                                                                                                                                                                              |
-|:--------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `s/<DATE> <TIME> e/<TIME>` | End date will be taken from the start date input. Start time must be before end time.<br/>**Example**: `s/tmr 6pm e/8pm` sets the event for tomorrow, 6-8pm.                                                                                                                                                             |
-|    `s/<DATE> e/<DATE>`     | Time of start date will be set to 00:00, while end date will be set to 23:59.<br/>**Example**: `s/1 Jan 23 e/1 Jan 23` sets the event from 1st Jan 2023, 12am to 11:59pm                                                                                                                                                 |
-|    `s/<TIME> e/<TIME>`     | Date of both start and end time will be set to the next occurrence of such a duration.<br/>**Example**: (Assume current time is 12pm)<br/>`s/9am e/10am` sets the event date to the next day as this duration has passed.<br/>`s/10am e/5pm` sets the event date to the current day as this duration has not yet passed. |
-| `s/<TIME> e/<DATE> <TIME>` | Start date will be set to the date of the next occurrence of the specified time.<br/>**Example**: (Assume current time is 12pm)<br/>`s/9am e/tmr 10am` sets the event for tomorrow, 9-10am.<br/>`s/5pm e/tmr 5am` sets the event from today, 5pm to tomorrow 5am.                                                        |
-| `s/<DATE> <TIME> e/<DATE>` | End date time will be set to 23:59.<br/>**Example**: `s/1 Jan 2023 9am e/1 Jan` sets the event for 1st Jan 2023, 9am to 11:59pm.                                                                                                                                                                                         |
-| `s/<DATE> e/<DATE> <TIME>` | Start date time will be set to 00:00.<br/>**Example**: `s/1 Jan 2023 e/ 1 Jan 2023 5pm` sets the event for 1st Jan 2023, 12am to 5pm.                                                                                                                                                                                    |
-
-[Back to Date-time Contents](#contents-of-this-section)
-
-#### Using Date-time Formats for Time Instances
-
-Relevant for:
-1. Creating Finance entries with a specified time in the `t/TIMEDUE` parameter
-2. `filter-t` method in Events to get relevant Events that are from now to the specified time.
-
-You might want to consider the assumptions made for either `<DATE>` or `<TIME>` if either is left blank.
-
-##### Assumptions when using Date-time Instance
-
-|      Input      | Assumptions                                      |
-|:---------------:|--------------------------------------------------|
-| `<DATE> <TIME>` | As specified                                     |
-|    `<DATE>`     | Time is set to 12am of the specified date        |
-|    `<TIME>`     | Date is set to next occurrence of specified time |
-
-[Back to Date-time Contents](#contents-of-this-section)

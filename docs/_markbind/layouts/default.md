@@ -8,7 +8,7 @@
     <li><a href="{{baseUrl}}/UserGuide.html" class="nav-link">User Guide</a></li>
     <li><a href="{{baseUrl}}/DeveloperGuide.html" class="nav-link">Developer Guide</a></li>
     <li><a href="{{baseUrl}}/AboutUs.html" class="nav-link">About Us</a></li>
-    <li><a href="https://github.com/se-edu/addressbook-level3" target="_blank" class="nav-link"><md>:fab-github:</md></a>
+    <li><a href="https://github.com/AY2324S1-CS2103T-W09-2/tp" target="_blank" class="nav-link"><md>:fab-github:</md></a>
     </li>
     <li slot="right">
       <form class="navbar-form">
@@ -28,24 +28,23 @@
 * [Home]({{ baseUrl }}/index.html)
 * [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
   * [Getting Started]({{ baseUrl }}/UserGuide.html#getting-started)
-    * [Quick Start]({{ baseUrl }}/UserGuide.html#quick-start)
-    * [Features]({{ baseUrl }}/UserGuide.html#features)
+    * [Quick Start <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#quick-start)
+    * [Features <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#features)
   * [Commands]({{ baseUrl }}/UserGuide.html#commands)
-    * [General Commands]({{ baseUrl }}/UserGuide.html#general-commands)
-    * [Contact Management]({{ baseUrl }}/UserGuide.html#contact-management)
-    * [Finance Management]({{ baseUrl }}/UserGuide.html#finance-management)
-    * [Event Management]({{ baseUrl }}/UserGuide.html#event-management)
+    * [General Commands <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#general-commands)
+    * [Contacts Management <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#contacts-management)
+    * [Finance Management <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#finance-management)
+    * [Events Management <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#events-management)
   * [Data Storage]({{ baseUrl }}/UserGuide.html#data-storage)
-    * [Saving the data]({{ baseUrl }}/UserGuide.html#saving-the-data)
-    * [Editing the data file]({{ baseUrl }}/UserGuide.html#editing-the-data-file)
-  * [Command Summary]({{ baseUrl }}/UserGuide.html#command-summary)
+    * [Saving the data <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#saving-the-data)
+    * [Editing the data file <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#editing-the-data-file)
+  * [Accepted Date-time Formats <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#accepted-date-time-formats)
+  * [Command Summary <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#command-summary)
     * [General]({{ baseUrl }}/UserGuide.html#general)
     * [Contacts Tab]({{ baseUrl }}/UserGuide.html#contacts-tab)
     * [Finance Tab]({{ baseUrl }}/UserGuide.html#finance-tab)
     * [Events Tab]({{ baseUrl }}/UserGuide.html#events-tab)
   * [FAQ]({{ baseUrl }}/UserGuide.html#faq)
-  * [Resources]({{ baseUrl }}/UserGuide.html#resources)
-    * [Acceptable Date-time Formats]({{ baseUrl }}/UserGuide.html#acceptable-date-time-formats)
 * [Developer Guide]({{ baseUrl }}/DeveloperGuide.html) :expanded:
   * [Acknowledgements]({{ baseUrl }}/DeveloperGuide.html#acknowledgements)
   * [Setting Up]({{ baseUrl }}/DeveloperGuide.html#setting-up-getting-started)
@@ -70,7 +69,12 @@
       <page-nav />
     </div>
   </nav>
-  <scroll-top-button></scroll-top-button>
+<scroll-top-button
+    icon=":fas-arrow-circle-up:"
+    icon-size="2x"
+    bottom="2%"
+    right="2%"
+></scroll-top-button>
 </div>
 
 <footer>
@@ -79,3 +83,5 @@
     <small>[<md>**Powered by**</md> <img src="https://markbind.org/favicon.ico" width="30"> {{MarkBind}}, generated on {{timestamp}}]</small>
   </div>
 </footer>
+
+
