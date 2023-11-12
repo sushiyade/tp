@@ -6,6 +6,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.ParserUtilTest;
+
 public class DescriptionTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -22,14 +24,7 @@ public class DescriptionTest {
         // null description
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
         // invalid description
-        assertFalse(Description.isValidDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")); // 257 characters
+        assertFalse(Description.isValidDescription(ParserUtilTest.createMoreThanAllowedString())); // 257 characters
 
         assertFalse(Description.isValidDescription(" ")); // whitespace
         assertFalse(Description.isValidDescription("")); // blank

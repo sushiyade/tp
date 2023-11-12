@@ -11,40 +11,56 @@ import seedu.address.testutil.TypicalFinances;
 
 public class FinanceSummaryTest {
 
-    private FinanceSummary emptySummary = new FinanceSummary(0, 0, 0, 0, 0);
+    private final FinanceSummary emptySummary = new FinanceSummary(0, 0, 0, 0, 0);
 
-    private FinanceSummary sampleSummary = new FinanceSummary(1000, 5, 2000, 3, 1000);
+    private final FinanceSummary sampleSummary = new FinanceSummary(1000, 5, 2000, 3, 1000);
 
 
     @Test
     public void testGetTotalSumSummary() {
-        assertEquals("You have earned $1000 from John", sampleSummary.getTotalSumSummary("John"));
-        assertEquals("You have broken even from Jane", emptySummary.getTotalSumSummary("Jane"));
-        assertEquals("You have broken even from Alice", emptySummary.getTotalSumSummary("Alice"));
+        // sample summary
+        String expectedSample = "You have earned $1000 from John";
+        assertEquals(expectedSample, sampleSummary.getTotalSumSummary("John"));
+        // empty summary
+        String expectedEmpty = "You have broken even from Jane";
+        assertEquals(expectedEmpty, emptySummary.getTotalSumSummary("Jane"));
     }
 
     @Test
     public void testGetCommissionSummary() {
-        assertEquals("There were 5 commissions for a total of $2000.", sampleSummary.getCommissionSummary("John"));
-        assertEquals("There were no commissions from Jane", emptySummary.getCommissionSummary("Jane"));
+        // sample summary
+        String expectedSample = "There were 5 commissions for a total of $2000.";
+        assertEquals(expectedSample, sampleSummary.getCommissionSummary("John"));
+        // empty summary
+        String expectedEmpty = "There were no commissions from Jane";
+        assertEquals(expectedEmpty, emptySummary.getCommissionSummary("Jane"));
     }
 
     @Test
     public void testGetExpenseSummary() {
-        assertEquals("There were 3 expenses for a total of $1000.", sampleSummary.getExpenseSummary("John"));
-        assertEquals("There were no expenses related to Jane", emptySummary.getExpenseSummary("Jane"));
+        // sample summary
+        String expectedSample = "There were 3 expenses for a total of $1000.";
+        assertEquals(expectedSample, sampleSummary.getExpenseSummary("John"));
+        // empty summary
+        String expectedEmpty = "There were no expenses related to Jane";
+        assertEquals(expectedEmpty, emptySummary.getExpenseSummary("Jane"));
     }
 
     @Test
     public void testGetSummaryReport() {
-        assertEquals("You currently have no finances for this client", emptySummary.getSummaryReport("Jane"));
-        assertEquals("You have earned $1000 from John\nThere were 5 commissions for a total of $2000."
-                + "\nThere were 3 expenses for a total of $1000.", sampleSummary.getSummaryReport("John"));
-        assertEquals("You currently have no finances for this client", emptySummary.getSummaryReport("Alice"));
+        // sample summary
+        String expectedSample = "You have earned $1000 from John\n"
+                + "There were 5 commissions for a total of $2000.\n"
+                + "There were 3 expenses for a total of $1000.";
+        assertEquals(expectedSample, sampleSummary.getSummaryReport("John"));
+        // empty summary
+        String expectedEmpty = "You currently have no finances for this client";
+        assertEquals(expectedEmpty, emptySummary.getSummaryReport("Jane"));
+
     }
 
     @Test
-    public void testGenerateSummaryStatistic() {
+    public void test_generateSummaryStatistic() {
         // Create a list of Finance objects for testing
         ObservableList<Finance> finances = FXCollections.observableArrayList();
         finances.addAll(TypicalFinances.getTypicalFinances());
@@ -101,9 +117,11 @@ public class FinanceSummaryTest {
         finances.addAll(TypicalFinances.getTypicalFinances());
         String summaryReport = FinanceSummary.generateSummary(finances, "John");
 
+        String expectedSummaryReport = "You have lost $20 due to John\n"
+                    + "There were 2 commissions for a total of $30.\n"
+                    + "There were 2 expenses for a total of $50.";
+
         // Assert the content of the summary report
-        assertEquals("You have lost $20 due to John\n"
-                + "There were 2 commissions for a total of $30.\n"
-                + "There were 2 expenses for a total of $50.", summaryReport);
+        assertEquals(expectedSummaryReport, summaryReport);
     }
 }

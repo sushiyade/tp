@@ -16,11 +16,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
 import seedu.address.logic.commands.finance.AddExpenseCommand;
-import seedu.address.logic.commands.finance.ClearFinanceCommand;
+import seedu.address.logic.commands.finance.ClearFinancesCommand;
 import seedu.address.logic.commands.finance.DeleteFinanceCommand;
 import seedu.address.logic.commands.finance.FilterClientNameCommand;
 import seedu.address.logic.commands.finance.FilterTimeDueCommand;
-import seedu.address.logic.commands.finance.ListFinanceCommand;
+import seedu.address.logic.commands.finance.ListFinancesCommand;
 import seedu.address.logic.commands.finance.SummaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.finance.Commission;
@@ -51,8 +51,8 @@ public class FinanceParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearFinanceCommand.COMMAND_WORD) instanceof ClearFinanceCommand);
-        assertTrue(parser.parseCommand(ClearFinanceCommand.COMMAND_WORD + " 3") instanceof ClearFinanceCommand);
+        assertTrue(parser.parseCommand(ClearFinancesCommand.COMMAND_WORD) instanceof ClearFinancesCommand);
+        assertTrue(parser.parseCommand(ClearFinancesCommand.COMMAND_WORD + " 3") instanceof ClearFinancesCommand);
     }
 
     @Test
@@ -64,15 +64,15 @@ public class FinanceParserTest {
 
     @Test
     public void parseCommand_listFinance() throws Exception {
-        assertTrue(parser.parseCommand(ListFinanceCommand.COMMAND_WORD) instanceof ListFinanceCommand);
-        assertTrue(parser.parseCommand(ListFinanceCommand.COMMAND_WORD + "  ") instanceof ListFinanceCommand);
+        assertTrue(parser.parseCommand(ListFinancesCommand.COMMAND_WORD) instanceof ListFinancesCommand);
+        assertTrue(parser.parseCommand(ListFinancesCommand.COMMAND_WORD + "  ") instanceof ListFinancesCommand);
         assertTrue(parser.parseCommand(
-                ListFinanceCommand.COMMAND_WORD + " expense") instanceof ListFinanceCommand);
+                ListFinancesCommand.COMMAND_WORD + " expense") instanceof ListFinancesCommand);
         assertTrue(parser.parseCommand(
-                ListFinanceCommand.COMMAND_WORD + " commission") instanceof ListFinanceCommand);
+                ListFinancesCommand.COMMAND_WORD + " commission") instanceof ListFinancesCommand);
     }
     @Test
-    public void parseCommand_filterByClientNameFinance() throws Exception {
+    public void parseCommand_filterClientNameFinance() throws Exception {
         assertTrue(parser.parseCommand(
                 FilterClientNameCommand.COMMAND_WORD + " Alice") instanceof FilterClientNameCommand);
     }

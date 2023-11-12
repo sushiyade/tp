@@ -14,12 +14,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.finance.AddCommissionCommand;
 import seedu.address.logic.commands.finance.AddExpenseCommand;
-import seedu.address.logic.commands.finance.ClearFinanceCommand;
+import seedu.address.logic.commands.finance.ClearFinancesCommand;
 import seedu.address.logic.commands.finance.DeleteFinanceCommand;
 import seedu.address.logic.commands.finance.EditFinanceCommand;
 import seedu.address.logic.commands.finance.FilterClientNameCommand;
 import seedu.address.logic.commands.finance.FilterTimeDueCommand;
-import seedu.address.logic.commands.finance.ListFinanceCommand;
+import seedu.address.logic.commands.finance.ListFinancesCommand;
 import seedu.address.logic.commands.finance.SummaryCommand;
 import seedu.address.logic.parser.ParseCommandHandlers;
 import seedu.address.logic.parser.TabCommandParser;
@@ -63,7 +63,7 @@ public class FinanceParser extends ParseCommandHandlers {
             return new AddExpenseCommandParser().parse(arguments);
         case DeleteFinanceCommand.COMMAND_WORD:
             return new DeleteFinanceCommandParser().parse(arguments);
-        case ListFinanceCommand.COMMAND_WORD:
+        case ListFinancesCommand.COMMAND_WORD:
             return new ListFinanceParser().parse(arguments);
         case EditFinanceCommand.COMMAND_WORD:
             return new EditFinanceCommandParser().parse(arguments);
@@ -79,8 +79,8 @@ public class FinanceParser extends ParseCommandHandlers {
             return new FilterTimeDueCommandParser().parse(arguments);
         case SummaryCommand.COMMAND_WORD:
             return new SummaryCommandParser().parse(arguments);
-        case ClearFinanceCommand.COMMAND_WORD:
-            return new ClearFinanceCommand();
+        case ClearFinancesCommand.COMMAND_WORD:
+            return new ClearFinancesCommand();
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -86,6 +86,14 @@ public class CommissionBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TimeDue} of the {@code Commission} that we are building using a LocalDateTime.
+     */
+    public CommissionBuilder withTimeDue(LocalDateTime time) {
+        this.timeDue = new TimeDue(time);
+        return this;
+    }
+
     public Commission build() {
         return new Commission(amount, client, description, timeDue);
     }

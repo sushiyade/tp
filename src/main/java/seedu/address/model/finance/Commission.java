@@ -26,8 +26,11 @@ public class Commission extends Finance {
     }
 
     /**
-     * Checks if both events have the same parameters.
+     * Checks if both commissions have the same parameters.
      * This defines a weaker notion of equality between two commissions.
+     *
+     * @param commission The commission to compare with.
+     * @return {@code true} if the commissions are equivalent, {@code false} otherwise.
      */
     public boolean isSameCommission(Commission commission) {
         boolean isSameClient;
