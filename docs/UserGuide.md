@@ -1010,7 +1010,7 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
-| `KEYWORD` | Text up to 256 characters | #g#Meeting##<br>##3##              |
+| `KEYWORD` | Text up to 256 characters | #g#Meeting##<br>#g#3##             |
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                  |
 |:----------------------:|:----------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------|
