@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalEvents.EVENT1;
+import static seedu.address.testutil.TypicalEvents.EVENT2;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.time.LocalDateTime;
@@ -68,13 +70,17 @@ public class EventTest {
         Event event2 = new Event(new EventName("Sample Event"),
                 new Duration(new TimeStart(startTime), new TimeEnd(endTime)), new HashSet<>(),
                 new Location(""), new EventDescription(""));
-        assertTrue(event1.equals(event2));
+        assertTrue(event1.equals(event1)); // other == this
+        assertTrue(event1.equals(event2)); // other is equal to this
 
         // Test with different event names
         Event event3 = new Event(new EventName("Different Event"),
                 new Duration(new TimeStart(startTime), new TimeEnd(endTime)), new HashSet<>(),
                 new Location(""), new EventDescription(""));
         assertFalse(event1.equals(event3));
+
+        // Test with different type
+        assertFalse(event1.equals(1));
     }
 
     @Test
@@ -89,6 +95,22 @@ public class EventTest {
                 .withClient(ALICE).build();
         assertFalse(event1.equals(event3));
         assertFalse(event1.equals(event4));
+    }
+
+    @Test
+    public void hashCode_sameFields_sameHashCode() throws ParseException {
+        Event event1 = EVENT1;
+        assertEquals(true, event1.hashCode() == event1.hashCode());
+    }
+
+    @Test
+    public void hashCode_differentFields_differentHashCode() {
+        // Create two instances with different field values
+        Event event1 = EVENT1;
+        Event event2 = EVENT2;
+
+        // Assert that the hash codes are different
+        assertEquals(false, event1.hashCode() == event2.hashCode());
     }
 
 }
