@@ -1125,6 +1125,38 @@ The following data are saved automatically as a JSON file. Advanced users are we
 </ul>
 </box>
 
+### Configuration Files
+
+<span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
+
+FreelanceBuddy stores its configurations in two files; `config.json` and a preferences file respectively.
+While these files come with defaults that are tried and tested to be effective for everyday use, you may wish to change some of their values if they wish.
+
+<box type="warning" seamless>
+<ul>
+  <li>
+    AddressBuddy may fail to start if illegal values are given for the configuration.
+  </li>
+  <li>
+    Particularly, there should not be any null values!
+  </li>
+</ul>
+</box>
+
+For `config.json`:
+- `logLevel` : The logging level of the application. Default: `INFO`
+- `userPrefsFilePath` : Determines the file that is used to read the user's preferences from. Default: `preferences.json`
+
+For the preferences file (which depends on the `userPrefsFilePath` in `config.json`):
+- `guiSettings.windowWidth` : The width of FreelanceBuddy's GUI window. Default: `740.0`
+- `guiSettings.windowHeight` : The height of FreelanceBuddy's GUI window. Default: `600.0`
+- `guiSettings.windowCoordinates` : The coordinates at which FreelanceBuddy is located on your display.
+- `addressBookFilePath` : The filepath of the AddressBook data file. Default: `data/addressbook.json`
+- `eventsFilePath` : The filepath of the Events data file. Default: `data/eventsbook.json`
+- `financeFilePath` : The filepath of the Finance data file. Default: `data/financebook.json`
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Accepted Date-time Formats
@@ -1455,5 +1487,5 @@ Commands that applies to ALL tabs
 **Q**: My GUI seems to be appearing off-screen, why does this happen and how do I fix this?</br>
 **A**: This problem occurs after you have moved the application to a secondary screen when using multiple screens, and then switched to using only the primary screen. To fix this, simply delete the `preferences.json` file created by the application before running the application again.</br>
 
-**Q**: Why is it that after I update or delete a contact, the changes are not displayed on the Finance or Event tabs?
+**Q**: Why is it that after I update or delete a contact, the changes are not displayed on the Finance or Event tabs?</br>
 **A**: FreelanceBuddy currently does not support propagation of changes from Contact Tab to the other tabs. Moreover, there is often a need for users to keep track of old transactions or appointments with clients that may not exist anymore, or exist as a different entity in the database.
