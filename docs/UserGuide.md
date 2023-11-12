@@ -1128,6 +1128,38 @@ The following data are saved automatically as a JSON file. Advanced users are we
 </ul>
 </box>
 
+### Configuration Files
+
+<span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
+
+FreelanceBuddy stores its configurations in two files; `config.json` and a preferences file respectively.
+While these files come with defaults that are tried and tested to be effective for everyday use, you may wish to change some of their values if they wish.
+
+<box type="warning" seamless>
+<ul>
+  <li>
+    AddressBuddy may fail to start if illegal values are given for the configuration.
+  </li>
+  <li>
+    Particularly, there should not be any null values!
+  </li>
+</ul>
+</box>
+
+For `config.json`:
+- `logLevel` : The logging level of the application. Default: `INFO`
+- `userPrefsFilePath` : Determines the file that is used to read the user's preferences from. Default: `preferences.json`
+
+For the preferences file (which depends on the `userPrefsFilePath` in `config.json`):
+- `guiSettings.windowWidth` : The width of FreelanceBuddy's GUI window. Default: `740.0`
+- `guiSettings.windowHeight` : The height of FreelanceBuddy's GUI window. Default: `600.0`
+- `guiSettings.windowCoordinates` : The coordinates at which FreelanceBuddy is located on your display.
+- `addressBookFilePath` : The filepath of the AddressBook data file. Default: `data/addressbook.json`
+- `eventsFilePath` : The filepath of the Events data file. Default: `data/eventsbook.json`
+- `financeFilePath` : The filepath of the Finance data file. Default: `data/financebook.json`
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Accepted Date-time Formats

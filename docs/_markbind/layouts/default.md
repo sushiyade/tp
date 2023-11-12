@@ -38,6 +38,7 @@
   * [Data Storage]({{ baseUrl }}/UserGuide.html#data-storage)
     * [Saving the data <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#saving-the-data)
     * [Editing the data file <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#editing-the-data-file)
+    * [Configuration Files <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#configuration-files)
   * [Accepted Date-time Formats <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#accepted-date-time-formats)
   * [Command Summary <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#command-summary)
     * [General]({{ baseUrl }}/UserGuide.html#general)
