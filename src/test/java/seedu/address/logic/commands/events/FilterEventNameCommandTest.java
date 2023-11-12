@@ -44,7 +44,7 @@ public class FilterEventNameCommandTest {
     public void toStringMethod() {
         EventNameContainsKeywordsPredicate predicate = new EventNameContainsKeywordsPredicate(Arrays.asList("meeting"));
         FilterEventNameCommand command = new FilterEventNameCommand(predicate);
-        String expected = FilterEventNameCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        String expected = FilterEventNameCommand.class.getCanonicalName() + "{namePredicate=" + predicate + "}";
         assertEquals(expected, command.toString());
     }
 }
