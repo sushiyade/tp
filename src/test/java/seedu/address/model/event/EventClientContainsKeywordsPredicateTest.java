@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -27,7 +28,12 @@ public class EventClientContainsKeywordsPredicateTest {
 
     @Test
     public void testTest_eventClientContainsKeyword_returnsTrue() {
-        Event event = new EventBuilder().withClient(new PersonBuilder().withName("Name with keyword1").build()).build();
+        Event event = null;
+        try {
+            event = new EventBuilder().withClient(new PersonBuilder().withName("Name with keyword1").build()).build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         List<String> keywords = Arrays.asList("keyword1");
         EventClientContainsKeywordsPredicate predicate = new EventClientContainsKeywordsPredicate(keywords);
         assertTrue(predicate.test(event));
@@ -35,8 +41,13 @@ public class EventClientContainsKeywordsPredicateTest {
 
     @Test
     public void testTest_eventClientDoesNotContainKeyword_returnsFalse() {
-        Event event = new EventBuilder().withClient(new PersonBuilder().withName("Name without keyword").build())
-                .build();
+        Event event = null;
+        try {
+            event = new EventBuilder().withClient(new PersonBuilder().withName("Name without keyword").build())
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         List<String> keywords = Arrays.asList("keyword1");
         EventClientContainsKeywordsPredicate predicate = new EventClientContainsKeywordsPredicate(keywords);
         assertFalse(predicate.test(event));

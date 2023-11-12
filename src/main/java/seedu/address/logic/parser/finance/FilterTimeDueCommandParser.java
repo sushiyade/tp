@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.logic.parser.DateTimeParser.parseDateTimeDuration;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.finance.FilterTimeDueCommand;
@@ -14,7 +13,9 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Duration;
 import seedu.address.model.finance.TimeDueBetweenPredicate;
+
 /**
  * Parses input arguments and creates a new FilterTimeDueCommand object
  */
@@ -32,11 +33,11 @@ public class FilterTimeDueCommandParser implements Parser<FilterTimeDueCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTimeDueCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TIME_START, PREFIX_TIME_END);
-        LocalDateTime[] timeRange = parseDateTimeDuration(
+        Duration duration = parseDateTimeDuration(
                 argMultimap.getValue(PREFIX_TIME_START).orElse("now"),
                 argMultimap.getValue(PREFIX_TIME_END).orElse("now"));
 
-        return new FilterTimeDueCommand(new TimeDueBetweenPredicate(timeRange));
+        return new FilterTimeDueCommand(new TimeDueBetweenPredicate(duration));
     }
 
     /**

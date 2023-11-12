@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.EventBuilder;
 
 
@@ -17,16 +18,23 @@ public class EventComparatorTest {
     private static final Event EVENT1;
 
     static {
-        EVENT1 = new EventBuilder()
-                .withTimeStart("01-01-2023 10:00")
-                .withTimeEnd("01-01-2023 11:00")
-                .build();
+        try {
+            EVENT1 = new EventBuilder()
+                    .withDuration("01-01-2023 10:00", "01-01-2023 11:00")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static final Event EVENT2;
 
     static {
-        EVENT2 = new EventBuilder().withTimeStart("01-01-2023 11:00").withTimeEnd("01-01-2023 12:00").build();
+        try {
+            EVENT2 = new EventBuilder().withDuration("01-01-2023 11:00", "01-01-2023 12:00").build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test

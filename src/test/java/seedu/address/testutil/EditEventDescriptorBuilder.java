@@ -6,8 +6,6 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
-import seedu.address.model.event.TimeEnd;
-import seedu.address.model.event.TimeStart;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -31,8 +29,8 @@ public class EditEventDescriptorBuilder {
     public EditEventDescriptorBuilder(Event event) {
         descriptor = new EditEventDescriptor();
         descriptor.setEventName(event.getEventName());
-        descriptor.setTimeStart(event.getTimeStart());
-        descriptor.setTimeEnd(event.getTimeEnd());
+        descriptor.setStartInput(event.getDuration().getTimeStartValue());
+        descriptor.setEndInput(event.getDuration().getTimeEndValue());
         descriptor.setLocation(event.getLocation());
         descriptor.setClients(event.getClients());
         descriptor.setEventDescription(event.getDescription());
@@ -50,7 +48,7 @@ public class EditEventDescriptorBuilder {
      * Sets the {@code TimeStart} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withTimeStart(String timeStart) throws ParseException {
-        descriptor.setTimeStart(new TimeStart(timeStart));
+        descriptor.setStartInput(timeStart);
         return this;
     }
 
@@ -58,7 +56,7 @@ public class EditEventDescriptorBuilder {
      * Sets the {@code TimeEnd} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withTimeEnd(String timeEnd) throws ParseException {
-        descriptor.setTimeEnd(new TimeEnd(timeEnd));
+        descriptor.setEndInput(timeEnd);
         return this;
     }
 

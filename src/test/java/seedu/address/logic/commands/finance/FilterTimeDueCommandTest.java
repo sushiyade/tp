@@ -22,6 +22,9 @@ import seedu.address.model.EventsBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Duration;
+import seedu.address.model.event.TimeEnd;
+import seedu.address.model.event.TimeStart;
 import seedu.address.model.finance.TimeDueBetweenPredicate;
 class FilterTimeDueCommandTest {
 
@@ -41,12 +44,12 @@ class FilterTimeDueCommandTest {
                 getTypicalCommissionOnlyBook(), new UserPrefs());
     }
     @Test
-    public void execute_filterOverFinances_showsFullList() {
+    public void execute_filterOverFinances_showsFullList() throws ParseException {
         TimeDueBetweenPredicate predicate = new TimeDueBetweenPredicate(
-                new LocalDateTime[] {
-                        LocalDateTime.of(2023, 10, 22, 0, 0),
-                        LocalDateTime.of(2023, 10, 31, 0, 0)
-                }
+                new Duration(
+                        new TimeStart(LocalDateTime.of(2023, 10, 22, 0, 0)),
+                        new TimeEnd(LocalDateTime.of(2023, 10, 31, 0, 0))
+                )
         );
 
         assertCommandSuccess(new FilterTimeDueCommand(predicate), model,
@@ -59,12 +62,12 @@ class FilterTimeDueCommandTest {
     }
 
     @Test
-    public void execute_filterOutsideCommissions_showsExpenseList() {
+    public void execute_filterOutsideCommissions_showsExpenseList() throws ParseException {
         TimeDueBetweenPredicate predicate = new TimeDueBetweenPredicate(
-                new LocalDateTime[] {
-                        LocalDateTime.of(2023, 10, 29, 0, 0),
-                        LocalDateTime.of(2023, 10, 31, 0, 0)
-                }
+                new Duration(
+                        new TimeStart(LocalDateTime.of(2023, 10, 29, 0, 0)),
+                        new TimeEnd(LocalDateTime.of(2023, 10, 31, 0, 0))
+                )
         );
 
         assertCommandSuccess(new FilterTimeDueCommand(predicate), model,
@@ -77,12 +80,12 @@ class FilterTimeDueCommandTest {
     }
 
     @Test
-    public void execute_filterOutsideExpenses_showsCommissionList() {
+    public void execute_filterOutsideExpenses_showsCommissionList() throws ParseException {
         TimeDueBetweenPredicate predicate = new TimeDueBetweenPredicate(
-                new LocalDateTime[] {
-                        LocalDateTime.of(2023, 10, 22, 0, 0),
-                        LocalDateTime.of(2023, 10, 28, 0, 0)
-                }
+                new Duration(
+                        new TimeStart(LocalDateTime.of(2023, 10, 22, 0, 0)),
+                        new TimeEnd(LocalDateTime.of(2023, 10, 28, 0, 0))
+                )
         );
 
         assertCommandSuccess(new FilterTimeDueCommand(predicate), model,

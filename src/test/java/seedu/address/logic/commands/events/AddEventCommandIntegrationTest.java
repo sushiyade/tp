@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EventsBook;
 import seedu.address.model.FinancesBook;
 import seedu.address.model.Model;
@@ -31,7 +32,7 @@ public class AddEventCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newEvent_success() {
+    public void execute_newEvent_success() throws ParseException {
         Event validEvent = new EventBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new EventsBook(), new FinancesBook(),
@@ -44,7 +45,7 @@ public class AddEventCommandIntegrationTest {
     }
 
     @Test
-    public void execute_personDoesNotExist_throwsCommandException() {
+    public void execute_personDoesNotExist_throwsCommandException() throws ParseException {
         Person invalidClient = new PersonBuilder().withName("Daniel").build();
         Event eventWithInvalidClients = new EventBuilder().withClient(invalidClient).build();
         assertCommandFailure(new AddEventCommand(eventWithInvalidClients), model,

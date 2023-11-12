@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -23,15 +22,13 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Duration;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
-import seedu.address.model.event.TimeEnd;
-import seedu.address.model.event.TimeStart;
 import seedu.address.model.person.Person;
 
 /**
@@ -55,8 +52,6 @@ public class EditEventCommand extends Command {
             + PREFIX_TIME_END + "31-12-2024 18:00";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
-    public static final String MESSAGE_START_END_DATETIME_PARSE_FAIL = "Make sure that start datetime is earlier than "
-            + "end datetime.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the events book";
 
@@ -106,28 +101,24 @@ public class EditEventCommand extends Command {
 
         EventName updatedEventName = editEventDescriptor.getEventName().orElse(eventToEdit.getEventName());
 
-        LocalDateTime[] duration;
+        Duration updatedDuration;
         try {
-            duration = DateTimeParser.parseDateTimeDuration(editEventDescriptor.getTimeStart()
-                            .orElse(eventToEdit.getTimeStart()).toString(),
-                    editEventDescriptor.getTimeEnd().orElse(eventToEdit.getTimeEnd()).toString());
+            String timeStart = editEventDescriptor.getTimeStart().orElse(null);
+            String timeEnd = editEventDescriptor.getTimeEnd().orElse(null);
+            updatedDuration = Duration.updateDuration(eventToEdit.getDuration(), timeStart, timeEnd);
         } catch (ParseException e) {
-            throw new CommandException(MESSAGE_START_END_DATETIME_PARSE_FAIL);
+            throw new CommandException(e.getMessage());
         }
-        TimeStart updatedTimeStart = new TimeStart(duration[0]);
-        TimeEnd updatedTimeEnd = new TimeEnd(duration[1]);
-
         if (editEventDescriptor.getClients().isPresent()) {
             Set<Person> clients = editEventDescriptor.getClients().get();
             editEventDescriptor.setClients(getValidClients(clients, model));
         }
-
         Set<Person> updateClients = editEventDescriptor.getClients().orElse(eventToEdit.getClients());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         EventDescription updatedEventDescription = editEventDescriptor.getEventDescription()
                 .orElse(eventToEdit.getDescription());
 
-        return new Event(updatedEventName, updatedTimeStart, updatedTimeEnd, updateClients, updatedLocation,
+        return new Event(updatedEventName, updatedDuration, updateClients, updatedLocation,
                 updatedEventDescription);
     }
 
@@ -174,8 +165,8 @@ public class EditEventCommand extends Command {
      */
     public static class EditEventDescriptor {
         private EventName eventName;
-        private TimeStart timeStart;
-        private TimeEnd timeEnd;
+        private String startInput;
+        private String endInput;
         private Set<Person> clients;
         private Location location;
         private EventDescription eventDescription;
@@ -188,8 +179,8 @@ public class EditEventCommand extends Command {
          */
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setEventName(toCopy.eventName);
-            setTimeStart(toCopy.timeStart);
-            setTimeEnd(toCopy.timeEnd);
+            setStartInput(toCopy.startInput);
+            setEndInput(toCopy.endInput);
             setClients(toCopy.clients);
             setLocation(toCopy.location);
             setEventDescription(toCopy.eventDescription);
@@ -199,7 +190,7 @@ public class EditEventCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(eventName, timeStart, timeEnd, clients, location, eventDescription);
+            return CollectionUtil.isAnyNonNull(eventName, startInput, endInput, clients, location, eventDescription);
         }
 
         public void setEventName(EventName eventName) {
@@ -210,20 +201,20 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(eventName);
         }
 
-        public void setTimeStart(TimeStart phone) {
-            this.timeStart = phone;
+        public void setStartInput(String startInput) {
+            this.startInput = startInput;
         }
 
-        public Optional<TimeStart> getTimeStart() {
-            return Optional.ofNullable(timeStart);
+        public Optional<String> getTimeStart() {
+            return Optional.ofNullable(startInput);
         }
 
-        public void setTimeEnd(TimeEnd timeEnd) {
-            this.timeEnd = timeEnd;
+        public void setEndInput(String endInput) {
+            this.endInput = endInput;
         }
 
-        public Optional<TimeEnd> getTimeEnd() {
-            return Optional.ofNullable(timeEnd);
+        public Optional<String> getTimeEnd() {
+            return Optional.ofNullable(endInput);
         }
 
         public void setLocation(Location location) {
@@ -272,8 +263,8 @@ public class EditEventCommand extends Command {
 
             EditEventDescriptor otherEditEventDescriptor = (EditEventDescriptor) other;
             return Objects.equals(eventName, otherEditEventDescriptor.eventName)
-                    && Objects.equals(timeStart, otherEditEventDescriptor.timeStart)
-                    && Objects.equals(timeEnd, otherEditEventDescriptor.timeEnd)
+                    && Objects.equals(startInput, otherEditEventDescriptor.startInput)
+                    && Objects.equals(endInput, otherEditEventDescriptor.endInput)
                     && Objects.equals(clients, otherEditEventDescriptor.clients)
                     && Objects.equals(location, otherEditEventDescriptor.location)
                     && Objects.equals(eventDescription, otherEditEventDescriptor.eventDescription);
@@ -283,13 +274,12 @@ public class EditEventCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("eventName", eventName)
-                    .add("timeStart", timeStart)
-                    .add("timeEnd", timeEnd)
+                    .add("startInput", startInput)
+                    .add("endInput", endInput)
                     .add("clients", clients)
                     .add("location", location)
                     .add("eventDescription", eventDescription)
                     .toString();
         }
     }
-
 }

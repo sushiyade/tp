@@ -1,32 +1,30 @@
 package seedu.address.model.finance;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.event.Duration;
 
 /**
  * Tests that a {@code Finance}'s {@code TimeDue} is between the given start and end times.
  */
 public class TimeDueBetweenPredicate implements Predicate<Finance> {
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-    private final LocalDateTime timeStart;
-    private final LocalDateTime timeEnd;
+
+    private final Duration duration;
 
     /**
      * Creates a TimeDueBeforePredicate with the given time range.
-     * @param timeRange Array containing start time and end time.
+     * @param duration time period of interests.
      */
-    public TimeDueBetweenPredicate(LocalDateTime[] timeRange) {
-        this.timeStart = timeRange[0];
-        this.timeEnd = timeRange[1];
+    public TimeDueBetweenPredicate(Duration duration) {
+        this.duration = duration;
     }
 
     @Override
     public boolean test(Finance finance) {
-        LocalDateTime financeTimeDue = finance.getTimeDue().getTime();
-        return financeTimeDue.isBefore(timeEnd) && financeTimeDue.isAfter(timeStart);
+        return finance.getTimeDue().isWithin(duration);
     }
 
     @Override
@@ -41,15 +39,14 @@ public class TimeDueBetweenPredicate implements Predicate<Finance> {
         }
 
         TimeDueBetweenPredicate otherTimeDueBeforePredicate = (TimeDueBetweenPredicate) other;
-        return timeStart.equals(otherTimeDueBeforePredicate.timeStart)
-                && timeEnd.equals(otherTimeDueBeforePredicate.timeEnd);
+        return duration.equals(otherTimeDueBeforePredicate.duration);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("timeStart", timeStart)
-                .add("timeEnd", timeEnd)
+                .add("timeStart", duration.getTimeStartValue())
+                .add("timeEnd", duration.getTimeEndValue())
                 .toString();
     }
 }
