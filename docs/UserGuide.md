@@ -1032,9 +1032,9 @@ Format: `filter-t TIMESTAMP`
   events starting before tomorrow noon
 
 
-|  Parameter  | Format                                 | Examples (#g#Valid##/#r#Invalid##)           |
-|:-----------:|----------------------------------------|----------------------------------------------|
-| `TIMESTAMP` | Refer to the accepted DateTime formats | #g#tmr noon##<br>##3##<br>#r#01092023 1130## |
+|  Parameter  | Format                                 | Examples (#g#Valid##/#r#Invalid##)            |
+|:-----------:|----------------------------------------|-----------------------------------------------|
+| `TIMESTAMP` | Refer to the accepted DateTime formats | #g#tmr noon##<br>#r#3##<br>#r#01092023 1130## |
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                     |
 |:----------------------:|:----------------------:|-------------------------------------------------------------------------------------------------------------------------------|
@@ -1073,7 +1073,7 @@ Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCAT
 | `[TIMESTART]` / `[TIMEEND]` | Refer to the accepted DateTime formats      | #g#31-12-2024 21:30##<br>#g#tmr noon##<br>#r#next fortnight##<br>#r#01092023 1130## |
 |         `[CLIENT]`          | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                            |
 |        `[LOCATION]`         | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##            |
-|       `[DESCRIPTION]`       | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
+|       `[DESCRIPTION]`       | Text up to 256 characters                   | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
 
 |                            #g#Positive Examples##                             |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                             |
 |:-----------------------------------------------------------------------------:|:-------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
