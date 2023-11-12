@@ -71,7 +71,7 @@ public class SampleDataUtil {
         try {
             return new Event[]{
                     new EventBuilder().withName("Meeting with Alex")
-                            .withDuration("next year 9", "next year 10am")
+                            .withDuration("next year 9am", "next year 10am")
                             .withClient(alex)
                             .build(),
                     new EventBuilder().withName("Conference with Bernice")
