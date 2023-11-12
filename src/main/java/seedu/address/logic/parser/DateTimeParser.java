@@ -35,11 +35,14 @@ public class DateTimeParser {
     }
 
     private static LocalTime getTimeNow() {
-        return LocalTime.now();
+        LocalTime timeNow = LocalTime.now();
+        return LocalTime.of(timeNow.getHour(), timeNow.getMinute());
     }
 
     private static LocalDateTime getNow() {
-        return LocalDateTime.now();
+        LocalTime timeNow = getTimeNow();
+        LocalDate dateNow = getToday();
+        return LocalDateTime.of(dateNow, timeNow);
     }
 
     /**
