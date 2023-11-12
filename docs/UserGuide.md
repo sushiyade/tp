@@ -283,10 +283,10 @@ This is a mini table of contents for general commands to help you navigate this 
 |:---------------------------------------------------------------:|------------------------------------------------------------------------------------|
 |        [`list`](#listing-all-contact-contacts-tab-list)         | [View all contacts](#listing-all-contact-contacts-tab-list)                        |
 |           [`add`](#adding-a-contact-contacts-tab-add)           | [Add a new contact](#adding-a-contact-contacts-tab-add)                            |
+|          [`edit`](#editing-a-person-contacts-tab-edit)          | [Edit an existing contact](#editing-a-person-contacts-tab-edit)                    |
 | [`delete`](#deleting-a-contact-with-index-contacts-tab-delete)  | [Delete an existing contact](#deleting-a-contact-with-index-contacts-tab-delete) 	 |
 |  [`filter-n`](#finding-contact-by-name-contacts-tab-filter-n)   | [Filter contacts by name](#finding-contact-by-name-contacts-tab-filter-n)          |
 | [`filter-c`](#finding-contact-by-company-contacts-tab-filter-c) | [Filter contacts by company](#finding-contact-by-company-contacts-tab-filter-c)    |
-|          [`edit`](#editing-a-person-contacts-tab-edit)          | [Edit an existing contact](#editing-a-person-contacts-tab-edit)                    |
 |       [`clear`](#clearing-all-entries-contacts-tab-clear)       | [Clear all contatcs](#clearing-all-entries-contacts-tab-clear)                     |
 
 
@@ -340,7 +340,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 |      `EMAIL`      | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                     |
 |    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                              |
 |    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                            |
-| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##     |
+| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#@destiny_30##<br>#r#@destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##   |
 
 |                                  #g#Positive Examples##                                   |                                        #r#Negative Examples##                                         | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                               |
 |:-----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
@@ -349,6 +349,79 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
 
 [Back to Contacts Management](#contacts-management)
+
+#### Editing a person : Contacts Tab → `edit`
+
+Edits an existing person in the address book.
+
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]`
+
+> **RESULT:**
+>
+> Edited Person:`{NAME}`;`{PHONE}`;`{EMAIL}`;`{ADDRESS}`;`{COMPANY}`;`{TELEGRAM_NAME}`
+
+
+<box type="warning" seamless>
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
+  * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
+* If a client is updated after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab but not the Finance or Event tabs.
+
+</box>
+
+
+|     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                   |
+|:-----------------:|----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+|     `[NAME]`      | Text up to 256 characters<br>Must be unique                                                                    | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
+| `[PHONE_NUMBER]`  | Numeric values<br>(optional "+" prefix)                                                                        | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
+|     `[EMAIL]`     | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
+|    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
+|    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
+| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
+
+|    #g#Positive Examples##     |              #r#Negative Examples##              | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                               |
+|:-----------------------------:|:------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------|
+| `edit 1 n/‘Chewbaca’ The 1st` |           `edit  n/‘Chewbaca’ The 1st`           | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                 |
+|  `edit 2 n/Betsy Crower t/`   | `edit n/‘Chewbaca’ The 1st n/‘Chewbaca’ The 1st` | <span style ='color: darkred; text-decoration: underline'>Multiple Parameters</span><br> Multiple values is not allowed |
+
+[Back to Contacts Management](#contacts-management)
+
+#### Deleting a contact with index: Contacts Tab → `delete`
+
+Deletes the specified contact from the **Contacts** tab using index.
+
+Format: `delete INDEX`
+
+> **RESULT:**
+>
+> Deleted Person:`{NAME}`;`{PHONE}`;`{EMAIL}`;`{ADDRESS}`;`{COMPANY}`;`{TELEGRAM_NAME}`
+
+<box type="warning" seamless>
+
+* Deletes a **contact entry** at specified `INDEX`
+
+* The index refers to the index number shown in the contact `list`
+  * `INDEX` will not be accepted if not found within the contact `list`
+
+* If a client is deleted after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab but not the Finance or Event tabs.
+
+</box>
+
+| Parameter | Format            | Examples (#g#Valid##/#r#Invalid##)                      |
+|:---------:|-------------------|---------------------------------------------------------|
+|  `INDEX`  | Positive integers | #g#1##<br>#g#123##<br>#r#-1 (must be positive number)## |
+
+| #g#Positive Examples## |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                |
+|:----------------------:|:-------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       `delete 1`       |         `delete`          | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                                                  |
+|       `delete 2`       |       `delete 2000`       | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> Index is out of range, choose an index that is within the contact list |
+|       `delete 3`       | `delete -3`<br>`delete 0` | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> Choose a positive index that is within contact list                    |
+
+[Back to Contacts Management](#contacts-management)
+
 
 #### Finding contact by <code>{NAME}</code>: Contacts Tab → `filter-n`
 
@@ -420,78 +493,6 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 [Back to Contacts Management](#contacts-management)
 
-#### Deleting a contact with index: Contacts Tab → `delete`
-
-Deletes the specified contact from the **Contacts** tab using index.
-
-Format: `delete INDEX`
-
-> **RESULT:** 
-> 
-> Deleted Person:`{NAME}`;`{PHONE}`;`{EMAIL}`;`{ADDRESS}`;`{COMPANY}`;`{TELEGRAM_NAME}`
-
-<box type="warning" seamless>
-
-* Deletes a **contact entry** at specified `INDEX`
-
-* The index refers to the index number shown in the contact `list`
-  * `INDEX` will not be accepted if not found within the contact `list`
-
-* If a client is deleted after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab but not the Finance or Event tabs.
-
-</box>
-
-| Parameter | Format            | Examples (#g#Valid##/#r#Invalid##)                      |
-|:---------:|-------------------|---------------------------------------------------------|
-|  `INDEX`  | Positive integers | #g#1##<br>#g#123##<br>#r#-1 (must be positive number)## |
-
-| #g#Positive Examples## |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                |
-|:----------------------:|:-------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-|       `delete 1`       |         `delete`          | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                                                  |
-|       `delete 2`       |       `delete 2000`       | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> Index is out of range, choose an index that is within the contact list |
-|       `delete 3`       | `delete -3`<br>`delete 0` | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> Choose a positive index that is within contact list                    |
-
-[Back to Contacts Management](#contacts-management)
-
-#### Editing a person : Contacts Tab → `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]`
-
-> **RESULT:** 
-> 
-> Edited Person:`{NAME}`;`{PHONE}`;`{EMAIL}`;`{ADDRESS}`;`{COMPANY}`;`{TELEGRAM_NAME}`
-
-
-<box type="warning" seamless>
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
-    * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
-* If a client is updated after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab but not the Finance or Event tabs.
-
-</box>
-
-
-|     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                   |
-|:-----------------:|----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-|     `[NAME]`      | Text up to 256 characters<br>Must be unique                                                                    | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
-| `[PHONE_NUMBER]`  | Numeric values<br>(optional "+" prefix)                                                                        | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
-|     `[EMAIL]`     | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
-|    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
-|    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
-| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#destiny_30##<br>#r#destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##    |
-
-|    #g#Positive Examples##     |              #r#Negative Examples##              | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                               |
-|:-----------------------------:|:------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------|
-| `edit 1 n/‘Chewbaca’ The 1st` |           `edit  n/‘Chewbaca’ The 1st`           | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                 |
-|  `edit 2 n/Betsy Crower t/`   | `edit n/‘Chewbaca’ The 1st n/‘Chewbaca’ The 1st` | <span style ='color: darkred; text-decoration: underline'>Multiple Parameters</span><br> Multiple values is not allowed |
-
-[Back to Contacts Management](#contacts-management)
-
 #### Clearing all entries : Contacts Tab → `clear`
 
 Clears all entries from the **Contacts** Tab.
@@ -523,11 +524,11 @@ This is a mini table of contents for general commands to help you navigate this 
 |                [`list`](#listing-finances-finance-tab-list)                 | [View finance](#listing-finances-finance-tab-list)                                                      |
 |              [`add-c`](#adding-a-commission-finance-tab-add-c)              | [Add a new commission](#adding-a-commission-finance-tab-add-c)                                          |
 |               [`add-e`](#adding-an-expense-finance-tab-add-e)               | [Add a new expense](#adding-an-expense-finance-tab-add-e)                                               |
+|                [`edit`](#editing-a-finance-finance-tab-edit)                | [Edit an existing finance entry](#editing-a-finance-finance-tab-edit)                                   |
 |          [`delete`](#deleting-a-finance-entry-finance-tab-delete)           | [Delete an existing finance entry](#deleting-a-finance-entry-finance-tab-delete) 	                      |
 |   [`filter-c`](#filtering-finance-entries-by-client-finance-tab-filter-c)   | [Filter finance by client](#filtering-finance-entries-by-client-finance-tab-filter-c)                   |
 | [`filter-t`](#filtering-finance-entries-by-time-frame-finance-tab-filter-t) | [Filter finance by time frame](#filtering-finance-entries-by-time-frame-finance-tab-filter-t)           |
 | [`summary`](#generating-a-finance-summary-of-a-client-finance-tab-summary)  | [Summarise finance relating to a client](#generating-a-finance-summary-of-a-client-finance-tab-summary) |
-|                [`edit`](#editing-a-finance-finance-tab-edit)                | [Edit an existing finance entry](#editing-a-finance-finance-tab-edit)                                   |
 |             [`clear`](#clearing-all-entries-finance-tab-clear)              | [Clear all finance entries](#clearing-all-entries-finance-tab-clear)                                    |
 
 
@@ -643,6 +644,58 @@ Format: `add-e d/DESCRIPTION a/AMOUNT [c/CLIENT] [t/TIME]`
 
 [Back to Finance Management](#finance-management)
 
+#### Editing a finance : Finance Tab → `edit`
+
+Edits an **existing finance entry** in the **Finance** tab.
+
+Format: `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]`
+
+* Edits the finance entry at the specified `INDEX`. The index refers to the index number shown in the displayed finance list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
+
+Examples:
+
+* `edit 1 d/Photoshop subscription a/300` Edits the description and amount of the 1st finance entry to be `Photoshop subscription` and `300` respectively.
+* `edit 2 a/500 c/` Given that the 2nd finance entry is an Expense, edits its amount to be `500` and clears the client name.
+
+[Back to Finance Management](#finance-management)
+
+#### Deleting a Finance Entry: Finance Tab → `delete`
+
+Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab.
+
+Format: `delete INDEX`
+
+<box type="warning" seamless>
+    <ul>
+        <li>
+            Deletes the finance entry at the specified <code>INDEX</code>
+        </li>
+        <li>
+            The <code>INDEX</code> must refer to an entry found on the Finance tab
+        </li>
+        <li>
+            The <code>INDEX</code> must be a positive integer
+        </li>
+    </ul>
+</box>
+
+| Parameter |                           Format                           |                                                                       Examples (#g#Valid##/#r#Invalid##)                                                                       |
+|:---------:|:----------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|  `INDEX`  |  Positive integer within range of indices in finance list  | (Assuming that there are 10 entries)</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)## |
+
+| #g#Positive Examples## |                         #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                     |
+|:----------------------:|:-----------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       `delete 2`       |                               `delete -1`                               | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>-1 is not a valid parameter, as INDEX only takes positive numeric values     |
+|      `delete 200`      |                              `delete one`                               | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
+|                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
+
+> **RESULT:** Deleted finance entry: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
+
+[Back to Finance Management](#finance-management)
+
 #### Filtering finance entries by `{CLIENT}`: Finance Tab → `filter-c`
 
 Filters the **finances** in the **Finance** tab by the given client.
@@ -743,58 +796,6 @@ Format: `summary CLIENT`
 
 [Back to Finance Management](#finance-management)
 
-#### Deleting a Finance Entry: Finance Tab → `delete`
-
-Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab.
-
-Format: `delete INDEX`
-
-<box type="warning" seamless>
-    <ul>
-        <li>
-            Deletes the finance entry at the specified <code>INDEX</code>
-        </li>
-        <li>
-            The <code>INDEX</code> must refer to an entry found on the Finance tab
-        </li>
-        <li>
-            The <code>INDEX</code> must be a positive integer
-        </li>
-    </ul>
-</box>
-
-| Parameter |                           Format                           |                                                                       Examples (#g#Valid##/#r#Invalid##)                                                                       |
-|:---------:|:----------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  `INDEX`  |  Positive integer within range of indices in finance list  | (Assuming that there are 10 entries)</br>#g#2##</br>#g#10##</br>#r#13(not within range of indices)##</br>#r#-1 or 0(not a positive number)##</br>#r#56.9834 (not an integer)## |
-
-| #g#Positive Examples## |                         #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                     |
-|:----------------------:|:-----------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|       `delete 2`       |                               `delete -1`                               | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br>-1 is not a valid parameter, as INDEX only takes positive numeric values     |
-|      `delete 200`      |                              `delete one`                               | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
-|                        | `delete 150`<br/>*(There are less than 150 entries in the finance tab)* | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> The given entry must be in the finance list                                |
-
-> **RESULT:** Deleted finance entry: Amount: `{Amount}`; Client: `{Client}`; Description: `{Description}`; Time: `{Time}`
-
-[Back to Finance Management](#finance-management)
-
-#### Editing a finance : Finance Tab → `edit`
-
-Edits an **existing finance entry** in the **Finance** tab.
-
-Format: `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]`
-
-* Edits the finance entry at the specified `INDEX`. The index refers to the index number shown in the displayed finance list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
-
-Examples:
-
-* `edit 1 d/Photoshop subscription a/300` Edits the description and amount of the 1st finance entry to be `Photoshop subscription` and `300` respectively.
-* `edit 2 a/500 c/` Given that the 2nd finance entry is an Expense, edits its amount to be `500` and clears the client name.
-
-[Back to Finance Management](#finance-management)
-
 #### Clearing all entries : Finance Tab → `clear`
 
 Clears all entries from the **Finance** tab.
@@ -826,11 +827,11 @@ This is a mini table of contents for general commands to help you navigate this 
 |      [`list`](#listing-all-future-events-events-tab-list)      | [Show all future events](#listing-all-future-events-events-tab-list)        |
 |     [`list-all`](#listing-all-events-events-tab-list-all)      | [Show all events](#listing-all-events-events-tab-list-all)                  |
 |            [`add`](#adding-an-event-events-tab-add)            | [Add a new event](#adding-an-event-events-tab-add)                          |
+|          [`edit`](#editing-an-event-events-tab-edit)           | [Edit an existing event](#editing-an-event-events-tab-edit)                 |
 |        [`delete`](#deleting-an-event-events-tab-delete)        | [Delete an existing event](#deleting-an-event-events-tab-delete) 	          |
 | [`filter-c`](#filtering-events-by-clients-events-tab-filter-c) | [Filter events by client](#filtering-events-by-clients-events-tab-filter-c) |
 |  [`filter-n`](#filtering-events-by-name-events-tab-filter-n)   | [Filter events by name](#filtering-events-by-name-events-tab-filter-n)      |
 |  [`filter-t`](#filtering-events-by-time-events-tab-filter-t)   | [Filter events by time](#filtering-events-by-time-events-tab-filter-t)      |
-|          [`edit`](#editing-an-event-events-tab-edit)           | [Edit an existing event](#editing-an-event-events-tab-edit)                 |
 |       [`clear`](#clearing-all-entries-events-tab-clear)        | [Clear all events](#clearing-all-entries-events-tab-clear)                  |
 
 
@@ -915,6 +916,45 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT]…​ [l/LOCATION] [d/DESCR
 
 [Back to Events Management](#events-management)
 
+#### Editing an event: Events tab → `edit`
+
+Edits an existing event in the **Events** tab.
+
+Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]`
+
+> **RESULT:**
+>
+> Edited Event: `{NAME}`; Start: `{TIMESTART}`; End: `{TIMEEND}`; Clients: `{CLIENTS}…​`; Location: `{LOCATION}`; Description: `{DESCRIPTION}`
+
+
+<box type="warning" seamless>
+
+* For `{CLIENT}`, the name **MUST EXIST** in your Contacts. Note that this is case-sensitive.
+  * Refer to [the filter-n command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#finding-contact-by-name-contacts-tab-filter-n) within the Contacts tab to search whether the contact exists.
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `d/`.
+  * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
+
+  </box>
+
+
+|          Parameter          | Format                                      | Examples (#g#Valid##/#r#Invalid##)                                                  |
+|:---------------------------:|---------------------------------------------|-------------------------------------------------------------------------------------|
+|          `[NAME]`           | Text up to 256 characters<br>Must be unique | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                       |
+| `[TIMESTART]` / `[TIMEEND]` | Refer to the accepted DateTime formats      | #g#31-12-2024 21:30##<br>#g#tmr noon##<br>#r#next fortnight##<br>#r#01092023 1130## |
+|         `[CLIENT]`          | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                            |
+|        `[LOCATION]`         | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##            |
+|       `[DESCRIPTION]`       | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
+
+|                            #g#Positive Examples##                             |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                             |
+|:-----------------------------------------------------------------------------:|:-------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                               `edit 1 n/Tennis`                               | `edit s/31-09-2023 19:30` | <span style ='color: darkred; text-decoration: underline'>Invalid start and end datetime order</span><br> Make sure that start datetime is earlier than end datetime. |
+| `edit 2 n/Meetup s/01-12-2023 2pm e/01-12-2023 3pm c/Alex Yeoh c/Bernice Yu ` |  `edit c/Potato Client`   | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> Client Not Found <br> Client tagged does not exist in your contacts     |
+
+[Back to Events Management](#events-management)
+
 #### Deleting an event: Events Tab → `delete`
 
 Deletes an existing event from the **Events** tab.
@@ -984,6 +1024,7 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 |    `filter-c alex`     |    `filter-c hans`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br>Assuming there are no events with client <code>Hans</code> |
 |  `filter-c aLeX rOy`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a <code>KEYWORD</code> to search with      |
 
+[Back to Events Management](#events-management)
 
 #### Filtering events by `{NAME}`: Events Tab → `filter-n`
 
@@ -1043,44 +1084,6 @@ Format: `filter-t TIMESTAMP`
 
 [Back to Events Management](#events-management)
 
-#### Editing an event: Events tab → `edit`
-
-Edits an existing event in the **Events** tab.
-
-Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]`
-
-> **RESULT:**
->
-> Edited Event: `{NAME}`; Start: `{TIMESTART}`; End: `{TIMEEND}`; Clients: `{CLIENTS}…​`; Location: `{LOCATION}`; Description: `{DESCRIPTION}`
-
-
-<box type="warning" seamless>
-
-* For `{CLIENT}`, the name **MUST EXIST** in your Contacts. Note that this is case-sensitive.
-  * Refer to [the filter-n command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#finding-contact-by-name-contacts-tab-filter-n) within the Contacts tab to search whether the contact exists. 
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `d/`.
-  * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
-
-  </box>
-
-
-|          Parameter          | Format                                      | Examples (#g#Valid##/#r#Invalid##)                                                  |
-|:---------------------------:|---------------------------------------------|-------------------------------------------------------------------------------------|
-|          `[NAME]`           | Text up to 256 characters<br>Must be unique | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                       |
-| `[TIMESTART]` / `[TIMEEND]` | Refer to the accepted DateTime formats      | #g#31-12-2024 21:30##<br>#g#tmr noon##<br>#r#next fortnight##<br>#r#01092023 1130## |
-|         `[CLIENT]`          | Text up to 256 characters                   | #g#Nicholas Cher##<br>#g#Ranchoddas Shamaldas Chanchad##                            |
-|        `[LOCATION]`         | Text up to 256 characters                   | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##            |
-|       `[DESCRIPTION]`       | Only a-z, 0-9, and underscores allowed      | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
-
-|                            #g#Positive Examples##                             |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                             |
-|:-----------------------------------------------------------------------------:|:-------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                               `edit 1 n/Tennis`                               | `edit s/31-09-2023 19:30` | <span style ='color: darkred; text-decoration: underline'>Invalid start and end datetime order</span><br> Make sure that start datetime is earlier than end datetime. |
-| `edit 2 n/Meetup s/01-12-2023 2pm e/01-12-2023 3pm c/Alex Yeoh c/Bernice Yu ` |  `edit c/Potato Client`   | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> Client Not Found <br> Client tagged does not exist in your contacts     |
-
-[Back to Events Management](#events-management)
 
 #### Clearing all entries : Events Tab → `clear`
 
@@ -1396,29 +1399,30 @@ A quick overview of all the commands and their formats.
 ### General
 Commands that applies to ALL tabs
 
-| Action    | Format, Examples                         |
-|-----------|------------------------------------------|
-| **Tab**   | `tab TAB_NAME` <br> e.g., `tab contacts` |
-| **List**  | `list`                                   |
-| **Help**  | `help`                                   |
-| **Clear** | `clear`                                  |
+| Action   | Format, Examples                         |
+|----------|------------------------------------------|
+| **Help** | `help`                                   |
+| **Tab**  | `tab TAB_NAME` <br> e.g., `tab contacts` |
+| **Exit** | `exit`                                   |
 
 ### Contacts Tab
 
-| Action                  | Format, Examples                                                                                                                                    |
-|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com` |
-| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br/> e.g., `edit 2 n/Betsy Crower t/` 	                 |
-| **Filter by name**      | `filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`                                                                                 |
-| **Filter by company**   | `filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`                                                                                   |
-| **Delete using index**  | `delete INDEX` <br> e.g., `delete 1`                                                                                                                |
-| **Clears Address Book** | `clear`                                                                                                                                             |
+| Action                  | Format, Examples                                                                                                                                     |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List all contacts**   | `list`                                                                                                                                               |
+| **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`  |
+| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br/> e.g., `edit 2 n/Betsy Crower t/` 	                  |
+| **Delete using index**  | `delete INDEX` <br> e.g., `delete 1`                                                                                                                 |
+| **Filter by name**      | `filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`                                                                                  |
+| **Filter by company**   | `filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`                                                                                    |
+| **Clears Address Book** | `clear`                                                                                                                                              |
 
 
 ### Finance Tab
 
 | Action                    | Format, Examples                                                                                                                |
 |---------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| **List**                  | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
 | **Add commission**        | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
 | **Add expense**           | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
 | **Edit**                  | `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]` <br/> e.g., `edit 1 d/Photoshop subscription a/300`                 |
@@ -1426,7 +1430,6 @@ Commands that applies to ALL tabs
 | **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
 | **Filter by time**        | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
 | **Summary**               | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
-| **List**                  | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
 | **Clears Finance Book**   | `clear`                                                                                                                         |
 
 
@@ -1434,14 +1437,14 @@ Commands that applies to ALL tabs
 
 | Action                    | Format, Examples                                                                                                                                                              |
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                   | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
-| **Edit**                  | `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]` <br/> e.g., `edit 1 n/Tennis` 	                                                     |
-| **Filter by event name**  | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
-| **Filter by time**        | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
-| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
 | **List**                  | `list`<br> e.g., `list`                                                                                                                                                       |
 | **List All**              | `list-all`<br> e.g., `list-all`                                                                                                                                               |
+| **Add**                   | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
+| **Edit**                  | `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]` <br/> e.g., `edit 1 n/Tennis` 	                                                     |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
+| **Filter by event name**  | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
+| **Filter by time**        | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
 | **Clears Events Book**    | `clear`                                                                                                                                                                       |
 
 
@@ -1455,5 +1458,5 @@ Commands that applies to ALL tabs
 **Q**: My GUI seems to be appearing off-screen, why does this happen and how do I fix this?</br>
 **A**: This problem occurs after you have moved the application to a secondary screen when using multiple screens, and then switched to using only the primary screen. To fix this, simply delete the `preferences.json` file created by the application before running the application again.</br>
 
-**Q**: Why is it that after I update or delete a contact, the changes are not displayed on the Finance or Event tabs?
+**Q**: Why is it that after I update or delete a contact, the changes are not displayed on the Finance or Event tabs? </br>
 **A**: FreelanceBuddy currently does not support propagation of changes from Contact Tab to the other tabs. Moreover, there is often a need for users to keep track of old transactions or appointments with clients that may not exist anymore, or exist as a different entity in the database.
