@@ -260,7 +260,7 @@ also update to only show finances related to the given client.
 
 Use of the `tab` command to switch between tabs in the UI. 
 
-Currently, the application uses the existing [TabPane from JavaFX](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TabPane.html).
+Currently, the application uses the existing [TabPane from JavaFX](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TabPane.html), and it makes use of the tab index to switch tabs. 
 
 #### Tab object
 
