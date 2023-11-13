@@ -156,7 +156,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="1000" />
 
 The `Storage` component,
 * can save the following data in JSON format, and read them back into corresponding objects.
@@ -306,6 +306,30 @@ report. The method returns the summary as a string which is then passed as an ar
 
 **Step 5.** The summary report is then displayed in the status box. The list of finances displayed in the finance tab will
 also update to only show finances related to the given client. 
+
+### Changing Tabs
+
+For changing tabs, we make use of the `tab` command to switch between tabs in the UI. 
+
+Currently, the application uses the already existing [TabsPane from JavaFX](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TabPane.html).
+
+Each `Tab
+
+Note that `ui.ContactsTab`, `ui.EventsTab` and `ui.FinanceTab` does not implement from `core.tab.Tab`, 
+
+
+Given below is an example usage scenario and how the tab mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The versioned books will be initialized with the initial book state (for address, events and finance), and the currentStatePointer pointing to that single address book state.
+
+Step 2. The user executes `tab finance` command to switch to the finance tab. 
+The tab command calls `Model#` 
+
+
+
+In the following sequence diagram, the user is changing from the Contacts tab to the Events tab.
+
+<puml src="diagrams/ChangeTabSequenceDiagram.puml" alt="ChangeTabSequenceDiagram" />
 
 --------------------------------------------------------------------------------------------------------------------
 
