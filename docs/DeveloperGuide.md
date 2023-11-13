@@ -1448,3 +1448,114 @@ There has to be at least 2 clients saved in FreelanceBuddy. For our example, we 
 
     6. Test case (No Event with Amy Bee): `filter-c Amy`<br> 
        Expected: The events list will be empty.
+
+## Test cases for Storage
+
+Note that the following test cases involves manipulating the JSON files.
+
+<box type="warning">
+
+The following tests should be performed with the **default set of dummy data** that is generated when you first open the app (and run at least one command).
+
+Dummy data can also generate by just deleting the json files.
+</box>
+
+### Deleting data
+
+1. Deleting the JSON files while app is closed
+   > test that deleting json file won't affect other json files
+
+    1. Prerequisites: App must be closed, using dummy data
+
+    2. Delete `addressbook.json`, run the app <br>
+       Expected: Default dummy data for contacts reappears on GUI
+
+    3. Delete `addressbook.json`, `eventsbook.json`, `financebook.json` <br>
+       Expected: Default dummy data for contacts, events, and finance reappears on GUI
+
+    4. Delete `addressbook.json`, run the app, and enter `list` in any tab <br>
+       Expected: You should be able to see `addressbook.json` regenerate in the file explorer
+
+1. Deleting the JSON files while app is running
+   > test that deleting the json files while using the app won't cause it to crash
+
+    1. Prerequisites: App must be running, using dummy data
+
+    2. Delete `addressbook.json`, then enter command in Contacts tab `add n/Test Person p/838383838 e/asdf@gmail.com` <br>
+       Expected: New contact "Test Person" is successfully created and shown in GUI, `addressbook.json` regenerates
+
+    3. Delete `addressbook.json`, then enter command in Contacts tab `filter-n Alex` <br>
+       Expected: Contact "Alex Yeoh" is shown, `addressbook.json` regenerates
+
+    2. Delete `eventsbook.json`, then enter command in Events tab `add n/Test Meeting s/tdy e/tmr` <br>
+       Expected: New event "Test Meeting" is successfully created and shown in GUI, `eventsbook.json` regenerates
+
+    3. Delete `eventsbook.json`, then enter command in Events tab `filter-n Alex` <br>
+       Expected: Event "Meeting with Alex" is shown, `eventsbook.json` regenerates
+
+    2. Delete `financebook.json`, then enter command in Finance tab `add-c d/Painting a/100 c/David Li` <br>
+       Expected: New commission "Painting" is successfully created and shown in GUI, `financebook.json` regenerates
+
+    3. Delete `financebook.json`, then enter command in Finance tab `filter-c Bernice Yu` <br>
+       Expected: All finances regarding "Bernice Yu" is shown, `financebook.json` regenerates
+
+
+### Editing data
+
+1. Editing contents in `addressbook.json`
+    1. Prerequisites: Default dummy data in `addressbook.json` must exists, app is closed
+
+    2. Test case: Edit name in the first entry of `addressbook.json` to "poop" and run the app <br>
+       Expected: Data still exists, first entry name is now "poop". Note that it didn't cause the other two tabs to crash even though Alex Yeoh no longer exists
+
+    3. Test case: Edit name in the first entry of `addressbook.json` to an empty string "" and run the app<br>
+       Expected: All data is erased
+
+    3. Test case: Edit telegram name in the first entry of `addressbook.json` to an empty string "" and run the app<br>
+       Expected: Data still exists, Alex Yeoh now has no telegram name
+
+    4. Test case: Edit telegram name in the first entry of `addressbook.json` to "..." and run the app<br>
+       Expected: All data is erased
+
+2. Editing contents in `financebook.json`
+    1. Prerequisites: Default dummy data in `financebook.json` must exists
+
+    2. Test case: Edit @type in the first entry of `financebook.json` to "Expense" instead of "Commission" and run the app <br>
+       Expected: Finance entry "Artwork" successfully changed from commission to expense
+
+    2. Test case: Edit amount in the first entry of `financebook.json` to "0" and run the app <br>
+       Expected: All data is erased
+
+    3. Test case: Edit client in the third entry(expense) of `financebook.json` to null and run the app <br>
+       Expected: Data still exists, third finance entry now no longer has a client tagged
+
+3. Editing contents in `eventsbook.json`
+    1. Prerequisites: Default dummy data in `eventsbook.json` must exists
+
+    2. Test case: Edit timeStart in the first entry of `eventsbook.json` to a date time that is later than timeEnd. <br>
+       Expected: All data is erased
+
+    2. Test case: Edit timeEnd in the first entry of `eventsbook.json` to "tomorrow" <br>
+       Expected: All data is erased
+
+
+### Loading data
+
+<box type="tip" seamless>
+
+**How to load data from a different file?**
+
+Change the file location that you want the app to target through the `preferences.json` file. Make sure that it is a valid file path.
+</box>
+
+1. Loading data from a different book file
+    1. Prerequisites: Create your own dummy set of data that is distinguishable to you, and rename the file to something else. Set `preferences.json` to target your own dummy files.
+
+    2. Test case: Load data from a different AddressBook file (e.g., `addressybooky.json`) <br>
+       Expected: You should see your own dummy data in the app.
+
+    3. Test case: Load data from a different FinanceBook file (e.g., `financeybooky.json`) <br>
+       Expected: You should see your own dummy data in the app.
+
+    4. Test case: Load data from a different EventsBook file (e.g., `eventsybooky.json`) <br>
+       Expected: You should see your own dummy data in the app.
