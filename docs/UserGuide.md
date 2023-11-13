@@ -25,6 +25,42 @@ If you are a freelancer who is looking to optimize your workflow, look no furthe
 
 <!-- * Table of Contents -->
 
+<h1 style="font-size: 30px; color: #e46c0a;">Table of Contents</h1>  
+
+Navigate the User Guide by clicking on the headings below.
+
+  <ul style="font-size: 18px; color: #4F4F4F; font-weight: bold;">  
+      <li><a href="{{ baseUrl }}/UserGuide.html#getting-started" style="color:black">Getting Started</a></li>  
+      <ul style="font-size: 16px; font-weight: bold;" style="color:black">  
+          <li><a href="{{ baseUrl }}/UserGuide.html#quick-start" style="color:#4F4F4F">Quick Start <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+          <li><a href="{{ baseUrl }}/UserGuide.html#navigating-this-user-guide" style="color:#4F4F4F">Navigating This User Guide <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>
+          <li><a href="{{ baseUrl }}/UserGuide.html#features" style="color:#4F4F4F">Features <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+      </ul>  
+      <li><a href="{{ baseUrl }}/UserGuide.html#commands" style="color:black">Commands</a></li>  
+      <ul style="font-size: 16px; font-weight: bold;">  
+          <li><a href="{{ baseUrl }}/UserGuide.html#general-commands" style="color:#4F4F4F">General Commands <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+          <li><a href="{{ baseUrl }}/UserGuide.html#contacts-management" style="color:#4F4F4F">Contacts Management <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+          <li><a href="{{ baseUrl }}/UserGuide.html#finance-management" style="color:#4F4F4F">Finance Management <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+          <li><a href="{{ baseUrl }}/UserGuide.html#events-management" style="color:#4F4F4F">Events Management <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+      </ul>  
+      <li><a href="{{ baseUrl }}/UserGuide.html#data-storage" style="color:black">Data Storage</a></li>  
+      <ul style="font-size: 16px; font-weight: bold;">  
+          <li><a href="{{ baseUrl }}/UserGuide.html#saving-the-data" style="color:#4F4F4F">Saving the Data <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+          <li><a href="{{ baseUrl }}/UserGuide.html#editing-the-data-file" style="color:#4F4F4F">Editing the Data File <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li> 
+          <li><a href="{{ baseUrl }}/UserGuide.html#configuration-files" style="color:#4F4F4F">Configuration Files <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>
+      </ul>  
+      <li><a href="{{ baseUrl }}/UserGuide.html#accepted-date-time-formats" style="color:black">Accepted Date-time Formats <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+      <li><a href="{{ baseUrl }}/UserGuide.html#command-summary" style="color:black">Command Summary <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span></a></li>  
+      <ul style="font-size: 16px; font-weight: bold;">  
+          <li><a href="{{ baseUrl }}/UserGuide.html#general" style="color:#4F4F4F">General</a></li>  
+          <li><a href="{{ baseUrl }}/UserGuide.html#contacts-tab" style="color:#4F4F4F">Contacts Tab</a></li>  
+          <li><a href="{{ baseUrl }}/UserGuide.html#finance-tab" style="color:#4F4F4F">Finance Tab</a></li>  
+          <li><a href="{{ baseUrl }}/UserGuide.html#events-tab" style="color:#4F4F4F">Events Tab</a></li>  
+      </ul>  
+      <li><a href="{{ baseUrl }}/UserGuide.html#faq" style="color:black">FAQ</a></li>  
+  </ul>
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Quick Start
@@ -80,6 +116,8 @@ Now that you've got FreelanceBuddy set up, here are some **example commands** to
 
 For more commands such as edit and filter commands, as well as detailed instructions on how to use each of them, check out the [Commands](#commands) section below!
 
+[↑ Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Navigating This User Guide
@@ -103,6 +141,7 @@ We have included a mini table of contents to help you navigate each section quic
 * You can click on the command or the brief description to quickly jump to that sub-section.
 * Each sub-section includes a "Back to ..." link for you to jump back up to the table of contents where you can continue exploring from there.
 
+[↑ Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -175,6 +214,8 @@ Be it your **personal task**, or **appointments** that are **related to clients*
 
 You can check out commands related to Events [here](#events-management). A summary of Events Tab commands can also be found [here](#events-tab).
 
+[↑ Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands
@@ -222,6 +263,7 @@ This is a mini table of contents for general commands to help you navigate this 
 |  [`exit`](#exiting-the-program-exit)   | [<p style="color:black">Exits the program</p>](#exiting-the-program-exit)                  |
 | [`clear`](#clearing-all-entries-clear) | [<p style="color:black">Clears all entries</p>](#clearing-all-entries-clear)           |
 
+[↑ Back to Table of Contents](#table-of-contents)
 
 #### Viewing help → `help`
 
@@ -253,7 +295,7 @@ Acceptable values for `TAB_NAME`:
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                   |
 |:----------------------:|:----------------------:|-----------------------------------------------------------------------------------------------------------------------------|
 |     `tab contacts`     |     `tab contact`      | <span style ='color: darkred; text-decoration: underline;'>Invalid command format</span><br/> Wrong spelling for `contacts` |
-|      `tab events`      |         `tab`          | <span style ='color: darkred; text-decoration: underline;'>Invalid Command format</span><br/> Missing `TAB_NAME`             |
+|      `tab events`      |         `tab`          | <span style ='color: darkred; text-decoration: underline;'>Invalid Command format</span><br/> Missing `TAB_NAME`            |
 
 [Back to General Commands](#general-commands)
 
@@ -301,6 +343,8 @@ This is a mini table of contents for general commands to help you navigate this 
 |   [`delete`](#deleting-a-contact-with-index-contacts-tab-delete)   | [<p style="color:black">Delete an existing contact</p>](#deleting-a-contact-with-index-contacts-tab-delete) 	 |
 |  [`filter-n`](#filtering-contacts-by-name-contacts-tab-filter-n)   | [<p style="color:black">Filter contacts by name</p>](#filtering-contacts-by-name-contacts-tab-filter-n)          |
 | [`filter-c`](#filtering-contacts-by-company-contacts-tab-filter-c) | [<p style="color:black">Filter contacts by company</p>](#filtering-contacts-by-company-contacts-tab-filter-c)    |
+
+[↑ Back to Table of Contents](#table-of-contents)
 
 #### Listing all Contacts: Contacts Tab → `list`
 
@@ -523,6 +567,8 @@ This is a mini table of contents for general commands to help you navigate this 
 |      [`filter-c`](#filtering-finances-by-client-finance-tab-filter-c)      | [<p style="color:black">Filter finance by client</p>](#filtering-finances-by-client-finance-tab-filter-c)                          |
 |    [`filter-t`](#filtering-finances-by-time-frame-finance-tab-filter-t)    | [<p style="color:black">Filter finance by time frame</p>](#filtering-finances-by-time-frame-finance-tab-filter-t)                  |
 | [`summary`](#generating-a-finance-summary-of-a-client-finance-tab-summary) | [<p style="color:black">Summarise finance relating to a client</p>](#generating-a-finance-summary-of-a-client-finance-tab-summary) |
+
+[↑ Back to Table of Contents](#table-of-contents)
 
 #### Listing finances: Finance Tab → `list`
 
@@ -821,6 +867,7 @@ This is a mini table of contents for general commands to help you navigate this 
 |  [`filter-n`](#filtering-events-by-name-events-tab-filter-n)   | [<p style="color:black">Filter events by name</p>](#filtering-events-by-name-events-tab-filter-n)      |
 |  [`filter-t`](#filtering-events-by-time-events-tab-filter-t)   | [<p style="color:black">Filter events by time</p>](#filtering-events-by-time-events-tab-filter-t)      |
 
+[↑ Back to Table of Contents](#table-of-contents)
 
 #### Listing all upcoming events: Events Tab → `list`
 
@@ -1075,6 +1122,8 @@ All events with <code>TIMESTART</code> before the time specified in <code>TIMEST
 
 AddressBook, EventsBook, and FinanceBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+[↑ Back to Table of Contents](#table-of-contents)
+
 ### Editing the Data File
 
 <span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
@@ -1094,6 +1143,8 @@ The following data are saved automatically as a JSON file. Advanced users are we
   </li>
 </ul>
 </box>
+
+[↑ Back to Table of Contents](#table-of-contents)
 
 ### Configuration Files
 
@@ -1125,7 +1176,7 @@ For the preferences file (which depends on the `userPrefsFilePath` in `config.js
 - `eventsFilePath` : The filepath of the Events data file. Default: `data/eventsbook.json`
 - `financeFilePath` : The filepath of the Finance data file. Default: `data/financebook.json`
 
-
+[↑ Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1148,6 +1199,7 @@ As this section is relatively long, we have provided a mini table of content for
 - [Using Date-time Formats for Instances](#using-date-time-formats-for-time-instances)
 - [Editing `TIMESTART` `TIMEEND` in Events](#editing-timestart-timeend-in-events)
 
+[↑ Back to Table of Contents](#table-of-contents)
 
 #### Accepted Numbered Date Formats
 
@@ -1418,6 +1470,8 @@ Hence, it is important to understand that when modifying either `TIMESTART` or `
 
 Modify `TIMESTART` and `TIMEEND` inputs together! If you understood how to use date-time Formats for Duration when [adding events or filtering finance inputs by timeframe](#using-date-time-formats-for-durations), it works the same way when modifying both inputs together for an event.
 
+[Back to Date-time Contents](#contents-of-this-section)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -1425,6 +1479,8 @@ Modify `TIMESTART` and `TIMEEND` inputs together! If you understood how to use d
 <span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
 
 A quick overview of all the commands and their formats.
+
+_Click on the commands or description to jump to the desired section!_
 
 ### General
 Commands that applies to ALL tabs
@@ -1475,6 +1531,7 @@ Commands that applies to ALL tabs
 | [<p style="color:black">**Filter by Event Name**</p>](#filtering-events-by-name-events-tab-filter-n)     | [<p style="color:black">`filter-n KEYWORD`<br> e.g., `filter-n birthday` </p>](#filtering-events-by-name-events-tab-filter-n)                                                                                                                                                                  |
 | [<p style="color:black">**Filter by Time**</p>](#filtering-events-by-time-events-tab-filter-t)           | [<p style="color:black">`filter-t TIMESTAMP`<br> e.g., `filter-t next week`</p>](#filtering-events-by-time-events-tab-filter-t)                                                                                                                                                                |
 
+[↑ Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1491,3 +1548,5 @@ Commands that applies to ALL tabs
 
 
 Still having issues? Please email us at freelancebuddy@gmail.com
+
+[↑ Back to Table of Contents](#table-of-contents)
