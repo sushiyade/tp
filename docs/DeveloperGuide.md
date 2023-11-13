@@ -177,99 +177,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Duplicate name detection feature
 
-#### Proposed Implementation
 
 
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Add Finance feature
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+In FreelanceBuddy, the creation of Finance entries (commissions and expenses) includes validation for clients. In the case that the user attempts to create a Finance entry with an associated client, FreelanceBuddy will check if the client exists in the Contacts Tab and only create the entry if it does.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Both `Commission` and `Expense` classes have the same attributes as `Finance` (as a result of inheritance), while both `AddCommissionCommand` and `AddExpenseCommand` classes handle the validation in similar ways. Hence, for simplicity, we will only discuss how a `Commission` is added to the `Model`, as the implementation is similar for Expense.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Given below is an example usage scenario and how the command behaves at each step.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+**Step 1.** We assume that a client named `John` already exists in the Contacts Tab. The user attempts to create a new Commission from `John Doe`, with the amount `20` and the description `Chatbot`.
+He enters the command `add-c c/John a/20 d/Chatbot` in the Finance Tab. The `LogicManager` passes this to the `FinanceParser`, which identifies it as a command to add a commission. Then it creates a `AddCommissionCommandParser` and calls the `AddCommissionCommandParser#parse()` method.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+<puml src="diagrams/AddFinanceSequenceDiagram1.puml" alt="AddFinanceSequenceDiagram1" />
 
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
+**Step 2.** The `AddCommissionCommandParser` parses the given command into an `AddCommissionCommand` with a `Commission` that contains the following attributes: `Amount` containing `20`, `Description` containing `Chatbot`, `TimeDue` containing the time of creation (by default), and most notably, a **dummy** `Person` object containing placeholder values for all its attributes other than the name which is `John Doe`.
+This dummy `Person` object is important as it allows us to fetch the **actual** `Person` object from the `Model` later on.
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** Only the instantiation of the dummy `Person` object is included in the diagram.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+<puml src="diagrams/AddFinanceSequenceDiagram2.puml" alt="AddFinanceSequenceDiagram2" />
 
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
+**Step 3.** The `LogicManager` then calls `AddCommissionCommand#execute()`. If the client exists (this is always the case for `Commission`), it will call the `Model#isValidClient()` method to check if the client exists in `Model`. If it does not, a `CommandException` will be thrown.
 
+**Step 4.** Having verified that the client exists in `Model`, `AddCommissionCommand` then calls the `Model#getMatchedClient()` method to fetch the actual `Client` object in `Model`. This `Client` field in the `Commission` is then set to this actual `Client`.
 
-<box type="info" seamless>
+**Step 5.** Lastly, the `Commission` in `AddCommissionCommand` is added to the `Model`, while returning a `CommandResult` with the details of the `Commission` formatted into a result `String`. This result `String` is then printed in the status box.
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how the undo operation works:
-
-<puml src="diagrams/UndoSequenceDiagram.puml" alt="UndoSequenceDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+<puml src="diagrams/AddFinanceSequenceDiagram3.puml" alt="AddFinanceSequenceDiagram3" /> 
 
 ### Filtering Lists
 
