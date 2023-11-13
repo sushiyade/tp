@@ -138,7 +138,7 @@ public class DateTimeParser {
         return parseTwoElementsNumberTimeFormat(timeInput);
     }
 
-    private static LocalTime parseThreeElementsEnglishTimeFormat(String timeInput) {
+    private static LocalDateTime parseThreeElementsEnglishDateTimeFormat(String timeInput) {
         String lowerCasedDateInput = timeInput.toLowerCase();
         String[] tokenisedString = lowerCasedDateInput.split(" ");
         if (tokenisedString.length != 3) {
@@ -155,19 +155,15 @@ public class DateTimeParser {
         case "mins":
         case "minute":
         case "minutes":
-            return getTimeNow().plusMinutes(toAdd);
+            return getNow().plusMinutes(toAdd);
         case "hr":
         case "hrs":
         case "hour":
         case "hours":
-            return getTimeNow().plusHours(toAdd);
+            return getNow().plusHours(toAdd);
         default:
             return null;
         }
-    }
-
-    private static LocalTime parseThreeElementsTime(String timeInput) {
-        return parseThreeElementsEnglishTimeFormat(timeInput);
     }
 
     private static LocalDate parseOneElementNumberDateFormat(String dateInput) {
@@ -368,6 +364,10 @@ public class DateTimeParser {
         return date;
     }
 
+    private static LocalDateTime parseThreeElementsDateTime(String dateTimeInput) {
+        return parseThreeElementsEnglishDateTimeFormat(dateTimeInput);
+    }
+
     private static LocalDateTime parseNowDateTimeFormats(String dateTimeInput) {
         String lowerCasedDateTimeInput = dateTimeInput.toLowerCase();
         String[] tokenisedString = lowerCasedDateTimeInput.split(" ");
@@ -505,12 +505,12 @@ public class DateTimeParser {
         }
 
         date = parseThreeElementsDate(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
-        time = parseThreeElementsTime(StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
+        LocalDateTime dateTime = parseThreeElementsDateTime(
+                StringUtil.concatStringArrayWithSpace(tokenisedString, 0, 2));
         if (date != null) {
             return LocalDateTime.of(date, MIDNIGHT);
-        } else if (time != null) {
-            date = getNextDateOfTime(time);
-            return LocalDateTime.of(date, time);
+        } else if (dateTime != null) {
+            return dateTime;
         }
         throw new ParseException(INVALID_DATETIME_FORMAT);
     }
@@ -598,8 +598,6 @@ public class DateTimeParser {
             return parseOneElementTime(timeInput) != null;
         case 2:
             return parseTwoElementsTime(timeInput) != null;
-        case 3:
-            return parseThreeElementsTime(timeInput) != null;
         default:
             return false;
         }
