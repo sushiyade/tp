@@ -115,7 +115,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the respective Parsers (i.e. `ContactParser`, `FinanceParser`, `EventParser`) class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`) which the `ContactParser` returns back as a `Command` object.
+* When called upon to parse a user command, the respective Parsers (i.e. `ContactParser`, `FinanceParser`, `EventParser`) class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddEventCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`) which the `ContactParser` returns back as a `Command` object.
+  * `DateTimeParser` is included here to show all Parser Classes. However, only a few Command Parsers interact with the `DateTimeParser` (when date-time inputs are involved).
 * All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteFinanceCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -179,92 +180,37 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Add Finance feature
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+In FreelanceBuddy, the creation of Finance entries (commissions and expenses) includes validation for clients. In the case that the user attempts to create a Finance entry with an associated client, FreelanceBuddy will check if the client exists in the Contacts Tab and only create the entry if it does.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Both `Commission` and `Expense` classes have the same attributes as `Finance` (as a result of inheritance), while both `AddCommissionCommand` and `AddExpenseCommand` classes handle the validation in similar ways. Hence, for simplicity, we will only discuss how a `Commission` is added to the `Model`, as the implementation is similar for Expense.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Given below is an example usage scenario and how the command behaves at each step.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+**Step 1.** We assume that a client named `John` already exists in the Contacts Tab. The user attempts to create a new Commission from `John Doe`, with the amount `20` and the description `Chatbot`.
+He enters the command `add-c c/John a/20 d/Chatbot` in the Finance Tab. The `LogicManager` passes this to the `FinanceParser`, which identifies it as a command to add a commission. Then it creates a `AddCommissionCommandParser` and calls the `AddCommissionCommandParser#parse()` method.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+<puml src="diagrams/AddFinanceSequenceDiagram1.puml" alt="AddFinanceSequenceDiagram1" />
 
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
+**Step 2.** The `AddCommissionCommandParser` parses the given command into an `AddCommissionCommand` with a `Commission` that contains the following attributes: `Amount` containing `20`, `Description` containing `Chatbot`, `TimeDue` containing the time of creation (by default), and most notably, a **dummy** `Person` object containing placeholder values for all its attributes other than the name which is `John Doe`.
+This dummy `Person` object is important as it allows us to fetch the **actual** `Person` object from the `Model` later on.
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** Only the instantiation of the dummy `Person` object is included in the diagram.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+<puml src="diagrams/AddFinanceSequenceDiagram2.puml" alt="AddFinanceSequenceDiagram2" />
 
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
+**Step 3.** The `LogicManager` then calls `AddCommissionCommand#execute()`. If the client exists (this is always the case for `Commission`), it will call the `Model#isValidClient()` method to check if the client exists in `Model`. If it does not, a `CommandException` will be thrown.
 
+**Step 4.** Having verified that the client exists in `Model`, `AddCommissionCommand` then calls the `Model#getMatchedClient()` method to fetch the actual `Client` object in `Model`. This `Client` field in the `Commission` is then set to this actual `Client`.
 
-<box type="info" seamless>
+**Step 5.** Lastly, the `Commission` in `AddCommissionCommand` is added to the `Model`, while returning a `CommandResult` with the details of the `Commission` formatted into a result `String`. This result `String` is then printed in the status box.
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how the undo operation works:
-
-<puml src="diagrams/UndoSequenceDiagram.puml" alt="UndoSequenceDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+<puml src="diagrams/AddFinanceSequenceDiagram3.puml" alt="AddFinanceSequenceDiagram3" /> 
 
 ### Filtering Lists
 
@@ -356,6 +302,124 @@ The following sequence diagram represents the user is changing from the Contacts
 The following activity diagram summaries what happens when a user changes a tab.
 
 <puml src="diagrams/TabActivityDiagram.puml" alt="TabActivityDiagram" />
+
+
+### Duplicates of contact names
+
+Currently, the system allows duplicate contact names due to case sensitivity, 
+which is inconsistent with real-world scenarios where case sensitivity isn't considered.
+
+We plan to implement a case-insensitive check for contact names to prevent duplicate entries. 
+Freelancebuddy will recognize "John" and "john" as the same entry, ensuring uniqueness irrespective of case, 
+preventing the addition of duplicates names based solely on case variation.
+
+
+### Duplicates of contact phone numbers
+Currently, the system allows duplicate contact phone numbers
+which is inconsistent with real-world scenarios where phone numbers are unique and tied to a single person.
+
+We plan to implement a check for contact phone numbers to prevent duplicate entries, including phone numbers which include country codes
+For example, `+6598765432` will be considered the same as `98765432`, where `+65` is the country code for Singapore.
+
+
+
+### Date-time Parsing
+
+Other than the basic understanding of how the Date-time inputs are determined, the rules and assumptions it has. [Read here for more info: Accepted Date-time Formats](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-formats).
+It would be important to understand the inner-workings of the date-time parser to appreciate certain design choices made when implementing features.
+
+#### Motivations Behind the Design
+
+The choice to implement a more advanced date-time parser than what is available in the Java `LocalDateTime` library or other external libraries is:
+1. **Convenient** and **faster** input of date-time input.
+2. **More conventional** date-time formats (akin to verbal communication)
+3. **Smarter** date-time parser that helps **predict** dates or time that are *usually* assumed.
+4. date-time parser that is **fast** and **lean** – does not require unnecessarily long inputs from user that may be ambiguous.
+
+##### Accepting More `DateTimeFormatter` Formats
+
+First, we start off by accepting more formats of `Date` and `Time` that Java's `LocalDateTime` library provides (Numbered Date-time formats). All summarised in the [User Guide](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-formats).
+
+Parsing for this is done by "brute force" handled by the number of elements the date-time format has (the reason it is done this way will be explained in a later section):
+
+To illustrate how parsing of multiple formats is done, the sequence diagram shows `parseTwoElementsNumberTimeFormat()`, one of the methods that parses multiple formats, and how it matches the input with a format and parses it:
+
+<puml src="diagrams/ExampleParsingNumberFormats.puml" alt="ExampleParsingNumberFormats" />
+
+In words:
+1. `DateTimeParser` will call the relevant `private static` method to parse the respective input (in this case `parseTwoElementsNumberTimeFormat()`)
+2. It will check if the input is of the right length. (Omitted above as it is not as important).
+3. For this particular example, there are 3 formats of `LocalTime`, the program will loop through each format. (`h a`, `h:mm a` and `h.mm a`)
+4. A `DateTimeFormatter` is built to be case-insensitive, with the format at that point of execution and to language English (relevant to formats that have letters).
+5. `LocalTime.parse()` is called with the `DateTimeFormatter` and the program attempts to parse the input with the specified format.
+6. If parse is successful, a `LocalTime` instance is returned.
+7. Else, the program catches the exception and continues.
+8. If nothing is returned after all formats have been looped through, the method returns `null` to indicate a failed parse.
+
+This method is repeated with the other Numbered Time and Numbered Date formats. 
+
+> Of note as well, is the formats that do not contain year inputs e.g. `d/M`, `d MMM`, etc. In these cases, the year will be set to the current year that the method is called.
+> This is done with building the `DateTimeFormatter` with the year using method `parseDefaulting(ChronoField.YEAR, getToday().getYear())`
+
+With this, this will enable date-time inputs to be **faster** and **more convenient** as users have a wide variety of formats to choose from.
+
+##### Accepting More Formats - Natural Language
+
+Another feature we wanted to achieve is for users to use natural language formats that maybe not be as easily expressed in a date or a time.
+Formats that are usually used when conversing. As there are a lot of possibilities it is impossible to accept all forms, we had to sieve out several more important formats that Freelancers may use more often.
+
+**Common references of time**: noon, midnight, in _ minutes.
+
+**Common references of dates**: tomorrow, next week, next Monday, in _ weeks.
+
+**Common references that imply both date and time**: now, _ from now.
+
+These make sense as scheduling meetings with a client may sound like: *"Let's follow-up next week, 4:30pm?"*
+
+Similarly, we can achieve this by parsing these inputs based on the number of words it has. For natural language formats as you can from the [User Guide](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-formats),
+has formats that correspond to the number of words (For example, 3 word date formats are in the formt of "in _ days/months/years"). Hence, we parsed these inputs using switch cases.
+
+To explain, we have described the implementation of one of methods that parse english date time formats, `parseThreeElementsEnglishDateFormat()` in the activity diagram below:
+
+<puml src="diagrams/EnglishFormatsParsingActivityDiagram.puml" alt="ParsingAD" />
+
+##### Parsing Date-Time Instance
+
+Now we have built the base of how to parse Date, Time and Date Time inputs (both Numbered and Natural Language formats) by their elements. We need a master method to pull all these together. 
+Given a string, how does the program choose the right kind of methods to parse the input?
+
+The `parseDateTimeInstance()` method brings together all of this to parse any given string.
+
+To demonstrate how a string is parsed into a `LocalDateTime` value given that it can be any combination of `Date`, `Time` or `DateTime` formats. We use the below activity diagram to demonstrate:
+
+<puml src="diagrams/ParseDateTimeInstanceAD.puml" alt="DTIAD" />
+
+To further explain what happens within a "Parse X Inputs" we take a look at one of the implementations, `parseThreeElements`.
+
+<puml src="diagrams/ParseThreeElementsAD.puml" alt="ParseThreeElementsActivityDiagram" />
+
+As you can see this is how given the number of words of input, date-time can be parsed even if input can be a date, time or date-time.
+
+**On a higher level, a general flow will look something like this:** (note that this is greatly simplified)
+
+<puml src="diagrams/InstanceDateTimeHighLevel.puml" alt="InstanceDateTimeHighLevel" />
+
+##### Parsing Smartly
+
+In one the above diagram where we talked about `parseThreeElements()` we got a glimpse of how the parser parses date-time inputs smartly.
+
+In the event either the date or time is not specified, the parser will assume with a "future-bias" prediction on the unspecified date or time.
+
+For example, when time is not specified, it will be set to the 00:00, signifying the start of the day. Likewise, if the date is not specified, the next occurrence of the date with the specified time will be chosen.
+
+****Parsing Durations****
+
+This is further shown when parsing durations using `parseDateTimeDuration()` 
+1. When parsing `<TIME>` to `<TIME>` only durations, date will be set to next occurrence of the end time. (Future-Bias assumptions)
+2. When parsing `<DATE>` to `<DATE>` only durations, time will be set from 00:00 for start date and 23:59 for end date. (Assuming whole day durations)
+3. When parsing `<DATE><TIME>` to `<TIME>`, time will be assumed to be the same date as the start `<DATE>`. (Conventional way of communicating e.g. Next Monday 4-6pm)
+
+For more information on the assumptions that the parser makes when there are missing `<DATE>` or `<TIME>` inputs for either start or end time, you can check out the User guide section for this [here](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-combinations-of-s-and-e).
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -13,8 +13,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventDescription;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Location;
-import seedu.address.model.event.TimeEnd;
-import seedu.address.model.event.TimeStart;
 import seedu.address.model.finance.Amount;
 import seedu.address.model.finance.Description;
 import seedu.address.model.finance.FinanceListType;
@@ -164,33 +162,6 @@ public class ParserUtil {
         return new EventName(trimmedEventName);
     }
 
-    /**
-     * Parses a {@code String timeStart} into an {@code TimeStart}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code timeStart} is invalid.
-     */
-    public static TimeStart parseTimeStart(String timeStart) throws ParseException {
-        String trimmedTimeStart = timeStart.trim();
-        if (!DateTimeParser.isValidDateTimeFormat(trimmedTimeStart)) {
-            throw new ParseException(TimeStart.MESSAGE_CONSTRAINTS);
-        }
-        return new TimeStart(trimmedTimeStart);
-    }
-
-    /**
-     * Parses a {@code String timeEnd} into an {@code TimeEnd}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code timeEnd} is invalid.
-     */
-    public static TimeEnd parseTimeEnd(String timeEnd) throws ParseException {
-        String trimmedTimeEnd = timeEnd.trim();
-        if (!DateTimeParser.isValidDateTimeFormat(trimmedTimeEnd)) {
-            throw new ParseException(TimeEnd.MESSAGE_CONSTRAINTS);
-        }
-        return new TimeEnd(trimmedTimeEnd);
-    }
 
     /**
      * Parses a {@code String timeDue} into an {@code TimeDue}.
