@@ -181,7 +181,33 @@ This section describes some noteworthy details on how certain features are imple
 
 In FreelanceBuddy, the creation of Finance entries (commissions and expenses) includes validation for clients. In the case that the user attempts to create a Finance entry with an associated client, FreelanceBuddy will check if the client exists in the Contacts Tab and only create the entry if it does.
 
-Both `Commission` and `Expense` classes have the same attributes as `Finance` (as a result of inheritance), while both `AddCommissionCommand` and `AddExpenseCommand` classes handle the validation in similar ways. Hence, for simplicity, we will only discuss how a Commission is added, as the implementation is similar for Expense.
+Both `Commission` and `Expense` classes have the same attributes as `Finance` (as a result of inheritance), while both `AddCommissionCommand` and `AddExpenseCommand` classes handle the validation in similar ways. Hence, for simplicity, we will only discuss how a `Commission` is added to the `Model`, as the implementation is similar for Expense.
+
+Given below is an example usage scenario and how the command behaves at each step.
+
+**Step 1.** We assume that a client named `John` already exists in the Contacts Tab. The user attempts to create a new Commission from `John Doe`, with the amount `20` and the description `Chatbot`.
+He enters the command `add-c c/John a/20 d/Chatbot` in the Finance Tab. The `LogicManager` passes this to the `FinanceParser`, which identifies it as a command to add a commission. Then it creates a `AddCommissionCommandParser` and calls the `AddCommissionCommandParser#parse()` method.
+
+<puml src="diagrams/AddFinanceSequenceDiagram1.puml" alt="AddFinanceSequenceDiagram1" />
+
+**Step 2.** The `AddCommissionCommandParser` parses the given command into an `AddCommissionCommand` with a `Commission` that contains the following attributes: `Amount` containing `20`, `Description` containing `Chatbot`, `TimeDue` containing the time of creation (by default), and most notably, a **dummy** `Person` object containing placeholder values for all its attributes other than the name which is `John Doe`.
+This dummy `Person` object is important as it allows us to fetch the **actual** `Person` object from the `Model` later on.
+
+<box type="info" seamless>
+
+**Note:** Only the instantiation of the dummy `Person` object is included in the diagram.
+
+</box>
+
+<puml src="diagrams/AddFinanceSequenceDiagram2.puml" alt="AddFinanceSequenceDiagram2" />
+
+**Step 3.** The `LogicManager` then calls `AddCommissionCommand#execute()`. If the client exists (this is always the case for `Commission`), it will call the `Model#isValidClient()` method to check if the client exists in `Model`. If it does not, a `CommandException` will be thrown.
+
+**Step 4.** Having verified that the client exists in `Model`, `AddCommissionCommand` then calls the `Model#getMatchedClient()` method to fetch the actual `Client` object in `Model`. This `Client` field in the `Commission` is then set to this actual `Client`.
+
+**Step 5.** Lastly, the `Commission` in `AddCommissionCommand` is added to the `Model`, while returning a `CommandResult` with the details of the `Commission` formatted into a result `String`. This result `String` is then printed in the status box.
+
+<puml src="diagrams/AddFinanceSequenceDiagram3.puml" alt="AddFinanceSequenceDiagram3" /> 
 
 ### Filtering Lists
 
