@@ -115,7 +115,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the respective Parsers (i.e. `ContactParser`, `FinanceParser`, `EventParser`) class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`) which the `ContactParser` returns back as a `Command` object.
+* When called upon to parse a user command, the respective Parsers (i.e. `ContactParser`, `FinanceParser`, `EventParser`) class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddEventCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`) which the `ContactParser` returns back as a `Command` object.
+  * `DateTimeParser` is included here to show all Parser Classes. However, only a few Command Parsers interact with the `DateTimeParser` (when date-time inputs are involved).
 * All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteFinanceCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -306,6 +307,104 @@ report. The method returns the summary as a string which is then passed as an ar
 
 **Step 5.** The summary report is then displayed in the status box. The list of finances displayed in the finance tab will
 also update to only show finances related to the given client. 
+
+### Date-time Parsing
+
+Other than the basic understanding of how the Date-time inputs are determined, the rules and assumptions it has. [Read here for more info: Accepted Date-time Formats](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-formats).
+It would be important to understand the inner-workings of the date-time parser to appreciate certain design choices made when implementing features.
+
+#### Motivations Behind the Design
+
+The choice to implement a more advanced date-time parser than what is available in the Java `LocalDateTime` library or other external libraries is:
+1. **Convenient** and **faster** input of date-time input.
+2. **More conventional** date-time formats (akin to verbal communication)
+3. **Smarter** date-time parser that helps **predict** dates or time that are *usually* assumed.
+4. date-time parser that is **fast** and **lean** – does not require unnecessarily long inputs from user that may be ambiguous.
+
+##### Accepting More `DateTimeFormatter` Formats
+
+First, we start off by accepting more formats of `Date` and `Time` that Java's `LocalDateTime` library provides (Numbered Date-time formats). All summarised in the [User Guide](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-formats).
+
+Parsing for this is done by "brute force" handled by the number of elements the date-time format has (the reason it is done this way will be explained in a later section):
+
+To illustrate how parsing of multiple formats is done, the sequence diagram shows `parseTwoElementsNumberTimeFormat()`, one of the methods that parses multiple formats, and how it matches the input with a format and parses it:
+
+<puml src="diagrams/ExampleParsingNumberFormats.puml" alt="ExampleParsingNumberFormats" />
+
+In words:
+1. `DateTimeParser` will call the relevant `private static` method to parse the respective input (in this case `parseTwoElementsNumberTimeFormat()`)
+2. It will check if the input is of the right length. (Omitted above as it is not as important).
+3. For this particular example, there are 3 formats of `LocalTime`, the program will loop through each format. (`h a`, `h:mm a` and `h.mm a`)
+4. A `DateTimeFormatter` is built to be case-insensitive, with the format at that point of execution and to language English (relevant to formats that have letters).
+5. `LocalTime.parse()` is called with the `DateTimeFormatter` and the program attempts to parse the input with the specified format.
+6. If parse is successful, a `LocalTime` instance is returned.
+7. Else, the program catches the exception and continues.
+8. If nothing is returned after all formats have been looped through, the method returns `null` to indicate a failed parse.
+
+This method is repeated with the other Numbered Time and Numbered Date formats. 
+
+> Of note as well, is the formats that do not contain year inputs e.g. `d/M`, `d MMM`, etc. In these cases, the year will be set to the current year that the method is called.
+> This is done with building the `DateTimeFormatter` with the year using method `parseDefaulting(ChronoField.YEAR, getToday().getYear())`
+
+With this, this will enable date-time inputs to be **faster** and **more convenient** as users have a wide variety of formats to choose from.
+
+##### Accepting More Formats - Natural Language
+
+Another feature we wanted to achieve is for users to use natural language formats that maybe not be as easily expressed in a date or a time.
+Formats that are usually used when conversing. As there are a lot of possibilities it is impossible to accept all forms, we had to sieve out several more important formats that Freelancers may use more often.
+
+**Common references of time**: noon, midnight, in _ minutes.
+
+**Common references of dates**: tomorrow, next week, next Monday, in _ weeks.
+
+**Common references that imply both date and time**: now, _ from now.
+
+These make sense as scheduling meetings with a client may sound like: *"Let's follow-up next week, 4:30pm?"*
+
+Similarly, we can achieve this by parsing these inputs based on the number of words it has. For natural language formats as you can from the [User Guide](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-formats),
+has formats that correspond to the number of words (For example, 3 word date formats are in the formt of "in _ days/months/years"). Hence, we parsed these inputs using switch cases.
+
+To explain, we have described the implementation of one of methods that parse english date time formats, `parseThreeElementsEnglishDateFormat()` in the activity diagram below:
+
+<puml src="diagrams/EnglishFormatsParsingActivityDiagram.puml" alt="ParsingAD" />
+
+##### Parsing Date-Time Instance
+
+Now we have built the base of how to parse Date, Time and Date Time inputs (both Numbered and Natural Language formats) by their elements. We need a master method to pull all these together. 
+Given a string, how does the program choose the right kind of methods to parse the input?
+
+The `parseDateTimeInstance()` method brings together all of this to parse any given string.
+
+To demonstrate how a string is parsed into a `LocalDateTime` value given that it can be any combination of `Date`, `Time` or `DateTime` formats. We use the below activity diagram to demonstrate:
+
+<puml src="diagrams/ParseDateTimeInstanceAD.puml" alt="DTIAD" />
+
+To further explain what happens within a "Parse X Inputs" we take a look at one of the implementations, `parseThreeElements`.
+
+<puml src="diagrams/ParseThreeElementsAD.puml" alt="ParseThreeElementsActivityDiagram" />
+
+As you can see this is how given the number of words of input, date-time can be parsed even if input can be a date, time or date-time.
+
+**On a higher level, a general flow will look something like this:** (note that this is greatly simplified)
+
+<puml src="diagrams/InstanceDateTimeHighLevel.puml" alt="InstanceDateTimeHighLevel" />
+
+##### Parsing Smartly
+
+In one the above diagram where we talked about `parseThreeElements()` we got a glimpse of how the parser parses date-time inputs smartly.
+
+In the event either the date or time is not specified, the parser will assume with a "future-bias" prediction on the unspecified date or time.
+
+For example, when time is not specified, it will be set to the 00:00, signifying the start of the day. Likewise, if the date is not specified, the next occurrence of the date with the specified time will be chosen.
+
+****Parsing Durations****
+
+This is further shown when parsing durations using `parseDateTimeDuration()` 
+1. When parsing `<TIME>` to `<TIME>` only durations, date will be set to next occurrence of the end time. (Future-Bias assumptions)
+2. When parsing `<DATE>` to `<DATE>` only durations, time will be set from 00:00 for start date and 23:59 for end date. (Assuming whole day durations)
+3. When parsing `<DATE><TIME>` to `<TIME>`, time will be assumed to be the same date as the start `<DATE>`. (Conventional way of communicating e.g. Next Monday 4-6pm)
+
+For more information on the assumptions that the parser makes when there are missing `<DATE>` or `<TIME>` inputs for either start or end time, you can check out the User guide section for this [here](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-combinations-of-s-and-e).
 
 --------------------------------------------------------------------------------------------------------------------
 

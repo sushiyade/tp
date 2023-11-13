@@ -21,8 +21,9 @@ If you are a freelancer who is looking to optimize your workflow, look no furthe
 
 **ADVANCED USER?** Jump ahead to the [Command Summary](#command-summary) to get an overview of all the commands!
 
+--------------------------------------------------------------------------------------------------------------------
+
 <!-- * Table of Contents -->
-<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
