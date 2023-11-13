@@ -71,6 +71,8 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
+In the class diagram above, it is showing the state where the `Finance` tab is selected.
+
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ContactsTab`, `FinanceTab`, `EventsTab`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 Depending on the Tab currently selected by the user, the `MainWindow` will display the corresponding `PersonListPanel`, `FinanceListPanel` or `EventListPanel`.
