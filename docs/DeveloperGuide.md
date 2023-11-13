@@ -15,6 +15,8 @@
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
+Application icon was taken from [Flaticon](https://www.flaticon.com/free-icon/duck_1993713?term=duck&page=1&position=6&origin=tag&related_id=1993713)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -69,7 +71,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
+<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component" width="1000"/>
 
 In the class diagram above, it is showing the state where the `Finance` tab is selected.
 
@@ -92,7 +94,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component within a Tab:
 
-<puml src="diagrams/LogicClassDiagram.puml" width="550"/>
+<puml src="diagrams/LogicClassDiagram.puml" width="750"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.</br>
 **Note:** This takes place within the ContactsTab. 
@@ -180,8 +182,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
 ### Add Finance feature
 
 In FreelanceBuddy, the creation of Finance entries (commissions and expenses) includes validation for clients. In the case that the user attempts to create a Finance entry with an associated client, FreelanceBuddy will check if the client exists in the Contacts Tab and only create the entry if it does.
@@ -260,7 +260,7 @@ also update to only show finances related to the given client.
 
 Use of the `tab` command to switch between tabs in the UI. 
 
-Currently, the application uses the existing [TabsPane from JavaFX](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TabPane.html).
+Currently, the application uses the existing [TabPane from JavaFX](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TabPane.html).
 
 #### Tab object
 
@@ -302,7 +302,7 @@ The following sequence diagram represents the user is changing from the Contacts
 
 <puml src="diagrams/ChangeTabSequenceDiagram.puml" alt="ChangeTabSequenceDiagram" />
 
-The following activity diagram summaries what happens when a user changes a tab.
+The following activity diagram summarise what happens when a user changes a tab.
 
 <puml src="diagrams/TabActivityDiagram.puml" alt="TabActivityDiagram" />
 
@@ -380,7 +380,7 @@ To demonstrate how a string is parsed into a `LocalDateTime` value given that it
 
 To further explain what happens within a "Parse X Inputs" we take a look at one of the implementations, `parseThreeElements`.
 
-<puml src="diagrams/ParseThreeElementsAD.puml" alt="ParseThreeElementsActivityDiagram" />
+<puml src="diagrams/ParseThreeElementsAD.puml" alt="ParseThreeElementsActivityDiagram" width="600"/>
 
 As you can see this is how given the number of words of input, date-time can be parsed even if input can be a date, time or date-time.
 
@@ -455,6 +455,12 @@ which is inconsistent with real-world scenarios where phone numbers are unique a
 
 We plan to implement a check for contact phone numbers to prevent duplicate entries, including phone numbers which include country codes
 For example, `+6598765432` will be considered the same as `98765432`, where `+65` is the country code for Singapore.
+
+#### 6. Duplicates of contact telegram names
+Currently, the system allows duplicate telegram names
+which is inconsistent with real-world scenarios where telegram names are unique and tied to a single person.
+
+We plan to implement a check for telegram names to prevent duplicate entries.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -644,7 +650,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions** 
 
 * 1a. No contacts found that contains given name keywords.
-  * 1a1. FreelanceBuddy shows error message.
+  * 1a1. FreelanceBuddy shows 0 contacts.
 
     Use case ends.
 
@@ -662,7 +668,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. No contacts found that contains given company keywords.
-    * 1a1. FreelanceBuddy shows error message.
+    * 1a1. FreelanceBuddy shows 0 contacts.
 
       Use case ends.
 
@@ -889,11 +895,9 @@ Use case ends.
 |      Aspect       | Description                                                                                                                                                                                                                                                                                                                                     |
 |:-----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Compatibility** | Should work on any _mainstream OS_ as long as it has Java `11` or above installed.                                                                                                                                                                                                                                                              |
-|  **Performance**  | 1. Should be able to to hold up to 1000 contacts without much _performance degradation_.<br/><br/>2. Should respond to commands within 1s on average for any type of task.                                                                                                                                                                      |
+|  **Performance**  | 1. Should be able to to hold up to 1000 entires in all tabs without much _performance degradation_.<br/><br/>2. Should respond to commands within 1s on average for any type of task.                                                                                                                                                           |
 |   **Usability**   | 1. User with above average typing speed should be able to accomplish most tasks faster than using mouse and GUIs.<br><br>2. CLI commands should be intuitive and easy for the user.<br></br>3. Error messages should be informative so users can troubleshoot effectively.<br><br>4. Clear and concise documentation available to assist users. |
 |  **Reliability**  | 1. App should be robust and resilient to minimize any crashes or errors.<br><br> 2. App should have have regular automated backup procedures to ensure data is saved in the case of accidental shut down or crashes to the app.                                                                                                                 |
-
-*{More to be added}*
 
 ### Glossary
 
