@@ -865,6 +865,44 @@ Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Effort**
+
+This section aims to showcase the effort that we put into FreelanceBuddy as a team. We will highlight the challenges
+and efforts we faced for each component of FreelanceBuddy.
+
+With FreelanceBuddy, we added the `Finance` and `Event` entities on to the existing AB3 `Person` entity. 
+These entities and their models were made from scratch, with minimal code reuse from AB3. 
+
+With the addition of these entities, we felt that it made the most sense to create two new tabs. This meant that new UI 
+components had to be created for each tab. For this, the main structure of each tab was somewhat similar to the original AB3 UI,
+however slight adjustments were made to cater to the needs of each tab.
+
+With the creation of three tabs, we realised that separate parsers had to be made. This is because the same command should
+have a different result depending on which tab you are on. To achieve this, we made three new parsers - `ContactParser`,
+`FinanceParser` and `EventParser` which all extend the `ParseCommandHandlers` class. This helped us to manage how commands
+were handled in each tab. `ContactParser` was adapted from the original AB3 `AddressBookParser` while the other two parsers
+had very minimal code reuse, due to the fact that they handled very different commands.
+
+For the commands, many of the basic commands (i.e. add, delete and edit) that we added to `Finance` and `Events` made 
+use of the existing AB3 commands. Many of the new commands we added (i.e. `filter-n`, `summary`) relied on the 
+use of the `Predicate` classes. This was adapted from the existing `find` command of AB3. While the new commands were not exactly
+the same as the `find` command, we were able to extract the idea of how to filter a list from the `find` command.
+
+We also made an effort to cater to more intuitive user inputs through the implementation of the `DateTimeParser`. 
+We felt that the addition of this `DateTimeParser` greatly improved the user experience since many of our commands made 
+use of both a start and end time. The implementation of this was not trivial and none of the code for this was taken from AB3.
+
+The main challenge we faced with FreelanceBuddy was that we were now handling three separate entity types, all of which had
+different behaviours and functions. This made integration between the three tabs more challenging. As an example, we
+were unable to implement the cascading update and delete from the `Contacts` tab to the `Finance` and `Events` tabs 
+([more on this](#1-lack-of-cross-tab-updating)). 
+
+Overall, we felt that we the effort that we have put into creating FreelanceBuddy is more than sufficient. This is justified
+by the sheer amount of new features we have added (i.e. all the `Finance` and `Events` features). We also felt that many
+of the features we added (e.g. `summary`, `filter-t`) were different from all the AB3 features. 
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
