@@ -37,19 +37,31 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=flexibo&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22)
 
 * **Project management**:
-  * To be added
+  * Check for code quality throughout the project
 
 * **Enhancements to existing features**:
-  * To be added
+  * For the edit method in finance, I was unable to use the edit command from contacts, so 
+  * Make 3 different 
+  * Refactor the tab command to make use of a Tab object
 
 * **Documentation**:
   * User Guide:
-    * To be added
+    * Edit commands for events and finance
+    * filter-n and filter-c commands for contacts
+    * Adding hyperlinks
+    * Overall make sure that the UG is standardized as much as possible
+      * Very time-consuming
   * Developer Guide:
-    * To be added
+    * Add tab change implementation
+      * 
+    * Update storage UML diagram 
+    * Add test cases for storage
 
 * **Community**:
-  * To be added
+  * adfasdfidfsifsod
 
 * **Tools**:
-  * To be added
+  * Intellij
+  * GitHub
+  * PlantUML
+  * MarkBind
