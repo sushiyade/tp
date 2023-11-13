@@ -142,7 +142,7 @@ public class EditEventCommand extends Command {
         requireNonNull(model);
 
         if (editEventDescriptor.getClients().isEmpty()) {
-            editEventDescriptor.setClients(null);
+            return;
         }
 
         Set<Person> toBeEditedClients = editEventDescriptor.getClients().get();
