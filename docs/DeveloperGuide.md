@@ -157,7 +157,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="1000" />
 
 The `Storage` component,
 * can save the following data in JSON format, and read them back into corresponding objects.
@@ -254,38 +254,55 @@ report. The method returns the summary as a string which is then passed as an ar
 also update to only show finances related to the given client. 
 
 
+### Changing Tabs
 
+Use of the `tab` command to switch between tabs in the UI. 
 
+Currently, the application uses the existing [TabsPane from JavaFX](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TabPane.html).
 
+#### Tab object
 
+The `commons.core.Tab` object stores both the index and tab name. It also contains the standard index and tab name constants of each tab which can be used by other classes.
 
+<box type= "tip" seamless>
 
+You will need to update these constants in `commons.core.Tab` if you wish to add/edit/delete a tab from the application. 
+</box>
 
+To create the `Tab` object, you need to use the `Tab#fromParameter("tabName")` as the constructor is private.
+Note that the `Tab` object will convert and store the index based on the given tab name(assuming it is valid).
 
+<box type= "warning" seamless>
 
+Note that `ui.ContactsTab`, `ui.EventsTab` and `ui.FinanceTab` does not implement from `core.tab.Tab` as they have different purposes.
+</box>
 
+#### Usage scenario
 
+Given below is an example usage scenario and how the tab mechanism behaves at each step.
 
+**Step 1.** The user launches the application, and is on the contacts tab.  
 
+**Step 2.** The _user executes_ `tab events` command to switch from the contacts tab to the events tab.
+The `TabCommandParser` creates the `Tab` object using the `ParserUtil#parseTab("events")` method.
 
+**Step 3.** The method _checks if it is a valid input_ using `Tab#isValidParameter("events")` **before** creating the `Tab` object.
 
+**Step 4.** The `Tab` object _converts the given parameter into the appropriate tab index_, and stores both the parameter and index within the object. 
+The `Tab` object is passed from the `TabCommandParser` to the `TabCommand`, 
+which returns the tab index from the `Tab` object using `Tab#getZeroBasedTabIndex()`.
 
+In this case, the return value is 2 since the index for the Events Tab is 2. 
 
+**Step 5.** The `ContactsTab` switches tab in the GUI using the `ContactsTab#handleTabChange(2)`
 
+The following sequence diagram represents the user is changing from the Contacts tab to the Events tab as mentioned above.
 
+<puml src="diagrams/ChangeTabSequenceDiagram.puml" alt="ChangeTabSequenceDiagram" />
 
+The following activity diagram summaries what happens when a user changes a tab.
 
-
-
-
-
-
-
-
-
-
-
-
+<puml src="diagrams/TabActivityDiagram.puml" alt="TabActivityDiagram" />
 
 
 ### Duplicates of contact names
