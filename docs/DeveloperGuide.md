@@ -891,7 +891,131 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+## Test cases for Contacts
+
+For the following tests we assume that you are on the Contacts tab.
+
+### Listing Contacts
+
+1. Viewing all contacts in FreelanceBuddy
+
+    1. Prerequisites: There are contacts that are already saved in FreelanceBuddy. 
+
+    1. Test case: `list`
+
+       Expected: all previously saved contacts will be shown only in the contacts tab. There will be a success message of "Listed all persons".
+   
+    1. Test case: `list 1234`
+
+       Expected: all previously saved contacts will be shown only in the contacts tab. There will be a success message of "Listed all persons".
+
+### Adding a Contact
+
+1. Add a new contact into FreelanceBuddy
+
+    1. Test case (only compulsory fields): `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`
+
+       Expected: a new `contact` with the corresponding details will be added to the bottom of the list.
+
+    1. Test case (with all fields): `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds`
+
+       Expected: a new `contact` with the corresponding details will be added to the bottom of the list.
+
+    1. Test case (missing compulsory field): `add n/Abbie Dunkins p/+610489630614 a/Opera house c/NAB t/@anniebirds`
+    
+       Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
+
+    1. Test case (repeated fields): `add n/Abbie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds`
+
+       Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
+
+    1. Test case (invalid format for one field): `add n/Abbie Dunkins p/123 e/ann1e@gmail.com`
+
+       Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
+   
+   1. Pre-requisites: Another contact exactly names `Annie Dunkins` must exist.
+
+   1. Test case (duplicate name): `add n/Annie Dunkins p/+555 555-5555 e/annie@gmail.com`
+
+      Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
+
+### Editing a Contact
+
+1. Editing a contact in FreelanceBuddy
+
+    1. Pre-requisites: There must be at least one contact that is already saved in FreelanceBuddy and no other contact can have the name `‘Chewbaca’ The 1st`. List all persons using 'list' command.
+
+    1. Test case (valid edit): `edit 1 n/‘Chewbaca’ The 1st`
+
+       Expected: contact at index 1 has name field modified to ‘Chewbaca’ The 1st. 
+
+    1. Pre-requisites: Contact at index 1 must have a stored telegram handle.
+
+    1. Test case (removing optional fields): `edit 1 n/Alex Yeoh t/` 
+
+       Expected: contact at index 1 has name field modified to Alex Yeoh and telegram handle stored is removed.
+
+    1. Test case (removing compulsory fields): `edit 1 n/`
+        
+       Expected: contact will not be edited. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `edit 1 p/`, `edit 1 e/`, `edit x t/` (where x is larger than the list size)<br>
+           Expected: Similar to previous.
+
+### Deleting a person
+
+1. Deleting a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous. 
+
+### Filtering a person
+
+1. Filter a contact by name
+
+    1. Pre-requisites: There must be at least one contact that is already saved in FreelanceBuddy. Ensure one of them has the name `Alex Yeoh`
+
+    1. Test case (valid filter): `filter-n Alex`
+
+        Expected: Only contacts with the key word `Alex` (not case-sensitive) will be shown in the list.
+
+    1. Pre-requisites: There is no one in FreelanceBuddy that has the name that consist of `Alex`
+
+    1. Test case (invalid keyword): `filter-n Alex`
+
+        Expected: No contacts are shown in the list.
+
+   1. Test case (without keyword): `filter-n`
+
+       Expected: Error details shown in the status message. List remains the same.
+
+
+1. Filter a contact by company
+
+    1. Pre-requisites: There must be at least one contact that is already saved in FreelanceBuddy. Ensure one of them has the company `Google`
+
+    1. Test case (valid filter): `filter-c google`
+
+       Expected: Only contacts with the key word `google` in the company name (not case-sensitive) will be shown in the list.
+
+    1. Pre-requisites: There is no one in FreelanceBuddy that has the company that consist of `google`
+
+    1. Test case (invalid keyword): `filter-c google`
+
+       Expected: No contacts are shown in the list.
+
+   1. Test case (without keyword): `filter-c`
+
+          Expected: Error details shown in the status message. List remains the same.
+
 
 ## Test cases for Finance
 
