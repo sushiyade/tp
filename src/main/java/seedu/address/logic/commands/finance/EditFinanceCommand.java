@@ -60,7 +60,7 @@ public class EditFinanceCommand extends Command {
         requireNonNull(editFinanceDescriptor);
 
         this.index = index;
-        this.editFinanceDescriptor = new EditFinanceDescriptor(editFinanceDescriptor);
+        this.editFinanceDescriptor = editFinanceDescriptor;
     }
 
     @Override
@@ -166,6 +166,8 @@ public class EditFinanceCommand extends Command {
     /**
      * Stores the details to edit the finance with. Each non-empty field value will replace the
      * corresponding field value of the finance.
+     * Note for this particular descriptor, unlike the other descriptors, does NOT have a copy constructor as there is
+     * no clear way to properly implementing the isClientChecked for the copy instructor.
      */
     public static class EditFinanceDescriptor {
         private Amount amount;
@@ -175,19 +177,6 @@ public class EditFinanceCommand extends Command {
         private boolean isClientChanged = false;
 
         public EditFinanceDescriptor() {}
-
-        /**
-         * Copy constructor.
-         */
-        public EditFinanceDescriptor(EditFinanceDescriptor toCopy) {
-            setAmount(toCopy.amount);
-            setDescription(toCopy.description);
-            setTimeDue(toCopy.timeDue);
-
-            if (toCopy.client != null) {
-                setClient(toCopy.client);
-            }
-        }
 
         /**
          * Returns true if at least one field is edited.

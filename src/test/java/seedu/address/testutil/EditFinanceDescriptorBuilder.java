@@ -20,9 +20,6 @@ public class EditFinanceDescriptorBuilder {
         descriptor = new EditFinanceDescriptor();
     }
 
-    public EditFinanceDescriptorBuilder(EditFinanceDescriptor descriptor) {
-        this.descriptor = new EditFinanceDescriptor(descriptor);
-    }
 
     /**
      * Returns an {@code EditFinanceDescriptor} with fields containing {@code finance}'s details
