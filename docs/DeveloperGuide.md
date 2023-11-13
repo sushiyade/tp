@@ -316,26 +316,47 @@ also update to only show finances related to the given client.
 
 
 
-## **Duplicates of contact names**
 
-### Problem description 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Duplicates of contact names
+
 Currently, the system allows duplicate contact names due to case sensitivity, 
 which is inconsistent with real-world scenarios where case sensitivity isn't considered.
 
-### Proposed solution
-Implement a case-insensitive check for contact names to prevent duplicate entries. 
+We plan to implement a case-insensitive check for contact names to prevent duplicate entries. 
 Freelancebuddy will recognize "John" and "john" as the same entry, ensuring uniqueness irrespective of case, 
 preventing the addition of duplicates names based solely on case variation.
 
 
-## **Duplicates of contact phone numbers**
-
-### Problem description
+### Duplicates of contact phone numbers
 Currently, the system allows duplicate contact phone numbers
 which is inconsistent with real-world scenarios where phone numbers are unique and tied to a single person.
 
-### Proposed solution
-Implement a check for contact phone numbers to prevent duplicate entries, including phone numbers which include country codes
+We plan to implement a check for contact phone numbers to prevent duplicate entries, including phone numbers which include country codes
 For example, `+6598765432` will be considered the same as `98765432`, where `+65` is the country code for Singapore.
 
 
