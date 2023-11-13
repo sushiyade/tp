@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -306,6 +306,40 @@ report. The method returns the summary as a string which is then passed as an ar
 
 **Step 5.** The summary report is then displayed in the status box. The list of finances displayed in the finance tab will
 also update to only show finances related to the given client. 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Planned Enhancements**
+
+In this section, we will go through some current Feature Flaws that FreelanceBuddy currently has and our plans to fix it.
+
+#### 1. Lack of cross-tab updating
+
+Currently, when a user deletes or edits a client in the contacts tab, this change is not reflected in the Finance and Events
+tabs. For example, when the client `John Doe` is deleted from our contacts tab, Finances and Events that were previously tagged
+with the client `John Doe` will remain unaffected. The user will have to manually change the entries in the Finance and Events
+tab to reflect the necessary changes. 
+
+We plan on making the edits and deletes from the contacts tab cascade to the other tabs. This will ensure that changes made
+in the contacts tab will be reflected in the other two tabs, avoiding any potential confusion. 
+
+#### 2. Missing client validation when loading from storage
+
+Currently, we do not perform any client validation checks on data that is being loaded in from the json files. For example, 
+if the user decides to edit a Finance entry from the json files, they will be able to change the tagged client to a client 
+that does not exist in their contacts.
+
+We plan on adding an extra layer of client validation checks for when data is being loaded in from the storage. This will
+help to ensure that the data remains consistent even if the user decides to manually change the json files. 
+
+#### 3. Missing protection for preferences and config json files
+
+Currently, if user changes the values in the `preferences.json` or `config.json` files to an illegal value, this will cause 
+the application to not be able to start. For example, if the user changes the `userPrefsFilePath` value in the `config.json`
+file to `null`, the application will not be able to start. 
+
+We plan on handling this issue by resetting the files to their default values if an invalid input is detected. This will
+prevent a scenario where the user is unable to launch the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -744,12 +778,15 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+## Test cases for Finance
+
+For the following tests, we assume that you are on the Finance tab.
 
 ### Adding a commission
 
 1. Adding a new commission into FreelanceBuddy
 
-    1. Prerequisites: Navigate to the finance tab. There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
+    1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
 
     1. Test case: `add-c a/900 c/John Doe d/ChatBot commission t/next week`<br>
        Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be a week from the current time.
