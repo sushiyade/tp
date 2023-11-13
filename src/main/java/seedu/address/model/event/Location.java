@@ -29,11 +29,6 @@ public class Location {
         return test.matches(VALIDATION_REGEX);
     }
 
-
-    public String getLocationName() {
-        return value;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

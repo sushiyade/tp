@@ -181,9 +181,12 @@ public class EditFinanceCommand extends Command {
          */
         public EditFinanceDescriptor(EditFinanceDescriptor toCopy) {
             setAmount(toCopy.amount);
-            setClient(toCopy.client);
             setDescription(toCopy.description);
             setTimeDue(toCopy.timeDue);
+
+            if (toCopy.client != null) {
+                setClient(toCopy.client);
+            }
         }
 
         /**

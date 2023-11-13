@@ -29,6 +29,7 @@
 * [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
   * [Getting Started]({{ baseUrl }}/UserGuide.html#getting-started)
     * [Quick Start <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#quick-start)
+    * [Navigating this user guide <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#quick-start)
     * [Features <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#features)
   * [Commands]({{ baseUrl }}/UserGuide.html#commands)
     * [General Commands <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#general-commands)
@@ -38,6 +39,7 @@
   * [Data Storage]({{ baseUrl }}/UserGuide.html#data-storage)
     * [Saving the data <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#saving-the-data)
     * [Editing the data file <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#editing-the-data-file)
+    * [Configuration Files <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#configuration-files)
   * [Accepted Date-time Formats <span class="badge rounded-pill bg-success" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#accepted-date-time-formats)
   * [Command Summary <span class="badge rounded-pill bg-danger" data-v-4d146e2c=""><span aria-hidden="true" class="far fa-star" data-v-4d146e2c=""></span></span>]({{ baseUrl }}/UserGuide.html#command-summary)
     * [General]({{ baseUrl }}/UserGuide.html#general)

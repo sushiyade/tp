@@ -55,8 +55,16 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `events' add`, `events' delete`, `events' filter-n`, `events' filter-t`, 
-    `events' list`, `events' list-all`
+    * Added documentation for Contacts
+      *  Parameter Fields
+    * Added documentation for the features in Events
+      * `add`
+      * `delete`
+      * `filter-n`
+      * `filter-t`
+      * `list`
+      * `list-all`
+    
   * Developer Guide:
     * To be added
 
