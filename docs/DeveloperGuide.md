@@ -177,6 +177,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Undo/redo feature
+
 ### Add Finance feature
 
 In FreelanceBuddy, the creation of Finance entries (commissions and expenses) includes validation for clients. In the case that the user attempts to create a Finance entry with an associated client, FreelanceBuddy will check if the client exists in the Contacts Tab and only create the entry if it does.
@@ -249,6 +251,60 @@ report. The method returns the summary as a string which is then passed as an ar
 
 **Step 5.** The summary report is then displayed in the status box. The list of finances displayed in the finance tab will
 also update to only show finances related to the given client. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Duplicates of contact names
+
+Currently, the system allows duplicate contact names due to case sensitivity, 
+which is inconsistent with real-world scenarios where case sensitivity isn't considered.
+
+We plan to implement a case-insensitive check for contact names to prevent duplicate entries. 
+Freelancebuddy will recognize "John" and "john" as the same entry, ensuring uniqueness irrespective of case, 
+preventing the addition of duplicates names based solely on case variation.
+
+
+### Duplicates of contact phone numbers
+Currently, the system allows duplicate contact phone numbers
+which is inconsistent with real-world scenarios where phone numbers are unique and tied to a single person.
+
+We plan to implement a check for contact phone numbers to prevent duplicate entries, including phone numbers which include country codes
+For example, `+6598765432` will be considered the same as `98765432`, where `+65` is the country code for Singapore.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
