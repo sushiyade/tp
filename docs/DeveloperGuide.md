@@ -177,11 +177,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Duplicate name detection feature
-
-#### Proposed Implementation
-
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -311,6 +306,11 @@ report. The method returns the summary as a string which is then passed as an ar
 
 **Step 5.** The summary report is then displayed in the status box. The list of finances displayed in the finance tab will
 also update to only show finances related to the given client. 
+
+
+
+
+
 
 
 
