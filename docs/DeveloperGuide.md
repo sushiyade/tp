@@ -1057,6 +1057,23 @@ For the following tests we assume that you are on the Contacts tab.
 
 For the following tests, we assume that you are on the Finance tab.
 
+### Listing all finances
+
+1. Using the list command to view finances
+
+    1. Prerequisites: We assume that there are multiple expenses and commissions in the finance tab. 
+
+    2. Test case: `list`<br>
+    Expected: Lists all finances
+   
+    3. Test case: `list commission`<br>
+    Expected: List all commissions
+   
+    4. Test case: `list expense`<br>
+    Expected: List all expenses
+
+
+
 ### Adding a commission
 
 1. Adding a new commission into FreelanceBuddy
@@ -1075,8 +1092,66 @@ For the following tests, we assume that you are on the Finance tab.
     1. Test case: `add-c a/50 c/John Doe`<br>
        Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
    
-    1. Other incorrect delete commands to try: `add-c a/50 c/John Doe`, `add-c a/-50 c/John Doe d/ChatBot commission`,<br>
+    1. Other incorrect `add-c` commands to try: `add-c a/50 c/John Doe`, `add-c a/-50 c/John Doe d/ChatBot commission`,<br>
        Expected: Similar to previous.
+
+### Adding an expense
+
+1. Adding a new expense into FreelanceBuddy
+
+    1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
+
+    1. Test case: `add-e a/900 c/John Doe d/ChatBot commission t/next week`<br>
+       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in red. The time displayed should be a week from the current time.
+
+    1. Test case (no time input): `add-e a/50 c/John Doe d/ChatBot commission`<br>
+       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in red. The time displayed should be the current time.
+
+    1. Test case (Amy Smith is not in the contacts): `add-e a/50 c/Amy Smith`<br>
+       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+
+    1. Test case: `add-e a/50 c/John Doe`<br>
+       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+
+    1. Other incorrect `add-e` commands to try: `add-e a/50 c/John Doe`, `add-e a/-50 c/John Doe d/ChatBot commission`,<br>
+       Expected: Similar to previous.
+
+### Editing a finance
+
+1. Editing a finance while all finances are being shown
+
+    1. Prerequisite: For our example, we shall assume that the following finances are present in the finance tab:
+        * `commission` with the client `John Doe`, amount `900` and description `ChatBot UI` is at `index 1`
+        * `expense` with the client `John Doe`, amount `50` and description `Adobe Photoshop subscription` is at `index 2`.<br>
+    
+        We also assume that `Adam Smith` is in our contacts and `Betsy Crowder` is not.<br>
+   
+    2. Test case: `edit 1 c/Adam Smith`<br>
+       Expected: The client tagged to the commission should now be `Adam Smith`. Rest of the commission remains unchanged. 
+   
+    3. Test case: `edit 1 a/100`<br>
+       Expected: The amount is changed to `100`. Rest of the commission remains unchanged.
+   
+    4. Test case: `edit 1 d/ChatBot commission payment`<br>
+       Expected: The description is changed to `ChatBot commission payment`. Rest of the commission remains unchanged.
+   
+    5. Test case: `edit 1 t/tmr`<br>
+       Expected: The time due is changed to the next day. Rest of the commission remains unchanged.
+   
+    6. Test case: `edit 1 c/`<br>
+       Expected: No changes to the `commission`. Error details shown in the status message. 
+   
+    7. Test case: `edit 1 a/-900`<br>
+       Expected: No changes to the `commission`. Error details shown in the status message.
+   
+    8. Test case: `edit 1 d/`<br>
+       Expected: No changes to the `commission`. Error details shown in the status message.
+
+    9. Test case: `edit 2 c/`<br>
+       Expected:  There is now no client tagged to the `expense.` Rest of the expense remains unchanged.
+
+    10. Other test cases: Repeat steps 2-5 for the expense entry (i.e. Replace index 1 with 2)
+        
 
 ### Deleting a person
 
