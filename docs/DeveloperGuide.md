@@ -629,25 +629,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-#### Use Case: UC6 - Find a specific client contact
+#### Use Case: UC6 - Find a specific client contact by name
 
 **Precondition**: User is on **Contacts** tab, **Contacts** list must have at least one entry
 
 **MSS**
 
-1. User requests to find contacts using keywords.
-2. FreelanceBuddy shows a list of Contacts that contains given keywords.
+1. User requests to find contacts using name keywords.
+2. FreelanceBuddy shows a list of Contacts that contains given name keywords.
 
    Use case ends resumes at step 1.
 
 **Extensions** 
 
-* 1a. No contacts found that contains given keywords.
+* 1a. No contacts found that contains given name keywords.
   * 1a1. FreelanceBuddy shows error message.
 
     Use case ends.
 
-#### Use Case: UC7 - Add an event
+#### Use Case: UC7 - Find a specific client contact by company
+
+**Precondition**: User is on **Contacts** tab, **Contacts** list must have at least one entry
+
+**MSS**
+
+1. User requests to find contacts using company keywords.
+2. FreelanceBuddy shows a list of Contacts that contains given company keywords.
+
+   Use case ends resumes at step 1.
+
+**Extensions**
+
+* 1a. No contacts found that contains given company keywords.
+    * 1a1. FreelanceBuddy shows error message.
+
+      Use case ends.
+
+#### Use Case: UC8 - Editing a client contact
+
+**Precondition**: User is on **Contacts** tab, **Contacts** list must have at least one entry
+
+**MSS**
+
+1. User requests to edit a contact they see in the contacts tab.
+2. FreelanceBuddy changes the contact fields to the new modified values.
+
+   Use case ends resumes at step 1.
+
+**Extensions**
+
+* 1a. User input is invalid
+    * 1a1. FreelanceBuddy shows error message.
+
+      Use case ends.
+
+#### Use Case: UC9 - Add an event
 
 **Precondition**: User is on **Events** tab
 
@@ -665,7 +701,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-#### Use Case: UC8 - Delete an event
+#### Use Case: UC10 - Delete an event
 
 **Precondition**: User is on **Events** tab, **Events** list must have at least one entry
 
@@ -683,7 +719,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-#### Use Case: UC9 - View all events
+#### Use Case: UC11 - View all events
 
 **Precondition**: User is on **Events** tab, **Events** list must have at least one entry
 
@@ -694,7 +730,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Use case ends.
 
-#### Use Case: UC10 - View most urgent events
+#### Use Case: UC12 - View most urgent events
 
 **Precondition**: User is on **Events** tab, **Events** list must have at least one entry
 
@@ -705,7 +741,7 @@ Use case ends.
 
 Use case ends.
 
-#### Use Case: UC11 - Add a finance entry
+#### Use Case: UC13 - Add a finance entry
 
 **Precondition**: User is on **Finance** tab
 
@@ -723,7 +759,7 @@ Use case ends.
 
         Use case resumes at step 1.
 
-#### Use Case: UC12 - Delete a finance entry
+#### Use Case: UC14 - Delete a finance entry
 
 **Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
 
@@ -741,7 +777,7 @@ Use case ends.
     
     Use case resumes at step 1.
 
-#### Use Case: UC13 - View all finance entries
+#### Use Case: UC15 - View all finance entries
 
 **Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
 
@@ -752,7 +788,7 @@ Use case ends.
 
 Use case ends.
 
-#### Use Case: UC14 - Filter by finance entry type
+#### Use Case: UC16 - Filter by finance entry type
 
 **Precondition**: User is on **Finance** tab
 
@@ -770,7 +806,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC15 - Edit a finance entry
+#### Use Case: UC17 - Edit a finance entry
 
 **Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
 
@@ -793,7 +829,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC16 - Filter finance entries by client
+#### Use Case: UC18 - Filter finance entries by client
 
 **Precondition**: User is on **Finance** tab
 
@@ -811,7 +847,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC17 - Get finance summary for tagged client
+#### Use Case: UC19 - Get finance summary for tagged client
 
 **Precondition**: User is on **Finance** tab
 
@@ -829,7 +865,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC18 - Filter finance entries by a timeframe
+#### Use Case: UC20 - Filter finance entries by a timeframe
 
 **Precondition**: User is on **Finance** tab
 
