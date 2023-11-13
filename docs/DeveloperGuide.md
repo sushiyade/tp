@@ -898,26 +898,89 @@ testers are expected to do more *exploratory* testing.
 For the following tests, we assume that you are on the Finance tab.
 
 ### Adding a commission
+1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
 
-1. Adding a new commission into FreelanceBuddy
+2. Test case: `add-c a/900 c/John Doe d/ChatBot commission t/next week`<br>
+   Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be a week from the current time.
 
-    1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
+3. Test case (no time input): `add-c a/50 c/John Doe d/ChatBot commission`<br>
+   Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be the current time.
 
-    1. Test case: `add-c a/900 c/John Doe d/ChatBot commission t/next week`<br>
-       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be a week from the current time.
+4. Test case (Amy Smith is not in the contacts): `add-c a/50 c/Amy Smith`<br>
+   Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (no time input): `add-c a/50 c/John Doe d/ChatBot commission`<br>
-       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be the current time.
+5. Test case: `add-c a/50 c/John Doe`<br>
+   Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (Amy Smith is not in the contacts): `add-c a/50 c/Amy Smith`<br>
-       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+6. Other incorrect delete commands to try: `add-c a/50 c/John Doe`, `add-c a/-50 c/John Doe d/ChatBot commission`,<br>
+   Expected: Similar to previous.
 
-    1. Test case: `add-c a/50 c/John Doe`<br>
-       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+### Deleting a Finance Entry
+1. Prerequisites: There has to be at least one finance entry saved in FreelanceBuddy, but less than 999. Assuming the client `John Doe` exists in our contacts, we can set up an entry with the command `add-c d/Test c/John Doe a/20`.
+
+2. Test case: `delete 1`<br>
+   Expected: The entry corresponding to the index `1` is deleted. The index of every entry after `1` is updated to form a continuous list.
+
+3. Test case: `delete 999`<br>
+   Expected: Deletion fails. Error details shown in the status message. List remains unchanged.
+
+4. Test case: `delete 0`<br>
+   Expected: Deletion fails. Error details shown in the status message. List remains unchanged.
+
+5. Other incorrect delete commands to try: `delete -1`, `delete 5.99`<br>
+   Expected: Deletion fails. Error details shown in the status message. List remains unchanged.
+
+### Filtering finances by Client
+1. Prerequisites: There has to be at least one finance entry saved in FreelanceBuddy, but less than 999. Assuming the clients `John Doe` and `Mary Sue` exist in our contacts, we can set up entries with the commands `add-c d/Test c/John Doe a/20` and `add-e d/Test2 c/Mary Sue a/50`.
+
+2. Test case: `filter-c john`<br>
+   Expected: Only entries that belong to a client whose name contains `john` (case-insensitive) will be displayed. Number of entries shown in the status message.
+
+3. Test case: `filter-c John mary`<br>
+   Expected: Only entries that belong to a client whose names contain `John` or `mary` (case-insensitive) will be displayed. Number of entries shown in the status message.
+
+4. Test case (no finance entry has a client with name containing `Hello`): `filter-c Hello`<br>
+   Expected: No entry will be displayed. Number of entries (0) shown in the status message.
+
+5. Test case: `filter-c`<br>
+   Expected: Filter fails. Error details shown in the status message. List remains unchanged.
+
+### Filtering finances by Time Frame
+1. Prerequisites: There has to be at least one finance entry saved in FreelanceBuddy. Assuming the client `John Doe` exists in our contacts, we can set up entries with the commands `add-c d/Test c/John Doe a/20 t/2023-10-10` and `add-e d/Test2 c/John Doe a/50 t/2024-10-10`.
+
+2. Test case: `filter-t s/2023-10-09 e/2023-10-11`<br>
+   Expected: Only entries between `2023-10-09` and `2023-10-11` will be displayed. Number of entries shown in the status message. If using the above setup, only the former entry will be displayed.
+
+3. Test case: `filter-t s/2023-10-09 e/2024-10-12`<br>
+   Expected: Only entries between `2023-10-09` and `2024-10-12` will be displayed. Number of entries shown in the status message. If using the above setup, both entries will be displayed.
+
+4. Test case (no entries in 2099): `filter-t s/2099-01-01 e/2099-12-31`<br>
+   Expected: No entry will be displayed. Number of entries (0) shown in the status message.
+
+5. Test case: `filter-t s/test e/test`<br>
+   Expected: Filter fails. Error details shown in the status message. List remains unchanged.
+
+6. Test case: `filter-t s/2023-10-09`<br>
+   Expected: Filter fails. Error details shown in the status message. List remains unchanged.
+
+7. Test case: `filter-t`<br>
+   Expected: Filter fails. Error details shown in the status message. List remains unchanged.
+
+### Generating a finance summary of a client
+1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the clients `John Doe` and `Mary Sue` exist in our contacts. We can set up entries with the commands `add-c d/Test c/John Doe a/20` and `add-e d/Test2 c/John Doe a/50`.
+
+2. Test case: `summary John Doe`<br>
+   Expected: Only entries that belong to `John Doe` will be displayed. Cumulative value of finance entries, commissions, expenses, and number of commissions and expenses shown in the status message.
+
+3. Test case (no entries by `Mary Sue`): `summary Mary Sue`<br>
+   Expected: No entry will be displayed. Status message should be `You currently have no finances for this client`.
+
+4. Test case (`Hello` does not exists in contacts): `summary Hello`<br>
+   Expected: Summary fails. Error details shown in the status message. List remains unchanged.
+
+5. Test case: `summary`<br>
+   Expected: Summary fails. Error details shown in the status message. List remains unchanged.
    
-    1. Other incorrect delete commands to try: `add-c a/50 c/John Doe`, `add-c a/-50 c/John Doe d/ChatBot commission`,<br>
-       Expected: Similar to previous.
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
