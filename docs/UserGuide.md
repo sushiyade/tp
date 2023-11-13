@@ -199,6 +199,9 @@ You can check out commands related to Events [here](#events-management). A summa
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the input is `help 123`, it will be interpreted as `help`.
 
+* Note that those with the same command may mean different things in different tabs. <br>
+  e.g. [`filter-c`](#finding-contact-by-company-contacts-tab-filter-c) in Contacts filters by company name, while [`filter-c`](#filtering-events-by-clients-events-tab-filter-c) in Events tab filters by client's name
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>
@@ -211,16 +214,17 @@ This is a mini table of contents for general commands to help you navigate this 
 
 *Click on the commands or description to jump to the desired section!*
 
-|                Command                 | Brief Description                                               |
-|:--------------------------------------:|-----------------------------------------------------------------|
-|      [`help`](#viewing-help-help)      | [Opens help window with link to User Guide](#viewing-help-help) |
-|      [`tab`](#switching-tabs-tab)      | [Navigate between tabs](#switching-tabs-tab)                    |
-|  [`exit`](#exiting-the-program-exit)   | [Exits the program](#exiting-the-program-exit)                  |
-| [`clear`](#clearing-all-entries-clear) | [Clears all entries](#clearing-all-entries-clear)               |
+|                Command                 | Brief Description                                                                      |
+|:--------------------------------------:|----------------------------------------------------------------------------------------|
+|      [`help`](#viewing-help-help)      | [<p style="color:black">Opens help window with link to User Guide</p>](#viewing-help-help) |
+|      [`tab`](#switching-tabs-tab)      | [<p style="color:black">Navigate between tabs</p>](#switching-tabs-tab)                    |
+|  [`exit`](#exiting-the-program-exit)   | [<p style="color:black">Exits the program</p>](#exiting-the-program-exit)                  |
+| [`clear`](#clearing-all-entries-clear) | [<p style="color:black">Clears all entries</p>](#clearing-all-entries-clear)           |
+
 
 #### Viewing help → `help`
 
-Shows a message explaining how to access the help page. Each tab will show the link specifically for the tab itself.
+Shows a link to this help page. Each tab will show the link specifically for the tab itself.
 
 ![dashboard help message](images/helpMessage.png)
 
@@ -228,7 +232,6 @@ Format: `help`
 
 [Back to General Commands](#general-commands)
 
---------------------------------------------------------------------------------------------------------------------
 
 #### Switching tabs → `tab`
 
@@ -246,10 +249,10 @@ Acceptable values for `TAB_NAME`:
 
 * `finance`
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                               |
-|:----------------------:|:----------------------:|---------------------------------------------------------------------------------------------------------|
-|     `tab contacts`     |     `tab contact`      | <span style ='color: darkred; text-decoration: underline;'>Unknown parameter<br>Invalid tab name</span> |
-|      `tab events`      |         `tab`          | <span style ='color: darkred; text-decoration: underline;'>Missing parameter</span>                     |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                   |
+|:----------------------:|:----------------------:|-----------------------------------------------------------------------------------------------------------------------------|
+|     `tab contacts`     |     `tab contact`      | <span style ='color: darkred; text-decoration: underline;'>Invalid command format</span><br/> Wrong spelling for `contacts` |
+|      `tab events`      |         `tab`          | <span style ='color: darkred; text-decoration: underline;'>Invalid Command format</span><br/> Missing `TAB_NAME`             |
 
 [Back to General Commands](#general-commands)
 
@@ -287,16 +290,16 @@ This is a mini table of contents for general commands to help you navigate this 
 
 *Click on the commands or description to jump to the desired section!*
 
-|                             Command                             | Brief Description                                                                  |
-|:---------------------------------------------------------------:|------------------------------------------------------------------------------------|
-|        [`list`](#listing-all-contact-contacts-tab-list)         | [View all contacts](#listing-all-contact-contacts-tab-list)                        |
-|           [`add`](#adding-a-contact-contacts-tab-add)           | [Add a new contact](#adding-a-contact-contacts-tab-add)                            |
-|          [`edit`](#editing-a-person-contacts-tab-edit)          | [Edit an existing contact](#editing-a-person-contacts-tab-edit)                    |
-| [`delete`](#deleting-a-contact-with-index-contacts-tab-delete)  | [Delete an existing contact](#deleting-a-contact-with-index-contacts-tab-delete) 	 |
-|  [`filter-n`](#finding-contact-by-name-contacts-tab-filter-n)   | [Filter contacts by name](#finding-contact-by-name-contacts-tab-filter-n)          |
-| [`filter-c`](#finding-contact-by-company-contacts-tab-filter-c) | [Filter contacts by company](#finding-contact-by-company-contacts-tab-filter-c)    |
+|                              Command                               | Brief Description                                                                                            |
+|:------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------|
+|         [`list`](#listing-all-contacts-contacts-tab-list)          | [<p style="color:black">View all contacts</p>](#listing-all-contacts-contacts-tab-list)                      |
+|            [`add`](#adding-a-contact-contacts-tab-add)             | [<p style="color:black">Add a new contact</p>](#adding-a-contact-contacts-tab-add)                           |
+|           [`edit`](#editing-a-contact-contacts-tab-edit)           | [<p style="color:black">Edit an existing contact</p>](#editing-a-contact-contacts-tab-edit)                  |
+|   [`delete`](#deleting-a-contact-with-index-contacts-tab-delete)   | [<p style="color:black">Delete an existing contact</p>](#deleting-a-contact-with-index-contacts-tab-delete) 	 |
+|  [`filter-n`](#filtering-contacts-by-name-contacts-tab-filter-n)   | [<p style="color:black">Filter contacts by name</p>](#filtering-contacts-by-name-contacts-tab-filter-n)          |
+| [`filter-c`](#filtering-contacts-by-company-contacts-tab-filter-c) | [<p style="color:black">Filter contacts by company</p>](#filtering-contacts-by-company-contacts-tab-filter-c)    |
 
-#### Listing all contact: Contacts Tab → `list`
+#### Listing all Contacts: Contacts Tab → `list`
 
 Shows a list of all contacts in the **Contacts** tab.
 
@@ -306,7 +309,7 @@ Format: `list`
 
 [Back to Contacts Management](#contacts-management)
 
-#### Adding a contact: Contacts Tab → `add`
+#### Adding a Contact: Contacts Tab → `add`
 
 Adds a new contact into the **Contacts** tab.
 
@@ -315,24 +318,19 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 > **RESULT:**
 > New Person Added:`NAME`;`PHONE`;`EMAIL`;`ADDRESS`;`COMPANY`;`TELEGRAM_NAME`
 
+<box type="tip" seamless>
+
 * <code>[a/ADDRESS]</code> should preferably be the company’s address
-  <box type="warning" seamless>
-    <ul>
-        <li>
-            Note that each contact can have:
-            <ul>
-              <li>At most one <code>[a/ADDRESS]</code></li>
-              <li>At most one <code>[c/COMPANY]</code></li>
-              <li>At most one <code>[t/TELEGRAM_NAME]</code></li>
-             </ul>
-        </li>
-        <li>There cannot be duplicate contact names!</li>
-            <ul>
-                <li>For example: <code>John Doe</code> and <code>john doe</code> is ok but another <code>John Doe</code> is stricly not allowed.</li>
-            </ul>
-        <li>If a client is updated or deleted after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab but not the Finance or Event tabs.</li>
-    </ul>
-  </box>
+* There cannot be duplicate contact names!
+  * For example: `John Doe` and `john Doe` is ok but another `John Doe` is strictly not allowed
+
+</box>
+
+<box type="warning" seamless>
+
+If a client is updated or deleted after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab, _but not in the Finance or Events tab_
+* See reasoning [here](#faq)
+</box>
 
 |     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                    |
 |:-----------------:|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
@@ -343,88 +341,90 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_N
 |    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                            |
 | `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#@destiny_30##<br>#r#@destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##   |
 
-|                                  #g#Positive Examples##                                   |                                        #r#Negative Examples##                                         | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                               |
-|:-----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
-|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                 |                                `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> Name is missing                             |
-|                  `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                 `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Name, Phone number, and Email is missing         |
-| `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds` | <span style ='color: darkred; text-decoration: underline'>Excessive number of Parameters</span><br> At most one company name is allowed |
+|                                  #g#Positive Examples##                                   |                                        #r#Negative Examples##                                         | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                        |
+|:-----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------|
+|                `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`                 |                                `add   p/+659832139 e/chewie@gmail.com`                                | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> `n/NAME` is missing                                  |
+|                  `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com`                  |                                                 `add`                                                 | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> `n/NAME`, `p/PHONE_NUMBER`, and `e/EMAIL` is missing |
+| `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds` | <span style ='color: darkred; text-decoration: underline'>Multiple values specified</span><br> At most one `[c/COMPANY]` name is allowed         |
 
 [Back to Contacts Management](#contacts-management)
 
-#### Editing a person : Contacts Tab → `edit`
+#### Editing a Contact : Contacts Tab → `edit`
 
-Edits an existing person in the address book.
+Edits an existing contact in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]`
 
-> **RESULT:**
->
-> Edited Person:`NAME`;`PHONE`;`EMAIL`;`ADDRESS`;`COMPANY`;`TELEGRAM_NAME`
+> **RESULT:** Edited Person:`NAME`;`PHONE`;`EMAIL`;`ADDRESS`;`COMPANY`;`TELEGRAM_NAME`
 
+<box type="tip" seamless>
 
-<box type="warning" seamless>
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `t/`.
-  * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
-* If a client is updated after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab but not the Finance or Event tabs.
+* The `INDEX` refers to the index number shown in the displayed contact list. 
+* At least one of the [optional] fields must be provided.
+* You can remove [optional] fields by typing `PREFIX/` without specifying anything after. e.g., `t/`
+  * Refer to [the add command](#adding-a-contact-contacts-tab-add) to check which parameters are optional fields
 
 </box>
 
 
-|     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                   |
-|:-----------------:|----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-|     `[NAME]`      | Text up to 256 characters<br>Must be unique                                                                    | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                        |
-| `[PHONE_NUMBER]`  | Numeric values<br>(optional "+" prefix)                                                                        | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)## |
-|     `[EMAIL]`     | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                    |
-|    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                             |
-|    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                           |
-| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#@destiny_30##<br>#r#@destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##  |
+<box type="warning" seamless>
 
-|    #g#Positive Examples##     |              #r#Negative Examples##              | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                               |
-|:-----------------------------:|:------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------|
-| `edit 1 n/‘Chewbaca’ The 1st` |           `edit  n/‘Chewbaca’ The 1st`           | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                 |
-|  `edit 2 n/Betsy Crower t/`   | `edit n/‘Chewbaca’ The 1st n/‘Chewbaca’ The 1st` | <span style ='color: darkred; text-decoration: underline'>Multiple Parameters</span><br> Multiple values is not allowed |
+If a client is updated or deleted after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab, _but not in the Finance or Events tab_
+  * See reasoning [here](#faq)
+</box>
+
+
+|     Parameter     | Format                                                                                                         | Examples (#g#Valid##/#r#Invalid##)                                                                                              |
+|:-----------------:|----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+|      `INDEX`      | Positive integers                                                                                              | (Assuming that there are 10 entries)<br>#g#1##<br>#r#123 (not within range of indices) ##<br>#r#-1 (must be positive number)##  |
+|     `[NAME]`      | Text up to 256 characters<br>Must be unique                                                                    | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                                                                   |
+| `[PHONE_NUMBER]`  | Numeric values<br>(optional "+" prefix)                                                                        | #g#81234567##<br>#g#+6581234567##<br>#r#A0u38niufd##<br>#r#(phone number cannot contain alphabets)##                            |
+|     `[EMAIL]`     | %%\[emailID]@[domainName\]%%<br>[Check email format here](https://www.site24x7.com/tools/email-validator.html) | #g#anniedun.kins[]()@gmail.com##<br>#r#@gmail.com (no email ID)##                                                               |
+|    `[ADDRESS]`    | Text up to 256 characters                                                                                      | #g#5 Science Park Dr, Singapore 118265##                                                                                        |
+|    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                                                      |
+| `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#@destiny_30##<br>#r#@destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##                             |
+
+|    #g#Positive Examples##     |              #r#Negative Examples##              | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                        |
+|:-----------------------------:|:------------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------|
+| `edit 1 n/‘Chewbaca’ The 1st` |           `edit  n/‘Chewbaca’ The 1st`           | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> `INDEX` is missing                   |
+|  `edit 2 n/Betsy Crower t/`   | `edit n/‘Chewbaca’ The 1st n/‘Chewbaca’ The 1st` | <span style ='color: darkred; text-decoration: underline'>Multiple Values Specified</span><br> Multiple `[n/NAME]` is not allowed |
 
 [Back to Contacts Management](#contacts-management)
 
-#### Deleting a contact with index: Contacts Tab → `delete`
+#### Deleting a Contact with Index: Contacts Tab → `delete`
 
 Deletes the specified contact from the **Contacts** tab using index.
 
 Format: `delete INDEX`
 
-> **RESULT:**
->
-> Deleted Person:`NAME`;`PHONE`;`EMAIL`;`ADDRESS`;`COMPANY`;`TELEGRAM_NAME`
+> **RESULT:** Deleted Person:`NAME`;`PHONE`;`EMAIL`;`ADDRESS`;`COMPANY`;`TELEGRAM_NAME`
+
+<box type="tip" seamless>
+
+The `INDEX` refers to the index number shown in the displayed contact list.
+
+</box>
 
 <box type="warning" seamless>
 
-* Deletes a **contact entry** at specified `INDEX`
-
-* The index refers to the index number shown in the contact `list`
-  * `INDEX` will not be accepted if not found within the contact `list`
-
-* If a client is deleted after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab but not the Finance or Event tabs.
-
-</box>
+If a client is updated or deleted after it is used to create a Finance entry or Event, changes will be reflected in the Contacts tab, _but not in the Finance or Events tab_
+* See reasoning [here](#faq)
+  </box>
 
 | Parameter | Format            | Examples (#g#Valid##/#r#Invalid##)                                                                                             |
 |:---------:|-------------------|--------------------------------------------------------------------------------------------------------------------------------|
 |  `INDEX`  | Positive integers | (Assuming that there are 10 entries)<br>#g#1##<br>#r#123 (not within range of indices) ##<br>#r#-1 (must be positive number)## |
 
-| #g#Positive Examples## |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                |
-|:----------------------:|:-------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-|       `delete 1`       |         `delete`          | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Index is missing                                                  |
-|       `delete 2`       |       `delete 2000`       | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> Index is out of range, choose an index that is within the contact list |
-|       `delete 3`       | `delete -3`<br>`delete 0` | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> Choose a positive index that is within contact list                    |
+| #g#Positive Examples## |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                     |
+|:----------------------:|:-------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       `delete 1`       |         `delete`          | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> `INDEX` is missing                                                |
+|       `delete 2`       |       `delete 2000`       | <span style ='color: darkred; text-decoration: underline'>Invalid Index</span><br> `INDEX` is out of range, choose an `INDEX` that is within the contact list |
+|       `delete 3`       | `delete -3`<br>`delete 0` | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> Choose a positive `INDEX` that is within contact list             |
 
 [Back to Contacts Management](#contacts-management)
 
 
-#### Finding contact by `NAME`: Contacts Tab → `filter-n`
+#### Filtering Contacts by `NAME`: Contacts Tab → `filter-n`
 
 Shows a list of contacts whose `NAME` contains specific string
 
@@ -432,9 +432,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 > **RESULT:** (Number of matched) persons listed!
 
-<box type="warning" seamless>
+<box type="tip" seamless>
 
-* The search is case-insensitive.
+* The search is **case-insensitive**.
 * The search is by the Contact's <code>NAME</code>
 * Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
 > `aLeX` → 1. Alex Yeoh
@@ -447,18 +447,21 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 </box>
 
+**Example:**
+![contacts filter-n demo](images/contacts_filter-n.png)
+
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Hans##<br>#g#3##                |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                           |
-|:----------------------:|:----------------------:|-------------------------------------------------------------------------------------------------------------------------------------|
-|    `filter-n Alex`     |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Please add a <code>KEYWORD</code> to search with |
-|  `filter-n aLEx rOy`   |                        |                                                                                                                                     |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                    |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------------------------|
+|    `filter-n Alex`     |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> Please add a <code>KEYWORD</code> to search with |
+|  `filter-n aLEx rOy`   |                        |                                                                                                                                              |
 
 [Back to Contacts Management](#contacts-management)
 
-#### Finding contact by <code>COMPANY</code>: Contacts Tab → `filter-c`
+#### Filtering Contacts by <code>COMPANY</code>: Contacts Tab → `filter-c`
 
 Shows a list of contacts whose <code>COMPANY</code> contains specific string
 
@@ -466,14 +469,14 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 > **RESULT:** (Number of matched) persons listed!
 
-<box type="warning" seamless>
+<box type="tip" seamless>
 
-* The search is case-insensitive. 
+* The search is **case-insensitive**. 
 * The search is by the Contact's <code>COMPANY</code>
 * Only full keywords will be matched. e.g. <code>Goo</code> will not match with <code>Google</code>
 > `gOoGle` → (prints all Contacts with Google as their company)
 > 
-> 1. Alex Yeoh 2. David Li 3. Irfan Ibrahim 4. Roy Balakrishnan 
+> 1. Alex Yeoh (Google) 2. David Li (Google) 3. Irfan Ibrahim (Google) 4. Roy Balakrishnan (Google)
 * Contacts name matching at least one keyword will be returned (i.e. OR search)
 > `FAPro NUS` → 1. Bernice Yu (FAPro)
 >             2. Charlotte Oliveiro (NUS)
@@ -483,14 +486,17 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 </box>
 
+**Example:**
+![contacts filter-c demo](images/contacts_filter-c.png)
+
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Google##<br>#g#3##              |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                           |
-|:----------------------:|:----------------------:|-------------------------------------------------------------------------------------------------------------------------------------|
-|   `filter-c google`    |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br> Please add a <code>KEYWORD</code> to search with |
-| `filter-c gOoGle nUs`  |                        |                                                                                                                                     |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                    |
+|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------------------------|
+|   `filter-c google`    |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> Please add a <code>KEYWORD</code> to search with |
+| `filter-c gOoGle nUs`  |                        |                                                                                                                                              |
 
 [Back to Contacts Management](#contacts-management)
 
@@ -507,16 +513,16 @@ This is a mini table of contents for general commands to help you navigate this 
 
 *Click on the commands or description to jump to the desired section!*
 
-|                                   Command                                   | Brief Description                                                                                       |
-|:---------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------|
-|                [`list`](#listing-finances-finance-tab-list)                 | [View finance](#listing-finances-finance-tab-list)                                                      |
-|              [`add-c`](#adding-a-commission-finance-tab-add-c)              | [Add a new commission](#adding-a-commission-finance-tab-add-c)                                          |
-|               [`add-e`](#adding-an-expense-finance-tab-add-e)               | [Add a new expense](#adding-an-expense-finance-tab-add-e)                                               |
-|                [`edit`](#editing-a-finance-finance-tab-edit)                | [Edit an existing finance entry](#editing-a-finance-finance-tab-edit)                                   |
-|          [`delete`](#deleting-a-finance-entry-finance-tab-delete)           | [Delete an existing finance entry](#deleting-a-finance-entry-finance-tab-delete) 	                      |
-|   [`filter-c`](#filtering-finance-entries-by-client-finance-tab-filter-c)   | [Filter finance by client](#filtering-finance-entries-by-client-finance-tab-filter-c)                   |
-| [`filter-t`](#filtering-finance-entries-by-time-frame-finance-tab-filter-t) | [Filter finance by time frame](#filtering-finance-entries-by-time-frame-finance-tab-filter-t)           |
-| [`summary`](#generating-a-finance-summary-of-a-client-finance-tab-summary)  | [Summarise finance relating to a client](#generating-a-finance-summary-of-a-client-finance-tab-summary) |
+|                                  Command                                   | Brief Description                                                                                                              |
+|:--------------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------|
+|                [`list`](#listing-finances-finance-tab-list)                | [<p style="color:black">View finance</p>](#listing-finances-finance-tab-list)                                                  |
+|             [`add-c`](#adding-a-commission-finance-tab-add-c)              | [<p style="color:black">Add a new commission</p>](#adding-a-commission-finance-tab-add-c)                                          |
+|              [`add-e`](#adding-an-expense-finance-tab-add-e)               | [<p style="color:black">Add a new expense</p>](#adding-an-expense-finance-tab-add-e)                                               |
+|               [`edit`](#editing-a-finance-finance-tab-edit)                | [<p style="color:black">Edit an existing finance entry</p>](#editing-a-finance-finance-tab-edit)                                   |
+|          [`delete`](#deleting-a-finance-entry-finance-tab-delete)          | [<p style="color:black">Delete an existing finance entry</p>](#deleting-a-finance-entry-finance-tab-delete) 	                      |
+|      [`filter-c`](#filtering-finances-by-client-finance-tab-filter-c)      | [<p style="color:black">Filter finance by client</p>](#filtering-finances-by-client-finance-tab-filter-c)                          |
+|    [`filter-t`](#filtering-finances-by-time-frame-finance-tab-filter-t)    | [<p style="color:black">Filter finance by time frame</p>](#filtering-finances-by-time-frame-finance-tab-filter-t)                  |
+| [`summary`](#generating-a-finance-summary-of-a-client-finance-tab-summary) | [<p style="color:black">Summarise finance relating to a client</p>](#generating-a-finance-summary-of-a-client-finance-tab-summary) |
 
 #### Listing finances: Finance Tab → `list`
 
@@ -689,7 +695,7 @@ Format: `delete INDEX`
 
 [Back to Finance Management](#finance-management)
 
-#### Filtering finance entries by `CLIENT`: Finance Tab → `filter-c`
+#### Filtering finances by `CLIENT`: Finance Tab → `filter-c`
 
 Filters the **finances** in the **Finance** tab by the given client.
 Finds all clients whose names contain any of the specified keywords (case-insensitive) and
@@ -719,7 +725,7 @@ Format: `filter-c KEYWORD [MORE KEYWORDS]`
 
 [Back to Finance Management](#finance-management)
 
-#### Filtering finance entries by `TIME FRAME`: Finance Tab → `filter-t`
+#### Filtering finances by `TIME FRAME`: Finance Tab → `filter-t`
 
 Filters the **finances** in the **Finance** tab by the given time frame.
 Finds all finances whose time due falls within the given time frame. 
@@ -804,16 +810,16 @@ This is a mini table of contents for general commands to help you navigate this 
 
 *Click on the commands or description to jump to the desired section!*
 
-|                            Command                             | Brief Description                                                           |
-|:--------------------------------------------------------------:|-----------------------------------------------------------------------------|
-|      [`list`](#listing-all-future-events-events-tab-list)      | [Show all upcoming events](#listing-all-future-events-events-tab-list)      |
-|     [`list-all`](#listing-all-events-events-tab-list-all)      | [Show all events](#listing-all-events-events-tab-list-all)                  |
-|            [`add`](#adding-an-event-events-tab-add)            | [Add a new event](#adding-an-event-events-tab-add)                          |
-|          [`edit`](#editing-an-event-events-tab-edit)           | [Edit an existing event](#editing-an-event-events-tab-edit)                 |
-|        [`delete`](#deleting-an-event-events-tab-delete)        | [Delete an existing event](#deleting-an-event-events-tab-delete) 	          |
-| [`filter-c`](#filtering-events-by-clients-events-tab-filter-c) | [Filter events by client](#filtering-events-by-clients-events-tab-filter-c) |
-|  [`filter-n`](#filtering-events-by-name-events-tab-filter-n)   | [Filter events by name](#filtering-events-by-name-events-tab-filter-n)      |
-|  [`filter-t`](#filtering-events-by-time-events-tab-filter-t)   | [Filter events by time](#filtering-events-by-time-events-tab-filter-t)      |
+|                            Command                             | Brief Description                                                                                  |
+|:--------------------------------------------------------------:|----------------------------------------------------------------------------------------------------|
+|     [`list`](#listing-all-upcoming-events-events-tab-list)     | [<p style="color:black">Show all upcoming events](#listing-all-upcoming-events-events-tab-list)    |
+|     [`list-all`](#listing-all-events-events-tab-list-all)      | [<p style="color:black">Show all events</p>](#listing-all-events-events-tab-list-all)              |
+|            [`add`](#adding-an-event-events-tab-add)            | [<p style="color:black">Add a new event</p>](#adding-an-event-events-tab-add)                          |
+|          [`edit`](#editing-an-event-events-tab-edit)           | [<p style="color:black">Edit an existing event</p>](#editing-an-event-events-tab-edit)                 |
+|        [`delete`](#deleting-an-event-events-tab-delete)        | [<p style="color:black">Delete an existing event</p>](#deleting-an-event-events-tab-delete) 	          |
+| [`filter-c`](#filtering-events-by-clients-events-tab-filter-c) | [<p style="color:black">Filter events by client</p>](#filtering-events-by-clients-events-tab-filter-c) |
+|  [`filter-n`](#filtering-events-by-name-events-tab-filter-n)   | [<p style="color:black">Filter events by name</p>](#filtering-events-by-name-events-tab-filter-n)      |
+|  [`filter-t`](#filtering-events-by-time-events-tab-filter-t)   | [<p style="color:black">Filter events by time</p>](#filtering-events-by-time-events-tab-filter-t)      |
 
 
 #### Listing all upcoming events: Events Tab → `list`
@@ -1080,7 +1086,6 @@ The following data are saved automatically as a JSON file. Advanced users are we
 <box type="warning" seamless>
 <ul>
   <li>
-    <b>Caution:</b>
     If your changes to the data file makes its format invalid, AddressBook, EventsBook and FinanceBook will discard all data and start with an empty data file at the next run (i.e. one corrupted file can wipe out the other files as well).  Hence, it is recommended to create a backup of the files before editing them.
   </li>
   <li>
@@ -1358,14 +1363,45 @@ Even if the start time *appears* to be before the stored end time.
 
 **Problem**
 
-1. **Reason for such an error message** is because the `s/` ==input is assumed to be for the next day==(Given that the current time is 5pm and the new time input is 3pm). Hence, it tells you that your duration is an invalid duration.
+1. **Reason for such an error message** is because the `s/` ==input is assumed to be for the next day==.
+
+<box seamless>
+
+****BEFORE EDITING****
+  <box seamless>
+
+  1. Sample Event 
+  
+     Start: 12-11-2023 16:00 </br> End: 12-11-2023 18:00
+
+  </box>
+
+ Current date time: 12-11-2023 17:00, and you enter `edit 1 s/3pm`.
+
+ This will register the start time to **tomorrow** (13-11-2023 15:00) instead of today (12-11-2023 15:00). 
+
+****AFTER EDITING****
+  <box seamless>
+
+  1. Sample Event
+
+     <p style="color:Red">Start: 13-11-2023 15:00</p> End: 12-11-2023 18:00
+
+  </box>
+
+  Note that now start date time is **LATER** than end date time, which is clearly not allowed.
+</box>
+
 2. **Potentially dangerous** if event has an end time that is after the determined date-time input. The edit will be allowed and the event might have an invalid start time unintentionally.
 
 The problem extends beyond this specific example and can happen when modifying `TIMEEND` only as well.
 
 **Solution**
 
-To understand why this happens we have to understand how FreelanceBuddy handles modification of `TIME` values in events.
+1. Specify today's date explicitly (i.e. `s/13-11-2023 3pm ` instead of `s/3pm`)
+
+
+**Explanation**
 
 When modifying only one input, FreelanceBuddy will assume the other unmodified value to be the `<DATE> <TIME>` as shown by the UI. For the example above, the modified `TIMESTART` `TIMEEND` input is read as such:
 
@@ -1392,62 +1428,65 @@ A quick overview of all the commands and their formats.
 ### General
 Commands that applies to ALL tabs
 
-| Action    | Format, Examples                         |
-|-----------|------------------------------------------|
-| **Help**  | `help`                                   |
-| **Tab**   | `tab TAB_NAME` <br> e.g., `tab contacts` |
-| **Exit**  | `exit`                                   |
-| **Clear** | `clear`                                  |
+| Action                                                              | Format, Examples                                                                           |
+|---------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| [<p style="color:black">**Help**</p>](#viewing-help-help)           | [`help`](#viewing-help-help)                                                               |
+| [<p style="color:black">**Tab**</p>](#switching-tabs-tab)           | [<p style="color:black">`tab TAB_NAME` <br> e.g., `tab contacts`</p>](#switching-tabs-tab) |
+| [<p style="color:black">**Exit**</p>](#exiting-the-program-exit)    | [`exit`](#exiting-the-program-exit)                                                        |
+| [<p style="color:black">**Clear**</p>](#clearing-all-entries-clear) | [`clear`](#clearing-all-entries-clear)                                                     |
 
 ### Contacts Tab
 
-| Action                  | Format, Examples                                                                                                                                     |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List all contacts**   | `list`                                                                                                                                               |
-| **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`  |
-| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br/> e.g., `edit 2 n/Betsy Crower t/` 	                  |
-| **Delete using index**  | `delete INDEX` <br> e.g., `delete 1`                                                                                                                 |
-| **Filter by name**      | `filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`                                                                                  |
-| **Filter by company**   | `filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`                                                                                    |
+| Action                                                                                                   | Format, Examples                                                                                                                                                                                                     |
+|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [<p style="color:black">**List all contacts**</p>](#listing-all-contacts-contacts-tab-list)              | [`list`](#listing-all-contacts-contacts-tab-list)                                                                                                                                                                    |
+| [<p style="color:black">**Add**</p>](#adding-a-contact-contacts-tab-add)                                 | [<p style="color:black">`add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br> e.g., `add n/‘Chewbaca’ The 1st p/+659123139 e/chewie@gmail.com`</p>](#adding-a-contact-contacts-tab-add) |
+| [<p style="color:black">**Edit**</p>](#editing-a-contact-contacts-tab-edit)                              | [<p style="color:black">`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TELEGRAM_NAME]` <br/> e.g., `edit 2 n/Betsy Crower t/`</p>](#editing-a-contact-contacts-tab-edit) 	               |
+| [<p style="color:black">**Delete using Index**</p>](#deleting-a-contact-with-index-contacts-tab-delete)  | [<p style="color:black">`delete INDEX` <br> e.g., `delete 1`</p>](#deleting-a-contact-with-index-contacts-tab-delete)                                                                                                |
+| [<p style="color:black">**Filter by Name**</p>](#filtering-contacts-by-name-contacts-tab-filter-n)       | [<p style="color:black">`filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`</p>](#filtering-contacts-by-name-contacts-tab-filter-n)                                                                  |
+| [<p style="color:black">**Filter by Company**</p>](#filtering-contacts-by-company-contacts-tab-filter-c) | [<p style="color:black">`filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`</p>](#filtering-contacts-by-company-contacts-tab-filter-c)                                                                 |
 
 
 ### Finance Tab
 
-| Action                    | Format, Examples                                                                                                                |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| **List**                  | `list [TYPE]`<br> e.g., `list commission`                                                                                       |
-| **Add commission**        | `add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`         |
-| **Add expense**           | `add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now` |
-| **Edit**                  | `edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]` <br/> e.g., `edit 1 d/Photoshop subscription a/300`                 |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                             |
-| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c John`                                                                                    |
-| **Filter by time**        | `filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`                                                       |
-| **Summary**               | `summary CLIENT`<br> e.g., `summary John Doe`                                                                                   |
+| Action                                                                                                                | Format, Examples                                                                                                                                                                                   |
+|-----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [<p style="color:black">**List**</p>](#listing-finances-finance-tab-list)                                             | [<p style="color:black">`list [TYPE]`<br> e.g., `list commission`</p>](#listing-finances-finance-tab-list)                                                                                         |
+| [<p style="color:black">**Add Commission**</p>](#adding-a-commission-finance-tab-add-c)                               | [<p style="color:black">`add-c a/AMOUNT n/CLIENT d/DESCRIPTION [t/time]` <br> e.g., `add-c n/Betsy Crower a/800 d/UI design for NinjaVan t/tmr`</p>](#adding-a-commission-finance-tab-add-c)       |
+| [<p style="color:black">**Add Expense**</p>](#adding-an-expense-finance-tab-add-e)                                    | [<p style="color:black">`add-e a/AMOUNT n/CLIENT [d/DESCRIPTION] [t/time]` <br> e.g., `add-e n/Betsy Crower a/100 d/Adobe Photoshop subscription t/now`</p>](#adding-an-expense-finance-tab-add-e) |
+| [<p style="color:black">**Edit**</p>](#editing-a-finance-finance-tab-edit)                                            | [<p style="color:black">`edit INDEX [d/DESCRIPTION] [a/AMOUNT] [c/CLIENT] [t/TIME]` <br/> e.g., `edit 1 d/Photoshop subscription a/300`</p>](#editing-a-finance-finance-tab-edit)                  |
+| [<p style="color:black">**Delete**</p>](#deleting-a-finance-entry-finance-tab-delete)                                 | [<p style="color:black">`delete INDEX`<br> e.g., `delete 3`</p>](#deleting-a-finance-entry-finance-tab-delete)                                                                                     |
+| [<p style="color:black">**Filter by Client Name**</p>](#filtering-finances-by-client-finance-tab-filter-c)    | [<p style="color:black">`filter-c KEYWORD`<br> e.g., `filter-c John`</p>](#filtering-finances-by-client-finance-tab-filter-c)                                                                      |
+| [<p style="color:black">**Filter by Time Frame**</p>](#filtering-finances-by-time-frame-finance-tab-filter-t) | [<p style="color:black">`filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`</p>](#filtering-finances-by-time-frame-finance-tab-filter-t)                                     |
+| [<p style="color:black">**Summary**</p>](#generating-a-finance-summary-of-a-client-finance-tab-summary)               | [<p style="color:black">`summary CLIENT`<br> e.g., `summary John Doe`</p>](#generating-a-finance-summary-of-a-client-finance-tab-summary)                                                          |
 
 
 ### Events Tab
 
-| Action                    | Format, Examples                                                                                                                                                              |
-|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List Upcoming**         | `list`<br> e.g., `list`                                                                                                                                                       |
-| **List All**              | `list-all`<br> e.g., `list-all`                                                                                                                                               |
-| **Add**                   | `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` |
-| **Edit**                  | `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]` <br/> e.g., `edit 1 n/Tennis` 	                                                     |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
-| **Filter by client name** | `filter-c KEYWORD`<br> e.g., `filter-c Alex`                                                                                                                                  |
-| **Filter by event name**  | `filter-n KEYWORD`<br> e.g., `filter-n birthday`                                                                                                                              |
-| **Filter by time**        | `filter-t TIMESTAMP`<br> e.g., `filter-t next week`                                                                                                                           |
+| Action                                                                                                   | Format, Examples                                                                                                                                                                                                                              |
+|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [<p style="color:black">**List Upcoming**</p>](#listing-all-upcoming-events-events-tab-list)             | [`list`](#listing-all-upcoming-events-events-tab-list)                                                                                                                                                                                        |
+| [<p style="color:black">**List All**</p>](#listing-all-events-events-tab-list-all)                       | [<p style="color:black">`list-all`<br> e.g., `list-all`</p>](#listing-all-events-events-tab-list-all)                                                                                                                                         |
+| [<p style="color:black">**Add**</p>](#adding-an-event-events-tab-add)                                    | [<p style="color:black">`add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT] [l/LOCATION] [d/DESCRIPTION]` <br> e.g., `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080`</p>](#adding-an-event-events-tab-add)   |
+| [<p style="color:black">**Edit**</p>](#editing-an-event-events-tab-edit)                                 | [<p style="color:black">`edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]` <br/> e.g., `edit 1 n/Tennis`</p>](#editing-an-event-events-tab-edit) 	                                                                                         |
+| [<p style="color:black">**Delete**</p>](#deleting-an-event-events-tab-delete)                            | [<p style="color:black">`delete INDEX`<br> e.g., `delete 3`</p>](#deleting-an-event-events-tab-delete)                                                                                                                                                                                |
+| [<p style="color:black">**Filter by Client Name**</p>](#filtering-events-by-clients-events-tab-filter-c) | [<p style="color:black">`filter-c KEYWORD`<br> e.g., `filter-c Alex`</p>](#filtering-events-by-clients-events-tab-filter-c)                                                                                                                                                                      |
+| [<p style="color:black">**Filter by Event Name**</p>](#filtering-events-by-name-events-tab-filter-n)     | [<p style="color:black">`filter-n KEYWORD`<br> e.g., `filter-n birthday` </p>](#filtering-events-by-name-events-tab-filter-n)                                                                                                                                                                  |
+| [<p style="color:black">**Filter by Time**</p>](#filtering-events-by-time-events-tab-filter-t)           | [<p style="color:black">`filter-t TIMESTAMP`<br> e.g., `filter-t next week`</p>](#filtering-events-by-time-events-tab-filter-t)                                                                                                                                                                |
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?</br>
+**Q**: **How do I transfer my data to another Computer?**</br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FreelanceBuddy home folder.</br>
 
-**Q**: My GUI seems to be appearing off-screen, why does this happen and how do I fix this?</br>
+**Q**: **My GUI seems to be appearing off-screen, why does this happen and how do I fix this?**</br>
 **A**: This problem occurs after you have moved the application to a secondary screen when using multiple screens, and then switched to using only the primary screen. To fix this, simply delete the `preferences.json` file created by the application before running the application again.</br>
 
-**Q**: Why is it that after I update or delete a contact, the changes are not displayed on the Finance or Event tabs? </br>
+**Q**: **Why is it that after I update or delete a contact, the changes are not displayed on the Finance or Event tabs?** </br>
 **A**: FreelanceBuddy currently does not support propagation of changes from Contact Tab to the other tabs. Moreover, there is often a need for users to keep track of old transactions or appointments with clients that may not exist anymore, or exist as a different entity in the database.
+
+
+Still having issues? Please email us at freelancebuddy@gmail.com
