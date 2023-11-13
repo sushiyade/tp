@@ -305,25 +305,6 @@ The following activity diagram summaries what happens when a user changes a tab.
 <puml src="diagrams/TabActivityDiagram.puml" alt="TabActivityDiagram" />
 
 
-### Duplicates of contact names
-
-Currently, the system allows duplicate contact names due to case sensitivity, 
-which is inconsistent with real-world scenarios where case sensitivity isn't considered.
-
-We plan to implement a case-insensitive check for contact names to prevent duplicate entries. 
-Freelancebuddy will recognize "John" and "john" as the same entry, ensuring uniqueness irrespective of case, 
-preventing the addition of duplicates names based solely on case variation.
-
-
-### Duplicates of contact phone numbers
-Currently, the system allows duplicate contact phone numbers
-which is inconsistent with real-world scenarios where phone numbers are unique and tied to a single person.
-
-We plan to implement a check for contact phone numbers to prevent duplicate entries, including phone numbers which include country codes
-For example, `+6598765432` will be considered the same as `98765432`, where `+65` is the country code for Singapore.
-
-
-
 ### Date-time Parsing
 
 Other than the basic understanding of how the Date-time inputs are determined, the rules and assumptions it has. [Read here for more info: Accepted Date-time Formats](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#accepted-date-time-formats).
@@ -455,6 +436,24 @@ file to `null`, the application will not be able to start.
 
 We plan on handling this issue by resetting the files to their default values if an invalid input is detected. This will
 prevent a scenario where the user is unable to launch the app.
+
+#### 4. Duplicates of contact names
+
+Currently, the system allows duplicate contact names due to case sensitivity,
+which is inconsistent with real-world scenarios where case sensitivity isn't considered.
+
+We plan to implement a case-insensitive check for contact names to prevent duplicate entries.
+Freelancebuddy will recognize "John" and "john" as the same entry, ensuring uniqueness irrespective of case,
+preventing the addition of duplicates names based solely on case variation.
+
+
+#### 5. Duplicates of contact phone numbers
+Currently, the system allows duplicate contact phone numbers
+which is inconsistent with real-world scenarios where phone numbers are unique and tied to a single person.
+
+We plan to implement a check for contact phone numbers to prevent duplicate entries, including phone numbers which include country codes
+For example, `+6598765432` will be considered the same as `98765432`, where `+65` is the country code for Singapore.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -917,6 +916,121 @@ For the following tests, we assume that you are on the Finance tab.
    
     1. Other incorrect delete commands to try: `add-c a/50 c/John Doe`, `add-c a/-50 c/John Doe d/ChatBot commission`,<br>
        Expected: Similar to previous.
+
+## Test cases for Events
+
+For the following tests, we assume that you are on the Events tab.
+
+### Listing events
+
+1. Viewing upcoming events in FreelanceBuddy
+
+    1. Prerequisites: There has to be at least one event saved in FreelanceBuddy.
+
+    1. Test case: `list`<br>
+       Expected: A list of all upcoming events is shown.
+
+    1. Test case: `list 123`<br>
+       Expected: A list of all upcoming events is shown.
+
+2. Viewing all events in FreelanceBuddy
+
+    1. Prerequisites: There has to be at least one event saved in FreelanceBuddy.
+
+    1. Test case: `list-all`<br>
+       Expected: A list of all events is shown.
+
+    1. Test case: `list-all 123`<br>
+       Expected: A list of all events is shown.
+
+### Adding an event
+
+1. Adding a new event into FreelanceBuddy
+    
+    1. Prerequisites: There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts.
+
+    1. Test case (only compulsory fields): `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30`<br>
+       Expected: A new `event` with the corresponding details is added chronologically to the list.
+
+    1. Test case (with all fields): `add n/Team meeting s/23-01-2024 19:30 e/23-01-2024 21:30 c/John Doe l/20 Lower Kent Ridge Road, 119080 d/Bring laptop`<br>
+       Expected: A new `event` with the corresponding details is added chronologically to the list. 
+
+    1. Test case (multiple client input): `add n/Yoga s/25-01-2024 12:30 e/25-01-2024 13:30 c/John Doe c/Amy Bee`<br>
+       Expected: A new `event` with the corresponding details is added chronologically to the list.
+
+    1. Test case (missing compulsory field): `add n/Prepare for exams e/29-01-2024 21:30 c/John Doe l/home d/study on entropy`<br>
+       Expected: No `event` added. Error details shown in the status message. List remains unchanged.
+
+    1. Test case (repeated fields): `add n/Company party n/Charity run s/19-01-2024 17:30 e/19-01-2024 21:30 c/Amy Bee l/Office d/have fun!`<br>
+       Expected: No `event` added. Error details shown in the status message. List remains unchanged.
+
+    1. Test case (invalid date): `add n/Baby shower party s/00-01-2024 17:30 e/00-01-2024 21:30 c/Amy Bee l/nana's house d/bring gifts`<br>
+       Expected: No `event` added. Error details shown in the status message. List remains unchanged.
+
+    1. Test case (Amy Smith not in contacts): `add n/Company Cleanup s/20-01-2024 17:30 e/20-01-2024 20:30 c/Amy Smith l/Office d/bring mop`<br>
+       Expected: No `event` added. Error details shown in the status message. List remains unchanged.
+
+
+### Editing an event
+
+1. Editing an event in FreelanceBuddy
+
+    1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30` and its index in the events list is `1`.
+There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
+
+    1. Test case (compulsory field edit): `edit 1 n/Watch Television`<br>
+       Expected: The `event` edited will now reflect the corresponding details.
+
+    1. Test case (optional field edit): `edit 1 l/Nacho's Bar`<br>
+       Expected: The `event` edited will now reflect the corresponding details.
+
+    1. Test case (multiple client input): `edit 1 c/John Doe c/Amy Bee`<br>
+       Expected: The `event` edited will now reflect the corresponding details.
+
+    1. Test case (invalid date): `edit 1 s/29-01-2024 21:30`<br>
+       Expected: No `event` edited. Error details shown in the status message. List remains unchanged.
+
+    1. Test case (repeated fields): `edit 1 n/Company party n/Charity run`<br>
+       Expected: No `event` edited. Error details shown in the status message. List remains unchanged.
+
+    1. Test case (Amy Smith not in contacts): `edit 1 c/Amy Smith`<br>
+       Expected: No `event` edited. Error details shown in the status message. List remains unchanged.
+
+### Deleting an event
+
+1. Deleting an event from FreelanceBuddy
+
+    1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30` and its index in the events list is `1`.
+       There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
+
+    1. Test case: `delete 1`<br>
+       Expected: The `event` deleted will be removed from the list. 
+
+    1. Test case (invalid index): `delete 0`<br>
+       Expected: No `event` deleted. Error details shown in the status message. List remains unchanged.
+
+### Filtering an event
+
+1. Filtering events in FreelanceBuddy
+
+    1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30 c/John Doe`.
+       There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
+
+    1. Test case: `filter-n Dinner`<br>
+       Expected: The events list will only show `events` with the name `Dinner`.
+
+    1. Test case: `filter-t 29-01-2024 20:30`<br>
+       Expected: The events list will only show `events` before `24-01-2024 20:30`.
+
+    1. Test case: `filter-c John`<br>
+       Expected: The events list will only show `events` with `John Doe` tagged as a client.
+
+    1. Test case (invalid date): `filter-t 01230time`<br>
+       Expected: No `event` filtered. Error details shown in the status message. List remains unchanged.
+
+    1. Test case (No Event with Amy Bee): `filter-c Amy`<br> 
+       Expected: The events list will be empty.
+
 
 ### Deleting a person
 
