@@ -66,7 +66,16 @@ Given below are my contributions to the project.
       * `list-all`
     
   * Developer Guide:
-    * To be added
+    * Added UML Diagrams for Tabs and UI
+    * Updated UI design description
+    * Added Manual Tests for Events
+      * `add`
+      * `edit`
+      * `delete`
+      * `filter-n`
+      * `filter-t`
+      * `list`
+      * `list-all`
 
 * **Community**:
   * To be added
