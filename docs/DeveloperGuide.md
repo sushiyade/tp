@@ -177,6 +177,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Finance feature
+
+In FreelanceBuddy, the creation of Finance entries (commissions and expenses) includes validation for clients. In the case that the user attempts to create a Finance entry with an associated client, FreelanceBuddy will check if the client exists in the Contacts Tab and only create the entry if it does.
+
+Both `Commission` and `Expense` classes have the same attributes as `Finance` (as a result of inheritance), while both `AddCommissionCommand` and `AddExpenseCommand` classes handle the validation in similar ways. Hence, for simplicity, we will only discuss how a Commission is added, as the implementation is similar for Expense.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
