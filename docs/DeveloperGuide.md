@@ -726,6 +726,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+
 #### Use Case: UC11 - View all events
 
 **Precondition**: User is on **Events** tab, **Events** list must have at least one entry
@@ -748,7 +749,73 @@ Use case ends.
 
 Use case ends.
 
-#### Use Case: UC13 - Add a finance entry
+
+#### Use Case: UC13 - Filter events by name
+
+**Precondition**: User is on **Events** tab, **Events** list must have at least one entry
+
+**MSS**
+
+1. User requests to find events using name keywords.
+2. FreelanceBuddy shows a list of Events that contains given name keywords.
+
+   Use case ends
+
+**Extensions**
+
+* 1a. No events found that contains given name keywords.
+    * 1a1. FreelanceBuddy shows an empty list.
+
+      Use case ends.
+
+#### Use Case: UC14 - Filter events by time
+
+**Precondition**: User is on **Events** tab, **Events** list must have at least one entry
+
+**MSS**
+
+1. User requests to find events before a specific time.
+2. FreelanceBuddy shows a list of Events that are after now and before the requested time.
+
+   Use case ends
+
+**Extensions**
+
+* 1a. No Events found that are after now and before the requested time.
+    * 1a1. FreelanceBuddy shows an empty list.
+
+      Use case ends.
+  
+* 1b. The user inputs an invalid time.
+    * 1b1. FreelanceBuddy shows an error message.
+  
+      Use case ends.
+
+
+#### Use Case: UC15 - Filter events by client
+
+**Precondition**: User is on **Events** tab, **Events** list must have at least one entry
+
+**MSS**
+
+1. User requests to find events with a specified client.
+2. FreelanceBuddy shows a list of Events which have the client tagged.
+
+   Use case ends
+
+**Extensions**
+
+* 1a. No Events found that have the client tagged.
+    * 1a1. FreelanceBuddy shows an empty list.
+
+      Use case ends.
+
+* 1b. The user inputs a client not registered.
+    * 1b1. FreelanceBuddy shows an error message.
+
+      Use case ends.
+
+#### Use Case: UC16 - Add a finance entry
 
 **Precondition**: User is on **Finance** tab
 
@@ -766,7 +833,7 @@ Use case ends.
 
         Use case resumes at step 1.
 
-#### Use Case: UC14 - Delete a finance entry
+#### Use Case: UC17 - Delete a finance entry
 
 **Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
 
@@ -784,7 +851,7 @@ Use case ends.
     
     Use case resumes at step 1.
 
-#### Use Case: UC15 - View all finance entries
+#### Use Case: UC18 - View all finance entries
 
 **Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
 
@@ -795,7 +862,7 @@ Use case ends.
 
 Use case ends.
 
-#### Use Case: UC16 - Filter by finance entry type
+#### Use Case: UC19 - Filter by finance entry type
 
 **Precondition**: User is on **Finance** tab
 
@@ -813,7 +880,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC17 - Edit a finance entry
+#### Use Case: UC20 - Edit a finance entry
 
 **Precondition**: User is on **Finance** tab, **Finance** list must have at least one entry
 
@@ -836,7 +903,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC18 - Filter finance entries by client
+#### Use Case: UC21 - Filter finance entries by client
 
 **Precondition**: User is on **Finance** tab
 
@@ -854,7 +921,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC19 - Get finance summary for tagged client
+#### Use Case: UC22 - Get finance summary for tagged client
 
 **Precondition**: User is on **Finance** tab
 
@@ -872,7 +939,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-#### Use Case: UC20 - Filter finance entries by a timeframe
+#### Use Case: UC23 - Filter finance entries by a timeframe
 
 **Precondition**: User is on **Finance** tab
 
