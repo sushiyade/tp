@@ -286,6 +286,8 @@ Format: `clear`
 
 To view contacts tab, either click on the “contacts” button, or use the command `tab contacts` to switch tabs.
 
+Note that the terms "contact", "person", and "client" are used interchangeably (all means the same thing). 
+
 This is a mini table of contents for general commands to help you navigate this section quickly.
 
 *Click on the commands or description to jump to the desired section!*
@@ -384,16 +386,16 @@ If a client is updated or deleted after it is used to create a Finance entry or 
 |    `[COMPANY]`    | Text up to 256 characters                                                                                      | #g#Shopee##<br>#g#Sh0p33##                                                                                                      |
 | `[TELEGRAM_NAME]` | Only a-z, 0-9, and underscores allowed                                                                         | #g#@destiny_30##<br>#r#@destiny.30##<br>#r#(Telegram doesn't accept '.' in their username format)##                             |
 
-|    #g#Positive Examples##     |              #r#Negative Examples##              | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                        |
-|:-----------------------------:|:------------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------|
-| `edit 1 n/‘Chewbaca’ The 1st` |           `edit  n/‘Chewbaca’ The 1st`           | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> `INDEX` is missing                   |
-|  `edit 2 n/Betsy Crower t/`   | `edit n/‘Chewbaca’ The 1st n/‘Chewbaca’ The 1st` | <span style ='color: darkred; text-decoration: underline'>Multiple Values Specified</span><br> Multiple `[n/NAME]` is not allowed |
+|    #g#Positive Examples##     |               #r#Negative Examples##               | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                        |
+|:-----------------------------:|:--------------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------|
+| `edit 1 n/‘Chewbaca’ The 1st` |            `edit  n/‘Chewbaca’ The 1st`            | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> `INDEX` is missing                   |
+|  `edit 2 n/Betsy Crower t/`   | `edit 1 n/‘Chewbaca’ The 1st n/‘Chewbaca’ The 1st` | <span style ='color: darkred; text-decoration: underline'>Multiple Values Specified</span><br> Multiple `[n/NAME]` is not allowed |
 
 [Back to Contacts Management](#contacts-management)
 
 #### Deleting a Contact with Index: Contacts Tab → `delete`
 
-Deletes the specified contact from the **Contacts** tab using index.
+Deletes the specified contact from the **Contacts** tab using `INDEX`.
 
 Format: `delete INDEX`
 
@@ -474,9 +476,6 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 * The search is **case-insensitive**. 
 * The search is by the Contact's <code>COMPANY</code>
 * Only full keywords will be matched. e.g. <code>Goo</code> will not match with <code>Google</code>
-> `gOoGle` → (prints all Contacts with Google as their company)
-> 
-> 1. Alex Yeoh (Google) 2. David Li (Google) 3. Irfan Ibrahim (Google) 4. Roy Balakrishnan (Google)
 * Contacts name matching at least one keyword will be returned (i.e. OR search)
 > `FAPro NUS` → 1. Bernice Yu (FAPro)
 >             2. Charlotte Oliveiro (NUS)
@@ -661,7 +660,7 @@ Examples:
 
 #### Deleting a Finance Entry: Finance Tab → `delete`
 
-Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab.
+Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab using `INDEX`.
 
 Format: `delete INDEX`
 
@@ -849,34 +848,28 @@ Adds a new event into the **Events** tab.
 
 Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT]…​ [l/LOCATION] [d/DESCRIPTION]`
 
-> **RESULT:**
->
-> New event added: `NAME`; Start: `TIMESTART`; End: `TIMEEND`; Clients: `CLIENTS…​`; Location: `LOCATION`; Description: `DESCRIPTION`
+> **RESULT:** New event added: `NAME`; Start: `TIMESTART`; End: `TIMEEND`; Clients: `CLIENTS…​`; Location: `LOCATION`; Description: `DESCRIPTION`
+
+<box type="tip" seamless>
+
+*  The <code>NAME</code> refers to the title of the event. 
+*  The <code>TIMESTART</code> and <code>TIMEEND</code> refer to starting and ending times of the event respectively.
+*  Note that each event **can have more than one client**
+   (e.g <code>c/David c/Richard c/Anna</code>)
+* There cannot be duplicate events!
+  * Events will be treated as duplicates if they have the same <code>NAME</code>, <code>TIMESTART</code> and <code>TIMEEND</code>
+
+</box>
 
 <box type="warning" seamless>
-    <ul>
-        <li>
-            Creates a new event with the specified <code>NAME</code>, <code>TIMESTART</code> and <code>TIMEEND</code>. 
-            The <code>NAME</code> refers to the title of the event. 
-            The <code>TIMESTART</code> and <code>TIMEEND</code> refer to starting and ending times of the event respectively. 
-        </li>
-        <li>
-            Note that each event can have:
-            <ul>
-              <li>Multiple <code>[c/CLIENT]…​</code> (e.g <code>c/David c/Richard c/Anna</code>) or none</li>
-              <li>At most one <code>[l/LOCATION]</code></li>
-              <li>At most one <code>[d/DESCRIPTION]</code></li>
-             </ul>
-        </li>
-        <li>
-            The client name must match the exact client name (case-sensitive) that is found in the Contacts tab.
-        </li>
-        <li>There cannot be duplicate events!</li>
-        <ul>
-            <li>Events will be treated as duplicates if they have the same <code>NAME</code>, <code>TIMESTART</code> and <code>TIMEEND</code></li>
-        </ul>
-    </ul>
+
+For `CLIENT`, the name **MUST EXIST** in your Contacts. Note that this is **case-sensitive**.
+
+Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-n) within the Contacts tab to search whether the contact exists.
+
+* Note that while filter-n within the Contacts tab is _case-insensitive_, but it should make it easier to find the client that you're looking for.
 </box>
+
 
 |        Parameter        | Format                                                                 | Examples (#g#Valid##/#r#Invalid##)                                       |
 |:-----------------------:|------------------------------------------------------------------------|--------------------------------------------------------------------------|
@@ -886,11 +879,11 @@ Format: `add n/NAME s/TIMESTART e/TIMEEND [c/CLIENT]…​ [l/LOCATION] [d/DESCR
 |      `[LOCATION]`       | Text up to 256 characters                                              | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House## |
 |     `[DESCRIPTION]`     | Text up to 256 characters                                              | #g#Bring notes for Davidson##<br>#g#Concerning new commission##          |
 
-|                                 #g#Positive Examples##                                  |                              #r#Negative Examples##                               | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                    |
-|:---------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | `add ‎ ‎s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> `n/NAME` is missing                                              |
-|        `add n/Meetup s/2 hrs from now e/3 hrs from now c/Alex Yeoh c/Bernice Yu`        |    `add n/Meetup s/21022023130pm  e/21-02-2023230pm c/Alex Yeoh c/Bernice Yu`     | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> Date-time Format is incorrect for `TIMESTART` and/or `TIMEEND` |
-|                    `add n/Gym s/21-02-2023 13:30 e/21-02-2023 14:30`                    |                 `add n/Gym s/21-02-2023 13:30 e/21-02-2023 12:30`                 | <span style ='color: darkred; text-decoration: underline'>Invalid date-time duration</span><br> `TIMEEND` must be chronologically after `TIMESTART`          |
+|                                 #g#Positive Examples##                                  |                              #r#Negative Examples##                               | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                        |
+|:---------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add n/Tennis s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | `add ‎ ‎s/31-09-2023 19:30 e/31-09-2023 21:30 l/20 Lower Kent Ridge Road, 119080` | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> `n/NAME` is missing                                                  |
+|        `add n/Meetup s/2 hrs from now e/3 hrs from now c/Alex Yeoh c/Bernice Yu`        |    `add n/Meetup s/21022023130pm  e/21-02-2023230pm c/Alex Yeoh c/Bernice Yu`     | <span style ='color: darkred; text-decoration: underline'>Invalid Date-Time Format</span><br> Date-time Format is incorrect for `s/TIMESTART` and/or `e/TIMEEND` |
+|                    `add n/Gym s/21-02-2023 13:30 e/21-02-2023 14:30`                    |                 `add n/Gym s/21-02-2023 13:30 e/21-02-2023 12:30`                 | <span style ='color: darkred; text-decoration: underline'>Invalid Date-Time Duration</span><br> `e/TIMEEND` must be chronologically after `s/TIMESTART`          |
 
 [Back to Events Management](#events-management)
 
@@ -905,19 +898,23 @@ Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCAT
 > Edited Event: `NAME`; Start: `TIMESTART`; End: `TIMEEND`; Clients: `CLIENTS…​`; Location: `LOCATION`; Description: `DESCRIPTION`
 
 
+<box type="tip" seamless>
+
+* The `INDEX` refers to the index number shown in the displayed event list.
+* At least one of the [optional] fields must be provided.
+* You can remove [optional] fields by typing `PREFIX/` without specifying anything after. e.g., `d/`
+    * Refer to [the add command](#adding-an-event-events-tab-add) to check which parameters are optional fields
+* Read [this](#editing-timestart-timeend-in-events) for more information about editing `TIMESTART` and `TIMEEND` 
+</box>
+
 <box type="warning" seamless>
 
-* For `CLIENT`, the name **MUST EXIST** in your Contacts. Note that this is case-sensitive.
-  * Refer to [the filter-n command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#finding-contact-by-name-contacts-tab-filter-n) within the Contacts tab to search whether the contact exists.
-  
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* You can remove optional fields by typing `PREFIX/` without specifying anything after. For example, `d/`.
-  * Refer to [the add command](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-an-event-events-tab-add) to check for optional fields
-  
-  </box>
+For `CLIENT`, the name **MUST EXIST** in your Contacts. Note that this is **case-sensitive**.
 
+Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-n) within the Contacts tab to search whether the contact exists.
+
+* Note that while filter-n within the Contacts tab is _case-insensitive_, but it should make it easier to find the client that you're looking for.
+  </box>
 
 |          Parameter          | Format                                                                 | Examples (#g#Valid##/#r#Invalid##)                                                  |
 |:---------------------------:|------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
@@ -927,47 +924,37 @@ Format: `edit INDEX [n/NAME] [s/TIMESTART] [e/TIMEEND] [c/CLIENT]…​ [l/LOCAT
 |        `[LOCATION]`         | Text up to 256 characters                                              | #g#50 Cuscaden Rd, #02-01 Hpl House, Singapore 249724##<br>#g#My House##            |
 |       `[DESCRIPTION]`       | Text up to 256 characters                                              | #g#Bring notes for Davidson##<br>#g#Concerning new commission##                     |
 
-|                            #g#Positive Examples##                             |  #r#Negative Examples##   | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                             |
-|:-----------------------------------------------------------------------------:|:-------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                               `edit 1 n/Tennis`                               | `edit s/31-09-2023 19:30` | <span style ='color: darkred; text-decoration: underline'>Invalid start and end datetime order</span><br> Make sure that start datetime is earlier than end datetime. |
-| `edit 2 n/Meetup s/01-12-2023 2pm e/01-12-2023 3pm c/Alex Yeoh c/Bernice Yu ` |  `edit c/Potato Client`   | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format</span><br> Client Not Found <br> Client tagged does not exist in your contacts     |
+|                            #g#Positive Examples##                             |                                            #r#Negative Examples##                                             | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                               |
+|:-----------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                               `edit 1 n/Tennis`                               |                                `edit 1 s/31-09-2023 19:30 e/31-09-2023 16:00`                                 | <span style ='color: darkred; text-decoration: underline'>Invalid Date-Time Duration</span><br> `e/TIMEEND` must be chronologically after `s/TIMESTART` |
+| `edit 2 n/Meetup s/01-12-2023 2pm e/01-12-2023 3pm c/Alex Yeoh c/Bernice Yu ` | `edit 1 c/Potato Client`<br/><span style ='color: gray'>If "Potato Client" does not exists in Contacts</span> | <span style ='color: darkred; text-decoration: underline'>Client Does Not Exist</span><br> Client tagged does not exist in your contacts                |
 
 [Back to Events Management](#events-management)
 
 #### Deleting an event: Events Tab → `delete`
 
-Deletes an existing event from the **Events** tab.
+Deletes the specified event from the **Events** tab using `INDEX`.
 
 Format: `delete INDEX`
 
-> **RESULT:**
->
-> Deleted Event: `NAME`; Start: `TIMESTART`; End: `TIMEEND`; Clients: `CLIENTS…​`; Location: `LOCATION`; Description: `DESCRIPTION`
+> **RESULT:** Deleted Event: `NAME`; Start: `TIMESTART`; End: `TIMEEND`; Clients: `CLIENTS…​`; Location: `LOCATION`; Description: `DESCRIPTION`
 
-<box type="warning" seamless>
-    <ul>
-        <li>
-            Deletes the event at the specified <code>INDEX</code>.
-        </li>
-        <li>
-            The <code>INDEX</code> must refer to an event found on the Events tab
-        </li>
-        <li>
-            The <code>INDEX</code> must be a positive integer
-        </li>
-    </ul>
+<box type="tip" seamless>
+
+The `INDEX` refers to the index number shown in the displayed event list.
+
 </box>
 
-|    Parameter    | Format                                                         | Examples (#g#Valid##/#r#Invalid##)                                                          |
-|:---------------:|----------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-|     `INDEX`     | Positive integer within range of indices in Events list listed | Assuming there are 10 entries:<br>#g#2##<br>#g#10##<br>#r#14##<br>#r#-1##<br>#r#2.4##       |
+|    Parameter    | Format                                                        | Examples (#g#Valid##/#r#Invalid##)                                                          |
+|:---------------:|---------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+|     `INDEX`     | Positive integer within range of indices in Event list listed | Assuming there are 10 entries:<br>#g#2##<br>#g#10##<br>#r#14##<br>#r#-1##<br>#r#2.4##       |
 
 
-| #g#Positive Examples## |                          #r#Negative Examples##                           | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                     |
-|:----------------------:|:-------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|       `delete 2`       |                                `delete -1`                                | <span style ='color: darkred; text-decoration: underline'>Out of Range</span><br> -1 is not a valid parameter, as INDEX only takes positive numeric values    |
-|       `delete 4`       |                               `delete one`                                | <span style ='color: darkred; text-decoration: underline'>Invalid Format</span><br> one is not a valid parameter, as INDEX only takes positive numeric values |
-|                        | `delete 150` <br>while there are less than 150 entries in the events list | <span style ='color: darkred; text-decoration: underline'>Unknown entry</span><br> The given entry must be in the event list                                  |
+| #g#Positive Examples## |                          #r#Negative Examples##                          | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                                 |
+|:----------------------:|:------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       `delete 2`       |                               `delete -1`                                | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> Choose a positive `INDEX` that is within event list                           |
+|       `delete 4`       |                               `delete one`                               | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> "one" is not a valid parameter, as `INDEX` only takes positive numeric values |
+|                        | `delete 150` <br>while there are less than 150 entries in the event list | <span style ='color: darkred; text-decoration: underline'>Invalid Index</span><br> `INDEX` is out of range, choose an `INDEX` that is within the event list               |
 
 [Back to Events Management](#events-management)
 
@@ -979,13 +966,13 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 > **RESULT:** (Number of matched events) events listed!
 
-<box type="warning" seamless>
+<box type="tip" seamless>
 
-* The search is case-insensitive.
+* The search is **case-insensitive**.
 * The search is by the <code>CLIENT</code>, see [filter-n in Contacts Tab for more details](https://ay2324s1-cs2103t-w09-2.github.io/tp/UserGuide.html#adding-a-contact-contacts-tab-add)
 * Only full keywords will be matched. e.g. <code>Al</code> will not match with <code>Alex</code>
 > `aLeX` → 1. Alex Yeoh
-* Client's name matching at least one keyword will be returned (i.e. OR search)
+* Contacts name matching at least one keyword will be returned (i.e. OR search)
 > `Alex Roy` → 1. Alex Yeoh
 >             2. Roy Balakrishnan
 * The order of the keywords does not matter.
@@ -994,14 +981,18 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 </box>
 
+**Example:**
+![events filter-c demo](images/events_filter-c.png)
+
+
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Hans##<br>#g#3##                |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                    |
-|:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------------------------|
-|    `filter-c alex`     |    `filter-c hans`     | <span style ='color: darkred; text-decoration: underline'>Unknown Entry</span><br>Assuming there are no events with client <code>Hans</code> |
-|  `filter-c aLeX rOy`   |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Missing Parameter</span><br> Please add a <code>KEYWORD</code> to search with      |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                     |
+|:----------------------:|:----------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------|
+|    `filter-c alex`     |       `filter-c`       | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> Please add a <code>KEYWORD</code> to search with  |
+|  `filter-c aLeX rOy`   |                        |                                                                                                                                               |
 
 [Back to Events Management](#events-management)
 
@@ -1013,9 +1004,9 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 > **RESULT:** (Number of matched events) events listed!
 
-<box type="warning" seamless>
+<box type="tip" seamless>
 
-* The search is case-insensitive.
+* The search is **case-insensitive**.
 * The search is by the event <code>NAME</code>
 * Only full keywords will be matched. e.g. <code>Con</code> will not match with <code>Conference</code>
 > `cOnFerEnce` → 1. Conference with Bernice
@@ -1028,14 +1019,17 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 </box>
 
+**Example:**
+![events filter-n demo](images/events_filter-n.png)
+
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|---------------------------|------------------------------------|
 | `KEYWORD` | Text up to 256 characters | #g#Meeting##<br>#g#3##             |
 
-| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                                  |
-|:----------------------:|:----------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|   `filter-n meeting`   |   `filter-nmeeting`    | <span style ='color: darkred; text-decoration: underline'>Unknown Command</span><br> <code>KEYWORD</code> should be separated with spaces                  |
-| `filter-n cOnFerence`  |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> There must be at least one <code>KEYWORD</code> to search with |
+| #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                     |
+|:----------------------:|:----------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------|
+|   `filter-n meeting`   |       `filter-n`       | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> Please add a <code>KEYWORD</code> to search with  |
+| `filter-n cOnFerence`  |                        |                                                                                                                                               |
 
 
 [Back to Events Management](#events-management)
@@ -1048,9 +1042,15 @@ Format: `filter-t TIMESTAMP`
 
 > **RESULT:** (Number of matched events) events listed!
 
-* All events with <code>TIMESTART</code> before the time specified in <code>TIMESTAMP</code> will be returned. e.g. `tmr noon` will return all
-  events starting before tomorrow noon
+<box type="tip" seamless>
 
+All events with <code>TIMESTART</code> before the time specified in <code>TIMESTAMP</code> will be returned. e.g. `tmr noon` will return all
+  events starting before tomorrow noon (12 pm) 
+
+</box>
+
+**Example:**
+![events filter-t demo](images/events_filter-t.png)
 
 |  Parameter  | Format                                                                            | Examples (#g#Valid##/#r#Invalid##) |
 |:-----------:|-----------------------------------------------------------------------------------|------------------------------------|
@@ -1058,8 +1058,8 @@ Format: `filter-t TIMESTAMP`
 
 | #g#Positive Examples## | #r#Negative Examples## | <span style ='color: darkred; font-weight: bold;'>Reason for Error</span>                                                                    |
 |:----------------------:|:----------------------:|----------------------------------------------------------------------------------------------------------------------------------------------|
-|  `filter-t next week`  |  `filter-t my phone`   | <span style ='color: darkred; text-decoration: underline'>Invalid date-time format!</span><br> Date-time Format is incorrect for `TIMESTAMP` |
-| `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Invalid command format</span><br> `TIMESTAMP` value is required                    |
+|  `filter-t next week`  |  `filter-t my phone`   | <span style ='color: darkred; text-decoration: underline'>Invalid Date-Time Format</span><br> Date-time Format is incorrect for `TIMESTAMP`  |
+| `filter-t 23-01-2024`  |       `filter-t`       | <span style ='color: darkred; text-decoration: underline'>Invalid Command Format</span><br> Please add a <code>KEYWORD</code> to search with |
 
 [Back to Events Management](#events-management)
 
@@ -1387,7 +1387,7 @@ Even if the start time *appears* to be before the stored end time.
 
      <p style="color:Red">Start: 13-11-2023 15:00</p> End: 12-11-2023 18:00
 
-  </box>
+  </>
 
   Note that now start date time is **LATER** than end date time, which is clearly not allowed.
 </box>
