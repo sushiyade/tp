@@ -50,6 +50,7 @@ This means that if the list is filtered, the filtered entries are renumbered and
     * Added helpful links for different audience groups (new, advanced) in Getting Started section.
     * Added more helpful links in Quick Start and Features section so that users can easily get to related sections.
     * Added documentation for the following Finance-related features: `add-e`, `list`, `delete`.
+    * Added documentation for Configuration Files under Data Storage
   * Developer Guide:
     * Structured use cases for the project. 
     * Added Finance-related user stories and use cases.
