@@ -19,6 +19,13 @@ Given below are my contributions to the project.
   * Highlights: The finances are color coded based on their type. Expenses are given a red font while commissions 
   are given a green font. This helped to provide a more intuitive overview of the finances.
 
+* **New Feature**: Adding a new commission
+    * What it does: Adds a new commission to the Finance Tab
+    * Justification: Tracking of commissions is essential to a freelancer. This feature was essential in ensuring that
+    our app was tailored to freelancers.
+    * Highlights: In FreelanceBuddy, our commissions objects help capture the most important aspects of a commission, the
+        client, amount, description and time due. 
+
 * **New Feature**: Filter by client name
   * What it does: Filters all the finances by client name
   * Justification: We expect full time freelancers to have many clients, hence there will be a need for them to 
@@ -39,8 +46,7 @@ Given below are my contributions to the project.
   * Highlights: Provides the user with a comprehensive breakdown, showing a total profit/loss, and the totals for 
   commission and expenses respectively. 
 
-
-
+    
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=nicholascher&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22)
 
 * **Project management**:
@@ -56,12 +62,25 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for the following features: `add-c`, `filter-c`, `filter-t`, `summary`
+        * Added the `Finance Tab` section in the `Command Summary`
+        * Helped standardise the ordering of commands throughout the UG
     * Developer Guide:
-        * To be added
+        * Updated the Acknowledgements section
+        * Updated the `Logic` section to match FreelanceBuddy
+        * Added the `Filtering Lists` section to `Implementation`
+        * Added points 1-3 in the `Planned Enhancements` section
+        * Added the `Appendix: Effort` section
+        * Added some Use cases for Finance
+        * Added the Manual Test cases for `list`, `add-c`, `add-e` and `edit` for Finance
 
 * **Community**:
-    * To be added
+    * [PR reviews for group mates](https://github.com/AY2324S1-CS2103T-W09-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Anicholascher)
+    * Helping group mates:
+      * After I implemented the ParseCommandHandler, there were instances where my group mates were unsure of how to use it. 
+      I stepped in and helped them when they encountered problems with it. They also provided me with feedback on how I
+      could improve the ParseCommandHandler.
 
 * **Tools**:
-    * To be added
+    * Intellij
+    * MarkBind
 
