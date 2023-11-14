@@ -15,6 +15,8 @@
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
+Application icon was taken from [Flaticon](https://www.flaticon.com/free-icon/duck_1993713?term=duck&page=1&position=6&origin=tag&related_id=1993713)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -69,7 +71,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
+<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component" width="1000"/>
 
 In the class diagram above, it is showing the state where the `Finance` tab is selected.
 
@@ -86,13 +88,19 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<box type="info" seamless>
+
+In the future, we aim to be able to abstract out the Card, ListPanel, and Tab (UI) accordingly, to make adding tabs much easier and convenient.
+
+</box>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component within a Tab:
 
-<puml src="diagrams/LogicClassDiagram.puml" width="550"/>
+<puml src="diagrams/LogicClassDiagram.puml" width="750"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.</br>
 **Note:** This takes place within the ContactsTab. 
@@ -180,8 +188,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
 ### Add Finance feature
 
 In FreelanceBuddy, the creation of Finance entries (commissions and expenses) includes validation for clients. In the case that the user attempts to create a Finance entry with an associated client, FreelanceBuddy will check if the client exists in the Contacts Tab and only create the entry if it does.
@@ -260,7 +266,7 @@ also update to only show finances related to the given client.
 
 Use of the `tab` command to switch between tabs in the UI. 
 
-Currently, the application uses the existing [TabsPane from JavaFX](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TabPane.html).
+Currently, the application uses the existing [TabPane from JavaFX](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TabPane.html), and it makes use of the tab index to switch tabs. 
 
 #### Tab object
 
@@ -302,7 +308,7 @@ The following sequence diagram represents the user is changing from the Contacts
 
 <puml src="diagrams/ChangeTabSequenceDiagram.puml" alt="ChangeTabSequenceDiagram" />
 
-The following activity diagram summaries what happens when a user changes a tab.
+The following activity diagram summarise what happens when a user changes a tab.
 
 <puml src="diagrams/TabActivityDiagram.puml" alt="TabActivityDiagram" />
 
@@ -380,7 +386,7 @@ To demonstrate how a string is parsed into a `LocalDateTime` value given that it
 
 To further explain what happens within a "Parse X Inputs" we take a look at one of the implementations, `parseThreeElements`.
 
-<puml src="diagrams/ParseThreeElementsAD.puml" alt="ParseThreeElementsActivityDiagram" />
+<puml src="diagrams/ParseThreeElementsAD.puml" alt="ParseThreeElementsActivityDiagram" width="600"/>
 
 As you can see this is how given the number of words of input, date-time can be parsed even if input can be a date, time or date-time.
 
@@ -455,6 +461,12 @@ which is inconsistent with real-world scenarios where phone numbers are unique a
 
 We plan to implement a check for contact phone numbers to prevent duplicate entries, including phone numbers which include country codes
 For example, `+6598765432` will be considered the same as `98765432`, where `+65` is the country code for Singapore.
+
+#### 6. Duplicates of contact telegram names
+Currently, the system allows duplicate telegram names
+which is inconsistent with real-world scenarios where telegram names are unique and tied to a single person.
+
+We plan to implement a check for telegram names to prevent duplicate entries.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -644,7 +656,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions** 
 
 * 1a. No contacts found that contains given name keywords.
-  * 1a1. FreelanceBuddy shows an empty list.
+  * 1a1. FreelanceBuddy shows 0 contacts.
+
 
     Use case ends.
 
@@ -662,7 +675,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. No contacts found that contains given company keywords.
-    * 1a1. FreelanceBuddy shows an empty list.
+    * 1a1. FreelanceBuddy shows 0 contacts.
 
       Use case ends.
 
@@ -956,16 +969,52 @@ Use case ends.
 |      Aspect       | Description                                                                                                                                                                                                                                                                                                                                     |
 |:-----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Compatibility** | Should work on any _mainstream OS_ as long as it has Java `11` or above installed.                                                                                                                                                                                                                                                              |
-|  **Performance**  | 1. Should be able to to hold up to 1000 contacts without much _performance degradation_.<br/><br/>2. Should respond to commands within 1s on average for any type of task.                                                                                                                                                                      |
+|  **Performance**  | 1. Should be able to to hold up to 1000 entires in all tabs without much _performance degradation_.<br/><br/>2. Should respond to commands within 1s on average for any type of task.                                                                                                                                                           |
 |   **Usability**   | 1. User with above average typing speed should be able to accomplish most tasks faster than using mouse and GUIs.<br><br>2. CLI commands should be intuitive and easy for the user.<br></br>3. Error messages should be informative so users can troubleshoot effectively.<br><br>4. Clear and concise documentation available to assist users. |
 |  **Reliability**  | 1. App should be robust and resilient to minimize any crashes or errors.<br><br> 2. App should have have regular automated backup procedures to ensure data is saved in the case of accidental shut down or crashes to the app.                                                                                                                 |
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Performance degradation**: Slowdown in performance, particularly in task execution times or data save/load times
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+This section aims to showcase the effort that we put into FreelanceBuddy as a team. We will highlight the challenges
+and efforts we faced for each component of FreelanceBuddy.
+
+With FreelanceBuddy, we added the `Finance` and `Event` entities on to the existing AB3 `Person` entity. 
+These entities and their models were made from scratch, with minimal code reuse from AB3. 
+
+With the addition of these entities, we felt that it made the most sense to create two new tabs. This meant that new UI 
+components had to be created for each tab. For this, the main structure of each tab was somewhat similar to the original AB3 UI,
+however slight adjustments were made to cater to the needs of each tab.
+
+With the creation of three tabs, we realised that separate parsers had to be made. This is because the same command should
+have a different result depending on which tab you are on. To achieve this, we made three new parsers - `ContactParser`,
+`FinanceParser` and `EventParser` which all extend the `ParseCommandHandlers` class. This helped us to manage how commands
+were handled in each tab. `ContactParser` was adapted from the original AB3 `AddressBookParser` while the other two parsers
+had very minimal code reuse, due to the fact that they handled very different commands.
+
+For the commands, many of the basic commands (i.e. add, delete and edit) that we added to `Finance` and `Events` made 
+use of the existing AB3 commands. Many of the new commands we added (i.e. `filter-n`, `summary`) relied on the 
+use of the `Predicate` classes. This was adapted from the existing `find` command of AB3. While the new commands were not exactly
+the same as the `find` command, we were able to extract the idea of how to filter a list from the `find` command.
+
+We also made an effort to cater to more intuitive user inputs through the implementation of the `DateTimeParser`. 
+We felt that the addition of this `DateTimeParser` greatly improved the user experience since many of our commands made 
+use of both a start and end time. The implementation of this was not trivial and none of the code for this was taken from AB3.
+
+The main challenge we faced with FreelanceBuddy was that we were now handling three separate entity types, all of which had
+different behaviours and functions. This made integration between the three tabs more challenging. As an example, we
+were unable to implement the cascading update and delete from the `Contacts` tab to the `Finance` and `Events` tabs 
+([more on this](#1-lack-of-cross-tab-updating)). 
+
+Overall, we felt that we the effort that we have put into creating FreelanceBuddy is more than sufficient. This is justified
+by the sheer amount of new features we have added (i.e. all the `Finance` and `Events` features). We also felt that many
+of the features we added (e.g. `summary`, `filter-t`) were different from all the AB3 features. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -986,13 +1035,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ## Test cases for Contacts
@@ -1005,11 +1054,11 @@ For the following tests we assume that you are on the Contacts tab.
 
     1. Prerequisites: There are contacts that are already saved in FreelanceBuddy. 
 
-    1. Test case: `list`
+    2. Test case: `list`
 
        Expected: all previously saved contacts will be shown only in the contacts tab. There will be a success message of "Listed all persons".
    
-    1. Test case: `list 1234`
+    3. Test case: `list 1234`
 
        Expected: all previously saved contacts will be shown only in the contacts tab. There will be a success message of "Listed all persons".
 
@@ -1021,27 +1070,27 @@ For the following tests we assume that you are on the Contacts tab.
 
        Expected: a new `contact` with the corresponding details will be added to the bottom of the list.
 
-    1. Test case (with all fields): `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds`
+    2. Test case (with all fields): `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds`
 
        Expected: a new `contact` with the corresponding details will be added to the bottom of the list.
 
-    1. Test case (missing compulsory field): `add n/Abbie Dunkins p/+610489630614 a/Opera house c/NAB t/@anniebirds`
+    3. Test case (missing compulsory field): `add n/Abbie Dunkins p/+610489630614 a/Opera house c/NAB t/@anniebirds`
     
        Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (repeated fields): `add n/Abbie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds`
+    4. Test case (repeated fields): `add n/Abbie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds`
 
        Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (invalid format for one field): `add n/Abbie Dunkins p/123 e/ann1e@gmail.com`
+    5. Test case (invalid format for one field): `add n/Abbie Dunkins p/123 e/ann1e@gmail.com`
 
        Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
    
-   1. Pre-requisites: Another contact exactly names `Annie Dunkins` must exist.
+    6. Pre-requisites: Another contact exactly names `Annie Dunkins` must exist.
 
-   1. Test case (duplicate name): `add n/Annie Dunkins p/+555 555-5555 e/annie@gmail.com`
+    7. Test case (duplicate name): `add n/Annie Dunkins p/+555 555-5555 e/annie@gmail.com`
 
-      Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
+       Expected: No `contact` added. Error details shown in the status message. List remains unchanged.
 
 ### Editing a Contact
 
@@ -1049,22 +1098,22 @@ For the following tests we assume that you are on the Contacts tab.
 
     1. Pre-requisites: There must be at least one contact that is already saved in FreelanceBuddy and no other contact can have the name `‘Chewbaca’ The 1st`. List all persons using 'list' command.
 
-    1. Test case (valid edit): `edit 1 n/‘Chewbaca’ The 1st`
+    2. Test case (valid edit): `edit 1 n/‘Chewbaca’ The 1st`
 
        Expected: contact at index 1 has name field modified to ‘Chewbaca’ The 1st. 
 
-    1. Pre-requisites: Contact at index 1 must have a stored telegram handle.
+    3. Pre-requisites: Contact at index 1 must have a stored telegram handle.
 
-    1. Test case (removing optional fields): `edit 1 n/Alex Yeoh t/` 
+    4. Test case (removing optional fields): `edit 1 n/Alex Yeoh t/` 
 
        Expected: contact at index 1 has name field modified to Alex Yeoh and telegram handle stored is removed.
 
-    1. Test case (removing compulsory fields): `edit 1 n/`
+    5. Test case (removing compulsory fields): `edit 1 n/`
         
        Expected: contact will not be edited. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `edit 1 p/`, `edit 1 e/`, `edit x t/` (where x is larger than the list size)<br>
-           Expected: Similar to previous.
+    6. Other incorrect delete commands to try: `edit 1 p/`, `edit 1 e/`, `edit x t/` (where x is larger than the list size)<br>
+            Expected: Similar to previous.
 
 ### Deleting a person
 
@@ -1072,13 +1121,13 @@ For the following tests we assume that you are on the Contacts tab.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
+    2. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous. 
 
 ### Filtering a person
@@ -1087,39 +1136,38 @@ For the following tests we assume that you are on the Contacts tab.
 
     1. Pre-requisites: There must be at least one contact that is already saved in FreelanceBuddy. Ensure one of them has the name `Alex Yeoh`
 
-    1. Test case (valid filter): `filter-n Alex`
+    2. Test case (valid filter): `filter-n Alex`
 
         Expected: Only contacts with the key word `Alex` (not case-sensitive) will be shown in the list.
 
-    1. Pre-requisites: There is no one in FreelanceBuddy that has the name that consist of `Alex`
+    3. Pre-requisites: There is no one in FreelanceBuddy that has the name that consist of `Alex`
 
-    1. Test case (invalid keyword): `filter-n Alex`
+    4. Test case (invalid keyword): `filter-n Alex`
 
         Expected: No contacts are shown in the list.
 
-   1. Test case (without keyword): `filter-n`
+    5. Test case (without keyword): `filter-n`
 
-       Expected: Error details shown in the status message. List remains the same.
+        Expected: Error details shown in the status message. List remains the same.
 
 
 1. Filter a contact by company
 
     1. Pre-requisites: There must be at least one contact that is already saved in FreelanceBuddy. Ensure one of them has the company `Google`
 
-    1. Test case (valid filter): `filter-c google`
+    2. Test case (valid filter): `filter-c google`
 
        Expected: Only contacts with the key word `google` in the company name (not case-sensitive) will be shown in the list.
 
-    1. Pre-requisites: There is no one in FreelanceBuddy that has the company that consist of `google`
+    3. Pre-requisites: There is no one in FreelanceBuddy that has the company that consist of `google`
 
-    1. Test case (invalid keyword): `filter-c google`
+    4. Test case (invalid keyword): `filter-c google`
 
        Expected: No contacts are shown in the list.
 
-   1. Test case (without keyword): `filter-c`
+    5. Test case (without keyword): `filter-c`
 
-          Expected: Error details shown in the status message. List remains the same.
-
+           Expected: Error details shown in the status message. List remains the same.
 
 ## Test cases for Finance
 
@@ -1127,100 +1175,172 @@ For the following tests, we assume that you are on the Finance tab.
 
 ### Listing all finances
 
-1. Using the list command to view finances
+1. Listing all finances in FreelanceBuddy
 
-    1. Prerequisites: We assume that there are multiple expenses and commissions in the finance tab. 
+   1. Prerequisites: We assume that there are multiple expenses and commissions in the finance tab. 
 
-    2. Test case: `list`<br>
-    Expected: Lists all finances
-   
-    3. Test case: `list commission`<br>
-    Expected: List all commissions
-   
-    4. Test case: `list expense`<br>
-    Expected: List all expenses
+   2. Test case: `list`<br>
+   Expected: Lists all finances
 
+   3. Test case: `list commission`<br>
+   Expected: List all commissions
 
+   4. Test case: `list expense`<br>
+   Expected: List all expenses
 
 ### Adding a commission
 
-1. Adding a new commission into FreelanceBuddy
+1. Adding a commission to FreelanceBuddy
 
-    1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
+   1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
 
-    1. Test case: `add-c a/900 c/John Doe d/ChatBot commission t/next week`<br>
-       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be a week from the current time.
+   2. Test case: `add-c a/900 c/John Doe d/ChatBot commission t/next week`<br>
+      Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be a week from the current time.
 
-    1. Test case (no time input): `add-c a/50 c/John Doe d/ChatBot commission`<br>
-       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be the current time.
+   3. Test case (no time input): `add-c a/50 c/John Doe d/ChatBot commission`<br>
+      Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in green. The time displayed should be the current time.
 
-    1. Test case (Amy Smith is not in the contacts): `add-c a/50 c/Amy Smith`<br>
-       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+   4. Test case (Amy Smith is not in the contacts): `add-c a/50 c/Amy Smith`<br>
+      Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case: `add-c a/50 c/John Doe`<br>
-       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
-   
-    1. Other incorrect `add-c` commands to try: `add-c a/50 c/John Doe`, `add-c a/-50 c/John Doe d/ChatBot commission`,<br>
-       Expected: Similar to previous.
+   5. Test case: `add-c a/50 c/John Doe`<br>
+      Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+
+   6. Other incorrect delete commands to try: `add-c a/50 c/John Doe`, `add-c a/-50 c/John Doe d/ChatBot commission`<br>
+      Expected: Similar to previous.
 
 ### Adding an expense
 
-1. Adding a new expense into FreelanceBuddy
+1. Adding an expense to FreelanceBuddy
 
-    1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
+   1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` exists in our contacts.
 
-    1. Test case: `add-e a/900 c/John Doe d/ChatBot commission t/next week`<br>
-       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in red. The time displayed should be a week from the current time.
+   2. Test case: `add-e a/900 c/John Doe d/ChatBot commission t/next week`<br>
+      Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in red. The time displayed should be a week from the current time.
 
-    1. Test case (no time input): `add-e a/50 c/John Doe d/ChatBot commission`<br>
-       Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in red. The time displayed should be the current time.
+   3. Test case (no time input): `add-e a/50 c/John Doe d/ChatBot commission`<br>
+      Expected: A new `commission` with the corresponding details is added to the list. The amount should be highlighted in red. The time displayed should be the current time.
 
-    1. Test case (Amy Smith is not in the contacts): `add-e a/50 c/Amy Smith`<br>
-       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+   4. Test case (Amy Smith is not in the contacts): `add-e a/50 c/Amy Smith`<br>
+      Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case: `add-e a/50 c/John Doe`<br>
-       Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
+   5. Test case: `add-e a/50 c/John Doe`<br>
+      Expected: No `commission` added. Error details shown in the status message. List remains unchanged.
 
-    1. Other incorrect `add-e` commands to try: `add-e a/50 c/John Doe`, `add-e a/-50 c/John Doe d/ChatBot commission`,<br>
-       Expected: Similar to previous.
+   6. Other incorrect `add-e` commands to try: `add-e a/50 c/John Doe`, `add-e a/-50 c/John Doe d/ChatBot commission`,<br>
+      Expected: Similar to previous.
        
-       ### Editing a finance
-       
-1. Editing a finance while all finances are being shown
+### Editing a finance
 
-    1. Prerequisite: For our example, we shall assume that the following finances are present in the finance tab:
-        * `commission` with the client `John Doe`, amount `900` and description `ChatBot UI` is at `index 1`
-        * `expense` with the client `John Doe`, amount `50` and description `Adobe Photoshop subscription` is at `index 2`.<br>
-    
-        We also assume that `Adam Smith` is in our contacts and `Betsy Crowder` is not.<br>
-   
-    2. Test case: `edit 1 c/Adam Smith`<br>
-       Expected: The client tagged to the commission should now be `Adam Smith`. Rest of the commission remains unchanged. 
-   
-    3. Test case: `edit 1 a/100`<br>
-       Expected: The amount is changed to `100`. Rest of the commission remains unchanged.
-   
-    4. Test case: `edit 1 d/ChatBot commission payment`<br>
-       Expected: The description is changed to `ChatBot commission payment`. Rest of the commission remains unchanged.
-   
-    5. Test case: `edit 1 t/tmr`<br>
-       Expected: The time due is changed to the next day. Rest of the commission remains unchanged.
-   
-    6. Test case: `edit 1 c/`<br>
-       Expected: No changes to the `commission`. Error details shown in the status message. 
-   
-    7. Test case: `edit 1 a/-900`<br>
-       Expected: No changes to the `commission`. Error details shown in the status message.
-   
-    8. Test case: `edit 1 d/`<br>
-       Expected: No changes to the `commission`. Error details shown in the status message.
+1. Editing a Finance Entry in FreelanceBuddy
 
-    9. Test case: `edit 2 c/`<br>
-       Expected:  There is now no client tagged to the `expense.` Rest of the expense remains unchanged.
+   1. Prerequisite: For our example, we shall assume that the following finances are present in the finance tab:
+       * `commission` with the client `John Doe`, amount `900` and description `ChatBot UI` is at `index 1`
+       * `expense` with the client `John Doe`, amount `50` and description `Adobe Photoshop subscription` is at `index 2`.<br>
 
-    10. Other test cases: Repeat steps 2-5 for the expense entry (i.e. Replace index 1 with 2)
-        
+       We also assume that `Adam Smith` is in our contacts and `Betsy Crowder` is not.<br>
 
+   2. Test case: `edit 1 c/Adam Smith`<br>
+      Expected: The client tagged to the commission should now be `Adam Smith`. Rest of the commission remains unchanged. 
+
+   3. Test case: `edit 1 a/100`<br>
+      Expected: The amount is changed to `100`. Rest of the commission remains unchanged.
+
+   4. Test case: `edit 1 d/ChatBot commission payment`<br>
+      Expected: The description is changed to `ChatBot commission payment`. Rest of the commission remains unchanged.
+
+   5. Test case: `edit 1 t/tmr`<br>
+      Expected: The time due is changed to the next day. Rest of the commission remains unchanged.
+
+   6. Test case: `edit 1 c/`<br>
+      Expected: No changes to the `commission`. Error details shown in the status message. 
+
+   7. Test case: `edit 1 a/-900`<br>
+      Expected: No changes to the `commission`. Error details shown in the status message.
+
+   8. Test case: `edit 1 d/`<br>
+      Expected: No changes to the `commission`. Error details shown in the status message.
+
+   9. Test case: `edit 2 c/`<br>
+      Expected:  There is now no client tagged to the `expense.` Rest of the expense remains unchanged.
+
+   10. Other test cases: Repeat steps 2-5 for the expense entry (i.e. Replace index 1 with 2)
+
+### Deleting a Finance Entry
+
+1. Deleting a Finance Entry in FreelanceBuddy
+
+   1. Prerequisites: There has to be at least one finance entry saved in FreelanceBuddy, but less than 999. Assuming the client `John Doe` exists in our contacts, we can set up an entry with the command `add-c d/Test c/John Doe a/20`.
+
+   2. Test case: `delete 1`<br>
+      Expected: The entry corresponding to the index `1` is deleted. The index of every entry after `1` is updated to form a continuous list.
+
+   3. Test case: `delete 999`<br>
+      Expected: Deletion fails. Error details shown in the status message. List remains unchanged.
+
+   4. Test case: `delete 0`<br>
+      Expected: Deletion fails. Error details shown in the status message. List remains unchanged.
+
+   5. Other incorrect delete commands to try: `delete -1`, `delete 5.99`<br>
+      Expected: Deletion fails. Error details shown in the status message. List remains unchanged.
+
+### Filtering Finance Entries
+
+1. Filtering finance entries by Client
+
+   1. Prerequisites: There has to be at least one finance entry saved in FreelanceBuddy, but less than 999. Assuming the clients `John Doe` and `Mary Sue` exist in our contacts, we can set up entries with the commands `add-c d/Test c/John Doe a/20` and `add-e d/Test2 c/Mary Sue a/50`.
+
+   2. Test case: `filter-c john`<br>
+      Expected: Only entries that belong to a client whose name contains `john` (case-insensitive) will be displayed. Number of entries shown in the status message.
+
+   3. Test case: `filter-c John mary`<br>
+      Expected: Only entries that belong to a client whose names contain `John` or `mary` (case-insensitive) will be displayed. Number of entries shown in the status message.
+
+   4. Test case (no finance entry has a client with name containing `Hello`): `filter-c Hello`<br>
+      Expected: No entry will be displayed. Number of entries (0) shown in the status message.
+
+   5. Test case: `filter-c`<br>
+      Expected: Filter fails. Error details shown in the status message. List remains unchanged.
+
+2. Filtering finance entries by Time Frame
+
+   1. Prerequisites: There has to be at least one finance entry saved in FreelanceBuddy. Assuming the client `John Doe` exists in our contacts, we can set up entries with the commands `add-c d/Test c/John Doe a/20 t/2023-10-10` and `add-e d/Test2 c/John Doe a/50 t/2024-10-10`.
+
+   2. Test case: `filter-t s/2023-10-09 e/2023-10-11`<br>
+      Expected: Only entries between `2023-10-09` and `2023-10-11` will be displayed. Number of entries shown in the status message. If using the above setup, only the former entry will be displayed.
+
+   3. Test case: `filter-t s/2023-10-09 e/2024-10-12`<br>
+      Expected: Only entries between `2023-10-09` and `2024-10-12` will be displayed. Number of entries shown in the status message. If using the above setup, both entries will be displayed.
+
+   4. Test case (no entries in 2099): `filter-t s/2099-01-01 e/2099-12-31`<br>
+      Expected: No entry will be displayed. Number of entries (0) shown in the status message.
+
+   5. Test case: `filter-t s/test e/test`<br>
+      Expected: Filter fails. Error details shown in the status message. List remains unchanged.
+
+   6. Test case: `filter-t s/2023-10-09`<br>
+      Expected: Filter fails. Error details shown in the status message. List remains unchanged.
+
+   7. Test case: `filter-t`<br>
+      Expected: Filter fails. Error details shown in the status message. List remains unchanged.
+
+### Generating a finance summary of a client
+
+1. Generating finance summary of a client in FreelanceBuddy
+
+   1. Prerequisites: There has to be at least one client saved in FreelanceBuddy. For our example, we shall assume the clients `John Doe` and `Mary Sue` exist in our contacts. We can set up entries with the commands `add-c d/Test c/John Doe a/20` and `add-e d/Test2 c/John Doe a/50`.
+
+   2. Test case: `summary John Doe`<br>
+      Expected: Only entries that belong to `John Doe` will be displayed. Cumulative value of finance entries, commissions, expenses, and number of commissions and expenses shown in the status message.
+
+   3. Test case (no entries by `Mary Sue`): `summary Mary Sue`<br>
+      Expected: No entry will be displayed. Status message should be `You currently have no finances for this client`.
+
+   4. Test case (`Hello` does not exists in contacts): `summary Hello`<br>
+      Expected: Summary fails. Error details shown in the status message. List remains unchanged.
+
+   5. Test case: `summary`<br>
+      Expected: Summary fails. Error details shown in the status message. List remains unchanged.
 
 ## Test cases for Events
 
@@ -1232,20 +1352,20 @@ For the following tests, we assume that you are on the Events tab.
 
     1. Prerequisites: There has to be at least one event saved in FreelanceBuddy.
 
-    1. Test case: `list`<br>
+    2. Test case: `list`<br>
        Expected: A list of all upcoming events is shown.
 
-    1. Test case: `list 123`<br>
+    3. Test case: `list 123`<br>
        Expected: A list of all upcoming events is shown.
 
 2. Viewing all events in FreelanceBuddy
 
     1. Prerequisites: There has to be at least one event saved in FreelanceBuddy.
 
-    1. Test case: `list-all`<br>
+    2. Test case: `list-all`<br>
        Expected: A list of all events is shown.
 
-    1. Test case: `list-all 123`<br>
+    3. Test case: `list-all 123`<br>
        Expected: A list of all events is shown.
 
 ### Adding an event
@@ -1254,25 +1374,25 @@ For the following tests, we assume that you are on the Events tab.
     
     1. Prerequisites: There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts.
 
-    1. Test case (only compulsory fields): `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30`<br>
+    2. Test case (only compulsory fields): `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30`<br>
        Expected: A new `event` with the corresponding details is added chronologically to the list.
 
-    1. Test case (with all fields): `add n/Team meeting s/23-01-2024 19:30 e/23-01-2024 21:30 c/John Doe l/20 Lower Kent Ridge Road, 119080 d/Bring laptop`<br>
+    3. Test case (with all fields): `add n/Team meeting s/23-01-2024 19:30 e/23-01-2024 21:30 c/John Doe l/20 Lower Kent Ridge Road, 119080 d/Bring laptop`<br>
        Expected: A new `event` with the corresponding details is added chronologically to the list. 
 
-    1. Test case (multiple client input): `add n/Yoga s/25-01-2024 12:30 e/25-01-2024 13:30 c/John Doe c/Amy Bee`<br>
+    4. Test case (multiple client input): `add n/Yoga s/25-01-2024 12:30 e/25-01-2024 13:30 c/John Doe c/Amy Bee`<br>
        Expected: A new `event` with the corresponding details is added chronologically to the list.
 
-    1. Test case (missing compulsory field): `add n/Prepare for exams e/29-01-2024 21:30 c/John Doe l/home d/study on entropy`<br>
+    5. Test case (missing compulsory field): `add n/Prepare for exams e/29-01-2024 21:30 c/John Doe l/home d/study on entropy`<br>
        Expected: No `event` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (repeated fields): `add n/Company party n/Charity run s/19-01-2024 17:30 e/19-01-2024 21:30 c/Amy Bee l/Office d/have fun!`<br>
+    6. Test case (repeated fields): `add n/Company party n/Charity run s/19-01-2024 17:30 e/19-01-2024 21:30 c/Amy Bee l/Office d/have fun!`<br>
        Expected: No `event` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (invalid date): `add n/Baby shower party s/00-01-2024 17:30 e/00-01-2024 21:30 c/Amy Bee l/nana's house d/bring gifts`<br>
+    7. Test case (invalid date): `add n/Baby shower party s/00-01-2024 17:30 e/00-01-2024 21:30 c/Amy Bee l/nana's house d/bring gifts`<br>
        Expected: No `event` added. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (Amy Smith not in contacts): `add n/Company Cleanup s/20-01-2024 17:30 e/20-01-2024 20:30 c/Amy Smith l/Office d/bring mop`<br>
+    8. Test case (Amy Smith not in contacts): `add n/Company Cleanup s/20-01-2024 17:30 e/20-01-2024 20:30 c/Amy Smith l/Office d/bring mop`<br>
        Expected: No `event` added. Error details shown in the status message. List remains unchanged.
 
 
@@ -1283,22 +1403,22 @@ For the following tests, we assume that you are on the Events tab.
     1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30` and its index in the events list is `1`.
 There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
 
-    1. Test case (compulsory field edit): `edit 1 n/Watch Television`<br>
+    2. Test case (compulsory field edit): `edit 1 n/Watch Television`<br>
        Expected: The `event` edited will now reflect the corresponding details.
 
-    1. Test case (optional field edit): `edit 1 l/Nacho's Bar`<br>
+    3. Test case (optional field edit): `edit 1 l/Nacho's Bar`<br>
        Expected: The `event` edited will now reflect the corresponding details.
 
-    1. Test case (multiple client input): `edit 1 c/John Doe c/Amy Bee`<br>
+    4. Test case (multiple client input): `edit 1 c/John Doe c/Amy Bee`<br>
        Expected: The `event` edited will now reflect the corresponding details.
 
-    1. Test case (invalid date): `edit 1 s/29-01-2024 21:30`<br>
+    5. Test case (invalid date): `edit 1 s/29-01-2024 21:30`<br>
        Expected: No `event` edited. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (repeated fields): `edit 1 n/Company party n/Charity run`<br>
+    6. Test case (repeated fields): `edit 1 n/Company party n/Charity run`<br>
        Expected: No `event` edited. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (Amy Smith not in contacts): `edit 1 c/Amy Smith`<br>
+    7. Test case (Amy Smith not in contacts): `edit 1 c/Amy Smith`<br>
        Expected: No `event` edited. Error details shown in the status message. List remains unchanged.
 
 ### Deleting an event
@@ -1308,10 +1428,10 @@ There has to be at least 2 clients saved in FreelanceBuddy. For our example, we 
     1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30` and its index in the events list is `1`.
        There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
 
-    1. Test case: `delete 1`<br>
+    2. Test case: `delete 1`<br>
        Expected: The `event` deleted will be removed from the list. 
 
-    1. Test case (invalid index): `delete 0`<br>
+    3. Test case (invalid index): `delete 0`<br>
        Expected: No `event` deleted. Error details shown in the status message. List remains unchanged.
 
 ### Filtering an event
@@ -1321,19 +1441,128 @@ There has to be at least 2 clients saved in FreelanceBuddy. For our example, we 
     1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30 c/John Doe`.
        There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
 
-    1. Test case: `filter-n Dinner`<br>
+    2. Test case: `filter-n Dinner`<br>
        Expected: The events list will only show `events` with the name `Dinner`.
 
-    1. Test case: `filter-t 29-01-2024 20:30`<br>
+    3. Test case: `filter-t 29-01-2024 20:30`<br>
        Expected: The events list will only show `events` before `24-01-2024 20:30`.
 
-    1. Test case: `filter-c John`<br>
+    4. Test case: `filter-c John`<br>
        Expected: The events list will only show `events` with `John Doe` tagged as a client.
 
-    1. Test case (invalid date): `filter-t 01230time`<br>
+    5. Test case (invalid date): `filter-t 01230time`<br>
        Expected: No `event` filtered. Error details shown in the status message. List remains unchanged.
 
-    1. Test case (No Event with Amy Bee): `filter-c Amy`<br> 
+    6. Test case (No Event with Amy Bee): `filter-c Amy`<br> 
        Expected: The events list will be empty.
 
+## Test cases for Storage
 
+Note that the following test cases involves manipulating the JSON files.
+
+<box type="warning">
+
+The following tests should be performed with the **default set of dummy data** that is generated when you first open the app (and run at least one command).
+
+Dummy data can also generate by just deleting the json files.
+</box>
+
+### Deleting data
+
+1. Deleting the JSON files while app is closed
+   > test that deleting json file won't affect other json files
+
+    1. Prerequisites: App must be closed, using dummy data
+
+    2. Delete `addressbook.json`, run the app <br>
+       Expected: Default dummy data for contacts reappears on GUI
+
+    3. Delete `addressbook.json`, `eventsbook.json`, `financebook.json` <br>
+       Expected: Default dummy data for contacts, events, and finance reappears on GUI
+
+    4. Delete `addressbook.json`, run the app, and enter `list` in any tab <br>
+       Expected: You should be able to see `addressbook.json` regenerate in the file explorer
+
+1. Deleting the JSON files while app is running
+   > test that deleting the json files while using the app won't cause it to crash
+
+    1. Prerequisites: App must be running, using dummy data
+
+    2. Delete `addressbook.json`, then enter command in Contacts tab `add n/Test Person p/838383838 e/asdf@gmail.com` <br>
+       Expected: New contact "Test Person" is successfully created and shown in GUI, `addressbook.json` regenerates
+
+    3. Delete `addressbook.json`, then enter command in Contacts tab `filter-n Alex` <br>
+       Expected: Contact "Alex Yeoh" is shown, `addressbook.json` regenerates
+
+    2. Delete `eventsbook.json`, then enter command in Events tab `add n/Test Meeting s/tdy e/tmr` <br>
+       Expected: New event "Test Meeting" is successfully created and shown in GUI, `eventsbook.json` regenerates
+
+    3. Delete `eventsbook.json`, then enter command in Events tab `filter-n Alex` <br>
+       Expected: Event "Meeting with Alex" is shown, `eventsbook.json` regenerates
+
+    2. Delete `financebook.json`, then enter command in Finance tab `add-c d/Painting a/100 c/David Li` <br>
+       Expected: New commission "Painting" is successfully created and shown in GUI, `financebook.json` regenerates
+
+    3. Delete `financebook.json`, then enter command in Finance tab `filter-c Bernice Yu` <br>
+       Expected: All finances regarding "Bernice Yu" is shown, `financebook.json` regenerates
+
+
+### Editing data
+
+1. Editing contents in `addressbook.json`
+    1. Prerequisites: Default dummy data in `addressbook.json` must exists, app is closed
+
+    2. Test case: Edit name in the first entry of `addressbook.json` to "poop" and run the app <br>
+       Expected: Data still exists, first entry name is now "poop". Note that it didn't cause the other two tabs to crash even though Alex Yeoh no longer exists
+
+    3. Test case: Edit name in the first entry of `addressbook.json` to an empty string "" and run the app<br>
+       Expected: All data is erased
+
+    3. Test case: Edit telegram name in the first entry of `addressbook.json` to an empty string "" and run the app<br>
+       Expected: Data still exists, Alex Yeoh now has no telegram name
+
+    4. Test case: Edit telegram name in the first entry of `addressbook.json` to "..." and run the app<br>
+       Expected: All data is erased
+
+2. Editing contents in `financebook.json`
+    1. Prerequisites: Default dummy data in `financebook.json` must exists
+
+    2. Test case: Edit @type in the first entry of `financebook.json` to "Expense" instead of "Commission" and run the app <br>
+       Expected: Finance entry "Artwork" successfully changed from commission to expense
+
+    2. Test case: Edit amount in the first entry of `financebook.json` to "0" and run the app <br>
+       Expected: All data is erased
+
+    3. Test case: Edit client in the third entry(expense) of `financebook.json` to null and run the app <br>
+       Expected: Data still exists, third finance entry now no longer has a client tagged
+
+3. Editing contents in `eventsbook.json`
+    1. Prerequisites: Default dummy data in `eventsbook.json` must exists
+
+    2. Test case: Edit timeStart in the first entry of `eventsbook.json` to a date time that is later than timeEnd. <br>
+       Expected: All data is erased
+
+    2. Test case: Edit timeEnd in the first entry of `eventsbook.json` to "tomorrow" <br>
+       Expected: All data is erased
+
+
+### Loading data
+
+<box type="tip" seamless>
+
+**How to load data from a different file?**
+
+Change the file location that you want the app to target through the `preferences.json` file. Make sure that it is a valid file path.
+</box>
+
+1. Loading data from a different book file
+    1. Prerequisites: Create your own dummy set of data that is distinguishable to you, and rename the file to something else. Set `preferences.json` to target your own dummy files.
+
+    2. Test case: Load data from a different AddressBook file (e.g., `addressybooky.json`) <br>
+       Expected: You should see your own dummy data in the app.
+
+    3. Test case: Load data from a different FinanceBook file (e.g., `financeybooky.json`) <br>
+       Expected: You should see your own dummy data in the app.
+
+    4. Test case: Load data from a different EventsBook file (e.g., `eventsybooky.json`) <br>
+       Expected: You should see your own dummy data in the app.
