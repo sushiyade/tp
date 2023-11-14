@@ -21,11 +21,13 @@ If you are a freelancer who is looking to optimize your workflow, look no furthe
 
 **ADVANCED USER?** Jump ahead to the [Command Summary](#command-summary) to get an overview of all the commands!
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 <!-- * Table of Contents -->
 
 <h1 style="font-size: 30px; color: #e46c0a;">Table of Contents</h1>  
+
+--------------------------------------------------------------------------------------------------------------------
 
 Navigate the User Guide by clicking on the headings below.
 
@@ -885,9 +887,6 @@ The summary command provides the following details with regard to a `CLIENT` :
         </li>
         <li>
             Total number of commission and the amount earned from commissions 
-        </li>
-        <li>
-            Total number of expenses and the total cost from expenses
         </li>
         <li>
             Total number of expenses and the total cost from expenses
