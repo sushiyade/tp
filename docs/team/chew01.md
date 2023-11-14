@@ -35,6 +35,7 @@ This means that if the list is filtered, the filtered entries are renumbered and
 
 * **Project management**:
   * Set up milestone v1.3.
+  * Closed milestone v1.4.
 
 * **Enhancements to existing features**:
   * Added tests for every feature implemented above. 
@@ -49,9 +50,12 @@ This means that if the list is filtered, the filtered entries are renumbered and
     * Added helpful links for different audience groups (new, advanced) in Getting Started section.
     * Added more helpful links in Quick Start and Features section so that users can easily get to related sections.
     * Added documentation for the following Finance-related features: `add-e`, `list`, `delete`.
+    * Added documentation for Configuration Files under Data Storage
   * Developer Guide:
     * Structured use cases for the project. 
     * Added Finance-related user stories and use cases.
+    * Added "Add Finance Command" implementation details, with sequence diagrams.
+    * Added manual testing section for Finance commands.
 
 * **Tools**:
   * Set up GitHub team organisation and repository.
