@@ -88,6 +88,12 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<box type="info" seamless>
+
+In the future, we aim to be able to abstract out the Card, ListPanel, and Tab (UI) accordingly, to make adding tabs much easier and convenient.
+
+</box>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -645,12 +651,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to find contacts using name keywords.
 2. FreelanceBuddy shows a list of Contacts that contains given name keywords.
 
-   Use case ends resumes at step 1.
+   Use case ends.
 
 **Extensions** 
 
 * 1a. No contacts found that contains given name keywords.
   * 1a1. FreelanceBuddy shows 0 contacts.
+
 
     Use case ends.
 
@@ -663,7 +670,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to find contacts using company keywords.
 2. FreelanceBuddy shows a list of Contacts that contains given company keywords.
 
-   Use case ends resumes at step 1.
+   Use case ends.
 
 **Extensions**
 
@@ -681,14 +688,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to edit a contact they see in the contacts tab.
 2. FreelanceBuddy changes the contact fields to the new modified values.
 
-   Use case ends resumes at step 1.
+   Use case ends.
 
 **Extensions**
 
 * 1a. User input is invalid
     * 1a1. FreelanceBuddy shows error message.
 
-      Use case ends.
+      Use case resumes at step 1.
 
 #### Use Case: UC9 - Add an event
 
@@ -789,7 +796,7 @@ Use case ends.
 * 1b. The user inputs an invalid time.
     * 1b1. FreelanceBuddy shows an error message.
   
-      Use case ends.
+      Use case resumes at step 1.
 
 
 #### Use Case: UC15 - Filter events by client
@@ -813,7 +820,7 @@ Use case ends.
 * 1b. The user inputs a client not registered.
     * 1b1. FreelanceBuddy shows an error message.
 
-      Use case ends.
+      Use case resumes at step 1.
 
 #### Use Case: UC16 - Add a finance entry
 
@@ -1141,7 +1148,7 @@ For the following tests we assume that you are on the Contacts tab.
 
     5. Test case (without keyword): `filter-n`
 
-        Expected: Error details shown in the status message. List remains the same.
+       Expected: Error details shown in the status message. List remains the same.
 
 
 1. Filter a contact by company
@@ -1160,7 +1167,7 @@ For the following tests we assume that you are on the Contacts tab.
 
     5. Test case (without keyword): `filter-c`
 
-           Expected: Error details shown in the status message. List remains the same.
+        Expected: Error details shown in the status message. List remains the same.
 
 ## Test cases for Finance
 
