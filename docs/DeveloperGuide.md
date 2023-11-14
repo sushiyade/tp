@@ -1147,7 +1147,7 @@ For the following tests we assume that you are on the Contacts tab.
 
     5. Test case (without keyword): `filter-n`
 
-        Expected: Error details shown in the status message. List remains the same.
+       Expected: Error details shown in the status message. List remains the same.
 
 
 1. Filter a contact by company
@@ -1166,7 +1166,7 @@ For the following tests we assume that you are on the Contacts tab.
 
     5. Test case (without keyword): `filter-c`
 
-           Expected: Error details shown in the status message. List remains the same.
+        Expected: Error details shown in the status message. List remains the same.
 
 ## Test cases for Finance
 
