@@ -38,6 +38,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Check for code quality throughout the project
+  * Managed releases `v1.2`, `v1.3` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * For the edit method in finance, I was unable to use the edit command from contacts, so 
@@ -58,7 +59,9 @@ Given below are my contributions to the project.
     * Add test cases for storage
 
 * **Community**:
-  * adfasdfidfsifsod
+  * [PR reviews for group mates](https://github.com/AY2324S1-CS2103T-W09-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aflexibo)
+  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
+  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
 
 * **Tools**:
   * Intellij
