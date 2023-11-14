@@ -321,7 +321,7 @@ Format: `exit`
 
 [Back to General Commands](#general-commands)
 
-#### Clearing all entries : `clear`
+#### Clearing all entries → `clear`
 
 Clears all entries from the Tab you are on.
 
