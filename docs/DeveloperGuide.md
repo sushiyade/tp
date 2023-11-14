@@ -1102,7 +1102,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file 
+   
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -1445,7 +1447,7 @@ For the following tests, we assume that you are on the Events tab.
 
 1. Adding a new event into FreelanceBuddy
     
-    1. Prerequisites: There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts.
+    1. Prerequisites: There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the clients `John Doe` and `Amy Bee` exists in our contacts.
 
     2. Test case (only compulsory fields): `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30`<br>
        Expected: A new `event` with the corresponding details is added chronologically to the list.
@@ -1474,7 +1476,7 @@ For the following tests, we assume that you are on the Events tab.
 1. Editing an event in FreelanceBuddy
 
     1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30` and its index in the events list is `1`.
-There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
+       There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts.
 
     2. Test case (compulsory field edit): `edit 1 n/Watch Television`<br>
        Expected: The `event` edited will now reflect the corresponding details.
@@ -1499,7 +1501,7 @@ There has to be at least 2 clients saved in FreelanceBuddy. For our example, we 
 1. Deleting an event from FreelanceBuddy
 
     1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30` and its index in the events list is `1`.
-       There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
+       There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the clients `John Doe` and `Amy Bee` exists in our contacts.
 
     2. Test case: `delete 1`<br>
        Expected: The `event` deleted will be removed from the list. 
@@ -1512,7 +1514,7 @@ There has to be at least 2 clients saved in FreelanceBuddy. For our example, we 
 1. Filtering events in FreelanceBuddy
 
     1. Prerequisites: There exists an event made with the command `add n/Dinner s/24-01-2024 20:30 e/24-01-2024 21:30 c/John Doe`.
-       There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the client `John Doe` and `Amy Bee` exists in our contacts,
+       There has to be at least 2 clients saved in FreelanceBuddy. For our example, we shall assume the clients `John Doe` and `Amy Bee` exists in our contacts.
 
     2. Test case: `filter-n Dinner`<br>
        Expected: The events list will only show `events` with the name `Dinner`.
