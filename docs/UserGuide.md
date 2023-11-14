@@ -1015,7 +1015,7 @@ Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-
 
 <div style="page-break-after: always;"></div>
 
-#### Editing an event: Events tab → `edit`
+#### Editing an event: Events Tab → `edit`
 
 Edits an existing event in the **Events** tab.
 
