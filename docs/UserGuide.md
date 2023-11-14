@@ -60,10 +60,10 @@ Navigate the User Guide by clicking on the headings below.
       <li><a href="{{ baseUrl }}/UserGuide.html#faq" style="color:black">FAQ</a></li>  
   </ul>
 
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Quick Start
+--------------------------------------------------------------------------------------------------------------------
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
@@ -95,6 +95,7 @@ Navigate the User Guide by clicking on the headings below.
 
 7. For certain commands, there may be a message indicating the success or failure of that command displayed in the **console**, located right under the command box.
 
+<div style="page-break-after: always;"></div>
 
 Now that you've got FreelanceBuddy set up, here are some **example commands** to get you started!
 
@@ -118,9 +119,11 @@ For more commands such as edit and filter commands, as well as detailed instruct
 
 [↑ Back to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Navigating This User Guide
+--------------------------------------------------------------------------------------------------------------------
+
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
 The FreelanceBuddy User Guide is built to be user-friendly for all levels of users!
@@ -143,10 +146,10 @@ We have included a mini table of contents to help you navigate each section quic
 
 [↑ Back to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 
 ### Features
+--------------------------------------------------------------------------------------------------------------------
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
@@ -174,6 +177,8 @@ Each contact contains the following information:
 
 You can check out commands related to Contacts [here](#contacts-management). A summary of Contacts Tab commands can also be found [here](#contacts-tab).
 
+<div style="page-break-after: always;"></div>
+
 #### Finance Tracker
 
 A finance entry in FreelanceBuddy could be either a **Commission** or an **Expense**. These are from the perspective of your personal finances.
@@ -197,6 +202,8 @@ Each finance entry contains the following information:
 
 You can check out commands related to Finance [here](#finance-management). A summary of Finance Tab commands can also be found [here](#finance-tab).
 
+<div style="page-break-after: always;"></div>
+
 #### Event Scheduling System
 
 Keep track of your daily schedule by creating events in FreelanceBuddy!
@@ -216,9 +223,10 @@ You can check out commands related to Events [here](#events-management). A summa
 
 [↑ Back to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Commands
+--------------------------------------------------------------------------------------------------------------------
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
@@ -248,6 +256,8 @@ You can check out commands related to Events [here](#events-management). A summa
 
 </box>
 
+<div style="page-break-after: always;"></div>
+
 ### General Commands
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
@@ -276,6 +286,7 @@ Format: `help`
 
 [Back to General Commands](#general-commands)
 
+<div style="page-break-after: always;"></div>
 
 #### Switching tabs → `tab`
 
@@ -322,9 +333,8 @@ Format: `clear`
 
 [Back to General Commands](#general-commands)
 
---------------------------------------------------------------------------------------------------------------------
-
 ### Contacts Management
+--------------------------------------------------------------------------------------------------------------------
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
@@ -346,6 +356,8 @@ This is a mini table of contents for general commands to help you navigate this 
 | [`filter-c`](#filtering-contacts-by-company-contacts-tab-filter-c) | [<p style="color:black">Filter contacts by company</p>](#filtering-contacts-by-company-contacts-tab-filter-c)       |
 
 [↑ Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### Listing all Contacts: Contacts Tab → `list`
 
@@ -395,6 +407,8 @@ If a client is updated or deleted after it is used to create a Finance entry or 
 | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB t/@anniebirds` | `add n/Annie Dunkins p/+610489630614 e/ann1e@gmail.com a/Opera house c/NAB c/Atlassian t/@anniebirds` | <span style ='color: darkred; text-decoration: underline'>Multiple values specified</span><br> At most one `[c/COMPANY]` name is allowed         |
 
 [Back to Contacts Management](#contacts-management)
+
+<div style="page-break-after: always;"></div>
 
 #### Editing a Contact : Contacts Tab → `edit`
 
@@ -470,6 +484,7 @@ If a client is updated or deleted after it is used to create a Finance entry or 
 
 [Back to Contacts Management](#contacts-management)
 
+<div style="page-break-after: always;"></div>
 
 #### Filtering Contacts by `NAME`: Contacts Tab → `filter-n`
 
@@ -544,10 +559,10 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 
 [Back to Contacts Management](#contacts-management)
 
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Finance Management
+--------------------------------------------------------------------------------------------------------------------
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
@@ -569,6 +584,8 @@ This is a mini table of contents for general commands to help you navigate this 
 | [`summary`](#generating-a-finance-summary-of-a-client-finance-tab-summary) | [<p style="color:black">Summarise finance relating to a client</p>](#generating-a-finance-summary-of-a-client-finance-tab-summary) |
 
 [↑ Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### Listing finances: Finance Tab → `list`
 
@@ -624,6 +641,8 @@ Format: `add-c d/DESCRIPTION a/AMOUNT c/CLIENT [t/TIME]`
     </ul>
 </box>
 
+<div style="page-break-after: always;"></div>
+
 <box type="warning" seamless>
 
 For `CLIENT`, the name **MUST EXIST** in your Contacts. Note that this is **case-sensitive**.
@@ -637,7 +656,7 @@ Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-
 |   Parameter   | Format                                                             | Examples (#g#Valid##/#r#Invalid##)                                                                                                                                 |
 |:-------------:|:-------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `DESCRIPTION` | Text up to 256 characters, cannot be empty                         | #g#This is an example description##</br>                                                                                                                           |
-|   `AMOUNT`    | Positive numbers up to two decimal points                          | #g#5.60##</br>#g#1902.1##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0 (not a positive number)##</br>#r#556.9834 (too many decimal places)## |
+|   `AMOUNT`    | Positive numbers up to two decimal points                          | #g#5.60##</br>#g#56908##</br>#r#$50730 (not a valid number)##</br>#r#-1 or 0 (not a positive number)##</br>#r#556.9834 (too many decimal places)## |
 |   `CLIENT`    | Text up to 256 characters                                          | #g#Annie Dun##</br>#g#Samuel Dames##</br>                                                                                                                          |
 |   `[TIME]`    | Refer to [accepted Date-time formats](#accepted-date-time-formats) |                                                                                                                                                                    |
 
@@ -649,6 +668,8 @@ Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-
 
 
 [Back to Finance Management](#finance-management)
+
+<div style="page-break-after: always;"></div>
 
 #### Adding an Expense: Finance Tab → `add-e`
 
@@ -741,6 +762,8 @@ Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-
 
 [Back to Finance Management](#finance-management)
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting a Finance entry: Finance Tab → `delete`
 
 Deletes the specified **Finance** entry (expense or commission) from the **Finance** tab using `INDEX`.
@@ -771,6 +794,8 @@ The `INDEX` refers to the index number shown in the displayed finance list.
 
 [Back to Finance Management](#finance-management)
 
+<div style="page-break-after: always;"></div>
+
 #### Filtering finances by `CLIENT`: Finance Tab → `filter-c`
 
 Filters the **finances** in the **Finance** tab by the given client.
@@ -799,6 +824,7 @@ Format: `filter-c KEYWORD [MORE_KEYWORDS]...`
 **Example:**
 ![finance filter-c demo](images/finance_filter-c.png)
 
+<div style="page-break-after: always;"></div>
 
 | Parameter | Format                    | Examples (#g#Valid##/#r#Invalid##) |
 |:---------:|:--------------------------|:-----------------------------------|
@@ -891,9 +917,10 @@ This is to prevent any ambiguity in the generated summary.
 
 [Back to Finance Management](#finance-management)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Events Management
+--------------------------------------------------------------------------------------------------------------------
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
 
@@ -917,6 +944,8 @@ This is a mini table of contents for general commands to help you navigate this 
 |  [`filter-t`](#filtering-events-by-time-events-tab-filter-t)   | [<p style="color:black">Filter events by time</p>](#filtering-events-by-time-events-tab-filter-t)     |
 
 [↑ Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### Listing all upcoming events: Events Tab → `list`
 
@@ -967,6 +996,7 @@ Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-
 * Note that even though filter-n within the Contacts tab is _case-insensitive_, but it should make it easier to find the client that you're looking for.
 </box>
 
+<div style="page-break-after: always;"></div>
 
 |        Parameter        | Format                                                                 | Examples (#g#Valid##/#r#Invalid##)                                       |
 |:-----------------------:|------------------------------------------------------------------------|--------------------------------------------------------------------------|
@@ -983,6 +1013,8 @@ Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-
 |                    `add n/Gym s/21-02-2023 13:30 e/21-02-2023 14:30`                    |                 `add n/Gym s/21-02-2023 13:30 e/21-02-2023 12:30`                 | <span style ='color: darkred; text-decoration: underline'>Invalid Date-Time Duration</span><br> `e/TIMEEND` must be chronologically after `s/TIMESTART`          |
 
 [Back to Events Management](#events-management)
+
+<div style="page-break-after: always;"></div>
 
 #### Editing an event: Events tab → `edit`
 
@@ -1013,6 +1045,8 @@ Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-
 * Note that even though filter-n within the Contacts tab is _case-insensitive_, but it should make it easier to find the client that you're looking for.
   </box>
 
+<div style="page-break-after: always;"></div>
+
 |          Parameter          | Format                                                                 | Examples (#g#Valid##/#r#Invalid##)                                                  |
 |:---------------------------:|------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 |          `[NAME]`           | Text up to 256 characters<br>Must be unique                            | #g#Annie Dunkins##<br>#g#'Chewbaca' The 1st##                                       |
@@ -1027,6 +1061,8 @@ Refer to [the filter-n command](#filtering-contacts-by-name-contacts-tab-filter-
 | `edit 2 n/Meetup s/01-12-2023 2pm e/01-12-2023 3pm c/Alex Yeoh c/Bernice Yu ` | `edit 1 c/Potato Client`<br/>_<span style ='color: gray'>(If "Potato Client" does not exists in Contacts)</span>_ | <span style ='color: darkred; text-decoration: underline'>Client Does Not Exist</span><br> Client 'Potato Client' does not exist in your contacts           |
 
 [Back to Events Management](#events-management)
+
+<div style="page-break-after: always;"></div>
 
 #### Deleting an Event entry: Events Tab → `delete`
 
@@ -1054,6 +1090,8 @@ The `INDEX` refers to the index number shown in the displayed event list.
 |                        | `delete 150` <br>_<span style="color:gray">(while there are less than 150 entries in the event list)</span>_ | <span style ='color: darkred; text-decoration: underline'>Invalid Index</span><br> `INDEX` is out of range, choose an `INDEX` that is within the event list               |
 
 [Back to Events Management](#events-management)
+
+<div style="page-break-after: always;"></div>
 
 #### Filtering events by `CLIENT`: Events Tab → `filter-c`
 
@@ -1131,6 +1169,8 @@ Format: `filter-n KEYWORD [MORE_KEYWORDS]...`
 
 [Back to Events Management](#events-management)
 
+<div style="page-break-after: always;"></div>
+
 #### Filtering events by `TIME`: Events Tab → `filter-t`
 
 Filters events by time in the **Events** tab.
@@ -1160,10 +1200,11 @@ All events with <code>TIMESTART</code> before the time specified in <code>TIMEST
 
 [Back to Events Management](#events-management)
 
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Data Storage
+--------------------------------------------------------------------------------------------------------------------
+
 
 ### Saving the Data
 
@@ -1195,6 +1236,8 @@ FreelanceBuddy currently does not support client validation on loading data file
 </box>
 
 [↑ Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Configuration Files
 
@@ -1228,9 +1271,10 @@ For the preferences file (which depends on the `userPrefsFilePath` in `config.js
 
 [↑ Back to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Accepted Date-time Formats
+--------------------------------------------------------------------------------------------------------------------
 
 For the CLI experience to be optimised, FreelanceBuddy accepts a **variety of date-time formats** so that you can type in your date-time inputs **quickly** and **without hassle**.
 Pick and choose any of your preferred format at your convenience.
@@ -1250,6 +1294,8 @@ As this section is relatively long, we have provided a mini table of content for
 - [Editing `TIMESTART` `TIMEEND` in Events](#editing-timestart-timeend-in-events)
 
 [↑ Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### Accepted Numbered Date Formats
 
@@ -1280,6 +1326,8 @@ Below is a table of accepted numbered date formats, these represent `<DATE>` onl
 
 [Back to Date-time Contents](#contents-of-this-section)
 
+<div style="page-break-after: always;"></div>
+
 #### Accepted Natural Language Date Formats
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
@@ -1298,6 +1346,8 @@ Below is a table of accepted natural language date formats, these represent `<DA
 | `in <number> <day/week/month/year>` | `in 5 days`,<br/>`in 1 week`  | Date of next specified timeframe with reference to current date                                             |
 
 [Back to Date-time Contents](#contents-of-this-section)
+
+<div style="page-break-after: always;"></div>
 
 #### Accepted Numbered Time Formats
 
@@ -1334,6 +1384,8 @@ Below is a table of accepted natural language time formats, these represent `<TI
 
 [Back to Date-time Contents](#contents-of-this-section)
 
+<div style="page-break-after: always;"></div>
+
 #### Accepted Natural Language Date and Time Formats
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
@@ -1352,6 +1404,8 @@ Below is a table of accepted natural language time formats, these represent **`<
 
 [Back to Date-time Contents](#contents-of-this-section)
 
+<div style="page-break-after: always;"></div>
+
 #### Using Date and Time Inputs to Together
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
@@ -1369,6 +1423,7 @@ A `<DATE> <TIME>` combination can be acheived in the following ways:
 
 [Back to Date-time Contents](#contents-of-this-section)
 
+
 #### Using Date-time Formats for Durations
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
@@ -1384,6 +1439,8 @@ Relevant for:
 There are several **rules** and [**assumptions**](#assumptions-using-date-time-combinations) that FreelanceBuddy date time reader makes use of that would be useful to understand to optimise your user experience.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 ##### Accepted Date-time Combinations of `s/` and `e/`
 
@@ -1430,6 +1487,8 @@ Here is a list of all Date-time Combination Assumptions:
 
 [Back to Date-time Contents](#contents-of-this-section)
 
+<div style="page-break-after: always;"></div>
+
 #### Using Date-time Formats for Time Instances
 
 <span class="badge rounded-pill bg-success" style="font-size: 14px; vertical-align: middle;">Beginner</span>
@@ -1450,6 +1509,8 @@ You might want to consider the assumptions made for either `<DATE>` or `<TIME>` 
 
 [Back to Date-time Contents](#contents-of-this-section)
 
+<div style="page-break-after: always;"></div>
+
 #### Editing `TIMESTART` `TIMEEND` in Events
 
 <span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
@@ -1468,8 +1529,6 @@ Even if the start time *appears* to be before the stored end time.
 
 1. **Reason for such an error message** is because the `s/` ==input is assumed to be for the next day==.
 
-
-
 ****BEFORE EDITING****
   <box seamless>
 
@@ -1482,6 +1541,8 @@ Even if the start time *appears* to be before the stored end time.
  Current date time: 12-11-2023 17:00, and you enter `edit 1 s/3pm`.
 
  This will register the start time to **tomorrow** (13-11-2023 15:00) instead of today (12-11-2023 15:00). 
+
+<div style="page-break-after: always;"></div>
 
 ****AFTER EDITING****
   <box seamless>
@@ -1520,9 +1581,12 @@ Modify `TIMESTART` and `TIMEEND` inputs together! If you understood how to use d
 
 [Back to Date-time Contents](#contents-of-this-section)
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
+
+--------------------------------------------------------------------------------------------------------------------
 
 <span class="badge rounded-pill bg-danger" style="font-size: 14px; vertical-align: middle;">Advanced</span>
 
@@ -1540,6 +1604,8 @@ Commands that applies to ALL tabs
 | [<p style="color:black">**Exit**</p>](#exiting-the-program-exit)    | [`exit`](#exiting-the-program-exit)                                                        |
 | [<p style="color:black">**Clear**</p>](#clearing-all-entries-clear) | [`clear`](#clearing-all-entries-clear)                                                     |
 
+<div style="page-break-after: always;"></div>
+
 ### Contacts Tab
 
 | Action                                                                                                   | Format, Examples                                                                                                                                                                                                     |
@@ -1551,6 +1617,7 @@ Commands that applies to ALL tabs
 | [<p style="color:black">**Filter by Name**</p>](#filtering-contacts-by-name-contacts-tab-filter-n)       | [<p style="color:black">`filter-n KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-n David Li`</p>](#filtering-contacts-by-name-contacts-tab-filter-n)                                                                  |
 | [<p style="color:black">**Filter by Company**</p>](#filtering-contacts-by-company-contacts-tab-filter-c) | [<p style="color:black">`filter-c KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `filter-c Google`</p>](#filtering-contacts-by-company-contacts-tab-filter-c)                                                                 |
 
+<div style="page-break-after: always;"></div>
 
 ### Finance Tab
 
@@ -1565,6 +1632,7 @@ Commands that applies to ALL tabs
 | [<p style="color:black">**Filter by Time Frame**</p>](#filtering-finances-by-time-frame-finance-tab-filter-t) | [<p style="color:black">`filter-t s/START_TIME e/END_TIME`<br> e.g., `filter-t s/tdy e/next week`</p>](#filtering-finances-by-time-frame-finance-tab-filter-t)                                     |
 | [<p style="color:black">**Summary**</p>](#generating-a-finance-summary-of-a-client-finance-tab-summary)               | [<p style="color:black">`summary CLIENT`<br> e.g., `summary John Doe`</p>](#generating-a-finance-summary-of-a-client-finance-tab-summary)                                                          |
 
+<div style="page-break-after: always;"></div>
 
 ### Events Tab
 
@@ -1581,9 +1649,11 @@ Commands that applies to ALL tabs
 
 [↑ Back to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
+--------------------------------------------------------------------------------------------------------------------
+
 
 **Q**: **How do I transfer my data to another Computer?**</br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FreelanceBuddy home folder.</br>
