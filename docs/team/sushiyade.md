@@ -68,6 +68,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added UML Diagrams for Tabs and UI
     * Updated UI design description
+    * Added use cases for Events
     * Added Manual Tests for Events
       * `add`
       * `edit`
@@ -78,7 +79,10 @@ Given below are my contributions to the project.
       * `list-all`
 
 * **Community**:
-  * To be added
+  * I collaborated closely with Daniel Loh (dloh2236) to build the base Logic and Model for the Events section in our application.
+  Throughout our work, we frequently supported each other and had good communication which resulted in an efficient workflow,
+  allowing us to implement commands and refine the UI in timely fashion. Additionally, I assisted Daniel by creating test cases, 
+  and he aided me in resolving certain merge conflicts.
 
 * **Tools**:
   * IntelliJ
